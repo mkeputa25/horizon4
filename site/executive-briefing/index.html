@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Executive Briefing — Horizon4 AI</title>
-  <meta name="description" content="A 60-minute private session with Horizon4 leadership for ministers, mayors, rectors, deans, CEOs, and board members preparing AI decisions.">
+  <title>Executive AI Briefing for Institutional Leaders, Horizon4 AI</title>
+  <meta name="description" content="A private AI briefing with Horizon4 leadership for ministers, mayors, rectors, CEOs, and boards preparing AI training and implementation decisions.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
@@ -42,15 +42,16 @@
     const Hero = () => (
       <section className="hero hero-compact" data-screen-label="Hero">
         <div className="container">
-          <h1 className="h1">One conversation. Bilingual. On the record.</h1>
+          <h1 className="h1">One executive conversation before a larger AI capability program.</h1>
           <p className="body-xl hero-lead">
-            A 60-minute private session with Horizon4 leadership for
-            ministers, mayors, rectors, deans, CEOs, and board members
-            preparing AI decisions.
+            A private briefing with Horizon4 leadership for ministers,
+            mayors, rectors, deans, CEOs, boards, and senior teams
+            preparing AI training, strategy, governance, or implementation
+            decisions.
           </p>
           <div className="hero-actions">
-            <a href="#form" className="btn btn-primary">Request Briefing</a>
-            <a href={route('/audit')} className="btn btn-secondary">Or request audit scope</a>
+            <a href={route('/contact')} className="btn btn-primary">Book Executive Briefing</a>
+            <a href={route('/contact')} className="btn btn-secondary">Request Training Program</a>
           </div>
         </div>
       </section>
@@ -86,9 +87,40 @@
       </section>
     );
 
+    /* ─── WHEN TO BOOK ─────────────────────── */
+    const WhenToBook = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="When to book">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">When to book a briefing</div>
+            <h2 className="h2">The right moment is before the commitment.</h2>
+            <p className="body-xl">
+              A 90-minute briefing is most valuable just ahead of a
+              decision that will be visible, funded, or hard to reverse.
+            </p>
+          </div>
+          <div className="dim-grid">
+            {[
+              ['01', 'Before training public servants',  'Ahead of an AI capability program for a ministry, agency, or municipal workforce.'],
+              ['02', 'Before launching teacher AI programs', 'Ahead of school or university AI training, with academic integrity in view.'],
+              ['03', 'Before buying AI tools',            'Ahead of procurement, so governance and oversight evidence is in place first.'],
+              ['04', 'Before donor program design',       'Ahead of scoping a donor-funded or multi-cohort capability program.'],
+              ['05', 'Before agentic AI implementation',  'Ahead of putting human-approved AI agents into real institutional workflows.'],
+            ].map(([n, h, d]) => (
+              <div key={n} className="dim-card">
+                <div className="num">{n}</div>
+                <h3>{h}</h3>
+                <p>{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
     /* ─── FORMATS ──────────────────────────── */
     const Formats = () => (
-      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Formats">
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Formats">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Formats</div>
@@ -170,7 +202,7 @@
 
     /* ─── WHO IT'S FOR ─────────────────────── */
     const WhoFor = () => (
-      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Who it's for">
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Who it's for">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Who it's for</div>
@@ -202,7 +234,7 @@
 
     /* ─── TOPICS COVERED ───────────────────── */
     const Topics = () => (
-      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Briefing topics">
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Briefing topics">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Briefing topics</div>
@@ -231,7 +263,7 @@
 
     /* ─── DELIVERABLE PREVIEW ──────────────── */
     const Memo = () => (
-      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Deliverable preview">
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Deliverable preview">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">What you take away</div>
@@ -298,7 +330,7 @@
     const FAQ = () => {
       const [open, setOpen] = useState(0);
       return (
-        <section style={{ background: 'var(--bg-base)' }} data-screen-label="FAQ">
+        <section style={{ background: 'var(--bg-surface)' }} data-screen-label="FAQ">
           <div className="container">
             <div className="section-head">
               <div className="eyebrow">FAQ</div>

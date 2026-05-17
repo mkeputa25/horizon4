@@ -3,11 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Course Catalog — Horizon4 AI Academy</title>
-  <meta name="description" content="Browse practical AI courses by pathway, role, level, and format. Live, hands-on courses for Albanian professionals, teams, public servants, educators, SMEs, and institutions.">
+  <title>Course Catalog · Horizon4 AI Academy</title>
+  <meta name="description" content="Browse AI training courses and programs by audience, type, level, and language for public administration, teachers, and business teams.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
+  <style>
+    .private-banner {
+      background: var(--bg-surface, #FFFFFF);
+      border: 1px solid var(--hairline, #E2E5EA);
+      border-radius: 4px;
+      padding: 28px 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+    }
+    .private-banner .pb-text h3 { margin: 0 0 6px; }
+    .private-banner .pb-text p { margin: 0; color: var(--ink-muted, #5A6472); }
+  </style>
 </head>
 <body>
   <div id="root"></div>
@@ -23,46 +39,130 @@
     const { Nav, Footer, route } = window.H4Chrome;
 
     /* ─── COURSES ─────────────────────────── */
+    /* status: 'available' | 'soon' | 'institutional' */
     const COURSES = [
-      // Launch cohort (Oct–Dec 2026)
-      { t: 'AI Workplace Fundamentals',           pw: 'AI Fundamentals',          topic: 'Foundations', lvl: 'Beginner',     fmt: '4-week cohort',    dur: '3h · 1d · 4w', lang: 'Bilingual', aud: 'Professionals',         start: 'Cohort 1 · Oct 2026', avail: true,  d: 'How AI works, where it helps, where it fails, and how to use it responsibly in everyday work.' },
-      { t: 'Prompt Engineering for Professionals', pw: 'AI Fundamentals',         topic: 'Prompting',   lvl: 'Beginner',     fmt: '4-week cohort',    dur: '3h · 1d · 4w', lang: 'Bilingual', aud: 'Professionals',         start: 'Cohort 1 · Oct 2026', avail: true,  d: 'Prompt design, testing, and reusable prompt systems for real professional tasks.' },
-      { t: 'AI for Teachers and Professors',      pw: 'Sector Pathways',          topic: 'Education',   lvl: 'Beginner',     fmt: '1-day intensive',  dur: '3h · 1d · 4w', lang: 'Bilingual', aud: 'Educators',             start: 'Cohort 1 · Nov 2026', avail: true,  d: 'Lesson design, student feedback, research, and responsible classroom use of AI.' },
-      { t: 'AI and Academic Integrity',           pw: 'Sector Pathways',          topic: 'Education',   lvl: 'Intermediate', fmt: '1-day intensive',  dur: '3h · 1d · 4w', lang: 'Bilingual', aud: 'Educators',             start: 'Cohort 1 · Nov 2026', avail: true,  d: 'Assignment redesign, detection limits, disclosure norms, and academic-integrity policy.' },
-      { t: 'AI Productivity for SMEs',            pw: 'Sector Pathways',          topic: 'Business',    lvl: 'Beginner',     fmt: '1-day intensive',  dur: '3h · 1d · 4w', lang: 'Bilingual', aud: 'SME leaders',           start: 'Cohort 1 · Nov 2026', avail: true,  d: 'Practical AI for small businesses: operations, marketing, sales, and admin.' },
-      { t: 'AI for Professional Services',        pw: 'Sector Pathways',          topic: 'Business',    lvl: 'Intermediate', fmt: '4-week cohort',    dur: '1d · 2d · 4w', lang: 'Bilingual', aud: 'Professional services', start: 'Cohort 1 · Dec 2026', avail: true,  d: 'AI workflows for legal, audit, consulting, and advisory teams — with confidentiality built in.' },
-
-      // 2027 in development
-      { t: 'AI Tools for Productivity',           pw: 'AI Fundamentals',          topic: 'Foundations', lvl: 'Beginner',     fmt: '3-hour workshop',  dur: '3h · 1d',      lang: 'Bilingual', aud: 'Professionals',         start: '2027', avail: false, d: 'Practical use of mainstream AI tools across docs, email, research, and meetings.' },
-      { t: 'Responsible AI & Data Privacy',       pw: 'AI Fundamentals',          topic: 'Governance',  lvl: 'Beginner',     fmt: '3-hour workshop',  dur: '3h · 1d',      lang: 'Bilingual', aud: 'Professionals',         start: '2027', avail: false, d: 'Data privacy, disclosure, oversight, and GDPR-aware AI use for everyday workflows.' },
-      { t: 'AI for Data Analysis',                pw: 'AI Data & Reporting',      topic: 'Data',        lvl: 'Intermediate', fmt: '4-week cohort',    dur: '1d · 4w',      lang: 'Bilingual', aud: 'Analysts',              start: '2027', avail: false, d: 'AI assistants for cleaning, exploring, and explaining tabular data responsibly.' },
-      { t: 'AI for Marketing & Content',          pw: 'Marketing & Communication',topic: 'Marketing',   lvl: 'Beginner',     fmt: '4-week cohort',    dur: '1d · 4w',      lang: 'Bilingual', aud: 'Marketers',             start: '2027', avail: false, d: 'Strategy, content, and campaign workflows that respect brand voice and originality.' },
-      { t: 'AI for Sales & Client Work',          pw: 'Marketing & Communication',topic: 'Sales',       lvl: 'Beginner',     fmt: '1-day intensive',  dur: '1d',           lang: 'Bilingual', aud: 'Sales teams',           start: '2027', avail: false, d: 'Outbound drafting, meeting prep, follow-up, and CRM workflows with human review.' },
-      { t: 'AI Product Strategy',                 pw: 'Product & Innovation',     topic: 'Product',     lvl: 'Intermediate', fmt: '2-day lab',        dur: '2d',           lang: 'Bilingual', aud: 'Product managers',      start: '2027', avail: false, d: 'AI-first product strategy, opportunity scoring, and feasibility framing for serious products.' },
-      { t: 'Project Management with AI',          pw: 'Product & Innovation',     topic: 'Project mgmt',lvl: 'Beginner',     fmt: '1-day intensive',  dur: '1d',           lang: 'Bilingual', aud: 'PMs',                   start: '2027', avail: false, d: 'AI-assisted planning, status reporting, risk tracking, and stakeholder communication.' },
-      { t: 'Agentic AI Discovery Workshop',       pw: 'Agents & Automation',      topic: 'Agents',      lvl: 'Beginner',     fmt: '3-hour workshop',  dur: '3h',           lang: 'Bilingual', aud: 'Mixed teams',           start: '2027', avail: false, d: 'Identify candidate workflows for human-approved AI agents — and the ones that should not be automated.' },
-      { t: 'No-Code AI Agents',                   pw: 'Agents & Automation',      topic: 'Agents',      lvl: 'Intermediate', fmt: '2-day lab',        dur: '2d',           lang: 'Bilingual', aud: 'Operators',             start: '2027', avail: false, d: 'Build a working internal assistant with approval gates, document grounding, and review logs.' },
-      { t: 'Agentic AI Strategy for Leaders',     pw: 'Agents & Automation',      topic: 'Agents',      lvl: 'Advanced',     fmt: '1-day intensive',  dur: '1d',           lang: 'Bilingual', aud: 'Leaders',               start: '2027', avail: false, d: 'Where assistants pay back, where agents are premature, and how to govern both.' },
-      { t: 'AI for Public Servants',              pw: 'Sector Pathways',          topic: 'Public sector', lvl: 'Beginner',   fmt: '1-day intensive',  dur: '1d',           lang: 'Bilingual', aud: 'Public servants',       start: '2027', avail: false, d: 'Document drafting, citizen communication, and admin workflows — with disclosure norms.' },
-      { t: 'AI Governance for Municipalities',    pw: 'Sector Pathways',          topic: 'Public sector', lvl: 'Intermediate', fmt: '2-day lab',      dur: '2d',           lang: 'Bilingual', aud: 'Municipal leaders',     start: '2027', avail: false, d: 'Policy, procurement, and oversight practices for municipal AI adoption.' },
+      {
+        t: 'Public Administration AI Skills',
+        d: 'Flagship institutional program building practical AI skills across ministries, agencies, and municipalities, with human review and public accountability.',
+        aud: 'Public administration', type: 'Institutional program', lvl: 'Intermediate', lang: 'Bilingual',
+        fmt: 'Multi-cohort institutional program', status: 'institutional', cta: 'Request Program',
+        flag: true,
+      },
+      {
+        t: 'AI for Public Servants',
+        d: 'Document drafting, summarization, and citizen communication workflows for public servants, with disclosure norms built in.',
+        aud: 'Public administration', type: 'Institutional program', lvl: 'Beginner', lang: 'Bilingual',
+        fmt: '1-day intensive', status: 'institutional', cta: 'Request Program',
+      },
+      {
+        t: 'AI Governance for Municipalities',
+        d: 'Policy, procurement awareness, and oversight practices for responsible municipal AI adoption.',
+        aud: 'Leaders / strategy', type: 'Institutional program', lvl: 'Leadership', lang: 'Bilingual',
+        fmt: '2-day program', status: 'institutional', cta: 'Discuss Program',
+      },
+      {
+        t: 'AI for Teachers and Professors',
+        d: 'Lesson design, student feedback, research support, and responsible classroom use of AI.',
+        aud: 'Teachers / education', type: 'Cohort', lvl: 'Beginner', lang: 'Bilingual',
+        fmt: '1-day intensive', status: 'available', cta: 'View Course',
+      },
+      {
+        t: 'Teacher AI Classroom Practice',
+        d: 'Hands-on classroom AI activities, assessment redesign, and age-appropriate AI literacy for education teams.',
+        aud: 'Teachers / education', type: 'Institutional program', lvl: 'Intermediate', lang: 'Bilingual',
+        fmt: 'Role-specific cohort', status: 'institutional', cta: 'Request Program',
+      },
+      {
+        t: 'AI and Academic Integrity',
+        d: 'Assignment redesign, detection limits, disclosure norms, and an academic-integrity policy starter.',
+        aud: 'Teachers / education', type: 'Workshop', lvl: 'Intermediate', lang: 'Bilingual',
+        fmt: '1-day intensive', status: 'available', cta: 'View Course',
+      },
+      {
+        t: 'AI Productivity for SMEs',
+        d: 'Practical AI for small businesses across operations, marketing, sales, and administration.',
+        aud: 'Business teams', type: 'Workshop', lvl: 'Beginner', lang: 'Bilingual',
+        fmt: '1-day intensive', status: 'available', cta: 'View Course',
+      },
+      {
+        t: 'AI for Professional Services',
+        d: 'AI workflows for legal, audit, consulting, and advisory teams, with confidentiality built in.',
+        aud: 'Business teams', type: 'Cohort', lvl: 'Intermediate', lang: 'Bilingual',
+        fmt: '4-week cohort', status: 'available', cta: 'View Course',
+      },
+      {
+        t: 'Business & Organization AI Productivity Program',
+        d: 'Team-wide AI productivity for documents, meetings, reporting, and client work, with shared prompt systems.',
+        aud: 'Business teams', type: 'Institutional program', lvl: 'Intermediate', lang: 'Bilingual',
+        fmt: 'Multi-cohort program', status: 'institutional', cta: 'Request Program',
+      },
+      {
+        t: 'Agentic AI Discovery Workshop',
+        d: 'Identify candidate workflows for human-approved AI agents, and the ones that should not be automated.',
+        aud: 'General professionals', type: 'Institutional program', lvl: 'Beginner', lang: 'Bilingual',
+        fmt: '3-hour workshop', status: 'institutional', cta: 'Discuss Agentic Workflow',
+      },
+      {
+        t: 'Human-Approved AI Assistants',
+        d: 'Design internal assistants with approval gates, document grounding, and review logs.',
+        aud: 'Technical / builders', type: 'Cohort', lvl: 'Technical', lang: 'Bilingual',
+        fmt: '2-day lab', status: 'soon', cta: 'Join Waitlist', altCta: 'Discuss Agentic Workflow',
+      },
+      {
+        t: 'AI Champions Program',
+        d: 'Train-the-trainer program that builds internal champions to sustain AI adoption across an institution.',
+        aud: 'Leaders / strategy', type: 'Institutional program', lvl: 'Leadership', lang: 'Bilingual',
+        fmt: 'Champions cohort', status: 'institutional', cta: 'Request Program',
+      },
+      {
+        t: 'AI Workplace Fundamentals',
+        d: 'How AI works, where it helps, where it fails, and how to use it responsibly in everyday work.',
+        aud: 'General professionals', type: 'Cohort', lvl: 'Beginner', lang: 'Bilingual',
+        fmt: '4-week cohort', status: 'available', cta: 'View Course',
+      },
+      {
+        t: 'Responsible AI and Data Privacy',
+        d: 'Data privacy, disclosure, oversight, and privacy-aware AI use for everyday workflows.',
+        aud: 'General professionals', type: 'Workshop', lvl: 'Beginner', lang: 'Bilingual',
+        fmt: '3-hour workshop', status: 'soon', cta: 'Join Waitlist',
+      },
+      {
+        t: 'AI Data and Reporting',
+        d: 'AI assistants for cleaning, exploring, and explaining data, plus dashboards and decision support.',
+        aud: 'Technical / builders', type: 'Cohort', lvl: 'Intermediate', lang: 'Bilingual',
+        fmt: '4-week cohort', status: 'soon', cta: 'Join Waitlist',
+      },
+      {
+        t: 'AI Marketing and Communication',
+        d: 'Strategy, content, and campaign workflows that respect brand voice and originality.',
+        aud: 'Business teams', type: 'Cohort', lvl: 'Beginner', lang: 'Bilingual',
+        fmt: '4-week cohort', status: 'soon', cta: 'Join Waitlist',
+      },
+      {
+        t: 'Agentic AI Strategy for Leaders',
+        d: 'Where assistants pay back, where agents are premature, and how to govern both.',
+        aud: 'Leaders / strategy', type: 'Workshop', lvl: 'Leadership', lang: 'Bilingual',
+        fmt: '1-day intensive', status: 'soon', cta: 'Join Waitlist',
+      },
     ];
 
-    const PW  = ['All pathways', 'AI Fundamentals', 'AI Data & Reporting', 'Marketing & Communication', 'Product & Innovation', 'Agents & Automation', 'Sector Pathways'];
-    const LV  = ['All levels', 'Beginner', 'Intermediate', 'Advanced'];
-    const FM  = ['All formats', '3-hour workshop', '1-day intensive', '2-day lab', '4-week cohort'];
-    const AU  = ['All audiences', 'Professionals', 'Educators', 'SME leaders', 'Professional services', 'Public servants', 'Municipal leaders', 'Analysts', 'Marketers', 'Sales teams', 'Product managers', 'PMs', 'Operators', 'Leaders', 'Mixed teams'];
-    const LG  = ['All languages', 'Bilingual', 'English', 'Albanian'];
-    const AV  = ['All courses', 'Available now', 'Coming 2027'];
+    const AU  = ['All audiences', 'Public administration', 'Teachers / education', 'Business teams', 'Leaders / strategy', 'Technical / builders', 'General professionals'];
+    const TY  = ['All program types', 'Workshop', 'Cohort', 'Private training', 'Institutional program', 'Coming soon'];
+    const LV  = ['All levels', 'Beginner', 'Intermediate', 'Leadership', 'Technical'];
+    const LG  = ['All languages', 'Albanian', 'English', 'Bilingual'];
+
+    const STATUS_LABEL = { available: 'Available', soon: 'Coming soon', institutional: 'Institutional program' };
 
     /* ─── HERO ─────────────────────────────── */
     const Hero = () => (
       <section className="hero hero-compact" data-screen-label="Hero">
         <div className="container">
           <div className="eyebrow">Academy · Course Catalog</div>
-          <h1 className="h1" style={{ marginTop: 24 }}>Browse all courses.</h1>
+          <h1 className="h1" style={{ marginTop: 24 }}>Browse courses and programs.</h1>
           <p className="body-xl hero-lead" style={{ marginTop: 32 }}>
-            Filter by pathway, role, level, and format. Six launch courses
-            are open for enrolment now; twelve more launch in 2027.
+            Filter by audience, program type, level, and language. Live,
+            bilingual, hands-on AI training for public administration,
+            teachers, and business teams.
           </p>
         </div>
       </section>
@@ -78,14 +178,12 @@
                 <circle cx="11" cy="11" r="8"></circle>
                 <path d="M21 21l-4.3-4.3"></path>
               </svg>
-              <input placeholder="Search courses…" value={s.q} onChange={e => set({ ...s, q: e.target.value })}/>
+              <input placeholder="Search courses..." value={s.q} onChange={e => set({ ...s, q: e.target.value })}/>
             </div>
-            <select className="filter-select" value={s.pw} onChange={e => set({ ...s, pw: e.target.value })}>{PW.map(o => <option key={o}>{o}</option>)}</select>
-            <select className="filter-select" value={s.lv} onChange={e => set({ ...s, lv: e.target.value })}>{LV.map(o => <option key={o}>{o}</option>)}</select>
-            <select className="filter-select" value={s.fm} onChange={e => set({ ...s, fm: e.target.value })}>{FM.map(o => <option key={o}>{o}</option>)}</select>
             <select className="filter-select" value={s.au} onChange={e => set({ ...s, au: e.target.value })}>{AU.map(o => <option key={o}>{o}</option>)}</select>
+            <select className="filter-select" value={s.ty} onChange={e => set({ ...s, ty: e.target.value })}>{TY.map(o => <option key={o}>{o}</option>)}</select>
+            <select className="filter-select" value={s.lv} onChange={e => set({ ...s, lv: e.target.value })}>{LV.map(o => <option key={o}>{o}</option>)}</select>
             <select className="filter-select" value={s.lg} onChange={e => set({ ...s, lg: e.target.value })}>{LG.map(o => <option key={o}>{o}</option>)}</select>
-            <select className="filter-select" value={s.av} onChange={e => set({ ...s, av: e.target.value })}>{AV.map(o => <option key={o}>{o}</option>)}</select>
           </div>
         </div>
       </div>
@@ -93,19 +191,19 @@
 
     /* ─── APP ───────────────────────────────── */
     const App = () => {
-      const [s, set] = useState({ q: '', pw: PW[0], lv: LV[0], fm: FM[0], au: AU[0], lg: LG[0], av: AV[0] });
+      const [s, set] = useState({ q: '', au: AU[0], ty: TY[0], lv: LV[0], lg: LG[0] });
       const matches = useMemo(() => COURSES.filter(c => {
         if (s.q && !(c.t + ' ' + c.d).toLowerCase().includes(s.q.toLowerCase())) return false;
-        if (s.pw !== PW[0] && c.pw !== s.pw) return false;
-        if (s.lv !== LV[0] && c.lvl !== s.lv) return false;
-        if (s.fm !== FM[0] && c.fmt !== s.fm) return false;
         if (s.au !== AU[0] && c.aud !== s.au) return false;
+        if (s.ty !== TY[0]) {
+          if (s.ty === 'Coming soon') { if (c.status !== 'soon') return false; }
+          else if (c.type !== s.ty) return false;
+        }
+        if (s.lv !== LV[0] && c.lvl !== s.lv) return false;
         if (s.lg !== LG[0] && c.lang !== s.lg) return false;
-        if (s.av === 'Available now' && !c.avail) return false;
-        if (s.av === 'Coming 2027'  &&  c.avail) return false;
         return true;
       }), [s]);
-      const reset = () => set({ q: '', pw: PW[0], lv: LV[0], fm: FM[0], au: AU[0], lg: LG[0], av: AV[0] });
+      const reset = () => set({ q: '', au: AU[0], ty: TY[0], lv: LV[0], lg: LG[0] });
 
       return (
         <div data-screen-label="Course Catalog">
@@ -115,6 +213,14 @@
 
           <section style={{ background: 'var(--bg-base)', paddingTop: 0 }} data-screen-label="Results">
             <div className="container">
+              <div className="private-banner">
+                <div className="pb-text">
+                  <h3 className="h4">Need this for your team?</h3>
+                  <p>Request private training adapted to your institution, sector, and workflows.</p>
+                </div>
+                <a href={route('/academy/private')} className="btn btn-primary">Request private training</a>
+              </div>
+
               <div className="results-bar">
                 <span>{matches.length} {matches.length === 1 ? 'course' : 'courses'}</span>
                 <button onClick={reset} className="reset-link">Reset filters</button>
@@ -123,67 +229,38 @@
               {matches.length === 0 ? (
                 <div className="empty">
                   <h3>No courses match your filters.</h3>
-                  <p>Try removing one filter, or request a private training recommendation from Horizon4. We'll suggest the best path based on your role, team, and goals.</p>
+                  <p>Try removing one filter, or request a private training recommendation from Horizon4. We will suggest the best path based on your role, team, and goals.</p>
                   <div className="btn-row" style={{ justifyContent: 'center' }}>
                     <button className="btn btn-secondary" onClick={reset}>Reset filters</button>
-                    <a href="#request" className="btn btn-primary">Request a recommendation</a>
+                    <a href={route('/contact')} className="btn btn-primary">Request Training Program</a>
                   </div>
                 </div>
               ) : (
                 <div className="course-grid">
-                  {matches.map(c => (
-                    <div key={c.t} className={`course-card ${!c.avail ? 'coming' : ''}`}>
-                      <span className={`course-badge ${!c.avail ? 'soon' : ''}`}>{c.avail ? 'Available' : 'Coming 2027'}</span>
-                      <div className="course-title">{c.t}</div>
-                      <p className="course-desc">{c.d}</p>
-                      <div className="course-tags">
-                        <span className="course-tag pw">{c.pw}</span>
-                        <span className="course-tag">{c.lvl}</span>
-                        <span className="course-tag">{c.lang}</span>
-                        <span className="course-tag">{c.aud}</span>
+                  {matches.map(c => {
+                    const ctaHref = c.status === 'available' ? route('/contact') : route('/contact');
+                    return (
+                      <div key={c.t} className={`course-card ${c.status === 'soon' ? 'coming' : ''}`}>
+                        <span className={`course-badge ${c.status === 'soon' ? 'soon' : ''}`}>{STATUS_LABEL[c.status]}</span>
+                        <div className="course-title">{c.t}</div>
+                        <p className="course-desc">{c.d}</p>
+                        <div className="course-tags">
+                          <span className="course-tag pw">{c.aud}</span>
+                          <span className="course-tag">{c.lvl}</span>
+                          <span className="course-tag">{c.lang}</span>
+                        </div>
+                        <div className="course-meta">
+                          <span>{c.fmt}</span>
+                          <span>{c.type}</span>
+                        </div>
+                        <div className="course-actions">
+                          <a href={ctaHref} className="btn btn-primary">{c.cta}</a>
+                        </div>
                       </div>
-                      <div className="course-meta">
-                        <span>{c.dur}</span>
-                        <span>{c.start}</span>
-                      </div>
-                      <div className="course-actions">
-                        <a href="#" className="btn btn-primary">{c.avail ? 'View course' : 'Notify me'}</a>
-                        <a href="#request" className="btn btn-secondary">Private training</a>
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               )}
-            </div>
-          </section>
-
-          {/* Inline request block */}
-          <section id="request" style={{ background: 'var(--bg-surface)' }} data-screen-label="Request">
-            <div className="container" style={{ maxWidth: 960 }}>
-              <div className="section-head">
-                <div className="eyebrow">Private training</div>
-                <h2 className="h2">Don't see what you need?</h2>
-                <p className="body-xl">Tell us about your team and we'll recommend the right course, cohort, or private training format. Replies within 3 business days.</p>
-              </div>
-              <form className="inline-form" onSubmit={(e) => e.preventDefault()}>
-                <label>Full name<input type="text" required/></label>
-                <label>Work email<input type="email" required/></label>
-                <label>Organization<input type="text" required/></label>
-                <label>Role / title<input type="text"/></label>
-                <label>Number of participants
-                  <select><option>Just me</option><option>2–10</option><option>11–25</option><option>26–50</option><option>50+</option></select>
-                </label>
-                <label>Preferred format
-                  <select><option>Public cohort</option><option>Private team training</option><option>Not sure — recommend</option></select>
-                </label>
-                <label className="full">What does your team need to do with AI?<textarea placeholder="Describe the role, the work, and what 'better' would look like in 3 months."></textarea></label>
-                <label>Preferred language<select><option>English</option><option>Albanian</option><option>Bilingual</option></select></label>
-                <label>Timeline<select><option>Within 30 days</option><option>This quarter</option><option>Next quarter</option><option>Exploring</option></select></label>
-                <div className="full submit-row">
-                  <button className="btn btn-primary" type="submit">Submit request</button>
-                  <span className="legal">We respond within 3 business days.</span>
-                </div>
-              </form>
             </div>
           </section>
 

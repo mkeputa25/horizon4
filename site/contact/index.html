@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Contact — Horizon4 AI</title>
-  <meta name="description" content="Start a conversation with Horizon4 AI. Executive briefings, AI readiness audits, donor program design, and private team training. Bilingual, on the record, responsive.">
+  <title>Request AI Training Program, Horizon4 AI</title>
+  <meta name="description" content="Contact Horizon4 AI for public administration AI training, teacher AI training, business team training, strategy, audits, and agentic AI workflows.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
@@ -41,6 +41,28 @@
 
     /* Submit button full width inside contact form */
     .contact-grid .inline-form .submit-row .btn-primary { width: 100%; justify-content: center; }
+
+    /* Featured route card highlight */
+    .eng-card.featured {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 1px var(--accent-primary);
+    }
+    .eng-card .route-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+    }
+
+    /* What happens next steps */
+    .next-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 760px) { .next-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
@@ -58,91 +80,103 @@
     const Hero = () => (
       <section className="hero hero-compact" data-screen-label="Hero">
         <div className="container">
-          <h1 className="h1">Start a conversation.</h1>
-          <p className="body-xl hero-lead" style={{ maxWidth: '55ch' }}>
-            For executive briefings, audits, donor program design, and
-            private team training. Bilingual, on the record, responsive.
+          <h1 className="h1">Tell us who you need to train, and what AI decision you are preparing.</h1>
+          <p className="body-xl hero-lead" style={{ maxWidth: '62ch' }}>
+            We will route you to the right next step: public administration
+            training, teacher AI training, business team training, strategy,
+            donor program design, agentic AI workflow, readiness audit, or
+            executive briefing.
           </p>
+          <div className="hero-actions">
+            <a href="#form" className="btn btn-primary">Request Training Program</a>
+          </div>
         </div>
       </section>
     );
 
     /* ─── ROUTING CARDS ─── */
+    const ROUTES = [
+      {
+        featured: true,
+        tag: 'Most requested',
+        h: 'Public Administration AI Training',
+        d: 'For ministries, agencies, municipalities, and public servants who need practical AI capability inside institutional rules.',
+        cta: 'Request Public Administration Training',
+      },
+      {
+        featured: false,
+        tag: 'Education',
+        h: 'Teacher and Education AI Training',
+        d: 'For teachers, professors, schools, universities, and education leaders preparing students for AI responsibly.',
+        cta: 'Request Teacher AI Training',
+      },
+      {
+        featured: false,
+        tag: 'Business',
+        h: 'Business and Organization AI Training',
+        d: 'For teams that need AI productivity in documents, meetings, reporting, operations, sales, and client work.',
+        cta: 'Request Business Team Training',
+      },
+      {
+        featured: false,
+        tag: 'Programs',
+        h: 'Strategy and Donor Program',
+        d: 'For institutions designing multi-cohort, multi-year, or donor-funded AI capability programs.',
+        cta: 'Discuss Strategy Program',
+      },
+      {
+        featured: false,
+        tag: 'Agentic',
+        h: 'Agentic AI Workflow',
+        d: 'For teams exploring human-approved AI agents inside real workflows.',
+        cta: 'Discuss Agentic Workflow',
+      },
+    ];
+
     const Routing = () => (
       <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Routing">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Route your request</div>
-            <h2 className="h2">Three ways to start with Horizon4.</h2>
+            <h2 className="h2">Start with the program your people need.</h2>
             <p className="body-xl">
-              Pick the path that matches your timeline and decision horizon.
+              Pick the path that matches who you need to train and the AI
+              decision you are preparing.
             </p>
           </div>
 
           <div className="eng-grid">
-            {/* Card 1 — Executive Briefing */}
-            <div className="eng-card">
-              <div className="eng-tag eyebrow muted">1 week</div>
-              <div className="divider"></div>
-              <h3>Executive Briefing</h3>
-              <p className="eng-lead">
-                60-90 minute private session with a written decision memo.
-                Most common entry point for institutional leaders.
-              </p>
-              <div className="eng-foot">
-                <span></span>
-                <a href={route('/executive-briefing')} className="eng-cta">Request Briefing →</a>
+            {ROUTES.map(r => (
+              <div key={r.h} className={r.featured ? 'eng-card flagship featured' : 'eng-card'}>
+                {r.featured && <div className="accent-bar"></div>}
+                <div className={r.featured ? 'eng-tag eyebrow' : 'eng-tag eyebrow muted'}>{r.tag}</div>
+                <div className="divider"></div>
+                <h3>{r.h}</h3>
+                <p className="eng-lead">{r.d}</p>
+                <div className="eng-foot">
+                  <span></span>
+                  <a href="#form" className="eng-cta">{r.cta} →</a>
+                </div>
               </div>
-            </div>
-
-            {/* Card 2 — Audit (flagship) */}
-            <div className="eng-card flagship">
-              <div className="accent-bar"></div>
-              <div className="eng-tag eyebrow">Flagship · 2-6 weeks</div>
-              <div className="divider"></div>
-              <h3>AI Readiness Audit</h3>
-              <p className="eng-lead">
-                Six-dimension diagnostic for institutions making real AI
-                commitments. Highest-ticket engagement.
-              </p>
-              <div className="eng-foot">
-                <span></span>
-                <a href={route('/audit')} className="eng-cta">Request Audit Scope →</a>
-              </div>
-            </div>
-
-            {/* Card 3 — Private Team Training */}
-            <div className="eng-card">
-              <div className="eng-tag eyebrow muted">Custom scope</div>
-              <div className="divider"></div>
-              <h3>Private Team Training</h3>
-              <p className="eng-lead">
-                Custom AI training scoped to your institution, team, sector,
-                and goals. Half-day to multi-week formats.
-              </p>
-              <div className="eng-foot">
-                <span></span>
-                <a href={route('/academy/private')} className="eng-cta">Request Training →</a>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
       </section>
     );
 
-    /* ─── GENERAL CONTACT FORM ─── */
+    /* ─── REQUEST TRAINING FORM ─── */
     const ContactForm = () => (
-      <section id="form" style={{ background: 'var(--bg-base)' }} data-screen-label="General contact form">
+      <section id="form" style={{ background: 'var(--bg-base)' }} data-screen-label="Request training form">
         <div className="container">
           <div className="contact-grid">
             <div className="contact-left">
               <div className="section-head">
-                <div className="eyebrow">General inquiry</div>
-                <h2 className="h2">Not sure where to start?</h2>
+                <div className="eyebrow">Request training program</div>
+                <h2 className="h2">Tell us who you need to train.</h2>
                 <p className="body-xl lead">
-                  Tell us about your institution and what you're trying to
-                  accomplish. We'll route you to the right engagement type
-                  within 2 business days.
+                  Describe your institution, the people you need to train,
+                  and the AI decision you are preparing. We will route you
+                  to the right program path within 2 business days.
                 </p>
               </div>
 
@@ -165,51 +199,105 @@
 
             <form className="inline-form" onSubmit={(e) => e.preventDefault()}>
               <label>Full name<input type="text" autoComplete="name" required/></label>
-              <label>Email<input type="email" autoComplete="email" required/></label>
-              <label>Phone <span style={{ textTransform: 'none', letterSpacing: 0, fontWeight: 400, color: 'var(--ink-muted)' }}>(optional)</span><input type="tel" autoComplete="tel"/></label>
-              <label>Institution or organization<input type="text" required/></label>
-              <label className="full">Your role<input type="text" required/></label>
-              <label className="full">Institution type
+              <label>Work email<input type="email" autoComplete="email" required/></label>
+              <label>Organization<input type="text" autoComplete="organization" required/></label>
+              <label>Role / title<input type="text" required/></label>
+              <label className="full">Request type
+                <select required defaultValue="">
+                  <option value="" disabled>Select one…</option>
+                  <option>Public Administration AI Training</option>
+                  <option>Teacher / Education AI Training</option>
+                  <option>Business / Organization AI Training</option>
+                  <option>Strategy / Implementation</option>
+                  <option>Donor / EU Program</option>
+                  <option>Agentic AI Workflow</option>
+                  <option>Readiness Audit</option>
+                  <option>Executive Briefing</option>
+                  <option>General Inquiry</option>
+                </select>
+              </label>
+              <label>Institution type
                 <select required defaultValue="">
                   <option value="" disabled>Select one…</option>
                   <option>Ministry</option>
                   <option>Agency</option>
-                  <option>University</option>
-                  <option>School</option>
                   <option>Municipality</option>
-                  <option>Public enterprise</option>
-                  <option>SME</option>
-                  <option>Professional services firm</option>
-                  <option>Donor program</option>
+                  <option>School</option>
+                  <option>University</option>
+                  <option>Business</option>
+                  <option>NGO / foundation</option>
+                  <option>Donor / implementing partner</option>
                   <option>Other</option>
                 </select>
               </label>
-              <label className="full">What you're looking for
-                <textarea rows="5" required placeholder="A few sentences about your institution, your timeline, and what you'd like to discuss."></textarea>
+              <label>Number of people to train
+                <select required defaultValue="">
+                  <option value="" disabled>Select one…</option>
+                  <option>1-10</option>
+                  <option>11-25</option>
+                  <option>26-50</option>
+                  <option>51-100</option>
+                  <option>100+</option>
+                  <option>Not sure</option>
+                </select>
               </label>
               <label>Preferred language
                 <select required defaultValue="">
                   <option value="" disabled>Select one…</option>
-                  <option>English</option>
                   <option>Albanian</option>
+                  <option>English</option>
                   <option>Bilingual</option>
                 </select>
               </label>
-              <label>How you found us <span style={{ textTransform: 'none', letterSpacing: 0, fontWeight: 400, color: 'var(--ink-muted)' }}>(optional)</span>
-                <select defaultValue="">
+              <label>Timeline
+                <select required defaultValue="">
                   <option value="" disabled>Select one…</option>
-                  <option>Direct</option>
-                  <option>Referral</option>
-                  <option>LinkedIn</option>
-                  <option>Search</option>
-                  <option>Conference</option>
-                  <option>Other</option>
+                  <option>Within 30 days</option>
+                  <option>This quarter</option>
+                  <option>3-6 months</option>
+                  <option>Exploring</option>
                 </select>
               </label>
+              <label className="full">What do you need your people to do better with AI?
+                <textarea rows="5" required placeholder="A few sentences about the roles, workflows, and outcomes you want training to improve."></textarea>
+              </label>
+              <label className="full">Existing AI tools / policies <span style={{ textTransform: 'none', letterSpacing: 0, fontWeight: 400, color: 'var(--ink-muted)' }}>(optional)</span>
+                <textarea rows="3" placeholder="Tools currently in use, and any acceptable-use or governance policies already in place."></textarea>
+              </label>
               <div className="submit-row full">
-                <button type="submit" className="btn btn-primary">Send Inquiry</button>
+                <button type="submit" className="btn btn-primary">Send Request</button>
               </div>
             </form>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── WHAT HAPPENS NEXT ─── */
+    const WhatNext = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="What happens next">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">What happens next</div>
+            <h2 className="h2">A clear path after you send your request.</h2>
+            <p className="body-xl">
+              No pressure and no obligation. We recommend the right next
+              step for your institution, even when that step is to wait.
+            </p>
+          </div>
+          <div className="next-grid">
+            {[
+              ['01', 'We review your request', 'We read what you sent and the people you need to train.'],
+              ['02', 'We identify the right program path', 'We match your needs to a training, audit, or briefing path.'],
+              ['03', 'We reply within 2 business days', 'A named response with a recommended next step.'],
+              ['04', 'We recommend the next step', 'A briefing, audit, training program, or no immediate engagement.'],
+            ].map(([n, h, d]) => (
+              <div key={n} className="dim-card">
+                <div className="num">{n}</div>
+                <h3>{h}</h3>
+                <p>{d}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -235,6 +323,7 @@
         <Hero/>
         <Routing/>
         <ContactForm/>
+        <WhatNext/>
         <CTA/>
         <Footer/>
       </div>

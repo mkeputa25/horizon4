@@ -3,11 +3,28 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI Readiness &amp; Governance Audit — Horizon4 AI</title>
-  <meta name="description" content="A practical diagnostic across six institutional dimensions. Delivered as a written report your leadership can circulate, present, and defend.">
+  <title>AI Readiness and Governance Audit, Horizon4 AI</title>
+  <meta name="description" content="A readiness and governance diagnostic for institutions preparing AI training, procurement, and implementation, delivered as a written report.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
+  <style>
+    /* Audit-specific: highlight the Training Needs Map deliverable */
+    .dim-card.featured {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 1px var(--accent-primary);
+      background: var(--bg-surface);
+    }
+    .dim-card.featured .deliv-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent-primary);
+      margin-bottom: 8px;
+    }
+  </style>
 </head>
 <body>
   <div id="root"></div>
@@ -86,15 +103,16 @@
       <section className="hero" data-screen-label="Hero">
         <div className="container hero-grid">
           <div>
-            <h1 className="h1">Know where you're ready for AI. And where you're exposed.</h1>
+            <h1 className="h1">Know what your people need before you train them on AI.</h1>
             <p className="body-xl hero-lead">
-              A practical diagnostic across six institutional dimensions.
-              Delivered as a written report your leadership can circulate,
-              present, and defend.
+              A readiness and governance diagnostic for institutions
+              preparing AI training, procurement, workflow implementation,
+              or donor-funded capability programs. Delivered as a written
+              report your leadership can circulate, present, and defend.
             </p>
             <div className="hero-actions">
-              <a href="#form" className="btn btn-primary">Request Audit Scope</a>
-              <a href="/resources/readiness-checklist" className="btn btn-secondary">Download Readiness Checklist</a>
+              <a href={route('/contact')} className="btn btn-primary">Request AI Readiness Audit</a>
+              <a href={route('/contact')} className="btn btn-secondary">Request Training Program</a>
             </div>
           </div>
           <div><Scorecard/></div>
@@ -126,6 +144,38 @@
                 <div className="eyebrow">{c.eb}</div>
                 <h3>{c.h}</h3>
                 <p>{c.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── TRAINING WITHOUT DIAGNOSIS ───────── */
+    const TrainingDiagnosis = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Training without diagnosis">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Audit before training</div>
+            <h2 className="h2">Training without diagnosis wastes budget.</h2>
+            <p className="body-xl">
+              The audit answers the questions a training program must be
+              built on. Skill people on the right things, in the right
+              order, inside the right rules.
+            </p>
+          </div>
+          <div className="dim-grid">
+            {[
+              ['01', 'Who needs training?',      'Which roles, teams, and seniority levels actually use AI, and which need capability first.'],
+              ['02', 'Which workflows matter?',  'Where AI changes real work, and which document, reporting, and service workflows to prioritize.'],
+              ['03', 'What rules are missing?',  'Acceptable-use policy, disclosure, human review, and oversight gaps that training must reinforce.'],
+              ['04', 'Where is risk highest?',   'The functions where unsupervised AI use creates legal, reputational, or service risk.'],
+              ['05', 'What should be done in the first 90 days?', 'The first actions, sequenced into a defensible plan with owners and milestones.'],
+            ].map(([n, h, d]) => (
+              <div key={n} className="dim-card">
+                <div className="num">{n}</div>
+                <h3>{h}</h3>
+                <p>{d}</p>
               </div>
             ))}
           </div>
@@ -207,20 +257,22 @@
             <h2 className="h2">Six written artifacts you can defend.</h2>
             <p className="body-xl">
               Every audit produces six standardized deliverables. Each one
-              is written for institutional circulation.
+              is written for institutional circulation, and one of them
+              becomes the blueprint for your training program.
             </p>
           </div>
           <div className="dim-grid">
             {[
-              ['docChart', 'Readiness Scorecard',   'Six dimensions, tier rating, and institutional benchmark comparison. The headline deliverable.'],
-              ['warning',  'Risk Register',         'Categorized risks with severity classification and named mitigation actions.'],
-              ['listChk',  'Use-Case Portfolio',    'Prioritized AI opportunities for your institution, with sequencing logic.'],
-              ['gavel',    'Governance Gap Review', 'Current policies, missing policies, oversight points, and human approval requirements.'],
-              ['people',   'Training Needs Map',    'Role-specific capability gaps, training priorities, and capability development sequencing.'],
-              ['calendar', '90-Day Roadmap',        'Sequenced actions with owners, dependencies, and measurable milestones.'],
-            ].map(([ic, h, d]) => (
-              <div key={h} className="dim-card">
+              ['people',   'Training Needs Map',    'Role-specific capability gaps, training priorities, and capability development sequencing. The bridge from audit to training program.', true],
+              ['docChart', 'Readiness Scorecard',   'Six dimensions, tier rating, and institutional benchmark comparison. The headline diagnostic.', false],
+              ['warning',  'Risk Register',         'Categorized risks with severity classification and named mitigation actions.', false],
+              ['listChk',  'Use-Case Portfolio',    'Prioritized AI opportunities for your institution, with sequencing logic.', false],
+              ['gavel',    'Governance Gap Review', 'Current policies, missing policies, oversight points, and human approval requirements.', false],
+              ['calendar', '90-Day Roadmap',        'Sequenced actions with owners, dependencies, and measurable milestones.', false],
+            ].map(([ic, h, d, featured]) => (
+              <div key={h} className={featured ? 'dim-card featured' : 'dim-card'}>
                 <div className="ic"><Icon d={ICONS[ic]}/></div>
+                {featured && <div className="deliv-tag">Bridge to training</div>}
                 <h3>{h}</h3>
                 <p>{d}</p>
               </div>
@@ -334,7 +386,7 @@
                 <li>Implementation oversight handoff</li>
               </ul>
               <div className="eng-foot">
-                <span className="eng-price">Request quote</span>
+                <span className="eng-price">Request Scope</span>
                 <a href="#form" className="eng-cta">Request Scope →</a>
               </div>
             </div>
@@ -453,7 +505,7 @@
             No obligation.
           </p>
           <div className="cta-row">
-            <a href="#form" className="btn btn-primary on-dark">Request Audit Scope</a>
+            <a href={route('/contact')} className="btn btn-primary on-dark">Request AI Readiness Audit</a>
             <a href={route('/executive-briefing')} className="btn-link on-dark">or book an executive briefing →</a>
           </div>
           <div className="cta-loc">Tirana, Albania · Available regionally and remotely</div>
@@ -466,6 +518,7 @@
         <Nav/>
         <Hero/>
         <Why/>
+        <TrainingDiagnosis/>
         <Dimensions/>
         <Framework/>
         <Deliverables/>

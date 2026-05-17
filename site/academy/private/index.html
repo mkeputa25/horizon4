@@ -3,11 +3,47 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Private Team Training — Horizon4 AI Academy</title>
-  <meta name="description" content="Custom AI training for your team, adapted to your sector, role mix, and institutional context. Half-day to multi-week formats, on-site or remote, in Albanian, English, or bilingual delivery.">
+  <title>Private AI Team Training · Horizon4 AI Academy</title>
+  <meta name="description" content="Custom on-site, remote, or bilingual AI training for public administration teams, education institutions, and business teams in Albania.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
+  <style>
+    .seg-grid { display: grid; gap: 24px; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 880px) { .seg-grid { grid-template-columns: 1fr; } }
+    .seg-card {
+      background: var(--bg-surface, #FFFFFF);
+      border: 1px solid var(--hairline, #E2E5EA);
+      border-radius: 4px;
+      padding: 28px;
+    }
+    .seg-card .accent { display: block; width: 40px; height: 3px; background: var(--accent-primary, #0075C9); margin-bottom: 18px; }
+    .seg-card h3 { margin: 0 0 10px; }
+    .seg-card p { margin: 0; color: var(--ink-muted, #5A6472); }
+    .scoping-callout {
+      background: var(--ink-strong, #0A1F44);
+      color: #FFFFFF;
+      border-radius: 4px;
+      padding: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .scoping-callout h2 { margin: 0; color: #FFFFFF; }
+    .scoping-callout p { margin: 8px 0 0; color: rgba(255,255,255,0.78); max-width: 46ch; }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 12px; }
+    .chip {
+      display: inline-block;
+      background: var(--bg-surface, #FFFFFF);
+      border: 1px solid var(--hairline, #E2E5EA);
+      border-radius: 4px;
+      padding: 8px 14px;
+      font-size: 14px;
+      color: var(--ink-strong, #0A1F44);
+    }
+  </style>
 </head>
 <body>
   <div id="root"></div>
@@ -27,15 +63,76 @@
       <section className="hero hero-compact" data-screen-label="Hero">
         <div className="container">
           <div className="eyebrow">Academy · Private Training</div>
-          <h1 className="h1" style={{ marginTop: 24 }}>Bring Horizon4 to your team.</h1>
+          <h1 className="h1" style={{ marginTop: 24 }}>Bring Horizon4 AI training to your institution.</h1>
           <p className="body-xl hero-lead" style={{ marginTop: 32 }}>
-            Custom AI training adapted to your team's sector, role mix, and
-            institutional context. Half-day to multi-week formats, on-site
-            or remote, in Albanian, English, or bilingual delivery.
+            Custom AI training for public administration teams, teachers,
+            education institutions, businesses, NGOs, and donor-funded
+            programs. Delivered on-site, remote, or bilingual, with practical
+            artifacts your team keeps using.
           </p>
           <div className="hero-actions">
-            <a href="#request" className="btn btn-primary">Request Private Training</a>
-            <a href={route('/academy/catalog')} className="btn btn-secondary">Browse Public Courses</a>
+            <a href={route('/contact')} className="btn btn-primary">Request Private Training</a>
+            <a href={route('/academy/catalog')} className="btn btn-secondary">Explore Public Courses</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── AUDIENCE CARDS ──────────────────── */
+    const SEGMENTS = [
+      ['Public administration teams', 'Ministries, agencies, and municipalities building practical AI skills with human review and public accountability.'],
+      ['Teachers and education institutions', 'Schools, universities, and education teams building classroom AI practice and academic integrity.'],
+      ['Business and organization teams', 'Companies, NGOs, and donor-funded programs building team-wide AI productivity and shared workflows.'],
+    ];
+
+    const Audiences = () => (
+      <section data-screen-label="Audiences">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Who we train</div>
+            <h2 className="h2">Built around your institution.</h2>
+            <p className="body-xl">
+              Every private program is designed for the people and the work
+              in front of you, not a generic curriculum.
+            </p>
+          </div>
+          <div className="seg-grid">
+            {SEGMENTS.map(([t, d]) => (
+              <div key={t} className="seg-card">
+                <span className="accent"></span>
+                <h3 className="h4">{t}</h3>
+                <p>{d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="chip-row" style={{ marginTop: 32 }}>
+            {[
+              'Real team artifacts under NDA',
+              'Albanian / English / bilingual',
+              'Public administration-ready',
+              'Teacher-ready',
+              'Business workflow-ready',
+              'Human review built in',
+              'Fixed scope before delivery',
+            ].map(c => <span key={c} className="chip">{c}</span>)}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── SCOPING CALLOUT ─────────────────── */
+    const Scoping = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Scoping call">
+        <div className="container">
+          <div className="scoping-callout">
+            <div>
+              <h2 className="h2">A 45-minute scoping call. No pitch.</h2>
+              <p>
+                We listen, ask hard questions, and tell you honestly whether
+                private training is the right next step or not.
+              </p>
+            </div>
+            <a href={route('/contact')} className="btn btn-primary on-dark">Request Private Training</a>
           </div>
         </div>
       </section>
@@ -56,9 +153,9 @@
           </div>
           <div className="what-grid">
             {[
-              ['01', 'Your team, your work', 'We design the cohort around your actual sector, tools, and workflows — not a generic curriculum your team has to translate themselves.'],
-              ['02', 'Confidential by design', 'On-site or private remote delivery. Exercises use your team\'s real artefacts under NDA. Nothing leaves the room.'],
-              ['03', 'A shared standard', 'Everyone learns the same governance, prompts, and review practice — so the team comes out aligned, not fragmented.'],
+              ['01', 'Your team, your work', 'We design the cohort around your actual sector, tools, and workflows, not a generic curriculum your team has to translate themselves.'],
+              ['02', 'Confidential by design', 'On-site or private remote delivery. Exercises use your team\'s real artifacts under NDA. Nothing leaves the room.'],
+              ['03', 'A shared standard', 'Everyone learns the same governance, prompts, and review practice, so the team comes out aligned, not fragmented.'],
             ].map(([n, t, d]) => (
               <div key={n} className="what-col">
                 <div className="num">{n}</div>
@@ -77,7 +174,7 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">How it works</div>
-            <h2 className="h2">Four stages. Four to eight weeks.</h2>
+            <h2 className="h2">Six steps from scoping call to adoption.</h2>
             <p className="body-xl">
               We work in the open. Scope, schedule, and deliverables are
               agreed before any session is delivered.
@@ -85,10 +182,12 @@
           </div>
           <div className="stages">
             {[
-              ['01', 'Scoping call',     'A 45-minute conversation to understand your team, sector, current AI exposure, and what "better" looks like in 90 days.'],
-              ['02', 'Custom design',    'A written program proposal — sessions, exercises, deliverables, language, format — with a fixed fee.'],
-              ['03', 'Delivery',         'Live sessions with your team. Real institutional artefacts under NDA. Working files between sessions.'],
-              ['04', 'Embed & handoff',  'A short post-program review with managers. Materials, prompts, and policies stay with your team to keep using.'],
+              ['01', 'Scoping call',                'A 45-minute conversation to understand your team, sector, current AI exposure, and what better looks like in 90 days.'],
+              ['02', 'Skills and workflow diagnosis','A structured look at your team roles, current AI use, and the workflows where training will have the most effect.'],
+              ['03', 'Custom training design',      'A written program proposal with sessions, exercises, deliverables, language, and format, at a fixed scope.'],
+              ['04', 'Live delivery',               'Live sessions with your team. Real institutional artifacts under NDA. Working files between sessions.'],
+              ['05', 'Artifact handoff',            'Prompt libraries, playbooks, kits, and policy starters are handed to your team to keep using.'],
+              ['06', '30/60/90-day adoption support','Check-ins with managers at 30, 60, and 90 days to keep adoption on track after delivery.'],
             ].map(([n, t, d]) => (
               <div key={n} className="stage">
                 <div className="num">{n}</div>
@@ -113,7 +212,7 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">What teams take home</div>
-            <h2 className="h2">Concrete artefacts. Aligned practice.</h2>
+            <h2 className="h2">Concrete artifacts. Aligned practice.</h2>
             <p className="body-xl">
               Every private program produces tools and documents the team
               keeps using after we leave.
@@ -121,12 +220,12 @@
           </div>
           <div className="outcomes">
             {[
-              ['Shared prompt library',  'A curated set of prompts for your team\'s top tasks, version-controlled and reviewed.'],
-              ['Acceptable-use policy',  'A team-level AUP draft you can take to your governance function for adoption.'],
+              ['Shared prompt library',  'A curated set of prompts for your team\'s top tasks, organized and reviewed.'],
+              ['Acceptable-use guide',   'A team-level acceptable-use draft you can take to your governance function for adoption.'],
               ['Human-review patterns',  'Patterns for which outputs need review, by whom, and how to document decisions.'],
               ['Pilot use-case list',    'A prioritized shortlist of low-risk, high-value AI workflows ready to pilot.'],
               ['Capability map',         'A role-by-role picture of where the team is today and where to invest next.'],
-              ['90-day uplift plan',     'A named plan for the first 90 days after training — owners, milestones, and check-ins.'],
+              ['90-day adoption plan',   'A named plan for the first 90 days after training, with owners, milestones, and check-ins.'],
             ].map(([t, d]) => (
               <div key={t} className="outcome">
                 <div className="ic"><CheckIcon/></div>
@@ -135,32 +234,47 @@
               </div>
             ))}
           </div>
+          <div className="seg-grid" style={{ marginTop: 40 }}>
+            {[
+              ['Public administration', ['Public-service prompt library', 'Citizen communication examples', 'Human-review checklist', 'Acceptable-use guide', 'Internal memo templates']],
+              ['Education',             ['Lesson planning prompts', 'Classroom AI activity kit', 'Student disclosure template', 'Assessment redesign guide', 'Academic integrity policy starter']],
+              ['Business',              ['Team prompt library', 'Meeting and reporting workflows', 'Client-service scripts', 'Confidentiality guide', 'Productivity playbook']],
+            ].map(([seg, items]) => (
+              <div key={seg} className="seg-card">
+                <span className="accent"></span>
+                <h3 className="h4">{seg}</h3>
+                <ul style={{ margin: 0, paddingLeft: 18, color: 'var(--ink-muted, #5A6472)' }}>
+                  {items.map(it => <li key={it} style={{ marginBottom: 6 }}>{it}</li>)}
+                </ul>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
     );
 
-    /* ─── AUDIENCES ───────────────────────── */
-    const Audiences = () => (
-      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Audiences">
+    /* ─── SECTORS ─────────────────────────── */
+    const Sectors = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Sectors">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Who we work with</div>
-            <h2 className="h2">Teams of 8 to 80.</h2>
+            <h2 className="h2">Teams large enough to share a workflow.</h2>
             <p className="body-xl">
-              We run private programs for teams large enough to share a
-              workflow, small enough to share a room. Larger institutional
-              academies are scoped separately.
+              We run private programs for teams with a shared workflow, shared
+              context, and a shared standard to hold each other to. Larger
+              institutional academies are scoped separately.
             </p>
           </div>
           <div className="aud-tags">
-            <span className="aud-tag primary">Ministries & agencies</span>
+            <span className="aud-tag primary">Ministries and agencies</span>
             <span className="aud-tag primary">Municipalities</span>
-            <span className="aud-tag primary">Universities & schools</span>
+            <span className="aud-tag primary">Universities and schools</span>
             <span className="aud-tag">Professional service firms</span>
-            <span className="aud-tag">Mid-market & large SMEs</span>
-            <span className="aud-tag">Healthcare & financial institutions</span>
-            <span className="aud-tag">Donor & EU programs</span>
-            <span className="aud-tag">Foundations & NGOs</span>
+            <span className="aud-tag">Mid-market and large SMEs</span>
+            <span className="aud-tag">Healthcare and financial institutions</span>
+            <span className="aud-tag">Donor-funded programs</span>
+            <span className="aud-tag">Foundations and NGOs</span>
           </div>
           <p className="body" style={{ marginTop: 40, color: 'var(--ink-muted)', maxWidth: '60ch' }}>
             For institutions seeking a multi-cohort, multi-quarter AI capability
@@ -183,7 +297,7 @@
               ['01', 'Half-day workshop'],
               ['02', '1-day intensive'],
               ['03', '2-day lab'],
-              ['04', '3 × ½-day sprint'],
+              ['04', '3 part half-day sprint'],
               ['05', '4-week cohort'],
               ['06', 'Multi-month program'],
             ].map(([n, name]) => (
@@ -199,12 +313,12 @@
 
     /* ─── FAQ ─────────────────────────────── */
     const FAQ_ITEMS = [
-      ['How much does private training cost?', 'Pricing depends on format, duration, group size, and customization. Every engagement begins with a discovery call, after which we provide a written proposal with detailed pricing for your specific context.'],
-      ['Do you deliver on-site, remote, or both?', 'Both. We deliver on-site across Albania (and travel-distance), private remote sessions, or a mix. Hybrid cohorts work well for distributed teams.'],
-      ['What languages do you deliver in?', 'Albanian, English, or bilingual — chosen with you during scoping based on your team\'s preference and material.'],
-      ['Can you use our team\'s real documents in exercises?', 'Yes, under NDA. We design exercises with your team\'s real artefacts so the practice transfers directly to the work — not invented examples.'],
+      ['How is private training scoped?', 'Scope depends on format, duration, group size, and customization. Every engagement begins with a scoping call, after which we provide a written proposal with a fixed scope for your specific context.'],
+      ['Do you deliver on-site, remote, or both?', 'Both. We deliver on-site across Albania, private remote sessions, or a mix. Hybrid cohorts work well for distributed teams.'],
+      ['What languages do you deliver in?', 'Albanian, English, or bilingual, chosen with you during scoping based on your team preference and material.'],
+      ['Can you use our team\'s real documents in exercises?', 'Yes, under NDA. We design exercises with your team\'s real artifacts so the practice transfers directly to the work, not invented examples.'],
       ['How is private training different from a public cohort?', 'Public cohorts are for individuals. Private training is for an entire team with a shared workflow and a shared standard to land on at the end.'],
-      ['How fast can you start?', 'From a first scoping call, most engagements begin within 4–6 weeks. Faster delivery is possible for shorter formats; multi-month programs are usually scheduled a quarter in advance.'],
+      ['Does Horizon4 certify compliance with AI regulations?', 'No. We do not issue conformity certifications for the EU AI Act, ISO 42001, or other external standards. We build the practical capability your team needs to be ready for them.'],
     ];
 
     const FAQ = () => {
@@ -240,8 +354,8 @@
             <div className="eyebrow">Request Private Training</div>
             <h2 className="h2">Tell us about your team.</h2>
             <p className="body-xl">
-              We'll reply within 3 business days with a recommended next step —
-              a scoping call, an alternative format, or both.
+              We will reply within 3 business days with a recommended next
+              step: a scoping call, an alternative format, or both.
             </p>
           </div>
           <form className="inline-form" onSubmit={(e) => e.preventDefault()}>
@@ -251,25 +365,25 @@
             <label>Role / title<input type="text"/></label>
             <label>Sector
               <select>
-                <option>Public administration · Ministry / Agency</option>
-                <option>Public administration · Municipality</option>
-                <option>Higher education / University</option>
-                <option>School / K–12</option>
+                <option>Public administration, ministry or agency</option>
+                <option>Public administration, municipality</option>
+                <option>Higher education or university</option>
+                <option>School</option>
                 <option>Professional services</option>
-                <option>SME / Mid-market</option>
+                <option>SME or mid-market</option>
                 <option>Healthcare</option>
                 <option>Financial institution</option>
-                <option>Donor / EU / NGO program</option>
+                <option>Donor-funded or NGO program</option>
                 <option>Other</option>
               </select>
             </label>
             <label>Team size
               <select>
-                <option>8–15</option>
-                <option>16–30</option>
-                <option>31–50</option>
-                <option>51–80</option>
-                <option>80+ (Institutional Academy)</option>
+                <option>8 to 15</option>
+                <option>16 to 30</option>
+                <option>31 to 50</option>
+                <option>51 to 80</option>
+                <option>80 or more, Institutional Academy</option>
               </select>
             </label>
             <label>Preferred format
@@ -277,10 +391,10 @@
                 <option>Half-day workshop</option>
                 <option>1-day intensive</option>
                 <option>2-day lab</option>
-                <option>3 × half-day sprint</option>
+                <option>3 part half-day sprint</option>
                 <option>4-week cohort</option>
                 <option>Multi-month program</option>
-                <option>Not sure — recommend</option>
+                <option>Not sure, please recommend</option>
               </select>
             </label>
             <label>Delivery
@@ -306,15 +420,15 @@
     const CTA = () => (
       <section className="cta" data-screen-label="Final CTA">
         <div className="cta-inner">
-          <div className="eyebrow on-dark">Or start with a conversation</div>
-          <h2 className="h2">A 45-minute scoping call. No pitch.</h2>
+          <div className="eyebrow on-dark">Get started</div>
+          <h2 className="h2">Bring AI training to your institution.</h2>
           <p className="body-xl">
-            We'll listen, ask hard questions, and tell you honestly whether
-            private training is the right next step or not.
+            Request private training for your team, or explore the public
+            course catalog.
           </p>
           <div className="cta-row">
-            <a href="#request" className="btn btn-primary on-dark">Request Private Training</a>
-            <a href={route('/contact')} className="btn-link on-dark">or just say hello →</a>
+            <a href={route('/contact')} className="btn btn-primary on-dark">Request Private Training</a>
+            <a href={route('/academy/catalog')} className="btn-link on-dark">or explore public courses</a>
           </div>
           <div className="cta-loc">Tirana, Albania · Europe-ready · Pre-launch September 2026</div>
         </div>
@@ -326,10 +440,12 @@
       <div data-screen-label="Academy Private">
         <Nav/>
         <Hero/>
+        <Audiences/>
+        <Scoping/>
         <Why/>
         <Process/>
         <Outcomes/>
-        <Audiences/>
+        <Sectors/>
         <Formats/>
         <FAQ/>
         <Request/>

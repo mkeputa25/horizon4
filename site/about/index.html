@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>About — Horizon4 AI</title>
-  <meta name="description" content="Horizon4 AI is an institutional AI advisory, training, and implementation firm based in Tirana. Built by four cofounders for institutions, agencies, and serious teams.">
+  <title>About Horizon4 AI · AI Skilling and Implementation in Albania</title>
+  <meta name="description" content="Horizon4 is an AI skilling, advisory, and implementation firm in Tirana, training public institutions, teachers, and teams to use AI responsibly.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
@@ -181,12 +181,12 @@
     const Hero = () => (
       <section className="hero hero-compact" data-screen-label="Hero">
         <div className="container">
-          <h1 className="h1">Built for Albania's transition to governed AI.</h1>
+          <h1 className="h1">Built for Albania's transition to AI capability at scale.</h1>
           <p className="body-xl hero-lead" style={{ maxWidth: '60ch' }}>
-            Horizon4 is an AI advisory, training, and implementation firm
-            based in Tirana. Built by four cofounders for institutions,
-            agencies, and serious teams that need to use AI well, and defend
-            the decisions.
+            Horizon4 is an AI skilling, advisory, and implementation firm
+            based in Tirana. We help public institutions, teachers, and
+            working teams use AI responsibly, productively, and inside
+            institutional rules.
           </p>
         </div>
       </section>
@@ -195,28 +195,35 @@
     /* ─── WHAT WE DO ─── */
     const WhatWeDo = () => {
       const items = [
-        { eb: 'Advisory',  h: 'Audits, briefings, and governance design.',
-          d: 'Six-dimension readiness audits, executive briefings, and donor program design for institutional buyers.',
-          link: '/advisory', cta: 'Explore Advisory' },
-        { eb: 'Academy',   h: 'Live AI courses and private team training.',
-          d: 'Nine pathways, eighteen courses, bilingual delivery. Private team programs from half-day to multi-week.',
+        { eb: 'Academy',  h: 'AI skilling at scale.',
+          d: 'Skilling at scale for public servants, teachers, and working teams.',
           link: '/academy', cta: 'Explore Academy' },
-        { eb: 'Solutions', h: 'Sector-specific AI capability programs.',
-          d: 'GovAI, EduAI, BusinessAI, and StrategyAI: four horizons of institutional AI work, plus Agentic AI as capability layer.',
-          link: '/govai', cta: 'Explore Solutions' },
-        { eb: 'Research',  h: 'Publications, frameworks, and policy work.',
-          d: 'Published research on institutional AI transitions, governance frameworks, and Albanian capability development.',
-          link: '/research/publications', cta: 'Explore Research' },
+        { eb: 'Public Administration', h: 'Capability for the public sector.',
+          d: 'AI capability for ministries, agencies, municipalities, and public-facing institutions.',
+          link: '/govai', cta: 'Explore Public Administration' },
+        { eb: 'Education', h: 'Responsible AI in education.',
+          d: 'AI training for teachers, professors, schools, universities, and students through responsible education practice.',
+          link: '/eduai', cta: 'Explore Education' },
+        { eb: 'Business & Organizations', h: 'Productive teams, governed workflows.',
+          d: 'Employee productivity training, workflow playbooks, and AI implementation support.',
+          link: '/businessai', cta: 'Explore Business' },
+        { eb: 'Strategy & Donor Programs', h: 'Roadmaps and donor-grade programs.',
+          d: 'Implementation roadmaps, governance models, and donor-grade capability programs.',
+          link: '/strategyai', cta: 'Explore Strategy' },
+        { eb: 'Agentic AI', h: 'Human-approved agentic workflows.',
+          d: 'Human-approved agentic workflows across government, education, and business.',
+          link: '/agentic-ai', cta: 'Explore Agentic AI' },
       ];
       return (
         <section style={{ background: 'var(--bg-surface)' }} data-screen-label="What we do">
           <div className="container">
             <div className="section-head">
               <div className="eyebrow">What we do</div>
-              <h2 className="h2">Four lines of work, one discipline.</h2>
+              <h2 className="h2">Six ways we build AI capability.</h2>
               <p className="body-xl">
-                Advisory engagements, Academy programs, sector solutions, and
-                research. All grounded in the same governance discipline.
+                Skilling, public administration, education, business,
+                strategy, and agentic AI. All built on governance, training,
+                and implementation together.
               </p>
             </div>
             <div className="work-grid">
@@ -272,9 +279,12 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Why Albania, why now</div>
-            <h2 className="h2">Albania's AI transition needs structure.</h2>
+            <h2 className="h2">Albania's AI transition needs capability.</h2>
             <p className="body-xl">
-              A short statement on context, framing, and where Horizon4 fits.
+              Albania does not need AI awareness alone. It needs practical AI
+              capability inside public administration, education, business,
+              and donor-funded programs, with governance, training, and
+              implementation built together.
             </p>
           </div>
 
@@ -291,14 +301,15 @@
                 on awareness and access. Both matter. Neither is sufficient.
               </p>
               <p className="body">
-                Horizon4 exists for the next layer: practical capability
-                building, governance design, and implementation discipline
-                for institutions that need to make defensible AI decisions.
+                Horizon4 exists for the next layer: skilling at scale,
+                governance design, and implementation discipline for
+                institutions and teams that need to use AI responsibly and
+                productively.
               </p>
               <p className="body">
-                We are not an awareness organization. We are not a community.
-                We are an institutional-grade advisory and training firm
-                built for serious work.
+                We bring training, advisory, and implementation together, so
+                public servants, teachers, and working teams can adopt AI
+                inside institutional rules.
               </p>
             </div>
 
@@ -460,14 +471,14 @@
       <section className="cta" data-screen-label="Final CTA">
         <div className="cta-inner">
           <div className="eyebrow on-dark">Work with Horizon4</div>
-          <h2 className="h2">Three ways to start.</h2>
+          <h2 className="h2">Start building AI capability.</h2>
           <p className="body-xl">
-            A briefing, an audit, or a conversation about your institution's
-            AI transition.
+            A training program, a readiness audit, or a conversation about
+            your institution's AI transition.
           </p>
           <div className="cta-row">
             <div className="cta-links">
-              <a href={route('/executive-briefing')}>Request Briefing</a>
+              <a href={route('/contact')}>Request Training Program</a>
               <span className="sep">·</span>
               <a href={route('/audit')}>Request Audit Scope</a>
               <span className="sep">·</span>

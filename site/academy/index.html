@@ -3,11 +3,40 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Horizon4 AI Academy — Practical AI capability for Albanian professionals</title>
-  <meta name="description" content="Horizon4 AI Academy: practical, hands-on AI courses, workshops, and pathways for Albanian professionals, teams, and institutions. Fundamentals, prompt engineering, agents, governance, and sector pathways.">
+  <title>Horizon4 AI Academy · AI Training for Public Servants, Teachers, and Teams</title>
+  <meta name="description" content="Live, bilingual AI training programs for public administration, education, businesses, and organizations in Albania.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
+  <style>
+    .flag-grid { display: grid; gap: 24px; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 880px) { .flag-grid { grid-template-columns: 1fr; } }
+    .flag-card {
+      background: var(--bg-surface, #FFFFFF);
+      border: 1px solid var(--hairline, #E2E5EA);
+      border-radius: 4px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      scroll-margin-top: 96px;
+    }
+    .flag-card .accent { display: block; width: 40px; height: 3px; background: var(--accent-primary, #0075C9); margin-bottom: 20px; }
+    .flag-card h3 { margin: 0 0 12px; }
+    .flag-card p { flex: 1; margin: 0 0 24px; color: var(--ink-muted, #5A6472); }
+    .flag-card .btn { align-self: flex-start; }
+    .levels-grid { display: grid; gap: 16px; grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 760px) { .levels-grid { grid-template-columns: 1fr; } }
+    .level-cell {
+      background: var(--bg-surface, #FFFFFF);
+      border: 1px solid var(--hairline, #E2E5EA);
+      border-radius: 4px;
+      padding: 20px 24px;
+      display: flex;
+      gap: 16px;
+      align-items: baseline;
+    }
+    .level-cell .num { color: var(--accent-primary, #0075C9); font-weight: 600; }
+  </style>
 </head>
 <body>
   <div id="root"></div>
@@ -26,15 +55,125 @@
     const Hero = () => (
       <section className="hero hero-compact" data-screen-label="Hero">
         <div className="container">
-          <h1 className="h1">Practical AI capability for the new world of work.</h1>
+          <h1 className="h1">Practical AI capability for public servants, teachers, and working teams.</h1>
           <p className="body-xl hero-lead">
-            Live, hands-on courses, pathways, and private programs across
-            fundamentals, prompt engineering, data, marketing, agents,
-            governance, and sector practice.
+            Live, bilingual, hands-on AI programs built for Albanian
+            institutions, not generic AI hype. Every program produces
+            practical artifacts: prompt libraries, classroom kits, workflow
+            playbooks, policies, and 90-day adoption plans.
           </p>
           <div className="hero-actions">
-            <a href={route('/academy/catalog')} className="btn btn-primary">Browse Course Catalog</a>
-            <a href={route('/academy/private')} className="btn btn-secondary">Request Private Training</a>
+            <a href={route('/contact')} className="btn btn-primary">Request Training Program</a>
+            <a href={route('/academy/catalog')} className="btn btn-secondary">Browse Course Catalog</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── SKILLING AT SCALE + FLAGSHIP TRACKS ─── */
+    const FLAGSHIPS = [
+      {
+        id: 'public-administration',
+        t: 'Public Administration AI',
+        d: 'AI skills for public servants, ministries, agencies, and municipalities: drafting, summarization, citizen-service workflows, procurement awareness, data privacy, human review, and public accountability.',
+        cta: 'Request Public Administration Program',
+      },
+      {
+        id: 'teachers',
+        t: 'Teachers & Education',
+        d: 'AI skills for teachers, professors, and education institutions: lesson design, student feedback, classroom AI collaboration, age-appropriate AI literacy, assessment redesign, disclosure norms, and academic integrity.',
+        cta: 'Request Teacher AI Program',
+      },
+      {
+        id: 'business-teams',
+        t: 'Business & Organizations',
+        d: 'AI productivity training for employees and teams: documents, meetings, reporting, sales, client work, internal knowledge, workflow redesign, confidentiality, and shared prompt systems.',
+        cta: 'Request Business Team Program',
+      },
+    ];
+
+    const Flagships = () => (
+      <section data-screen-label="Skilling at scale">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Skilling at scale</div>
+            <h2 className="h2">The Academy is the engine of Horizon4.</h2>
+            <p className="body-xl">
+              Horizon4 AI Academy trains people at the level where AI adoption
+              actually succeeds: public servants serving citizens, teachers
+              guiding students, and teams doing real organizational work.
+            </p>
+          </div>
+          <div className="flag-grid">
+            {FLAGSHIPS.map((f) => (
+              <div key={f.id} id={f.id} className="flag-card">
+                <span className="accent"></span>
+                <h3 className="h3">{f.t}</h3>
+                <p>{f.d}</p>
+                <a href={route('/contact')} className="btn btn-primary">{f.cta}</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── INSTITUTIONAL ACADEMY LEVELS ──────── */
+    const LEVELS = [
+      ['01', '3-hour awareness workshop'],
+      ['02', '1-day practical intensive'],
+      ['03', '4-week role-specific cohort'],
+      ['04', 'Private team training'],
+      ['05', 'Institutional academy'],
+      ['06', 'Train-the-trainer and champions program'],
+      ['07', 'Donor-funded multi-cohort program'],
+    ];
+
+    const Levels = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Program levels">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Program levels</div>
+            <h2 className="h2">From one workshop to a national capability program.</h2>
+          </div>
+          <div className="levels-grid">
+            {LEVELS.map(([n, name]) => (
+              <div key={n} className="level-cell">
+                <span className="num">{n}</span>
+                <span>{name}</span>
+              </div>
+            ))}
+          </div>
+          <p className="body-xl" style={{ marginTop: 40 }}>
+            Participants leave with tools they can use immediately, not just a
+            certificate.
+          </p>
+        </div>
+      </section>
+    );
+
+    /* ─── OPERATING MODEL ───────────────────── */
+    const Operating = () => (
+      <section className="fmt" data-screen-label="Operating model">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Operating model</div>
+            <h2 className="h2">Six steps. Assess. Train. Equip. Embed. Govern. Scale.</h2>
+          </div>
+          <div className="fmt-strip">
+            {[
+              ['01', 'Assess'],
+              ['02', 'Train'],
+              ['03', 'Equip'],
+              ['04', 'Embed'],
+              ['05', 'Govern'],
+              ['06', 'Scale'],
+            ].map(([n, name]) => (
+              <div key={n} className="fmt-cell">
+                <div className="fmt-num">{n}</div>
+                <div className="fmt-name">{name}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -46,7 +185,7 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">What the Academy is</div>
-            <h2 className="h2">Built for Albanian work — not generic AI hype.</h2>
+            <h2 className="h2">Built for Albanian work, not generic AI hype.</h2>
             <p className="body-xl">
               Every course is built for the institutions, sectors, and roles we
               actually serve. Practical artefacts, bilingual delivery,
@@ -55,9 +194,9 @@
           </div>
           <div className="what-grid">
             {[
-              ['01', 'Built for Albanian work', 'Courses adapted for Albanian workplaces, language, and institutional context — not translated from generic global curricula.'],
-              ['02', 'Practical, not theoretical', 'Every course produces a concrete deliverable students use the next day: a prompt set, a workflow, a policy, a plan.'],
-              ['03', 'Governance-aware by default', 'Every course includes responsible AI, data privacy, and human oversight — built in, not added on.'],
+              ['01', 'Built for Albanian work', 'Programs adapted for Albanian workplaces, language, and institutional context, not translated from generic global curricula.'],
+              ['02', 'Practical, not theoretical', 'Every program produces a concrete deliverable participants use the next day: a prompt set, a workflow, a policy, a plan.'],
+              ['03', 'Governance-aware by default', 'Every program includes responsible AI, data privacy, and human oversight, built in and not added on.'],
             ].map(([n, t, d]) => (
               <div key={n} className="what-col">
                 <div className="num">{n}</div>
@@ -70,140 +209,41 @@
       </section>
     );
 
-    /* ─── PATHWAYS ───────────────────────────── */
+    /* ─── SPECIALIZED PATHWAYS ───────────────── */
     const PATHWAYS = [
-      ['A', 'AI Fundamentals',               'Foundations of AI for everyday professional work.', 4],
-      ['B', 'AI Data & Reporting',           'AI for analysis, dashboards, and decision support.', 4],
-      ['C', 'AI Builders & Systems',         'Prototype, build, and test reliable AI systems.',    4],
-      ['D', 'AI Marketing & Communication',  'AI for content, campaigns, sales, and client work.', 4],
-      ['E', 'AI Product & Innovation',       'AI-first product strategy, management, and delivery.', 4],
-      ['F', 'AI Software & Web Apps',        'Front-end, back-end, and AI app engineering.',       4],
-      ['G', 'AI Experience & Service Design','UX research, service design, and AI product storytelling.', 4],
-      ['H', 'AI Agents & Workflow Automation','Discover, design, and govern human-approved AI agents.', 5],
-      ['I', 'Horizon4 Sector Pathways',      'Public sector, education, SMEs, and professional services.', 7],
+      ['A', 'AI Fundamentals',                'Foundations of AI for everyday professional work.'],
+      ['B', 'Public Administration AI',       'AI skills for ministries, agencies, and municipalities.'],
+      ['C', 'Teacher & Education AI',         'Lesson design, classroom practice, and academic integrity.'],
+      ['D', 'Business AI Productivity',       'AI for documents, meetings, reporting, and client work.'],
+      ['E', 'Responsible AI & Data Privacy',  'Disclosure, oversight, and privacy-aware AI use.'],
+      ['F', 'Agentic AI & Workflow Automation','Discover, design, and govern human-approved AI workflows.'],
+      ['G', 'AI Data & Reporting',            'AI for analysis, dashboards, and decision support.'],
+      ['H', 'AI Marketing & Communication',   'AI for content, campaigns, and communication.'],
+      ['I', 'AI Builders & Systems',          'Prototype, build, and test reliable AI systems.'],
     ];
 
     const Pathways = () => (
-      <section className="pathways" data-screen-label="Learning pathways">
+      <section className="pathways" style={{ background: 'var(--bg-base)' }} data-screen-label="Specialized pathways">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Learning pathways</div>
-            <h2 className="h2">Nine pathways. Every role from professional to public servant.</h2>
+            <div className="eyebrow">Specialized pathways</div>
+            <h2 className="h2">Specialized pathways for deeper capability.</h2>
             <p className="body-xl">
-              Take a single course or follow a full pathway from foundations to
-              certificate.
+              Beyond the flagship tracks, focused pathways build deeper skills
+              for specific roles and goals.
             </p>
           </div>
           <div className="pathway-grid">
-            {PATHWAYS.map(([l, name, tag, count]) => (
+            {PATHWAYS.map(([l, name, tag]) => (
               <a key={l} href={route('/academy/catalog')} className="pathway-card">
                 <span className="accent"></span>
                 <span className="pathway-letter">{l}</span>
                 <div className="pathway-name">{name}</div>
                 <p className="pathway-tag">{tag}</p>
                 <div className="pathway-foot">
-                  <span className="pathway-count">{count} courses</span>
-                  <span className="pathway-link">View pathway →</span>
+                  <span className="pathway-link">View catalog →</span>
                 </div>
               </a>
-            ))}
-          </div>
-        </div>
-      </section>
-    );
-
-    /* ─── FEATURED LAUNCH COURSES (6) ──────── */
-    const FEATURED = [
-      { t: 'AI Workplace Fundamentals',         pw: 'AI Fundamentals', lvl: 'Beginner',     dur: '3h · 1d · 4w', lang: 'Bilingual', d: 'How AI works, where it helps, where it fails, and how to use it responsibly in everyday work.' },
-      { t: 'Prompt Engineering for Professionals', pw: 'AI Fundamentals', lvl: 'Beginner',   dur: '3h · 1d · 4w', lang: 'Bilingual', d: 'Prompt design, testing, and reusable prompt systems for real professional tasks.' },
-      { t: 'AI for Teachers and Professors',    pw: 'Sector',          lvl: 'Beginner',     dur: '3h · 1d · 4w', lang: 'Bilingual', d: 'Lesson design, student feedback, research, and responsible classroom use of AI.' },
-      { t: 'AI and Academic Integrity',         pw: 'Sector',          lvl: 'Intermediate', dur: '3h · 1d · 4w', lang: 'Bilingual', d: 'Assignment redesign, detection limits, disclosure norms, and academic-integrity policy.' },
-      { t: 'AI Productivity for SMEs',          pw: 'Sector',          lvl: 'Beginner',     dur: '3h · 1d · 4w', lang: 'Bilingual', d: 'Practical AI for small businesses: operations, marketing, sales, and admin.' },
-      { t: 'AI for Professional Services',      pw: 'Sector',          lvl: 'Intermediate', dur: '1d · 2d · 4w', lang: 'Bilingual', d: 'AI workflows for legal, audit, consulting, and advisory teams — with confidentiality built in.' },
-    ];
-
-    const Featured = () => (
-      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Launch courses">
-        <div className="container">
-          <div className="section-head">
-            <div className="eyebrow">Launch cohort · Available now</div>
-            <h2 className="h2">Six courses open for enrolment.</h2>
-            <p className="body-xl">
-              First cohort opens October–December 2026. Twelve more courses are
-              in development for 2027.
-            </p>
-          </div>
-          <div className="course-grid">
-            {FEATURED.map((c) => (
-              <div key={c.t} className="course-card">
-                <span className="course-badge">Available</span>
-                <div className="course-title">{c.t}</div>
-                <p className="course-desc">{c.d}</p>
-                <div className="course-tags">
-                  <span className="course-tag pw">{c.pw}</span>
-                  <span className="course-tag">{c.lvl}</span>
-                  <span className="course-tag">{c.lang}</span>
-                </div>
-                <div className="course-meta">
-                  <span>{c.dur}</span>
-                </div>
-                <div className="course-actions">
-                  <a href="#" className="btn btn-primary">View course</a>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div style={{ marginTop: 64 }}>
-            <h3 className="h4" style={{ marginBottom: 6 }}>12 more courses launching 2027</h3>
-            <p className="body-sm" style={{ color: 'var(--ink-muted)' }}>In development for upcoming cohorts.</p>
-            <div className="cs-grid">
-              {[
-                'AI Tools for Productivity',
-                'Responsible AI & Data Privacy',
-                'AI for Data Analysis',
-                'AI for Marketing & Content',
-                'AI for Sales & Client Work',
-                'AI Product Strategy',
-                'Project Management with AI',
-                'Agentic AI Discovery Workshop',
-                'No-Code AI Agents',
-                'Agentic AI for Leaders',
-                'AI for Public Servants',
-                'AI Governance for Municipalities',
-              ].map(n => (
-                <div key={n} className="cs-item">
-                  <span className="nm">{n}</span>
-                  <span className="tag">2027</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-
-    /* ─── FORMATS ───────────────────────────── */
-    const Formats = () => (
-      <section className="fmt" data-screen-label="Course formats">
-        <div className="container">
-          <div className="section-head">
-            <div className="eyebrow">Course formats</div>
-            <h2 className="h2">Six ways to learn. Pick the depth that fits.</h2>
-          </div>
-          <div className="fmt-strip">
-            {[
-              ['01', '3-hour workshop'],
-              ['02', '1-day intensive'],
-              ['03', '2-day lab'],
-              ['04', '4-week cohort'],
-              ['05', 'Full pathway'],
-              ['06', 'Private team training'],
-            ].map(([n, name]) => (
-              <div key={n} className="fmt-cell">
-                <div className="fmt-num">{n}</div>
-                <div className="fmt-name">{name}</div>
-              </div>
             ))}
           </div>
         </div>
@@ -220,7 +260,7 @@
           </div>
           <div className="block-card">
             <div>
-              <h3>Public cohorts for individual professionals.</h3>
+              <h3>Public courses for individual professionals.</h3>
               <p>Live, instructor-led courses for individuals building practical AI skills alongside other Albanian professionals. Rolling schedule.</p>
             </div>
             <div className="actions">
@@ -238,11 +278,11 @@
           </div>
           <div className="block-card muted">
             <div>
-              <h3>Building an AI Academy inside your institution.</h3>
+              <h3>Building an AI academy inside your institution.</h3>
               <p>For ministries, universities, and large organizations: a custom multi-cohort AI capability program with governance, training pathways, and internal champions.</p>
             </div>
             <div className="actions">
-              <a href={route('/contact')} className="btn btn-secondary">Discuss Institutional Academy</a>
+              <a href={route('/contact')} className="btn btn-secondary">Request Training Program</a>
             </div>
           </div>
         </div>
@@ -288,12 +328,12 @@
 
     /* ─── FAQ ────────────────────────────────── */
     const FAQ_ITEMS = [
-      ['Who are these courses for?', "Albanian professionals, teams, public servants, educators, SME leaders, and professional service firms. Each course flags its primary audience and any prerequisites."],
-      ['Are courses in English or Albanian?', 'All launch courses are bilingual. Public cohorts run in Albanian, English, or mixed format. Private team training is delivered in your team\'s preferred language.'],
-      ['What\'s the difference between a workshop, intensive, lab, and cohort?', 'Workshops are 3-hour focused sessions. Intensives are full-day deep dives. Labs are two-day hands-on builds. Cohorts run live over four weeks with practice between sessions and a final deliverable.'],
-      ['Do I get a certificate?', 'Every course concludes with a Horizon4 AI Academy Certificate of Completion based on attendance, exercises, and a final deliverable. We do not certify external standards.'],
-      ['Can my organization commission private training?', 'Yes. We design private cohorts adapted to your sector, role mix, and institutional context — half-day to multi-week formats, on-site or remote.'],
-      ['How much do courses cost?', 'Pricing varies by format and audience. Public cohort fees, group discounts, and private training scopes are confirmed after a brief intake.'],
+      ['Who are these programs for?', 'Public servants, teachers and education institutions, businesses and organizations, NGOs, and donor-funded programs in Albania. Each program flags its primary audience and any prerequisites.'],
+      ['Are programs in English or Albanian?', 'Programs are bilingual. Public courses run in Albanian, English, or mixed format. Private team training is delivered in your team\'s preferred language.'],
+      ['What is the difference between a workshop, intensive, and cohort?', 'Awareness workshops are 3-hour focused sessions. Practical intensives are full-day deep dives. Role-specific cohorts run live over four weeks with practice between sessions and a final deliverable.'],
+      ['Do participants get a certificate?', 'Every program concludes with a Horizon4 AI Academy Certificate of Completion based on attendance, exercises, and a final deliverable. We do not certify external standards.'],
+      ['Can my institution commission private training?', 'Yes. We design private programs adapted to your sector, role mix, and institutional context, from half-day to multi-week formats, on-site or remote.'],
+      ['How is a program scoped?', 'Each program is scoped to your audience, format, and goals. Scope and format are confirmed after a brief intake conversation.'],
     ];
 
     const FAQ = () => {
@@ -326,13 +366,14 @@
       <section className="cta" data-screen-label="Final CTA">
         <div className="cta-inner">
           <div className="eyebrow on-dark">Get started</div>
-          <h2 className="h2">Find the course that fits your role.</h2>
+          <h2 className="h2">Build practical AI capability in your institution.</h2>
           <p className="body-xl">
-            Browse the full catalog or request private training for your team.
+            Request a training program for your team, or browse the full
+            course catalog.
           </p>
           <div className="cta-row">
-            <a href={route('/academy/catalog')} className="btn btn-primary on-dark">Browse Course Catalog</a>
-            <a href={route('/academy/private')} className="btn-link on-dark">or request private training →</a>
+            <a href={route('/contact')} className="btn btn-primary on-dark">Request Training Program</a>
+            <a href={route('/academy/catalog')} className="btn-link on-dark">or browse the course catalog →</a>
           </div>
           <div className="cta-loc">Tirana, Albania · Europe-ready · Pre-launch September 2026</div>
         </div>
@@ -344,10 +385,11 @@
       <div data-screen-label="Academy">
         <Nav/>
         <Hero/>
+        <Flagships/>
         <What/>
+        <Levels/>
+        <Operating/>
         <Pathways/>
-        <Featured/>
-        <Formats/>
         <Programs/>
         <Cert/>
         <FAQ/>

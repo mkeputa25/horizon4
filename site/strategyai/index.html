@@ -327,32 +327,35 @@
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const MEGA = {
       Academy: [
-        { l: 'Overview & Pathways',   h: '/academy' },
-        { l: 'Course Catalog',        h: '/academy/catalog' },
-        { l: 'Private Team Training', h: '/academy/private' },
+        { l: 'Overview',                 h: '/academy' },
+        { l: 'Public Administration AI', h: '/academy#public-administration' },
+        { l: 'Teachers & Education',     h: '/academy#teachers' },
+        { l: 'Business Teams',           h: '/academy#business-teams' },
+        { divider: true },
+        { l: 'Course Catalog',           h: '/academy/catalog' },
+        { l: 'Private Training',         h: '/academy/private' },
       ],
       Advisory: [
-        { l: 'AI Readiness Audit',  h: '/audit' },
-        { l: 'Executive Briefing',  h: '/executive-briefing' },
-        { l: 'Donor / EU Programs', h: '/donor-programs' },
+        { l: 'AI Readiness Audit',     h: '/audit' },
+        { l: 'Executive Briefing',     h: '/executive-briefing' },
+        { l: 'StrategyAI',             h: '/strategyai' },
+        { l: 'Donor / EU Programs',    h: '/donor-programs' },
       ],
       Solutions: [
-        { l: 'GovAI',      h: '/govai' },
-        { l: 'EduAI',      h: '/eduai' },
-        { l: 'BusinessAI', h: '/businessai' },
-        { l: 'StrategyAI', h: '/strategyai' },
-        { divider: true },
-        { l: 'Agentic AI', h: '/agentic-ai' },
+        { l: 'GovAI',       h: '/govai' },
+        { l: 'EduAI',       h: '/eduai' },
+        { l: 'BusinessAI',  h: '/businessai' },
+        { l: 'Agentic AI',  h: '/agentic-ai' },
       ],
       Research: [
         { l: 'Publications', h: '/research/publications' },
-        { l: 'Insights',     h: '/research/insights' },
         { l: 'Frameworks',   h: '/research/frameworks' },
+        { l: 'Insights',     h: '/research/insights' },
       ],
       About: [
-        { l: 'Team',    h: '/team' },
-        { l: 'Mission', h: '/about' },
-        { l: 'Contact', h: '/contact' },
+        { l: 'About Horizon4', h: '/about' },
+        { l: 'Team',           h: '/team' },
+        { l: 'Contact',        h: '/contact' },
       ],
     };
 
@@ -403,7 +406,7 @@
                   <span className="div">|</span>
                   <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
                 </div>
-                <a href="/executive-briefing" className="nav-cta">Request Executive Briefing</a>
+                <a href="/contact" className="nav-cta">Request Training Program</a>
                 <button className="nav-burger" aria-label="Menu" onClick={() => setDrawer(true)}>
                   <span></span><span></span><span></span>
                 </button>
@@ -430,7 +433,7 @@
               ))}
             </div>
             <div className="drawer-foot">
-              <a href="/executive-briefing" className="btn btn-primary">Request Executive Briefing</a>
+              <a href="/contact" className="btn btn-primary">Request Training Program</a>
               <div className="nav-lang" style={{ justifyContent: 'center' }}>
                 <button className={lang === 'EN' ? 'on' : ''} onClick={() => setLang('EN')}>EN</button>
                 <span className="div">|</span>
@@ -910,8 +913,9 @@
             <div className="foot-brand foot-col">
               <div className="wm">Horizon<span className="four">4</span>&nbsp;AI</div>
               <p className="tag">
-                Albania's responsible AI capability partner. We help institutions
-                move from AI experimentation to embedded, governed practice.
+                AI skilling at scale for Albania's institutions. We train public
+                servants, teachers, and working teams to use AI responsibly,
+                productively, and inside institutional rules.
               </p>
               <div className="meta">
                 <span>Tirana, Albania · Europe-ready</span>
@@ -921,10 +925,11 @@
             </div>
             <div className="foot-col">
               <div className="head">Academy</div>
-              <a href="/academy">Overview & Pathways</a>
+              <a href="/academy">Overview</a>
+              <a href="/academy#public-administration">Public Administration AI</a>
+              <a href="/academy#teachers">Teachers & Education</a>
               <a href="/academy/catalog">Course Catalog</a>
               <a href="/academy/private">Private Training</a>
-              <a href="/academy/certificates">Certificates</a>
             </div>
             <div className="foot-col">
               <div className="head">Advisory</div>
@@ -945,7 +950,7 @@
               <a href="/research/publications">Publications</a>
               <a href="/research/insights">Insights</a>
               <a href="/team">Team</a>
-              <a href="/about">Mission</a>
+              <a href="/about">About</a>
               <a href="/contact">Contact</a>
             </div>
           </div>

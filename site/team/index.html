@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Team — Horizon4 AI</title>
-  <meta name="description" content="Horizon4 AI is built by four cofounders, all PhD candidates, with institutional experience across Cornell, Brandeis, Minnesota, USC, the World Bank, OSCE, GIZ, and the Albanian public service.">
+  <title>Team · Horizon4 AI</title>
+  <meta name="description" content="The four cofounders of Horizon4 AI: public administration, education, economic development, and AI engineering.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
@@ -181,11 +181,11 @@
     const Hero = () => (
       <section className="hero hero-compact" data-screen-label="Hero">
         <div className="container">
-          <h1 className="h1">Four cofounders. One mission.</h1>
+          <h1 className="h1">Four cofounders building Albania's AI capability infrastructure.</h1>
           <p className="body-xl hero-lead" style={{ maxWidth: '60ch' }}>
-            Built by four PhD candidates with institutional experience across
-            Cornell, Brandeis, Minnesota, USC, the World Bank, OSCE, GIZ, and
-            the Albanian public service.
+            Public administration, education, economic development, and AI
+            engineering, brought together to train institutions, design
+            strategy, and implement governed AI systems.
           </p>
         </div>
       </section>
@@ -199,7 +199,7 @@
         role: 'Founder & CEO',
         education: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate',
         experience: 'World Bank · OSCE · EDYN network (23 countries, 700+ members) · UNDP Albania',
-        focus: 'Strategy, advisory, institutional positioning, research',
+        focus: 'Public administration, strategy, institutional positioning, research',
         bio: [
           "Mario founded Horizon4 in 2026 to build serious AI capability infrastructure for Albania and the region. His work spans institutional advisory, capability building, and governance design for ministries, universities, and donor programs.",
           "Before Horizon4, Mario worked with the World Bank, OSCE, and EDYN, a transatlantic network of 700+ democratic engagement leaders across 23 countries. He holds an MPA from Cornell University and an MBA in Impact Investing, and is a PhD candidate researching AI capability development in small states.",
@@ -212,7 +212,7 @@
         role: 'Cofounder · Economic Development',
         education: 'Brandeis University · STEM MBA (Excellence & Leadership Award) · PhD candidate (Austria)',
         experience: 'GIZ (8 years) · Former Economic Policy & Microeconomics lecturer',
-        focus: 'BusinessAI vertical, donor program design, SME capability',
+        focus: 'BusinessAI, economic development, donor programs, SME capability',
         bio: [
           "Yllka leads Horizon4's BusinessAI work and donor program design. She brings eight years of experience at GIZ, the German international development agency, where she focused on economic development and institutional capacity building.",
           "She holds a STEM MBA from Brandeis University (where she received the Excellence & Leadership Award) and is completing a PhD in Austria. She previously taught Economic Policy and Microeconomics at university level, bringing rigorous analytical frameworks to applied AI strategy.",
@@ -225,7 +225,7 @@
         role: 'Cofounder · Education & Innovation',
         education: 'University of Minnesota · Carlson School of Management MBA · PhD candidate (Spain)',
         experience: 'Former Senior Instructor & Entrepreneurship Hub lead, American University of the Middle East · Former Director, Tech Transfer Office, University of Tirana',
-        focus: 'EduAI vertical, faculty readiness, academic integrity, university governance',
+        focus: 'EduAI, teacher training, academic integrity, university governance',
         bio: [
           "Indri leads Horizon4's EduAI work: faculty readiness programs, academic integrity policy design, and university governance for AI adoption. He previously served as Senior Instructor and led the Entrepreneurship Hub at the American University of the Middle East.",
           "Before that, he served as Director of the Tech Transfer Office at the University of Tirana, bridging academic research and applied innovation. He holds an MBA from the University of Minnesota Carlson School of Management and is completing a PhD in Spain.",
@@ -238,7 +238,7 @@
         role: 'Cofounder · AI Engineering',
         education: 'University of Southern California · MS Electrical & Computer Engineering · PhD candidate',
         experience: 'NVIDIA (mixed-signal design verification) · Former Advisor to Albanian Minister of State for Youth and Children (3 years)',
-        focus: 'AI engineering, Agentic AI capability layer, technical governance',
+        focus: 'Agentic AI, AI engineering, technical governance, workflow implementation',
         bio: [
           "Fregis leads Horizon4's AI engineering work and the Agentic AI capability layer that cuts across all four sector verticals. He brings engineering depth from NVIDIA, where he worked as a mixed-signal design verification intern, and three years of Albanian public service experience as Advisor to the Minister of State for Youth and Children.",
           "He holds an MS in Electrical and Computer Engineering from the University of Southern California and is completing a PhD in the same field. His background combines hardware-level engineering precision with applied public-service AI deployment.",
@@ -254,7 +254,7 @@
           <div className="profile-name">{p.name}</div>
           <div className="profile-role">{p.role}</div>
           <div className="profile-social">
-            <a href="#" aria-label={`LinkedIn — ${p.name}`}>
+            <a href="#" aria-label={`LinkedIn, ${p.name}`}>
               <LinkedInIcon/>
             </a>
           </div>
@@ -300,42 +300,51 @@
       </section>
     );
 
-    /* ─── STATEMENT ─── */
-    const Statement = () => (
-      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Team statement">
+    /* ─── WHY FOUR COFOUNDERS ─── */
+    const FOUR_LENSES = [
+      { eb: 'Lens 01', h: 'Public administration lens',
+        d: 'Skilling at scale only works if it fits how ministries, agencies, and municipalities actually operate. We design training and governance around real institutional rules.' },
+      { eb: 'Lens 02', h: 'Education lens',
+        d: 'Teachers, professors, and universities need AI capability built through responsible education practice, with academic integrity treated as a first-order concern.' },
+      { eb: 'Lens 03', h: 'Business and economic development lens',
+        d: 'Productivity training and workflow playbooks only land when they reflect how SMEs, organizations, and donor programs create value and measure results.' },
+      { eb: 'Lens 04', h: 'Engineering and agentic AI lens',
+        d: 'Governed agentic workflows and technical implementation need engineering depth, so capability programs hold up in practice and not only on paper.' },
+    ];
+
+    const WhyFour = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Why four cofounders">
         <div className="container">
-          <div className="statement">
+          <div className="section-head">
             <div className="eyebrow">Why four cofounders</div>
-            <h2 className="h2">Different lenses. One discipline.</h2>
+            <h2 className="h2">Why four cofounders matters for skilling at scale.</h2>
             <p className="body-xl">
-              Public sector strategy, economic development, education and
-              innovation, and AI engineering. Each cofounder leads a distinct
-              vertical, and all four sit at the table for every significant
-              institutional engagement.
+              Public administration, education, business, and engineering.
+              Each lens is required to train institutions and teams well.
             </p>
+          </div>
+          <div className="adv-why-grid">
+            {FOUR_LENSES.map(c => (
+              <div key={c.eb} className="adv-why">
+                <div className="eyebrow">{c.eb}</div>
+                <h3>{c.h}</h3>
+                <p>{c.d}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
     );
 
-    /* ─── ADVISORY BOARD ─── */
+    /* ─── ADVISORY BOARD (minimal note) ─── */
     const Advisors = () => (
       <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Advisory board">
         <div className="container">
-          <div className="section-head">
-            <div className="eyebrow">Advisory board</div>
-            <h2 className="h2">Announcing 2026.</h2>
-            <p className="body-xl">
-              Horizon4's advisory board will include senior practitioners
-              from EU AI law, institutional governance, and AI engineering.
-              Composition announced in late 2026.
-            </p>
-          </div>
           <div className="advisor-card">
-            <div className="eyebrow">Coming late 2026</div>
+            <div className="eyebrow">Advisory board</div>
             <p className="body-xl">
-              Inquiries from prospective advisors:&nbsp;
-              <a href="mailto:advisors@horizon4.ai">advisors@horizon4.ai</a>
+              An advisory board is planned for a later stage. Until then, all
+              Horizon4 work is delivered directly by the four cofounders.
             </p>
           </div>
         </div>
@@ -359,7 +368,7 @@
               <ul className="creds-list">
                 <li>Cornell University</li>
                 <li>Brandeis University</li>
-                <li>University of Minnesota — Carlson School</li>
+                <li>University of Minnesota, Carlson School</li>
                 <li>University of Southern California</li>
                 <li>University of Tirana</li>
                 <li>American University of the Middle East</li>
@@ -410,17 +419,17 @@
             <div className="routing-list">
               <div className="routing-item">
                 <div>
-                  <div className="eyebrow">Advisory</div>
-                  <div className="label">Audits, briefings, donor program design</div>
+                  <div className="eyebrow">Academy</div>
+                  <div className="label">AI skilling at scale for institutions and teams</div>
                 </div>
-                <a className="link" href={route('/advisory')}>Explore Advisory →</a>
+                <a className="link" href={route('/contact')}>Request Training Program →</a>
               </div>
               <div className="routing-item">
                 <div>
-                  <div className="eyebrow">Academy</div>
-                  <div className="label">Public courses and private team training</div>
+                  <div className="eyebrow">Advisory</div>
+                  <div className="label">Readiness audits, strategy, donor program design</div>
                 </div>
-                <a className="link" href={route('/academy')}>Explore Academy →</a>
+                <a className="link" href={route('/advisory')}>Explore Advisory →</a>
               </div>
               <div className="routing-item">
                 <div>
@@ -444,11 +453,12 @@
             Built by serious people, for serious institutions.
           </h2>
           <p className="body-xl">
-            Start with a briefing, an audit, or a direct conversation.
+            Start with a training program, a readiness audit, or a direct
+            conversation.
           </p>
           <div className="cta-row">
             <div className="cta-links">
-              <a href={route('/executive-briefing')}>Request Briefing</a>
+              <a href={route('/contact')}>Request Training Program</a>
               <span className="sep">·</span>
               <a href={route('/audit')}>Request Audit Scope</a>
               <span className="sep">·</span>
@@ -464,7 +474,7 @@
         <Nav/>
         <Hero/>
         <Leadership/>
-        <Statement/>
+        <WhyFour/>
         <Advisors/>
         <Credentials/>
         <ContactTeam/>

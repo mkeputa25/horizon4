@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Advisory — Horizon4 AI</title>
+  <title>Advisory · Horizon4 AI</title>
   <meta name="description" content="AI readiness audits, governance design, and executive briefings for Albanian institutions making real AI decisions. Practical work, with deliverables your board can defend.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
@@ -44,15 +44,15 @@
     const Hero = () => (
       <section className="hero hero-compact" data-screen-label="Hero">
         <div className="container">
-          <h1 className="h1">AI adoption that survives audit.</h1>
+          <h1 className="h1">Advisory that makes AI training stick.</h1>
           <p className="body-xl hero-lead">
-            Readiness diagnostics, governance design, and executive briefings
-            for institutions making real AI decisions. Practical work, with
-            deliverables your board can defend.
+            Readiness audits, executive briefings, strategy, and donor program
+            design. The enabling layer around Horizon4's core mission of AI
+            skilling at scale, with deliverables your board can defend.
           </p>
           <div className="hero-actions">
-            <a href={route('/audit')} className="btn btn-primary">Request Audit Scope</a>
-            <a href={route('/executive-briefing')} className="btn btn-secondary">Request Executive Briefing</a>
+            <a href={route('/contact')} className="btn btn-primary">Request Training Program</a>
+            <a href={route('/audit')} className="btn btn-secondary">Request AI Readiness Audit</a>
           </div>
         </div>
       </section>
@@ -211,18 +211,20 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Methodology</div>
-            <h2 className="h2">Diagnose. Design. Train. Embed.</h2>
+            <h2 className="h2">Assess. Train. Equip. Embed. Govern. Scale.</h2>
             <p className="body-xl">
-              One discipline across audits, briefings, sector work, and
+              One operating model across audits, briefings, sector work, and
               capacity-building programs.
             </p>
           </div>
           <div className="adv-method">
             {[
-              ['01', 'Diagnose', 'Map decisions, data, capability, and accountability surfaces. Identify where AI helps and where it must not be allowed.'],
-              ['02', 'Design',   'Define use-cases, governance, procurement guardrails, training plan, and a 90-day institutional roadmap.'],
-              ['03', 'Train',    'Role-specific cohorts and workshops with real deliverables. Bilingual delivery in Albanian and English.'],
-              ['04', 'Embed',    'Pilot, measure, and steward. Human-approved workflows, monitoring routines, and policy refresh cycles.'],
+              ['01', 'Assess', 'Map current AI use, skills, risks, and priority workflows across the institution.'],
+              ['02', 'Train',  'Run role-specific cohorts for public servants, teachers, employees, leaders, or champions.'],
+              ['03', 'Equip',  'Give teams reusable prompts, policies, classroom kits, or workflow playbooks.'],
+              ['04', 'Embed',  'Apply AI to real documents, services, lessons, reports, meetings, and operational workflows.'],
+              ['05', 'Govern', 'Add human review, disclosure, privacy, procurement safeguards, and institutional rules.'],
+              ['06', 'Scale',  'Build champions, trainers, dashboards, and repeatable program infrastructure.'],
             ].map(([n, h, d]) => (
               <div key={n} className="adv-method-step">
                 <div className="num">{n}</div>
