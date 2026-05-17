@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Horizon4 AI Academy · AI Training for Public Servants, Teachers, and Teams</title>
-  <meta name="description" content="Live, bilingual AI training programs for public administration, education, businesses, and organizations in Albania.">
+  <title>Academy & Training · Horizon4 AI</title>
+  <meta name="description" content="Professional AI training for public administration, education, legal and professional teams, business teams, and specialized roles in Albania.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
@@ -55,16 +55,17 @@
     const Hero = () => (
       <section className="hero hero-compact" data-screen-label="Hero">
         <div className="container">
-          <h1 className="h1">Practical AI capability for public servants, teachers, and working teams.</h1>
+          <div className="eyebrow">Horizon · Academy &amp; Training</div>
+          <h1 className="h1">Professional AI training for teams, institutions, and specialized roles.</h1>
           <p className="body-xl hero-lead">
-            Live, bilingual, hands-on AI programs built for Albanian
-            institutions, not generic AI hype. Every program produces
-            practical artifacts: prompt libraries, classroom kits, workflow
-            playbooks, policies, and 90-day adoption plans.
+            Horizon4 Academy trains people to use AI better in real work:
+            public servants, teachers and professors, lawyers and professional
+            services, business and operations teams, and leaders. From basic
+            AI literacy to role-specific workflows and responsible use.
           </p>
           <div className="hero-actions">
-            <a href={route('/contact')} className="btn btn-primary">Request Training Program</a>
-            <a href={route('/academy/catalog')} className="btn btn-secondary">Browse Course Catalog</a>
+            <a href={route('/executive-briefing')} className="btn btn-primary">Book an AI Briefing</a>
+            <a href={route('/academy/catalog')} className="btn btn-secondary">Browse Courses</a>
           </div>
         </div>
       </section>
@@ -76,30 +77,27 @@
         id: 'public-administration',
         t: 'Public Administration AI',
         d: 'AI skills for public servants, ministries, agencies, and municipalities: drafting, summarization, citizen-service workflows, procurement awareness, data privacy, human review, and public accountability.',
-        cta: 'Request Public Administration Program',
       },
       {
         id: 'teachers',
         t: 'Teachers & Education',
         d: 'AI skills for teachers, professors, and education institutions: lesson design, student feedback, classroom AI collaboration, age-appropriate AI literacy, assessment redesign, disclosure norms, and academic integrity.',
-        cta: 'Request Teacher AI Program',
       },
       {
         id: 'business-teams',
-        t: 'Business & Organizations',
-        d: 'AI productivity training for employees and teams: documents, meetings, reporting, sales, client work, internal knowledge, workflow redesign, confidentiality, and shared prompt systems.',
-        cta: 'Request Business Team Program',
+        t: 'Business & Professional Teams',
+        d: 'AI productivity training for business, operations, and professional teams, including lawyers and professional services: documents, meetings, reporting, client work, internal knowledge, and shared prompt systems.',
       },
     ];
 
     const Flagships = () => (
-      <section data-screen-label="Skilling at scale">
+      <section data-screen-label="Who we train">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Skilling at scale</div>
-            <h2 className="h2">The Academy is the engine of Horizon4.</h2>
+            <div className="eyebrow">Who we train</div>
+            <h2 className="h2">Courses for the people who will actually use AI at work.</h2>
             <p className="body-xl">
-              Horizon4 AI Academy trains people at the level where AI adoption
+              Horizon4 Academy trains people at the level where AI adoption
               actually succeeds: public servants serving citizens, teachers
               guiding students, and teams doing real organizational work.
             </p>
@@ -110,7 +108,7 @@
                 <span className="accent"></span>
                 <h3 className="h3">{f.t}</h3>
                 <p>{f.d}</p>
-                <a href={route('/contact')} className="btn btn-primary">{f.cta}</a>
+                <a href={route('/executive-briefing')} className="btn btn-primary">Book an AI Briefing</a>
               </div>
             ))}
           </div>
@@ -158,16 +156,14 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Operating model</div>
-            <h2 className="h2">Six steps. Assess. Train. Equip. Embed. Govern. Scale.</h2>
+            <h2 className="h2">How we work. Diagnose. Train. Equip. Embed.</h2>
           </div>
           <div className="fmt-strip">
             {[
-              ['01', 'Assess'],
+              ['01', 'Diagnose'],
               ['02', 'Train'],
               ['03', 'Equip'],
               ['04', 'Embed'],
-              ['05', 'Govern'],
-              ['06', 'Scale'],
             ].map(([n, name]) => (
               <div key={n} className="fmt-cell">
                 <div className="fmt-num">{n}</div>
@@ -282,7 +278,7 @@
               <p>For ministries, universities, and large organizations: a custom multi-cohort AI capability program with governance, training pathways, and internal champions.</p>
             </div>
             <div className="actions">
-              <a href={route('/contact')} className="btn btn-secondary">Request Training Program</a>
+              <a href={route('/executive-briefing')} className="btn btn-secondary">Book an AI Briefing</a>
             </div>
           </div>
         </div>
@@ -365,17 +361,17 @@
     const CTA = () => (
       <section className="cta" data-screen-label="Final CTA">
         <div className="cta-inner">
-          <div className="eyebrow on-dark">Get started</div>
+          <div className="eyebrow on-dark">Start here</div>
           <h2 className="h2">Build practical AI capability in your institution.</h2>
           <p className="body-xl">
-            Request a training program for your team, or browse the full
-            course catalog.
+            Book a focused briefing for your team, or browse the full course
+            catalog.
           </p>
           <div className="cta-row">
-            <a href={route('/contact')} className="btn btn-primary on-dark">Request Training Program</a>
+            <a href={route('/executive-briefing')} className="btn btn-primary on-dark">Book an AI Briefing</a>
             <a href={route('/academy/catalog')} className="btn-link on-dark">or browse the course catalog →</a>
           </div>
-          <div className="cta-loc">Tirana, Albania · Europe-ready · Pre-launch September 2026</div>
+          <div className="cta-loc">Tirana, Albania · Local expertise, global AI governance perspective</div>
         </div>
       </section>
     );

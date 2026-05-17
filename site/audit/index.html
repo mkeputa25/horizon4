@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI Readiness and Governance Audit, Horizon4 AI</title>
-  <meta name="description" content="A readiness and governance diagnostic for institutions preparing AI training, procurement, and implementation, delivered as a written report.">
+  <title>Governance &amp; Safe Use · Horizon4 AI</title>
+  <meta name="description" content="Practical governance and safe AI use for institutions and teams: acceptable-use guidance, human oversight, data-privacy awareness, and responsible adoption.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
   <style>
-    /* Audit-specific: highlight the Training Needs Map deliverable */
+    /* Highlight the Training Needs Map deliverable */
     .dim-card.featured {
       border-color: var(--accent-primary);
       box-shadow: 0 0 0 1px var(--accent-primary);
@@ -103,16 +103,19 @@
       <section className="hero" data-screen-label="Hero">
         <div className="container hero-grid">
           <div>
-            <h1 className="h1">Know what your people need before you train them on AI.</h1>
+            <div className="eyebrow">Horizon · Governance &amp; Safe Use</div>
+            <h1 className="h1">Safe, responsible AI use for institutions and teams.</h1>
             <p className="body-xl hero-lead">
-              A readiness and governance diagnostic for institutions
-              preparing AI training, procurement, workflow implementation,
-              or donor-funded capability programs. Delivered as a written
-              report your leadership can circulate, present, and defend.
+              Governance is not bureaucracy. It is how teams use AI safely,
+              responsibly, and with confidence. We help institutions set
+              practical acceptable-use rules, human oversight, data-privacy
+              awareness, and responsible adoption. A readiness review is one
+              tool inside this horizon, for teams that want a clear picture
+              before they move.
             </p>
             <div className="hero-actions">
-              <a href={route('/contact')} className="btn btn-primary">Request AI Readiness Audit</a>
-              <a href={route('/contact')} className="btn btn-secondary">Request Training Program</a>
+              <a href={route('/executive-briefing')} className="btn btn-primary">Book an AI Briefing</a>
+              <a href={route('/executive-briefing')} className="btn btn-secondary">Start a Safe-Use Review</a>
             </div>
           </div>
           <div><Scorecard/></div>
@@ -120,24 +123,25 @@
       </section>
     );
 
-    /* ─── WHY AUDIT ────────────────────────── */
+    /* ─── WHY GOVERNANCE ───────────────────── */
     const Why = () => (
-      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Why audit">
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Why governance">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Why audit before adopting AI</div>
-            <h2 className="h2">Most AI failures start before deployment.</h2>
+            <div className="eyebrow">Why safe use matters</div>
+            <h2 className="h2">Governance is what makes AI usable.</h2>
             <p className="body-xl">
-              Wrong use cases. Missing governance. Untrained staff. Vendor
-              lock-in. These problems are diagnosable before they become
-              public.
+              Most AI problems come from unclear rules, not bad technology.
+              Practical governance gives teams confidence about what can be
+              automated, what must be reviewed, and what should not be done
+              with AI.
             </p>
           </div>
           <div className="adv-why-grid">
             {[
-              { ic: 'magDoc', eb: 'Procurement exposure',    h: 'Buying AI without readiness creates risk.', d: 'Public-sector AI procurement now requires governance and oversight evidence. Audit before procurement, not after.' },
-              { ic: 'books',  eb: 'Training without direction', h: 'Staff training should follow priorities.',  d: "Generic AI training without institutional diagnosis wastes budget and doesn't change behavior." },
-              { ic: 'shield', eb: 'Defensible decisions',    h: 'Your board needs evidence, not opinions.', d: 'Audit deliverables are written for institutional circulation. Scorecards, registers, and roadmaps with named methodology.' },
+              { ic: 'shield', eb: 'Acceptable use',         h: 'Clear rules for everyday AI use.', d: 'Simple acceptable-use guidance tells staff which tasks AI can support and which it cannot, in plain language people will actually follow.' },
+              { ic: 'people', eb: 'Human oversight',        h: 'People stay in the loop.',         d: 'AI assists, people decide. Human review on the work that affects citizens, students, or service outcomes keeps adoption responsible.' },
+              { ic: 'magDoc', eb: 'Data-privacy awareness', h: 'Teams know what not to share.',    d: 'Practical safeguards help staff handle data responsibly, so sensitive or personal information does not end up where it should not.' },
             ].map(c => (
               <div key={c.h} className="adv-why">
                 <div className="icon"><Icon d={ICONS[c.ic]}/></div>
@@ -151,17 +155,18 @@
       </section>
     );
 
-    /* ─── TRAINING WITHOUT DIAGNOSIS ───────── */
+    /* ─── SAFE-USE REVIEW ──────────────────── */
     const TrainingDiagnosis = () => (
-      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Training without diagnosis">
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Safe-use review">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Audit before training</div>
-            <h2 className="h2">Training without diagnosis wastes budget.</h2>
+            <div className="eyebrow">One tool in this horizon</div>
+            <h2 className="h2">The Safe-Use Review.</h2>
             <p className="body-xl">
-              The audit answers the questions a training program must be
-              built on. Skill people on the right things, in the right
-              order, inside the right rules.
+              A short readiness review is one offering inside Governance and
+              Safe Use. It answers the practical questions a team needs
+              settled before they rely on AI, in plain terms leadership can
+              act on.
             </p>
           </div>
           <div className="dim-grid">
@@ -189,10 +194,10 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Six dimensions</div>
-            <h2 className="h2">What the audit assesses.</h2>
+            <h2 className="h2">What a Safe-Use Review looks at.</h2>
             <p className="body-xl">
-              Six institutional dimensions, scored independently and rolled
-              up to a single readiness tier.
+              Six practical dimensions of safe AI use, each looked at on its
+              own and rolled up to a single readiness picture.
             </p>
           </div>
           <div className="dim-grid">
@@ -202,7 +207,7 @@
               ['03', 'Data',        'Data readiness',        'Data quality, privacy compliance, security posture, and data lineage documentation.'],
               ['04', 'Workflow',    'Workflow readiness',    'Where AI helps, where AI is risky, workflow redesign needs, and human approval points.'],
               ['05', 'Capability',  'Staff readiness',       'Role-specific capability gaps, training needs map, and skill development priorities.'],
-              ['06', 'Procurement', 'Procurement readiness', 'Vendor assessment frameworks, contract risk review, and EU AI Act alignment evidence.'],
+              ['06', 'Procurement', 'Procurement readiness', 'Vendor assessment questions, contract risk review, and responsible-adoption checks before tools are bought.'],
             ].map(([n, eb, h, d]) => (
               <div key={n} className="dim-card">
                 <div className="num">{n}</div>
@@ -216,31 +221,30 @@
       </section>
     );
 
-    /* ─── FRAMEWORK ────────────────────────── */
+    /* ─── METHOD ───────────────────────────── */
     const Framework = () => (
-      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Framework">
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Method">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Framework</div>
-            <h2 className="h2">Five stages from inquiry to roadmap.</h2>
+            <div className="eyebrow">How we work</div>
+            <h2 className="h2">Diagnose, Train, Equip, Embed.</h2>
             <p className="body-xl">
-              A structured engagement with named deliverables at each stage.
-              No mystery, no scope creep.
+              The same method runs across every Horizon4 horizon. For
+              governance, it turns safe-use principles into habits teams
+              actually keep.
             </p>
           </div>
           <div className="framework-5">
             {[
-              ['01', 'Discovery',     'Interviews, document review, current AI use mapping.',          'Week 1'],
-              ['02', 'Assessment',    'Readiness scoring across six dimensions.',                       'Weeks 1-2'],
-              ['03', 'Prioritization','First use cases, training needs, governance priorities.',       'Week 2-3'],
-              ['04', 'Governance',    'Policies, oversight, and human approval recommendations.',      'Weeks 3-4'],
-              ['05', 'Roadmap',       '90-day sequenced action plan with owners and dependencies.',    'Weeks 4-6'],
-            ].map(([n, h, d, m]) => (
+              ['01', 'Diagnose', 'Look at how teams use AI today and where safe-use rules and oversight are missing.'],
+              ['02', 'Train',    'Build shared understanding of acceptable use, human review, and data-privacy awareness.'],
+              ['03', 'Equip',    'Give teams plain acceptable-use guidance and review checkpoints they can apply at work.'],
+              ['04', 'Embed',    'Make oversight a normal part of everyday work, so safe AI use holds over time.'],
+            ].map(([n, h, d]) => (
               <div key={n} className="fw-stage">
                 <div className="num">{n}</div>
                 <h3>{h}</h3>
                 <p>{d}</p>
-                <div className="meta">{m}</div>
               </div>
             ))}
           </div>
@@ -253,12 +257,12 @@
       <section style={{ background: 'var(--bg-base)' }} data-screen-label="Deliverables">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Deliverables</div>
-            <h2 className="h2">Six written artifacts you can defend.</h2>
+            <div className="eyebrow">What you get</div>
+            <h2 className="h2">Practical safe-use outputs.</h2>
             <p className="body-xl">
-              Every audit produces six standardized deliverables. Each one
-              is written for institutional circulation, and one of them
-              becomes the blueprint for your training program.
+              A Safe-Use Review produces six clear written outputs. Each one
+              is written in plain language for the whole institution, and
+              each one supports safer everyday AI use.
             </p>
           </div>
           <div className="dim-grid">
@@ -288,10 +292,11 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Who it's for</div>
-            <h2 className="h2">Built for serious institutional buyers.</h2>
+            <h2 className="h2">Built for institutions adopting AI.</h2>
             <p className="body-xl">
-              Audit work is designed for institutions that need to defend
-              AI decisions to boards, ministers, faculty, or donor agencies.
+              Governance and safe-use work is designed for teams that want
+              AI used responsibly, with oversight their leadership and
+              communities can trust.
             </p>
           </div>
           <div className="adv-aud-grid">
@@ -316,35 +321,33 @@
 
     /* ─── TIERS ────────────────────────────── */
     const Tiers = () => (
-      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Audit tiers">
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Review tiers">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Tiers</div>
             <h2 className="h2">Three engagement sizes.</h2>
             <p className="body-xl">
-              Scope and pricing scaled to institutional size and complexity.
-              Every tier delivers the same six artifacts. Scope determines
-              depth.
+              Scope scaled to institutional size and complexity. Every tier
+              delivers the same six safe-use outputs. Scope determines depth.
             </p>
           </div>
           <div className="eng-grid">
             <div className="eng-card">
-              <div className="eng-tag eyebrow muted">Diagnostic</div>
+              <div className="eng-tag eyebrow muted">Focused</div>
               <div className="divider"></div>
-              <h3>Diagnostic Audit</h3>
+              <h3>Focused Safe-Use Review</h3>
               <div className="tier-meta">2 weeks · Single department</div>
               <p className="eng-lead">
-                Focused readiness review for one institutional unit or
+                Focused safe-use review for one institutional unit or
                 function. Faster turnaround, narrower scope.
               </p>
               <ul className="eng-list">
-                <li>Six-dimension assessment for one unit</li>
+                <li>Six-dimension review for one unit</li>
                 <li>Risk register and use-case shortlist</li>
                 <li>90-day departmental roadmap</li>
               </ul>
               <div className="eng-foot">
-                <span className="eng-price">Request Scope</span>
-                <a href="#form" className="eng-cta">Request Scope →</a>
+                <a href="#form" className="eng-cta">Start a Safe-Use Review →</a>
               </div>
             </div>
 
@@ -352,42 +355,40 @@
               <div className="accent-bar"></div>
               <div className="eng-tag eyebrow">Flagship · Standard</div>
               <div className="divider"></div>
-              <h3>Standard Audit</h3>
+              <h3>Standard Safe-Use Review</h3>
               <div className="tier-meta">4 weeks · Full institution</div>
               <p className="eng-lead">
-                Complete readiness assessment across all six dimensions.
-                Most common engagement size for institutional buyers.
+                Complete safe-use review across all six dimensions. The most
+                common engagement size for institutions.
               </p>
               <ul className="eng-list">
-                <li>Six-dimension scorecard with benchmark</li>
+                <li>Six-dimension scorecard</li>
                 <li>Full risk register and use-case portfolio</li>
                 <li>Governance gap review</li>
                 <li>90-day institutional roadmap</li>
               </ul>
               <div className="eng-foot">
-                <span className="eng-price">Request Scope</span>
-                <a href="#form" className="eng-cta">Request Scope →</a>
+                <a href="#form" className="eng-cta">Start a Safe-Use Review →</a>
               </div>
             </div>
 
             <div className="eng-card">
               <div className="eng-tag eyebrow muted">Strategic</div>
               <div className="divider"></div>
-              <h3>Strategic Audit</h3>
+              <h3>Strategic Safe-Use Review</h3>
               <div className="tier-meta">6 weeks · Multi-unit</div>
               <p className="eng-lead">
-                Full audit plus governance framework design, training plan,
+                Full review plus governance framework design, training plan,
                 and implementation roadmap for complex institutions.
               </p>
               <ul className="eng-list">
-                <li>Everything in Standard Audit</li>
+                <li>Everything in the Standard Safe-Use Review</li>
                 <li>Custom governance operating model design</li>
                 <li>Multi-year capability development plan</li>
                 <li>Implementation oversight handoff</li>
               </ul>
               <div className="eng-foot">
-                <span className="eng-price">Request Scope</span>
-                <a href="#form" className="eng-cta">Request Scope →</a>
+                <a href="#form" className="eng-cta">Start a Safe-Use Review →</a>
               </div>
             </div>
           </div>
@@ -397,12 +398,12 @@
 
     /* ─── FAQ ──────────────────────────────── */
     const FAQ_ITEMS = [
-      ['How is this different from an IT or digital transformation audit?', "IT and digital transformation audits assess systems, infrastructure, and process maturity. An AI Readiness Audit assesses your institution's ability to adopt AI specifically. Governance, data, workflows, and human approval, across both technical and policy dimensions."],
-      ['Do you certify EU AI Act or ISO 42001 compliance?', 'No. Horizon4 prepares institutions to engage with these standards through readiness diagnostics, governance design, and capability building. Formal certification is conducted by accredited certification bodies. We support readiness; we do not certify compliance.'],
-      ['Who conducts the audit?', 'Horizon4 leadership conducts every audit directly. We do not subcontract advisory work or use junior staff for client delivery. Named methodology authors sign every deliverable.'],
-      ['What happens after the audit?', 'Every audit ends with a written deliverable package and a recommended next step. Common follow-ups: private team training (Academy), sector solution programs (GovAI, EduAI, BusinessAI), implementation retainers, or Institutional AI Academy engagements. There is no obligation to continue.'],
-      ['Can the audit be funded through donor or EU programs?', 'Yes. Horizon4 has experience designing capacity-building programs for donor and EU-aligned procurement frameworks. Audit scope can be incorporated into larger program budgets where applicable.'],
-      ['How quickly can an audit start?', 'Standard turnaround from signed scope to first interview is 2-3 weeks, depending on institutional calendar. Diagnostic Audits can start faster (1-2 weeks). Strategic Audits typically require a 4-week mobilization window.'],
+      ['What does Governance and Safe Use actually cover?', 'Practical things: acceptable-use guidance for everyday AI tools, human review on work that needs oversight, data-privacy awareness, and responsible adoption. It helps teams understand what can be automated, what must be reviewed, and what should not be done with AI.'],
+      ['Is this legal or compliance advice?', 'No. We provide practical governance and safe-use guidance, not legal advice. We help institutions build sensible internal rules and oversight. For formal legal or regulatory obligations, work with qualified legal counsel.'],
+      ['Do you certify EU AI Act or ISO 42001 compliance?', 'No. Horizon4 helps institutions adopt AI responsibly through safe-use guidance, governance design, and capability building. Formal certification is conducted by accredited certification bodies. We support responsible adoption; we do not certify or issue conformity certifications.'],
+      ['Who runs the Safe-Use Review?', 'Horizon4 leadership runs every review directly. We do not subcontract advisory work or use junior staff for client delivery. Named methodology authors sign every written output.'],
+      ['What happens after a Safe-Use Review?', 'Every review ends with a written output package and a recommended next step. Common follow-ups: private team training (Academy), sector solution programs (GovAI, EduAI, BusinessAI), or ongoing oversight support. There is no obligation to continue.'],
+      ['Can this work be funded through donor or EU programs?', 'Yes. Horizon4 has experience designing capacity-building programs for donor and EU-aligned procurement frameworks. Safe-use and governance work can be incorporated into larger program budgets where applicable.'],
     ];
     const FAQ = () => {
       const [open, setOpen] = useState(0);
@@ -412,7 +413,7 @@
             <div className="section-head">
               <div className="eyebrow">FAQ</div>
               <h2 className="h2">Common questions.</h2>
-              <p className="body-xl">Scope, pricing, frameworks, deliverables, and follow-up.</p>
+              <p className="body-xl">Scope, oversight, frameworks, outputs, and follow-up.</p>
             </div>
             <div className="faq-list">
               {FAQ_ITEMS.map(([q, a], i) => (
@@ -437,7 +438,7 @@
           <div className="request-grid">
             <div className="request-left">
               <div className="section-head">
-                <div className="eyebrow">Request audit scope</div>
+                <div className="eyebrow">Start a Safe-Use Review</div>
                 <h2 className="h2">Tell us about your institution.</h2>
                 <p className="body-xl">
                   We'll respond within 2 business days with a scoping call
@@ -475,13 +476,13 @@
                   <option>Donor program</option>
                 </select>
               </label>
-              <label>Audit tier of interest
-                <select><option>Diagnostic</option><option>Standard</option><option>Strategic</option><option>Not sure</option></select>
+              <label>Review tier of interest
+                <select><option>Focused</option><option>Standard</option><option>Strategic</option><option>Not sure</option></select>
               </label>
               <label>Timeline
                 <select><option>Within 30 days</option><option>Within 90 days</option><option>This year</option><option>Exploring</option></select>
               </label>
-              <label className="full">What's driving the audit conversation?<textarea rows="4"></textarea></label>
+              <label className="full">What's driving the safe-use conversation?<textarea rows="4"></textarea></label>
               <label>Preferred language
                 <select><option>English</option><option>Albanian</option><option>Bilingual</option></select>
               </label>
@@ -499,14 +500,14 @@
       <section className="cta" data-screen-label="Final CTA">
         <div className="cta-inner">
           <div className="eyebrow on-dark">Begin</div>
-          <h2 className="h2">Start AI adoption with evidence, not assumptions.</h2>
+          <h2 className="h2">Make AI safe to use across your institution.</h2>
           <p className="body-xl">
-            30-minute scoping call. Written proposal within 2 business days.
-            No obligation.
+            Start with a conversation about safe-use rules, oversight, and
+            responsible adoption. No obligation.
           </p>
           <div className="cta-row">
-            <a href={route('/contact')} className="btn btn-primary on-dark">Request AI Readiness Audit</a>
-            <a href={route('/executive-briefing')} className="btn-link on-dark">or book an executive briefing →</a>
+            <a href={route('/executive-briefing')} className="btn btn-primary on-dark">Book an AI Briefing</a>
+            <a href={route('/executive-briefing')} className="btn-link on-dark">or start a safe-use review →</a>
           </div>
           <div className="cta-loc">Tirana, Albania · Available regionally and remotely</div>
         </div>
