@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Team — Horizon4 AI</title>
+  <meta name="description" content="Horizon4 AI is built by four cofounders, all PhD candidates, with institutional experience across Cornell, Brandeis, Minnesota, USC, the World Bank, OSCE, GIZ, and the Albanian public service.">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/site.css">
+  <link rel="stylesheet" href="styles/pages.css">
+  <style>
+    /* ── Cofounder profile blocks ──────────────────────── */
+    .profiles { display: flex; flex-direction: column; gap: 80px; }
+    @media (max-width: 768px) { .profiles { gap: 64px; } }
+
+    .profile {
+      display: grid; grid-template-columns: 33% 1fr; gap: 56px;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .profile { grid-template-columns: 1fr; gap: 40px; } }
+
+    .profile-left {
+      display: flex; flex-direction: column;
+    }
+    .profile-photo {
+      aspect-ratio: 1 / 1;
+      background: #E0E6EC;
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px; font-weight: 600; color: var(--ink-primary);
+      letter-spacing: 0.02em;
+      margin-bottom: 24px;
+    }
+    .profile-name {
+      font-size: 32px; font-weight: 700; color: var(--ink-primary);
+      letter-spacing: -0.015em; line-height: 1.15;
+      margin-bottom: 4px;
+    }
+    @media (max-width: 768px) { .profile-name { font-size: 28px; } }
+    .profile-role {
+      font-size: 17px; font-weight: 500; color: var(--ink-muted);
+      line-height: 1.5;
+      margin-bottom: 16px;
+    }
+    .profile-social a {
+      display: inline-flex; align-items: center; gap: 6px;
+      color: var(--ink-muted);
+      transition: color var(--dur) var(--ease);
+    }
+    .profile-social a:hover { color: var(--accent-primary); }
+
+    .profile-right .eyebrow { display: block; }
+    .profile-right > .eyebrow {
+      margin-bottom: 20px;
+      color: var(--accent-primary);
+    }
+
+    .cred-block {
+      border-top: 1px solid var(--border-hairline);
+      margin-bottom: 32px;
+    }
+    .cred-row {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .cred-row .eyebrow {
+      color: var(--ink-muted); margin-bottom: 8px;
+    }
+    .cred-row .val {
+      font-size: 16px; font-weight: 500; color: var(--ink-primary);
+      line-height: 1.55; max-width: 64ch;
+    }
+
+    .profile-bio {
+      display: flex; flex-direction: column; gap: 16px;
+      max-width: 65ch;
+    }
+    .profile-bio p {
+      font-size: 16px; line-height: 1.7; color: var(--ink-body);
+    }
+
+    /* ── Statement section (centered) ──────────────────── */
+    .statement {
+      max-width: 880px; margin: 0 auto;
+      text-align: center;
+    }
+    .statement .eyebrow { justify-content: center; margin-bottom: 16px; }
+    .statement .h2 { margin-bottom: 24px; text-wrap: balance; }
+    .statement .body-xl { margin: 0 auto; }
+
+    /* ── Advisory board placeholder card ───────────────── */
+    .advisor-card {
+      background: var(--bg-base);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 64px;
+      text-align: center;
+    }
+    @media (max-width: 768px) { .advisor-card { padding: 40px 28px; } }
+    .advisor-card .eyebrow {
+      color: var(--ink-muted); justify-content: center; margin-bottom: 16px;
+    }
+    .advisor-card .body-xl {
+      max-width: 56ch; margin: 0 auto;
+    }
+    .advisor-card .body-xl a { color: var(--accent-primary); font-weight: 500; }
+
+    /* ── Credentials 3-column lists ────────────────────── */
+    .creds-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+    }
+    @media (max-width: 900px) { .creds-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .creds-col .eyebrow { margin-bottom: 16px; }
+    .creds-list {
+      list-style: none; margin: 0; padding: 0;
+    }
+    .creds-list li {
+      padding: 14px 0;
+      border-top: 1px solid var(--border-hairline);
+      font-size: 16px; line-height: 1.5; color: var(--ink-primary);
+      font-weight: 500;
+    }
+    .creds-list li:last-child { border-bottom: 1px solid var(--border-hairline); }
+
+    /* ── Routing list (small cards stacked) ────────────── */
+    .routing-grid {
+      display: grid; grid-template-columns: 4fr 6fr; gap: 64px;
+      align-items: start;
+    }
+    @media (max-width: 900px) { .routing-grid { grid-template-columns: 1fr; gap: 48px; } }
+    .routing-list { display: flex; flex-direction: column; }
+    .routing-item {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-hairline);
+      display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: center;
+    }
+    .routing-item:first-child {
+      padding-top: 0;
+    }
+    .routing-item:last-child { border-bottom: 0; }
+    @media (max-width: 600px) {
+      .routing-item { grid-template-columns: 1fr; gap: 8px; }
+    }
+    .routing-item .eyebrow { margin-bottom: 6px; }
+    .routing-item .label {
+      font-size: 17px; font-weight: 500; color: var(--ink-primary);
+      line-height: 1.45;
+    }
+    .routing-item .link {
+      color: var(--accent-primary); font-size: 15px; font-weight: 600;
+      white-space: nowrap;
+    }
+
+    /* ── Final CTA: dot-separated text links ───────────── */
+    .cta-links {
+      display: inline-flex; flex-wrap: wrap; justify-content: center;
+      align-items: center; gap: 12px 20px;
+    }
+    .cta-links a {
+      color: #fff; font-size: 17px; font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      padding-bottom: 3px;
+      transition: border-color var(--dur) var(--ease);
+    }
+    .cta-links a:hover { color: #fff; border-bottom-color: #fff; }
+    .cta-links .sep { color: rgba(255,255,255,0.4); font-size: 17px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="scripts/chrome.jsx"></script>
+
+  <script type="text/babel">
+    const { Nav, Footer, LinkedInIcon, route } = window.H4Chrome;
+
+    /* ─── HERO ─── */
+    const Hero = () => (
+      <section className="hero hero-compact" data-screen-label="Hero">
+        <div className="container">
+          <h1 className="h1">Four cofounders. One mission.</h1>
+          <p className="body-xl hero-lead" style={{ maxWidth: '60ch' }}>
+            Built by four PhD candidates with institutional experience across
+            Cornell, Brandeis, Minnesota, USC, the World Bank, OSCE, GIZ, and
+            the Albanian public service.
+          </p>
+        </div>
+      </section>
+    );
+
+    /* ─── COFOUNDER PROFILES ─── */
+    const COFOUNDERS = [
+      {
+        initials: 'MK',
+        name: 'Mario Keputa',
+        role: 'Founder & CEO',
+        education: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate',
+        experience: 'World Bank · OSCE · EDYN network (23 countries, 700+ members) · UNDP Albania',
+        focus: 'Strategy, advisory, institutional positioning, research',
+        bio: [
+          "Mario founded Horizon4 in 2026 to build serious AI capability infrastructure for Albania and the region. His work spans institutional advisory, capability building, and governance design for ministries, universities, and donor programs.",
+          "Before Horizon4, Mario worked with the World Bank, OSCE, and EDYN, a transatlantic network of 700+ democratic engagement leaders across 23 countries. He holds an MPA from Cornell University and an MBA in Impact Investing, and is a PhD candidate researching AI capability development in small states.",
+          "He is the author of \"The Next Europe: Why Europe Produces Nobel Prize Winners but Not Elon Musks,\" a 182-page institutional analysis published on SSRN in April 2026, and is currently completing a second working paper on AI infrastructure and the superintelligence race.",
+        ],
+      },
+      {
+        initials: 'YS',
+        name: 'Yllka Sela',
+        role: 'Cofounder · Economic Development',
+        education: 'Brandeis University · STEM MBA (Excellence & Leadership Award) · PhD candidate (Austria)',
+        experience: 'GIZ (8 years) · Former Economic Policy & Microeconomics lecturer',
+        focus: 'BusinessAI vertical, donor program design, SME capability',
+        bio: [
+          "Yllka leads Horizon4's BusinessAI work and donor program design. She brings eight years of experience at GIZ, the German international development agency, where she focused on economic development and institutional capacity building.",
+          "She holds a STEM MBA from Brandeis University (where she received the Excellence & Leadership Award) and is completing a PhD in Austria. She previously taught Economic Policy and Microeconomics at university level, bringing rigorous analytical frameworks to applied AI strategy.",
+          "At Horizon4, Yllka leads engagements with SMEs, donor programs, and economic development institutions across the region.",
+        ],
+      },
+      {
+        initials: 'ID',
+        name: 'Indri Dyrmishi',
+        role: 'Cofounder · Education & Innovation',
+        education: 'University of Minnesota · Carlson School of Management MBA · PhD candidate (Spain)',
+        experience: 'Former Senior Instructor & Entrepreneurship Hub lead, American University of the Middle East · Former Director, Tech Transfer Office, University of Tirana',
+        focus: 'EduAI vertical, faculty readiness, academic integrity, university governance',
+        bio: [
+          "Indri leads Horizon4's EduAI work: faculty readiness programs, academic integrity policy design, and university governance for AI adoption. He previously served as Senior Instructor and led the Entrepreneurship Hub at the American University of the Middle East.",
+          "Before that, he served as Director of the Tech Transfer Office at the University of Tirana, bridging academic research and applied innovation. He holds an MBA from the University of Minnesota Carlson School of Management and is completing a PhD in Spain.",
+          "At Horizon4, Indri leads engagements with universities, schools, and education ministries, and brings deep operating experience in both academic institutions and innovation ecosystems.",
+        ],
+      },
+      {
+        initials: 'FS',
+        name: 'Fregis Sala',
+        role: 'Cofounder · AI Engineering',
+        education: 'University of Southern California · MS Electrical & Computer Engineering · PhD candidate',
+        experience: 'NVIDIA (mixed-signal design verification) · Former Advisor to Albanian Minister of State for Youth and Children (3 years)',
+        focus: 'AI engineering, Agentic AI capability layer, technical governance',
+        bio: [
+          "Fregis leads Horizon4's AI engineering work and the Agentic AI capability layer that cuts across all four sector verticals. He brings engineering depth from NVIDIA, where he worked as a mixed-signal design verification intern, and three years of Albanian public service experience as Advisor to the Minister of State for Youth and Children.",
+          "He holds an MS in Electrical and Computer Engineering from the University of Southern California and is completing a PhD in the same field. His background combines hardware-level engineering precision with applied public-service AI deployment.",
+          "At Horizon4, Fregis leads agentic AI implementation, technical governance design, and engineering integrations with institutional client systems.",
+        ],
+      },
+    ];
+
+    const Profile = ({ p }) => (
+      <article className="profile">
+        <div className="profile-left">
+          <div className="profile-photo">{p.initials}</div>
+          <div className="profile-name">{p.name}</div>
+          <div className="profile-role">{p.role}</div>
+          <div className="profile-social">
+            <a href="#" aria-label={`LinkedIn — ${p.name}`}>
+              <LinkedInIcon/>
+            </a>
+          </div>
+        </div>
+        <div className="profile-right">
+          <div className="eyebrow">Background</div>
+          <div className="cred-block">
+            <div className="cred-row">
+              <div className="eyebrow">Education</div>
+              <div className="val">{p.education}</div>
+            </div>
+            <div className="cred-row">
+              <div className="eyebrow">Institutional experience</div>
+              <div className="val">{p.experience}</div>
+            </div>
+            <div className="cred-row">
+              <div className="eyebrow">Focus at Horizon4</div>
+              <div className="val">{p.focus}</div>
+            </div>
+          </div>
+          <div className="profile-bio">
+            {p.bio.map((para, i) => <p key={i}>{para}</p>)}
+          </div>
+        </div>
+      </article>
+    );
+
+    const Leadership = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Leadership">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Leadership</div>
+            <h2 className="h2">Cofounders.</h2>
+            <p className="body-xl">
+              All four cofounders deliver work directly. No subcontracting,
+              no junior staff for client engagements.
+            </p>
+          </div>
+          <div className="profiles">
+            {COFOUNDERS.map(p => <Profile key={p.initials} p={p}/>)}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── STATEMENT ─── */
+    const Statement = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Team statement">
+        <div className="container">
+          <div className="statement">
+            <div className="eyebrow">Why four cofounders</div>
+            <h2 className="h2">Different lenses. One discipline.</h2>
+            <p className="body-xl">
+              Public sector strategy, economic development, education and
+              innovation, and AI engineering. Each cofounder leads a distinct
+              vertical, and all four sit at the table for every significant
+              institutional engagement.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── ADVISORY BOARD ─── */
+    const Advisors = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Advisory board">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Advisory board</div>
+            <h2 className="h2">Announcing 2026.</h2>
+            <p className="body-xl">
+              Horizon4's advisory board will include senior practitioners
+              from EU AI law, institutional governance, and AI engineering.
+              Composition announced in late 2026.
+            </p>
+          </div>
+          <div className="advisor-card">
+            <div className="eyebrow">Coming late 2026</div>
+            <p className="body-xl">
+              Inquiries from prospective advisors:&nbsp;
+              <a href="mailto:advisors@horizon4.ai">advisors@horizon4.ai</a>
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── INSTITUTIONAL CREDENTIALS ─── */
+    const Credentials = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Institutional credentials">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Institutional credentials</div>
+            <h2 className="h2">Universities, agencies, and networks.</h2>
+            <p className="body-xl">
+              A consolidated view of the institutions that shaped the team.
+            </p>
+          </div>
+          <div className="creds-grid">
+            <div className="creds-col">
+              <div className="eyebrow">Universities</div>
+              <ul className="creds-list">
+                <li>Cornell University</li>
+                <li>Brandeis University</li>
+                <li>University of Minnesota — Carlson School</li>
+                <li>University of Southern California</li>
+                <li>University of Tirana</li>
+                <li>American University of the Middle East</li>
+              </ul>
+            </div>
+            <div className="creds-col">
+              <div className="eyebrow">Institutional experience</div>
+              <ul className="creds-list">
+                <li>World Bank</li>
+                <li>OSCE</li>
+                <li>GIZ</li>
+                <li>UNDP</li>
+                <li>EDYN network</li>
+                <li>NVIDIA</li>
+                <li>Albanian Office of Minister of State for Youth</li>
+              </ul>
+            </div>
+            <div className="creds-col">
+              <div className="eyebrow">Academic specialties</div>
+              <ul className="creds-list">
+                <li>Public administration</li>
+                <li>Impact investing</li>
+                <li>Economic policy &amp; microeconomics</li>
+                <li>Education innovation &amp; technology transfer</li>
+                <li>Electrical &amp; computer engineering</li>
+                <li>AI capability development</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── CONTACT TEAM ─── */
+    const ContactTeam = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Contact the team">
+        <div className="container">
+          <div className="routing-grid">
+            <div>
+              <div className="eyebrow" style={{ marginBottom: 16 }}>Work with the team</div>
+              <h2 className="h2" style={{ marginBottom: 24 }}>Every engagement is led by a cofounder.</h2>
+              <p className="body-xl">
+                We do not subcontract advisory or training work. Each
+                engagement is led by the cofounder whose expertise best
+                matches your institutional context.
+              </p>
+            </div>
+            <div className="routing-list">
+              <div className="routing-item">
+                <div>
+                  <div className="eyebrow">Advisory</div>
+                  <div className="label">Audits, briefings, donor program design</div>
+                </div>
+                <a className="link" href={route('/advisory')}>Explore Advisory →</a>
+              </div>
+              <div className="routing-item">
+                <div>
+                  <div className="eyebrow">Academy</div>
+                  <div className="label">Public courses and private team training</div>
+                </div>
+                <a className="link" href={route('/academy')}>Explore Academy →</a>
+              </div>
+              <div className="routing-item">
+                <div>
+                  <div className="eyebrow">General</div>
+                  <div className="label">Direct contact for any inquiry</div>
+                </div>
+                <a className="link" href={route('/contact')}>Contact us →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FINAL CTA ─── */
+    const CTA = () => (
+      <section className="cta" data-screen-label="Final CTA">
+        <div className="cta-inner">
+          <div className="eyebrow on-dark">Work with Horizon4</div>
+          <h2 className="h2" style={{ maxWidth: '14ch', margin: '0 auto 24px' }}>
+            Built by serious people, for serious institutions.
+          </h2>
+          <p className="body-xl">
+            Start with a briefing, an audit, or a direct conversation.
+          </p>
+          <div className="cta-row">
+            <div className="cta-links">
+              <a href={route('/executive-briefing')}>Request Briefing</a>
+              <span className="sep">·</span>
+              <a href={route('/audit')}>Request Audit Scope</a>
+              <span className="sep">·</span>
+              <a href={route('/contact')}>General Inquiry</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div data-screen-label="Team">
+        <Nav/>
+        <Hero/>
+        <Leadership/>
+        <Statement/>
+        <Advisors/>
+        <Credentials/>
+        <ContactTeam/>
+        <CTA/>
+        <Footer/>
+      </div>
+    );
+  </script>
+</body>
+</html>

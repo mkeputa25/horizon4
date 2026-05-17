@@ -1,0 +1,1046 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Agentic AI · Horizon4 AI — Agentic AI under institutional control</title>
+  <meta name="description" content="Agentic AI capability across government, education, business, and strategy. Designed with human approval, governance, and accountability at every decision point.">
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/site.css">
+  <style>
+    /* ━━━ GovAI page-local styles ━━━ */
+
+    /* Hero variant: full-width content, no sphere */
+    .gov-hero {
+      background: var(--bg-base);
+      padding: 160px 0 96px;
+      text-align: center;
+    }
+    .gov-hero .container { max-width: 880px; }
+    .gov-hero .eyebrow { justify-content: center; margin-bottom: 24px; color: var(--accent-primary); }
+    .gov-hero .h1 { margin-bottom: 24px; text-wrap: balance; }
+    .gov-hero .hero-lead { max-width: 60ch; margin: 0 auto 40px; }
+    .gov-hero .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 768px) {
+      .gov-hero { padding: 96px 0 64px; }
+    }
+
+    /* Generic icon-card (Sections 2, 3) */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .icon-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .icon-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 1024px) {
+      .icon-grid, .icon-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .icon-grid, .icon-grid.cols-2, .icon-grid.cols-3 { grid-template-columns: 1fr; }
+    }
+    .icon-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color .24s var(--ease);
+    }
+    .icon-card .icon { color: var(--ink-primary); }
+    .icon-card .eyebrow { color: var(--ink-muted); margin: 0; }
+    .icon-card .card-h { font-size: var(--type-h4); font-weight: 700; line-height: 1.25; color: var(--ink-primary); margin: 0; letter-spacing: -0.005em; }
+    .icon-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; }
+    .icon-card:hover { border-color: var(--border-strong); }
+
+    /* Numbered offering cards (Section 4) */
+    .offering-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1024px) { .offering-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .offering-grid { grid-template-columns: 1fr; } }
+    .offering-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .offering-card .num {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+    .offering-card .card-h { font-size: var(--type-h4); font-weight: 700; line-height: 1.25; margin: 0; color: var(--ink-primary); }
+    .offering-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; }
+
+    /* Frameworks card with bottom meta line */
+    .fw-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 14px;
+      min-height: 220px;
+    }
+    .fw-card .eyebrow { color: var(--ink-muted); margin: 0; }
+    .fw-card .card-h  { font-size: var(--type-h4); font-weight: 700; line-height: 1.25; margin: 0; color: var(--ink-primary); }
+    .fw-card .body    { font-size: 15px; line-height: 1.6; color: var(--ink-body); margin: 0; }
+    .fw-card .meta    { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border-hairline);
+                        font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+    .fw-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1024px) { .fw-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .fw-grid { grid-template-columns: 1fr; } }
+
+    /* Engagement cards (Section 7) — flagship variant */
+    .eng-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    @media (max-width: 1024px) { .eng-grid { grid-template-columns: 1fr; } }
+    .eng-card {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .eng-card.flagship {
+      border-color: rgba(0, 117, 201, 0.30);
+      box-shadow: 0 8px 24px rgba(0, 117, 201, 0.06);
+    }
+    .eng-card.flagship::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent-primary);
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .eng-card .tag { font-family: var(--font-sans); font-size: var(--type-eyebrow); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--ink-muted); }
+    .eng-card.flagship .tag { color: var(--accent-primary); }
+    .eng-card .hr { height: 1px; background: var(--border-hairline); margin: 0; border: none; }
+    .eng-card .card-h { font-size: var(--type-h3); font-weight: 700; line-height: 1.15; color: var(--ink-primary); margin: 0; letter-spacing: -0.01em; }
+    .eng-card .meta { font-size: var(--type-body-xl); color: var(--ink-muted); margin: 0; }
+    .eng-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; }
+    .eng-card .bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .eng-card .bullets li {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--ink-body);
+      padding-left: 22px;
+      position: relative;
+    }
+    .eng-card .bullets li::before {
+      content: '';
+      position: absolute;
+      left: 6px; top: 0.55em;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent-secondary);
+    }
+    .eng-card .foot {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .eng-card .price {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .eng-card .cta-link {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent-primary);
+      text-decoration: none;
+    }
+    .eng-card .cta-link:hover { color: var(--accent-primary-h); }
+
+    /* FAQ accordion */
+    .faq-list {
+      max-width: 880px;
+      margin: 0 auto;
+      display: flex; flex-direction: column;
+    }
+    .faq-item {
+      border-top: 1px solid var(--border-hairline);
+      padding: 0;
+    }
+    .faq-item:last-of-type { border-bottom: 1px solid var(--border-hairline); }
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 24px 0;
+      display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      font-size: var(--type-h4);
+      font-weight: 600;
+      color: var(--ink-primary);
+      letter-spacing: -0.005em;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item .chev {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      color: var(--ink-muted);
+      transition: transform .24s var(--ease);
+    }
+    .faq-item[open] .chev { transform: rotate(180deg); }
+    .faq-item .ans {
+      font-size: var(--type-body);
+      line-height: 1.65;
+      color: var(--ink-body);
+      max-width: 70ch;
+      padding: 0 0 28px;
+    }
+
+    /* Related horizons mini cards */
+    .rel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1024px) { .rel-grid { grid-template-columns: 1fr; } }
+    .rel-card {
+      display: flex; flex-direction: column; gap: 14px;
+      padding: 28px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .24s var(--ease), box-shadow .24s var(--ease);
+    }
+    .rel-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-card); }
+    .rel-card .eyebrow { color: var(--ink-muted); margin: 0; }
+    .rel-card .card-h { font-size: var(--type-h4); font-weight: 700; color: var(--ink-primary); margin: 0; }
+    .rel-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; }
+    .rel-card .more { margin-top: auto; padding-top: 12px; font-size: 15px; font-weight: 600; color: var(--accent-primary); }
+
+    /* Final CTA dark band — link row separated by middle dots */
+    .gov-cta {
+      background: var(--bg-deep);
+      padding: 128px 0;
+      text-align: center;
+      color: #fff;
+    }
+    .gov-cta .container { max-width: 880px; }
+    .gov-cta .eyebrow {
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 24px;
+    }
+    .gov-cta .h2 { color: #fff; margin-bottom: 20px; text-wrap: balance; }
+    .gov-cta .body-xl { color: var(--ink-on-dark-2); margin: 0 auto 40px; max-width: 60ch; }
+    .gov-cta .links {
+      display: inline-flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      font-size: var(--type-body-xl);
+    }
+    .gov-cta .links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+      padding-bottom: 2px;
+      transition: border-color .24s var(--ease);
+    }
+    .gov-cta .links a:hover { border-bottom-color: #fff; }
+    .gov-cta .links .sep {
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 22px;
+      user-select: none;
+    }
+    @media (max-width: 768px) {
+      .gov-cta { padding: 80px 0; }
+      .gov-cta .links { flex-direction: column; gap: 14px; }
+      .gov-cta .links .sep { display: none; }
+    }
+
+    /* Agentic AI cuts across all four horizons — related grid shows 4 cards */
+    .rel-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+    @media (max-width: 1024px) { .rel-grid.cols-4 { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .rel-grid.cols-4 { grid-template-columns: 1fr; } }
+
+    /* Section bands — reusing tokens */
+    .band { padding: var(--section-y) 0; }
+    .band.surface { background: var(--bg-surface); }
+    .band.base    { background: var(--bg-base); }
+    @media (max-width: 768px) { .band { padding: var(--section-y-mobile) 0; } }
+  </style>
+</head>
+<body>
+  <script>
+    // Suppress the benign "ResizeObserver loop completed with undelivered notifications" message.
+    (function(){
+      const re = /ResizeObserver loop/;
+      if (typeof ResizeObserver !== 'undefined') {
+        const Native = ResizeObserver;
+        window.ResizeObserver = class extends Native {
+          constructor(cb) {
+            super((entries, observer) => {
+              requestAnimationFrame(() => { try { cb(entries, observer); } catch (e) {} });
+            });
+          }
+        };
+      }
+      window.addEventListener('error', (e) => {
+        if (e && e.message && re.test(e.message)) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+        }
+      });
+      const origError = console.error;
+      console.error = function(...args) {
+        const msg = args.map(a => (a && a.message) || String(a)).join(' ');
+        if (re.test(msg)) return;
+        return origError.apply(console, args);
+      };
+    })();
+
+    // Client-side router — translates clean paths in <a href> to actual filenames
+    (function(){
+      const ROUTES = {
+        '/':                       'Horizon4 AI - Homepage.html',
+        '/academy':                'Horizon4 AI - Academy.html',
+        '/academy/catalog':        'Horizon4 AI - Course Catalog.html',
+        '/academy/private':        'Horizon4 AI - Academy Private.html',
+        '/advisory':               'Horizon4 AI - Advisory.html',
+        '/audit':                  'Horizon4 AI - Audit.html',
+        '/executive-briefing':     'Horizon4 AI - Executive Briefing.html',
+        '/donor-programs':         'Horizon4 AI - Donor Programs.html',
+        '/govai':                  'Horizon4 AI - GovAI.html',
+        '/eduai':                  'Horizon4 AI - EduAI.html',
+        '/businessai':             'Horizon4 AI - BusinessAI.html',
+        '/strategyai':             'Horizon4 AI - StrategyAI.html',
+        '/agentic-ai':             'Horizon4 AI - Agentic AI.html',
+        '/research/publications':  'Horizon4 AI - Publications.html',
+        '/research/insights':      'Horizon4 AI - Insights.html',
+        '/research/frameworks':    'Horizon4 AI - Frameworks.html',
+        '/about':                  'Horizon4 AI - About.html',
+        '/team':                   'Horizon4 AI - Team.html',
+        '/contact':                'Horizon4 AI - Contact.html',
+      };
+      document.addEventListener('click', function(e) {
+        const a = e.target && e.target.closest && e.target.closest('a');
+        if (!a) return;
+        const href = a.getAttribute('href');
+        if (!href) return;
+        if (href.startsWith('mailto:') || href.startsWith('tel:') ||
+            href.startsWith('http://') || href.startsWith('https://') ||
+            href.startsWith('#')) return;
+        if (Object.prototype.hasOwnProperty.call(ROUTES, href)) {
+          e.preventDefault();
+          window.location.href = encodeURI(ROUTES[href]);
+        }
+      }, true);
+    })();
+  </script>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       NAVIGATION (inherited from homepage)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const MEGA = {
+      Academy: [
+        { l: 'Overview & Pathways',   h: '/academy' },
+        { l: 'Course Catalog',        h: '/academy/catalog' },
+        { l: 'Private Team Training', h: '/academy/private' },
+      ],
+      Advisory: [
+        { l: 'AI Readiness Audit',  h: '/audit' },
+        { l: 'Executive Briefing',  h: '/executive-briefing' },
+        { l: 'Donor / EU Programs', h: '/donor-programs' },
+      ],
+      Solutions: [
+        { l: 'GovAI',      h: '/govai' },
+        { l: 'EduAI',      h: '/eduai' },
+        { l: 'BusinessAI', h: '/businessai' },
+        { l: 'StrategyAI', h: '/strategyai' },
+        { divider: true },
+        { l: 'Agentic AI', h: '/agentic-ai' },
+      ],
+      Research: [
+        { l: 'Publications', h: '/research/publications' },
+        { l: 'Insights',     h: '/research/insights' },
+        { l: 'Frameworks',   h: '/research/frameworks' },
+      ],
+      About: [
+        { l: 'Team',    h: '/team' },
+        { l: 'Mission', h: '/about' },
+        { l: 'Contact', h: '/contact' },
+      ],
+    };
+
+    const Brand = ({ className = 'nav-brand' }) => (
+      <a href="/" className={className}>Horizon<span className="four">4</span>&nbsp;AI</a>
+    );
+
+    const Nav = () => {
+      const [open, setOpen] = useState(null);
+      const [drawer, setDrawer] = useState(false);
+      const [lang, setLang] = useState('EN');
+      const closeTimer = useRef(null);
+
+      const onEnter = (k) => { clearTimeout(closeTimer.current); setOpen(k); };
+      const onLeave = () => { closeTimer.current = setTimeout(() => setOpen(null), 120); };
+
+      useEffect(() => { document.body.style.overflow = drawer ? 'hidden' : ''; }, [drawer]);
+
+      return (
+        <React.Fragment>
+          <nav className="nav">
+            <div className="nav-inner">
+              <Brand/>
+              <div className="nav-center">
+                {Object.keys(MEGA).map(k => (
+                  <div
+                    key={k}
+                    className={`nav-item ${open === k ? 'open' : ''}`}
+                    onMouseEnter={() => onEnter(k)}
+                    onMouseLeave={onLeave}
+                  >
+                    <button className="nav-trigger" aria-haspopup="true" aria-expanded={open === k}>
+                      {k}<span className="chev"></span>
+                    </button>
+                    <div className="mega" role="menu">
+                      {MEGA[k].map((item, i) => (
+                        item.divider
+                          ? <div key={`d${i}`} className="mega-divider" role="separator"></div>
+                          : <a key={item.l} href={item.h}>{item.l}</a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="nav-right">
+                <div className="nav-lang">
+                  <button className={lang === 'EN' ? 'on' : ''} onClick={() => setLang('EN')}>EN</button>
+                  <span className="div">|</span>
+                  <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
+                </div>
+                <a href="/executive-briefing" className="nav-cta">Request Executive Briefing</a>
+                <button className="nav-burger" aria-label="Menu" onClick={() => setDrawer(true)}>
+                  <span></span><span></span><span></span>
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          <div className={`drawer-overlay ${drawer ? 'open' : ''}`} onClick={() => setDrawer(false)}></div>
+          <aside className={`drawer ${drawer ? 'open' : ''}`} aria-hidden={!drawer}>
+            <div className="drawer-head">
+              <Brand/>
+              <button className="drawer-close" onClick={() => setDrawer(false)} aria-label="Close">×</button>
+            </div>
+            <div className="drawer-body">
+              {Object.keys(MEGA).map(k => (
+                <details key={k} className="drawer-group">
+                  <summary>{k}</summary>
+                  <div className="drawer-sub">
+                    {MEGA[k].map((item, i) => (
+                      item.divider ? null : <a key={item.l} href={item.h}>{item.l}</a>
+                    ))}
+                  </div>
+                </details>
+              ))}
+            </div>
+            <div className="drawer-foot">
+              <a href="/executive-briefing" className="btn btn-primary">Request Executive Briefing</a>
+              <div className="nav-lang" style={{ justifyContent: 'center' }}>
+                <button className={lang === 'EN' ? 'on' : ''} onClick={() => setLang('EN')}>EN</button>
+                <span className="div">|</span>
+                <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
+              </div>
+            </div>
+          </aside>
+        </React.Fragment>
+      );
+    };
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SHARED ICONS (Lucide-style, 1.5px stroke)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Icon = ({ children, size = 32 }) => (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+           className="icon" aria-hidden="true">{children}</svg>
+    );
+    const IconAutonomy = () => (
+      <Icon>
+        <circle cx="12" cy="12" r="3"/><path d="M12 5V3M12 21v-2M5 12H3M21 12h-2M7 7L5.5 5.5M18.5 18.5L17 17M17 7l1.5-1.5M5.5 18.5L7 17"/>
+      </Icon>
+    );
+    const IconWarning = () => (
+      <Icon>
+        <path d="M12 3l10 18H2L12 3z"/><path d="M12 10v5M12 18h.01"/>
+      </Icon>
+    );
+    const IconShield2 = () => (
+      <Icon>
+        <path d="M12 3l8 3v5c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6l8-3z"/><path d="M12 8v4l3 2"/>
+      </Icon>
+    );
+    const IconGov2 = () => (
+      <Icon>
+        <path d="M3 21h18M5 21V10M9 21V10M15 21V10M19 21V10M3 10h18M12 3l9 5H3l9-5z"/>
+      </Icon>
+    );
+    const IconUniA = () => (
+      <Icon>
+        <path d="M12 3 2 8l10 5 10-5-10-5z"/><path d="M6 10v6a6 6 0 0 0 12 0v-6"/><path d="M22 8v6"/>
+      </Icon>
+    );
+    const IconBiz = () => (
+      <Icon>
+        <rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>
+      </Icon>
+    );
+    const IconChip = () => (
+      <Icon>
+        <rect x="6" y="6" width="12" height="12" rx="1.5"/><rect x="9" y="9" width="6" height="6" rx="0.5"/><path d="M9 3v2M12 3v2M15 3v2M9 19v2M12 19v2M15 19v2M3 9h2M3 12h2M3 15h2M19 9h2M19 12h2M19 15h2"/>
+      </Icon>
+    );
+    const ChevDown = () => (
+      <Icon size={18}><path d="M6 9l6 6 6-6"/></Icon>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 1 — HERO
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Hero = () => (
+      <section className="gov-hero" data-screen-label="Hero">
+        <div className="container">
+          <div className="eyebrow">Capability Layer · Agentic AI</div>
+          <h1 className="h1">Agentic AI under institutional control.</h1>
+          <p className="body-xl hero-lead">
+            Agentic AI capability across government, education, business, and
+            strategy. Designed with human approval, governance, and
+            accountability at every decision point.
+          </p>
+          <div className="hero-actions">
+            <a href="/audit" className="btn btn-primary">Request Audit Scope</a>
+            <a href="/executive-briefing" className="btn btn-secondary">Request Executive Briefing</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 2 — WHY GOVAI
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const WhyGov = () => (
+      <section className="band surface" data-screen-label="Why Agentic AI now">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Why Agentic AI now</div>
+            <h2 className="h2">Agentic AI requires governance, not enthusiasm.</h2>
+            <p className="body-xl">
+              The shift from AI assistants to AI agents is real and
+              accelerating. Most institutional adopters are not ready. We help
+              them get ready.
+            </p>
+          </div>
+          <div className="icon-grid cols-3">
+            <article className="icon-card">
+              <IconAutonomy/>
+              <div className="eyebrow">Autonomy Under Oversight</div>
+              <h3 className="card-h">Agents act. Humans approve.</h3>
+              <p className="body">
+                Agentic systems take actions, not just produce outputs. Every
+                action requires explicit human approval points and
+                accountability assignment.
+              </p>
+            </article>
+            <article className="icon-card">
+              <IconWarning/>
+              <div className="eyebrow">Emergent Failure Modes</div>
+              <h3 className="card-h">Agent failures look different.</h3>
+              <p className="body">
+                Agentic AI fails in ways traditional software doesn't. Our
+                governance work specifically addresses agentic failure modes:
+                drift, scope creep, unintended consequences.
+              </p>
+            </article>
+            <article className="icon-card">
+              <IconShield2/>
+              <div className="eyebrow">High-Stakes Ready</div>
+              <h3 className="card-h">Built for institutional risk tolerance.</h3>
+              <p className="body">
+                Agentic deployment in regulated environments requires audit
+                trails, human override, and failure containment. We design for
+                these from day one.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 3 — WHO WE SERVE
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const WhoWeServe = () => (
+      <section className="band base" data-screen-label="Who we serve">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Who we serve</div>
+            <h2 className="h2">Built for institutional agentic adoption.</h2>
+            <p className="body-xl">
+              Four audience profiles preparing to deploy agentic AI with
+              governance and accountability.
+            </p>
+          </div>
+          <div className="icon-grid cols-2">
+            <article className="icon-card">
+              <IconGov2/>
+              <div className="eyebrow">Government Agencies</div>
+              <h3 className="card-h">Public-sector agentic deployment.</h3>
+              <p className="body">
+                Citizen-facing service workflows, internal operational agents,
+                and regulatory-grade governance frameworks.
+              </p>
+            </article>
+            <article className="icon-card">
+              <IconUniA/>
+              <div className="eyebrow">Universities</div>
+              <h3 className="card-h">Educational agentic capability.</h3>
+              <p className="body">
+                Student-facing AI agents under academic integrity frameworks,
+                faculty agent workflows, institutional governance.
+              </p>
+            </article>
+            <article className="icon-card">
+              <IconBiz/>
+              <div className="eyebrow">Enterprises & SMEs</div>
+              <h3 className="card-h">Operational agentic deployment.</h3>
+              <p className="body">
+                Workflow automation, customer service agents, internal
+                operational agents with confidentiality and IP protection.
+              </p>
+            </article>
+            <article className="icon-card">
+              <IconChip/>
+              <div className="eyebrow">Technical Leadership</div>
+              <h3 className="card-h">CTOs and engineering directors.</h3>
+              <p className="body">
+                Technical governance frameworks, agentic architecture review,
+                and integration with existing institutional systems.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 4 — WHAT WE DELIVER
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const OFFERINGS = [
+      ['01', 'Agentic AI Discovery Workshop',  'Half-day to one-day workshop. What agentic AI is, what it isn\'t, and where it fits in your institution.'],
+      ['02', 'Agentic Readiness Assessment',   'Institutional readiness for agentic deployment: governance, technical infrastructure, oversight capacity.'],
+      ['03', 'Agentic Governance Framework',   'Custom governance framework for agentic AI: approval workflows, oversight bodies, failure containment, audit trails.'],
+      ['04', 'Agentic Workflow Design',        'Design and prototyping of specific agentic workflows with human approval points and rollback mechanisms.'],
+      ['05', 'Technical Architecture Review',  'Review of agentic systems against institutional risk tolerance, including integration architecture and security review.'],
+      ['06', 'Agentic Capability Programs',    'Multi-cohort capability programs for teams deploying or overseeing agentic systems.'],
+    ];
+
+    const Offerings = () => (
+      <section className="band surface" data-screen-label="What we deliver">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">What we deliver</div>
+            <h2 className="h2">Six core service offerings.</h2>
+            <p className="body-xl">
+              All available standalone or as integrated programs. Pricing
+              scoped per engagement.
+            </p>
+          </div>
+          <div className="offering-grid">
+            {OFFERINGS.map(([n, t, d]) => (
+              <article key={n} className="offering-card">
+                <div className="num">{n}</div>
+                <h3 className="card-h">{t}</h3>
+                <p className="body">{d}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 5 — APPROACH
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const STEPS = [
+      ['01', 'Diagnose', 'Six-dimension readiness assessment. Where AI helps, where it must not be allowed.'],
+      ['02', 'Design',   'Governance framework, use-case portfolio, training plan, and 90-day roadmap.'],
+      ['03', 'Train',    'Role-specific cohorts and workshops with real deliverables. Bilingual.'],
+      ['04', 'Embed',    'Pilot, measure, refresh. Human-approved workflows and monitoring routines.'],
+    ];
+
+    const Approach = () => (
+      <section className="band base" data-screen-label="Approach">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Approach</div>
+            <h2 className="h2">Diagnose. Design. Train. Embed.</h2>
+            <p className="body-xl">
+              Same discipline across all GovAI engagements. Same four-stage methodology.
+            </p>
+          </div>
+          <div className="method-grid">
+            {STEPS.map(([n, t, d]) => (
+              <div key={n} className="method-col">
+                <div className="num">{n}</div>
+                <h3 className="h4">{t}</h3>
+                <p className="body">{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 6 — FRAMEWORKS APPLIED
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const FRAMEWORKS = [
+      { eb: 'Risk Framework',   h: 'NIST AI RMF',
+        b: 'Risk management framework with Generative AI Profile. Practical, voluntary, widely adopted.',
+        m: 'v1.0, 2023' },
+      { eb: 'Regulation',       h: 'EU AI Act',
+        b: 'Risk classification, high-risk system obligations, transparency requirements, conformity assessment.',
+        m: 'Phasing 2025-2027' },
+      { eb: 'Management System', h: 'ISO/IEC 42001',
+        b: 'AI management system: governance, risk, lifecycle, continuous improvement.',
+        m: 'Published 2023' },
+      { eb: 'Principles',       h: 'OECD AI Principles',
+        b: 'Trustworthy AI: inclusivity, transparency, accountability, safety, human-centered values.',
+        m: '46+ countries' },
+    ];
+
+    const Frameworks = () => (
+      <section className="band surface" data-screen-label="Frameworks">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Frameworks</div>
+            <h2 className="h2">Built on international AI governance standards.</h2>
+            <p className="body-xl">
+              Adapted for public-sector context, EU candidate-state alignment,
+              and donor program compliance.
+            </p>
+          </div>
+          <div className="fw-grid">
+            {FRAMEWORKS.map(f => (
+              <article key={f.h} className="fw-card">
+                <div className="eyebrow">{f.eb}</div>
+                <h3 className="card-h">{f.h}</h3>
+                <p className="body">{f.b}</p>
+                <div className="meta">{f.m}</div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 7 — ENGAGEMENT EXAMPLES
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Engagements = () => (
+      <section className="band base" data-screen-label="Engagement types">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Engagement types</div>
+            <h2 className="h2">What GovAI work looks like in practice.</h2>
+            <p className="body-xl">
+              Three patterns of GovAI engagement, sized to different institutional contexts.
+            </p>
+          </div>
+
+          <div className="eng-grid">
+            {/* CARD 1 — FOCUSED */}
+            <article className="eng-card">
+              <div className="tag">Focused</div>
+              <hr className="hr"/>
+              <h3 className="card-h">Agentic Discovery & Readiness</h3>
+              <p className="meta">4-6 weeks</p>
+              <p className="body">
+                Half-day workshop plus written readiness assessment for one
+                institution. The most common entry point for agentic adoption.
+              </p>
+              <ul className="bullets">
+                <li>Discovery workshop</li>
+                <li>Readiness scorecard</li>
+                <li>Initial use-case shortlist</li>
+                <li>Governance gap review</li>
+              </ul>
+              <hr className="hr"/>
+              <div className="foot">
+                <span className="price">Request Scope</span>
+                <a href="/audit" className="cta-link">Request Scope →</a>
+              </div>
+            </article>
+
+            {/* CARD 2 — FLAGSHIP */}
+            <article className="eng-card flagship">
+              <div className="tag">Flagship · Agentic Program</div>
+              <hr className="hr"/>
+              <h3 className="card-h">Full Agentic Deployment Support</h3>
+              <p className="meta">3-9 months</p>
+              <p className="body">
+                Discovery, readiness, governance framework, workflow design,
+                and embedded support through first agentic deployment. Most
+                common agentic engagement.
+              </p>
+              <ul className="bullets">
+                <li>Discovery and readiness</li>
+                <li>Custom agentic governance</li>
+                <li>Workflow prototyping</li>
+                <li>Embedded deployment oversight</li>
+              </ul>
+              <hr className="hr"/>
+              <div className="foot">
+                <span className="price">Request Scope</span>
+                <a href="/audit" className="cta-link">Request Scope →</a>
+              </div>
+            </article>
+
+            {/* CARD 3 — MULTI-YEAR */}
+            <article className="eng-card">
+              <div className="tag">Multi-Year</div>
+              <hr className="hr"/>
+              <h3 className="card-h">Strategic Agentic Capability</h3>
+              <p className="meta">12-24 months</p>
+              <p className="body">
+                Multi-year agentic capability development for institutions or
+                donor programs adopting agentic at scale.
+              </p>
+              <ul className="bullets">
+                <li>Strategic agentic roadmap</li>
+                <li>Multi-system governance architecture</li>
+                <li>Multi-cohort capability programs</li>
+                <li>Quarterly review and refresh</li>
+              </ul>
+              <hr className="hr"/>
+              <div className="foot">
+                <span className="price">Request Quote</span>
+                <a href="/donor-programs" className="cta-link">Discuss Program →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 8 — FAQ
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const FAQS = [
+      ['Is agentic AI ready for institutional use?',
+       "Some agentic systems are mature enough for low-stakes institutional deployment today, under proper governance. Higher-stakes use cases require careful readiness work. We help institutions calibrate that decision."],
+      ["What's the difference between Agentic AI and the four sector Horizons?",
+       "The four Horizons (GovAI, EduAI, BusinessAI, StrategyAI) are sector-specific. Agentic AI is a capability layer that cuts across all four. A ministry might deploy agentic AI under GovAI; a university under EduAI."],
+      ['Do you build agentic systems for clients?',
+       "We design governance, workflows, and integration architecture for agentic systems. Technical build is typically done by vetted technical partners with named accountability, under our governance framework."],
+      ['Can you assess existing agentic deployments?',
+       "Yes. Agentic AI Discovery and Readiness work can include review of existing or planned agentic deployments against institutional risk tolerance."],
+      ['Who delivers Agentic AI engagements?',
+       "Agentic AI work is led by Fregis Sala (USC MS Electrical & Computer Engineering, NVIDIA, former Albanian public service advisor) with full cofounder team engaged for institutional or multi-year programs."],
+    ];
+
+    const FAQ = () => (
+      <section className="band surface" data-screen-label="FAQ">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">FAQ</div>
+            <h2 className="h2">Common questions.</h2>
+          </div>
+          <div className="faq-list">
+            {FAQS.map(([q, a], i) => (
+              <details key={i} className="faq-item">
+                <summary>{q}<ChevDown/></summary>
+                <div className="ans">{a}</div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 9 — RELATED HORIZONS
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const RELATED = [
+      { eb: 'Horizon 01', h: 'GovAI',      b: 'Government AI.',  more: 'Explore GovAI →',      href: '/govai' },
+      { eb: 'Horizon 02', h: 'EduAI',      b: 'Education AI.',   more: 'Explore EduAI →',      href: '/eduai' },
+      { eb: 'Horizon 03', h: 'BusinessAI', b: 'Business AI.',    more: 'Explore BusinessAI →', href: '/businessai' },
+      { eb: 'Horizon 04', h: 'StrategyAI', b: 'Strategy AI.',    more: 'Explore StrategyAI →', href: '/strategyai' },
+    ];
+
+    const Related = () => (
+      <section className="band base" data-screen-label="Related horizons">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Related capability pathways</div>
+            <h2 className="h2">Agentic AI cuts across all four horizons.</h2>
+            <p className="body-xl">
+              Agentic AI is a capability layer. It applies to government,
+              education, business, and strategy work. Choose the sector context
+              that matches your institution.
+            </p>
+          </div>
+          <div className="rel-grid cols-4">
+            {RELATED.map(r => (
+              <a key={r.h} href={r.href} className="rel-card">
+                <div className="eyebrow">{r.eb}</div>
+                <h3 className="card-h">{r.h}</h3>
+                <p className="body">{r.b}</p>
+                <span className="more">{r.more}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 10 — FINAL CTA (dark band)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const FinalCTA = () => (
+      <section className="gov-cta" data-screen-label="Final CTA">
+        <div className="container">
+          <div className="eyebrow">Start</div>
+          <h2 className="h2">Agentic AI, under institutional control.</h2>
+          <p className="body-xl">
+            Start with an audit, a briefing, or a direct conversation about
+            your institution.
+          </p>
+          <div className="links">
+            <a href="/audit">Request Audit Scope</a>
+            <span className="sep">·</span>
+            <a href="/executive-briefing">Request Briefing</a>
+            <span className="sep">·</span>
+            <a href="/contact">General Inquiry</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       FOOTER (inherited from homepage)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const LinkedInIcon = () => (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M4.98 3.5C4.98 4.881 3.87 6 2.5 6S0 4.881 0 3.5 1.11 1 2.5 1s2.48 1.119 2.48 2.5zM.22 8h4.56v14H.22V8zm7.5 0h4.36v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.56v-6.59c0-1.57-.03-3.59-2.19-3.59-2.19 0-2.53 1.71-2.53 3.48V22H7.72V8z"/>
+      </svg>
+    );
+
+    const Footer = () => (
+      <footer className="foot" data-screen-label="Footer">
+        <div className="container">
+          <div className="foot-grid">
+            <div className="foot-brand foot-col">
+              <div className="wm">Horizon<span className="four">4</span>&nbsp;AI</div>
+              <p className="tag">
+                Albania's responsible AI capability partner. We help institutions
+                move from AI experimentation to embedded, governed practice.
+              </p>
+              <div className="meta">
+                <span>Tirana, Albania · Europe-ready</span>
+                <span>hello@horizon4.ai</span>
+                <span style={{ marginTop: 8 }}><a href="#" style={{ color: 'inherit' }}><LinkedInIcon/></a></span>
+              </div>
+            </div>
+            <div className="foot-col">
+              <div className="head">Academy</div>
+              <a href="/academy">Overview & Pathways</a>
+              <a href="/academy/catalog">Course Catalog</a>
+              <a href="/academy/private">Private Training</a>
+              <a href="/academy/certificates">Certificates</a>
+            </div>
+            <div className="foot-col">
+              <div className="head">Advisory</div>
+              <a href="/audit">AI Readiness Audit</a>
+              <a href="/executive-briefing">Executive Briefing</a>
+              <a href="/strategyai">StrategyAI</a>
+              <a href="/donor-programs">Donor / EU Programs</a>
+            </div>
+            <div className="foot-col">
+              <div className="head">Solutions</div>
+              <a href="/govai">GovAI</a>
+              <a href="/eduai">EduAI</a>
+              <a href="/businessai">BusinessAI</a>
+              <a href="/agentic-ai">Agentic AI</a>
+            </div>
+            <div className="foot-col">
+              <div className="head">Research & About</div>
+              <a href="/research/publications">Publications</a>
+              <a href="/research/insights">Insights</a>
+              <a href="/team">Team</a>
+              <a href="/about">Mission</a>
+              <a href="/contact">Contact</a>
+            </div>
+          </div>
+          <div className="foot-bar">
+            <span>© 2026 Horizon4 AI</span>
+            <span className="center">Pre-launch · September 2026</span>
+            <span className="right">Privacy · Terms</span>
+          </div>
+        </div>
+      </footer>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       APP
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const App = () => (
+      <div data-screen-label="Agentic AI">
+        <Nav/>
+        <Hero/>
+        <WhyGov/>
+        <WhoWeServe/>
+        <Offerings/>
+        <Approach/>
+        <Frameworks/>
+        <Engagements/>
+        <FAQ/>
+        <Related/>
+        <FinalCTA/>
+        <Footer/>
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>
