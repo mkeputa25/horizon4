@@ -47,12 +47,15 @@
       line-height: 1.5;
       margin-bottom: 16px;
     }
+    .profile-social { display: flex; gap: 14px; }
     .profile-social a {
       display: inline-flex; align-items: center; gap: 6px;
       color: var(--ink-muted);
       transition: color var(--dur) var(--ease);
     }
-    .profile-social a:hover { color: var(--accent-primary); }
+    .profile-social a:hover { color: var(--accent-primary-h); }
+    .profile-social a.ln { color: #0A66C2; }
+    .profile-social a.ln:hover { color: #084D92; }
 
     .profile-right .eyebrow { display: block; }
     .profile-right > .eyebrow {
@@ -182,6 +185,14 @@
   <script type="text/babel">
     const { Nav, Footer, LinkedInIcon, route } = window.H4Chrome;
 
+    const MailIcon = () => (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2.5" y="4.5" width="19" height="15" rx="2"/>
+        <path d="M3.5 6l8.5 6.5L20.5 6"/>
+      </svg>
+    );
+
     /* ─── HERO ─── */
     const Hero = () => (
       <section className="hero hero-compact" data-screen-label="Hero">
@@ -202,9 +213,10 @@
         initials: 'MK',
         img: 'mario',
         linkedin: 'https://www.linkedin.com/in/mariokeputa/',
+        email: 'mario@horizon4.ai',
         pos: '50% 18%',
         name: 'Mario Keputa',
-        role: 'Founder & CEO',
+        role: 'Co-founder & CEO',
         education: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate',
         experience: 'World Bank · OSCE · EDYN network (23 countries, 700+ members) · UNDP Albania',
         focus: 'Public administration, strategy, institutional positioning, research',
@@ -218,8 +230,9 @@
         initials: 'YS',
         img: 'yllka',
         linkedin: 'https://www.linkedin.com/in/yllka-sela/',
+        email: 'yllka@horizon4.ai',
         name: 'Yllka Sela',
-        role: 'Cofounder · Economic Development',
+        role: 'Co-founder · Economic Development',
         education: 'Brandeis University · STEM MBA (Excellence & Leadership Award) · PhD candidate (Austria)',
         experience: 'GIZ (8 years) · Former Economic Policy & Microeconomics lecturer',
         focus: 'BusinessAI, economic development, donor programs, SME capability',
@@ -233,9 +246,10 @@
         initials: 'ID',
         img: 'indri',
         linkedin: 'https://www.linkedin.com/in/indridyrmishi/',
+        email: 'indri@horizon4.ai',
         pos: '50% 18%',
         name: 'Indri Dyrmishi',
-        role: 'Cofounder · Education & Innovation',
+        role: 'Co-founder · Education & Innovation',
         education: 'University of Minnesota · Carlson School of Management MBA · PhD candidate (Spain)',
         experience: 'Former Senior Instructor & Entrepreneurship Hub lead, American University of the Middle East · Former Director, Tech Transfer Office, University of Tirana',
         focus: 'EduAI, teacher training, academic integrity, university governance',
@@ -249,8 +263,9 @@
         initials: 'FS',
         img: 'fregis',
         linkedin: 'https://www.linkedin.com/in/fregis-sala/',
+        email: 'fregis@horizon4.ai',
         name: 'Fregis Sala',
-        role: 'Cofounder · AI Engineering',
+        role: 'Co-founder · AI Engineering',
         education: 'University of Southern California · MS Electrical & Computer Engineering · PhD candidate',
         experience: 'NVIDIA (mixed-signal design verification) · Former Advisor to Albanian Minister of State for Youth and Children (3 years)',
         focus: 'Agentic AI, AI engineering, technical governance, workflow implementation',
@@ -274,8 +289,11 @@
           <div className="profile-name">{p.name}</div>
           <div className="profile-role">{p.role}</div>
           <div className="profile-social">
-            <a href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn, ${p.name}`}>
+            <a className="ln" href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn, ${p.name}`}>
               <LinkedInIcon/>
+            </a>
+            <a href={`mailto:${p.email}`} aria-label={`Email ${p.name}`}>
+              <MailIcon/>
             </a>
           </div>
         </div>

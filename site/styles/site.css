@@ -509,14 +509,16 @@ section { padding: var(--section-y) 0; }
 .lead-bio { font-size: 15px; line-height: 1.55; color: var(--ink-body); }
 .lead-link {
   margin-top: 24px; padding-top: 16px; border-top: 1px solid var(--border-hairline);
-  display: flex; justify-content: flex-end;
+  display: flex; justify-content: flex-end; gap: 14px;
 }
 .lead-link a {
   display: inline-flex; align-items: center; gap: 6px;
   color: var(--ink-muted); transition: color var(--dur) var(--ease);
   text-decoration: none;
 }
-.lead-link a:hover { color: var(--accent-primary); }
+.lead-link a:hover { color: var(--accent-primary-h); }
+.lead-link a.ln { color: #0A66C2; }
+.lead-link a.ln:hover { color: #084D92; }
 
 .advisory-note {
   margin-top: 48px; padding-top: 48px;

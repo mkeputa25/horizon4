@@ -1158,9 +1158,10 @@
         initials: 'MK',
         img: 'mario',
         linkedin: 'https://www.linkedin.com/in/mariokeputa/',
+        email: 'mario@horizon4.ai',
         pos: '50% 18%',
         name: 'Mario Keputa',
-        role: 'Founder & CEO',
+        role: 'Co-founder & CEO',
         cred: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate',
         bio:  "Public administration and AI governance lead. Institutional experience with the World Bank, OSCE, and the EDYN regional network. Author of 'The Next Europe' (Cornell, 2026) on European competitiveness reform.",
       },
@@ -1168,8 +1169,9 @@
         initials: 'YS',
         img: 'yllka',
         linkedin: 'https://www.linkedin.com/in/yllka-sela/',
+        email: 'yllka@horizon4.ai',
         name: 'Yllka Sela',
-        role: 'Cofounder · Economic Development',
+        role: 'Co-founder · Economic Development',
         cred: 'Brandeis University · STEM MBA · PhD candidate (Austria)',
         bio:  'Eight years at GIZ across economic development, environmental initiatives, and regional cooperation. Former lecturer in Economic Policy and Microeconomics. Recipient of the Brandeis Excellence and Leadership Award.',
       },
@@ -1177,9 +1179,10 @@
         initials: 'ID',
         img: 'indri',
         linkedin: 'https://www.linkedin.com/in/indridyrmishi/',
+        email: 'indri@horizon4.ai',
         pos: '50% 18%',
         name: 'Indri Dyrmishi',
-        role: 'Cofounder · Education & Innovation',
+        role: 'Co-founder · Education & Innovation',
         cred: 'University of Minnesota · Carlson School MBA · PhD candidate (Spain)',
         bio:  'Technology commercialization and venture development background. Former Senior Instructor and Entrepreneurship Hub lead at the American University of the Middle East; former director of the Technology Transfer Office at the University of Tirana.',
       },
@@ -1187,8 +1190,9 @@
         initials: 'FS',
         img: 'fregis',
         linkedin: 'https://www.linkedin.com/in/fregis-sala/',
+        email: 'fregis@horizon4.ai',
         name: 'Fregis Sala',
-        role: 'Cofounder · AI Engineering',
+        role: 'Co-founder · AI Engineering',
         cred: 'University of Southern California · MS Electrical & Computer Engineering · PhD candidate',
         bio:  "Mixed-signal design verification at NVIDIA. Three years as Advisor to Albania's Minister of State for Youth and Children. Technical depth across AI infrastructure, integrated circuits, and applied AI engineering.",
       },
@@ -1197,6 +1201,14 @@
     const LinkedInIcon = () => (
       <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
         <path d="M4.98 3.5C4.98 4.881 3.87 6 2.5 6S0 4.881 0 3.5 1.11 1 2.5 1s2.48 1.119 2.48 2.5zM.22 8h4.56v14H.22V8zm7.5 0h4.36v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.56v-6.59c0-1.57-.03-3.59-2.19-3.59-2.19 0-2.53 1.71-2.53 3.48V22H7.72V8z"/>
+      </svg>
+    );
+
+    const MailIcon = () => (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2.5" y="4.5" width="19" height="15" rx="2"/>
+        <path d="M3.5 6l8.5 6.5L20.5 6"/>
       </svg>
     );
 
@@ -1226,7 +1238,8 @@
                 <div className="lead-cred">{p.cred}</div>
                 <p className="lead-bio">{p.bio}</p>
                 <div className="lead-link">
-                  <a href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} on LinkedIn`}><LinkedInIcon/></a>
+                  <a className="ln" href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} on LinkedIn`}><LinkedInIcon/></a>
+                  <a href={`mailto:${p.email}`} aria-label={`Email ${p.name}`}><MailIcon/></a>
                 </div>
               </article>
             ))}
@@ -1273,6 +1286,7 @@
                   <div className="pub-stat"><div className="lbl">Abstract Views</div><div className="val">490</div></div>
                   <div className="pub-stat"><div className="lbl">Posted</div><div className="val">20 Apr 2026</div></div>
                 </div>
+                <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6584098" target="_blank" rel="noopener noreferrer" className="pub-link">Read on SSRN →</a>
               </div>
             </article>
 
@@ -1330,7 +1344,7 @@
               <p className="tag">Building AI-ready capability across strategy, skilling, agents, and governance.</p>
               <div className="meta">
                 <span>Tirana, Albania · Europe-ready</span>
-                <span>hello@horizon4.ai</span>
+                <span><a href="mailto:mario@horizon4.ai" style={{ color: 'inherit' }}>mario@horizon4.ai</a></span>
               </div>
             </div>
 
