@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contact — Horizon4 AI</title>
+  <meta name="description" content="Start a conversation with Horizon4 AI. Executive briefings, AI readiness audits, donor program design, and private team training. Bilingual, on the record, responsive.">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <link rel="stylesheet" href="/styles/pages.css">
+  <style>
+    /* Contact-specific layout adjustments */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 4fr 6fr;
+      gap: 64px;
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    }
+    .contact-left .section-head { margin-bottom: 0; }
+    .contact-left .lead { margin-bottom: 32px; }
+    .contact-alts {
+      padding-top: 32px;
+      border-top: 1px solid var(--border-hairline);
+      display: flex; flex-direction: column; gap: 28px;
+    }
+    .contact-alt .eyebrow { font-size: 11px; margin-bottom: 6px; }
+    .contact-alt .val {
+      font-size: 17px; color: var(--ink-primary); font-weight: 500;
+      letter-spacing: -0.005em;
+    }
+    .contact-alt .val a { color: var(--ink-primary); }
+    .contact-alt .val a:hover { color: var(--accent-primary); }
+    .contact-alt .sub { font-size: 14px; color: var(--ink-muted); margin-top: 4px; }
+
+    /* Tighten form for contact page (single column on right) */
+    .contact-grid .inline-form { padding: 40px; }
+    @media (max-width: 600px) { .contact-grid .inline-form { padding: 28px; } }
+
+    /* Submit button full width inside contact form */
+    .contact-grid .inline-form .submit-row .btn-primary { width: 100%; justify-content: center; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="/scripts/chrome.jsx"></script>
+
+  <script type="text/babel">
+    const { Nav, Footer, route } = window.H4Chrome;
+
+    /* ─── HERO (full-width content, no aside, no eyebrow) ─── */
+    const Hero = () => (
+      <section className="hero hero-compact" data-screen-label="Hero">
+        <div className="container">
+          <h1 className="h1">Start a conversation.</h1>
+          <p className="body-xl hero-lead" style={{ maxWidth: '55ch' }}>
+            For executive briefings, audits, donor program design, and
+            private team training. Bilingual, on the record, responsive.
+          </p>
+        </div>
+      </section>
+    );
+
+    /* ─── ROUTING CARDS ─── */
+    const Routing = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Routing">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Route your request</div>
+            <h2 className="h2">Three ways to start with Horizon4.</h2>
+            <p className="body-xl">
+              Pick the path that matches your timeline and decision horizon.
+            </p>
+          </div>
+
+          <div className="eng-grid">
+            {/* Card 1 — Executive Briefing */}
+            <div className="eng-card">
+              <div className="eng-tag eyebrow muted">1 week</div>
+              <div className="divider"></div>
+              <h3>Executive Briefing</h3>
+              <p className="eng-lead">
+                60-90 minute private session with a written decision memo.
+                Most common entry point for institutional leaders.
+              </p>
+              <div className="eng-foot">
+                <span></span>
+                <a href={route('/executive-briefing')} className="eng-cta">Request Briefing →</a>
+              </div>
+            </div>
+
+            {/* Card 2 — Audit (flagship) */}
+            <div className="eng-card flagship">
+              <div className="accent-bar"></div>
+              <div className="eng-tag eyebrow">Flagship · 2-6 weeks</div>
+              <div className="divider"></div>
+              <h3>AI Readiness Audit</h3>
+              <p className="eng-lead">
+                Six-dimension diagnostic for institutions making real AI
+                commitments. Highest-ticket engagement.
+              </p>
+              <div className="eng-foot">
+                <span></span>
+                <a href={route('/audit')} className="eng-cta">Request Audit Scope →</a>
+              </div>
+            </div>
+
+            {/* Card 3 — Private Team Training */}
+            <div className="eng-card">
+              <div className="eng-tag eyebrow muted">Custom scope</div>
+              <div className="divider"></div>
+              <h3>Private Team Training</h3>
+              <p className="eng-lead">
+                Custom AI training scoped to your institution, team, sector,
+                and goals. Half-day to multi-week formats.
+              </p>
+              <div className="eng-foot">
+                <span></span>
+                <a href={route('/academy/private')} className="eng-cta">Request Training →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── GENERAL CONTACT FORM ─── */
+    const ContactForm = () => (
+      <section id="form" style={{ background: 'var(--bg-base)' }} data-screen-label="General contact form">
+        <div className="container">
+          <div className="contact-grid">
+            <div className="contact-left">
+              <div className="section-head">
+                <div className="eyebrow">General inquiry</div>
+                <h2 className="h2">Not sure where to start?</h2>
+                <p className="body-xl lead">
+                  Tell us about your institution and what you're trying to
+                  accomplish. We'll route you to the right engagement type
+                  within 2 business days.
+                </p>
+              </div>
+
+              <div className="contact-alts">
+                <div className="contact-alt">
+                  <div className="eyebrow muted">Direct email</div>
+                  <div className="val"><a href="mailto:hello@horizon4.ai">hello@horizon4.ai</a></div>
+                </div>
+                <div className="contact-alt">
+                  <div className="eyebrow muted">Location</div>
+                  <div className="val">Tirana, Albania</div>
+                  <div className="sub">Available regionally and remotely</div>
+                </div>
+                <div className="contact-alt">
+                  <div className="eyebrow muted">Response time</div>
+                  <div className="val">Within 2 business days</div>
+                </div>
+              </div>
+            </div>
+
+            <form className="inline-form" onSubmit={(e) => e.preventDefault()}>
+              <label>Full name<input type="text" autoComplete="name" required/></label>
+              <label>Email<input type="email" autoComplete="email" required/></label>
+              <label>Phone <span style={{ textTransform: 'none', letterSpacing: 0, fontWeight: 400, color: 'var(--ink-muted)' }}>(optional)</span><input type="tel" autoComplete="tel"/></label>
+              <label>Institution or organization<input type="text" required/></label>
+              <label className="full">Your role<input type="text" required/></label>
+              <label className="full">Institution type
+                <select required defaultValue="">
+                  <option value="" disabled>Select one…</option>
+                  <option>Ministry</option>
+                  <option>Agency</option>
+                  <option>University</option>
+                  <option>School</option>
+                  <option>Municipality</option>
+                  <option>Public enterprise</option>
+                  <option>SME</option>
+                  <option>Professional services firm</option>
+                  <option>Donor program</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label className="full">What you're looking for
+                <textarea rows="5" required placeholder="A few sentences about your institution, your timeline, and what you'd like to discuss."></textarea>
+              </label>
+              <label>Preferred language
+                <select required defaultValue="">
+                  <option value="" disabled>Select one…</option>
+                  <option>English</option>
+                  <option>Albanian</option>
+                  <option>Bilingual</option>
+                </select>
+              </label>
+              <label>How you found us <span style={{ textTransform: 'none', letterSpacing: 0, fontWeight: 400, color: 'var(--ink-muted)' }}>(optional)</span>
+                <select defaultValue="">
+                  <option value="" disabled>Select one…</option>
+                  <option>Direct</option>
+                  <option>Referral</option>
+                  <option>LinkedIn</option>
+                  <option>Search</option>
+                  <option>Conference</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <div className="submit-row full">
+                <button type="submit" className="btn btn-primary">Send Inquiry</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FINAL CTA ─── */
+    const CTA = () => (
+      <section className="cta" data-screen-label="Final CTA">
+        <div className="cta-inner">
+          <div className="eyebrow on-dark">Or</div>
+          <h2 className="h2">Email us directly.</h2>
+          <p className="body-xl">hello@horizon4.ai · Tirana, Albania</p>
+          <div className="cta-row">
+            <a href="mailto:hello@horizon4.ai" className="btn btn-primary on-dark">Send Email</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div data-screen-label="Contact">
+        <Nav/>
+        <Hero/>
+        <Routing/>
+        <ContactForm/>
+        <CTA/>
+        <Footer/>
+      </div>
+    );
+  </script>
+</body>
+</html>

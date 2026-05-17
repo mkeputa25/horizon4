@@ -1,0 +1,839 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Insights · Horizon4 AI — Perspectives on institutional AI</title>
+  <meta name="description" content="Short-form analysis on AI policy, governance, capability building, and institutional transitions in the EU and Western Balkans.">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <style>
+    /* ━━━ GovAI page-local styles ━━━ */
+
+    /* Hero variant: full-width content, no sphere */
+    .gov-hero {
+      background: var(--bg-base);
+      padding: 160px 0 96px;
+      text-align: center;
+    }
+    .gov-hero .container { max-width: 880px; }
+    .gov-hero .eyebrow { justify-content: center; margin-bottom: 24px; color: var(--accent-primary); }
+    .gov-hero .h1 { margin-bottom: 24px; text-wrap: balance; }
+    .gov-hero .hero-lead { max-width: 60ch; margin: 0 auto 40px; }
+    .gov-hero .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    @media (max-width: 768px) {
+      .gov-hero { padding: 96px 0 64px; }
+    }
+
+    /* Generic icon-card (Sections 2, 3) */
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .icon-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .icon-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    @media (max-width: 1024px) {
+      .icon-grid, .icon-grid.cols-3 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .icon-grid, .icon-grid.cols-2, .icon-grid.cols-3 { grid-template-columns: 1fr; }
+    }
+    .icon-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      transition: border-color .24s var(--ease);
+    }
+    .icon-card .icon { color: var(--ink-primary); }
+    .icon-card .eyebrow { color: var(--ink-muted); margin: 0; }
+    .icon-card .card-h { font-size: var(--type-h4); font-weight: 700; line-height: 1.25; color: var(--ink-primary); margin: 0; letter-spacing: -0.005em; }
+    .icon-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; }
+    .icon-card:hover { border-color: var(--border-strong); }
+
+    /* Numbered offering cards (Section 4) */
+    .offering-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1024px) { .offering-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .offering-grid { grid-template-columns: 1fr; } }
+    .offering-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .offering-card .num {
+      font-family: var(--font-mono);
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+    .offering-card .card-h { font-size: var(--type-h4); font-weight: 700; line-height: 1.25; margin: 0; color: var(--ink-primary); }
+    .offering-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; }
+
+    /* Frameworks card with bottom meta line */
+    .fw-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex; flex-direction: column; gap: 14px;
+      min-height: 220px;
+    }
+    .fw-card .eyebrow { color: var(--ink-muted); margin: 0; }
+    .fw-card .card-h  { font-size: var(--type-h4); font-weight: 700; line-height: 1.25; margin: 0; color: var(--ink-primary); }
+    .fw-card .body    { font-size: 15px; line-height: 1.6; color: var(--ink-body); margin: 0; }
+    .fw-card .meta    { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border-hairline);
+                        font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+    .fw-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1024px) { .fw-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .fw-grid { grid-template-columns: 1fr; } }
+
+    /* Engagement cards (Section 7) — flagship variant */
+    .eng-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+    @media (max-width: 1024px) { .eng-grid { grid-template-columns: 1fr; } }
+    .eng-card {
+      position: relative;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex; flex-direction: column; gap: 16px;
+    }
+    .eng-card.flagship {
+      border-color: rgba(0, 117, 201, 0.30);
+      box-shadow: 0 8px 24px rgba(0, 117, 201, 0.06);
+    }
+    .eng-card.flagship::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: var(--accent-primary);
+      border-radius: var(--radius) var(--radius) 0 0;
+    }
+    .eng-card .tag { font-family: var(--font-sans); font-size: var(--type-eyebrow); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--ink-muted); }
+    .eng-card.flagship .tag { color: var(--accent-primary); }
+    .eng-card .hr { height: 1px; background: var(--border-hairline); margin: 0; border: none; }
+    .eng-card .card-h { font-size: var(--type-h3); font-weight: 700; line-height: 1.15; color: var(--ink-primary); margin: 0; letter-spacing: -0.01em; }
+    .eng-card .meta { font-size: var(--type-body-xl); color: var(--ink-muted); margin: 0; }
+    .eng-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; }
+    .eng-card .bullets {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .eng-card .bullets li {
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--ink-body);
+      padding-left: 22px;
+      position: relative;
+    }
+    .eng-card .bullets li::before {
+      content: '';
+      position: absolute;
+      left: 6px; top: 0.55em;
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: var(--accent-secondary);
+    }
+    .eng-card .foot {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .eng-card .price {
+      font-family: var(--font-mono);
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+    .eng-card .cta-link {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--accent-primary);
+      text-decoration: none;
+    }
+    .eng-card .cta-link:hover { color: var(--accent-primary-h); }
+
+    /* FAQ accordion */
+    .faq-list {
+      max-width: 880px;
+      margin: 0 auto;
+      display: flex; flex-direction: column;
+    }
+    .faq-item {
+      border-top: 1px solid var(--border-hairline);
+      padding: 0;
+    }
+    .faq-item:last-of-type { border-bottom: 1px solid var(--border-hairline); }
+    .faq-item summary {
+      cursor: pointer;
+      list-style: none;
+      padding: 24px 0;
+      display: flex; justify-content: space-between; align-items: center; gap: 24px;
+      font-size: var(--type-h4);
+      font-weight: 600;
+      color: var(--ink-primary);
+      letter-spacing: -0.005em;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item .chev {
+      flex-shrink: 0;
+      width: 18px; height: 18px;
+      color: var(--ink-muted);
+      transition: transform .24s var(--ease);
+    }
+    .faq-item[open] .chev { transform: rotate(180deg); }
+    .faq-item .ans {
+      font-size: var(--type-body);
+      line-height: 1.65;
+      color: var(--ink-body);
+      max-width: 70ch;
+      padding: 0 0 28px;
+    }
+
+    /* Related horizons mini cards */
+    .rel-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 1024px) { .rel-grid { grid-template-columns: 1fr; } }
+    .rel-card {
+      display: flex; flex-direction: column; gap: 14px;
+      padding: 28px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: inherit;
+      transition: border-color .24s var(--ease), box-shadow .24s var(--ease);
+    }
+    .rel-card:hover { border-color: var(--border-strong); box-shadow: var(--shadow-card); }
+    .rel-card .eyebrow { color: var(--ink-muted); margin: 0; }
+    .rel-card .card-h { font-size: var(--type-h4); font-weight: 700; color: var(--ink-primary); margin: 0; }
+    .rel-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; }
+    .rel-card .more { margin-top: auto; padding-top: 12px; font-size: 15px; font-weight: 600; color: var(--accent-primary); }
+
+    /* Final CTA dark band — link row separated by middle dots */
+    .gov-cta {
+      background: var(--bg-deep);
+      padding: 128px 0;
+      text-align: center;
+      color: #fff;
+    }
+    .gov-cta .container { max-width: 880px; }
+    .gov-cta .eyebrow {
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.65);
+      margin-bottom: 24px;
+    }
+    .gov-cta .h2 { color: #fff; margin-bottom: 20px; text-wrap: balance; }
+    .gov-cta .body-xl { color: var(--ink-on-dark-2); margin: 0 auto 40px; max-width: 60ch; }
+    .gov-cta .links {
+      display: inline-flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      font-size: var(--type-body-xl);
+    }
+    .gov-cta .links a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+      padding-bottom: 2px;
+      transition: border-color .24s var(--ease);
+    }
+    .gov-cta .links a:hover { border-bottom-color: #fff; }
+    .gov-cta .links .sep {
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 22px;
+      user-select: none;
+    }
+    @media (max-width: 768px) {
+      .gov-cta { padding: 80px 0; }
+      .gov-cta .links { flex-direction: column; gap: 14px; }
+      .gov-cta .links .sep { display: none; }
+    }
+
+    /* Section bands — reusing tokens */
+    .band { padding: var(--section-y) 0; }
+    .band.surface { background: var(--bg-surface); }
+    .band.base    { background: var(--bg-base); }
+    @media (max-width: 768px) { .band { padding: var(--section-y-mobile) 0; } }
+
+    /* Archetype cards (Section 2) */
+    .arch-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 1024px) { .arch-grid { grid-template-columns: 1fr; } }
+    .arch-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 40px;
+      display: flex; flex-direction: column; gap: 14px;
+    }
+    .arch-card .arch-num { font-family: var(--font-sans); font-size: 56px; font-weight: 600; color: var(--ink-muted); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
+    .arch-card .eyebrow { color: var(--accent-primary); margin: 0; }
+    .arch-card .card-h { font-size: var(--type-h4); font-weight: 700; line-height: 1.25; color: var(--ink-primary); margin: 0; letter-spacing: -0.005em; }
+    .arch-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; }
+    @media (max-width: 768px) { .arch-card { padding: 24px; } .arch-card .arch-num { font-size: 44px; } }
+
+    /* Request Form (Section 8) */
+    .form-band { padding: var(--section-y) 0; background: var(--bg-surface); }
+    @media (max-width: 768px) { .form-band { padding: var(--section-y-mobile) 0; } }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+    @media (max-width: 1024px) { .form-grid { grid-template-columns: 1fr; gap: 48px; } }
+    .form-left .eyebrow { margin-bottom: 20px; }
+    .form-left .h2 { margin-bottom: 24px; text-wrap: balance; }
+    .form-left .body-xl { color: var(--ink-body); margin: 0 0 32px; max-width: 50ch; }
+    .form-left .hr { height: 1px; background: var(--border-hairline); border: 0; margin: 32px 0; }
+    .form-meta { display: flex; flex-direction: column; gap: 24px; }
+    .form-meta .group { display: flex; flex-direction: column; gap: 6px; }
+    .form-meta .eyebrow { margin: 0; color: var(--ink-muted); }
+    .form-meta .body { font-size: var(--type-body); color: var(--ink-primary); margin: 0; font-weight: 500; }
+    .form-meta .sub { font-size: 14px; color: var(--ink-muted); margin: 0; }
+    .form-card { background: var(--bg-base); border: 1px solid var(--border-hairline); border-radius: var(--radius); padding: 40px; display: flex; flex-direction: column; gap: 18px; }
+    @media (max-width: 768px) { .form-card { padding: 24px; } }
+    .form-row { display: flex; flex-direction: column; gap: 6px; }
+    .form-row label { font-size: var(--type-eyebrow); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--ink-primary); }
+    .form-row .req { color: var(--accent-primary); margin-left: 2px; }
+    .form-row input, .form-row select, .form-row textarea {
+      font-family: var(--font-sans); font-size: 15px; line-height: 1.5; color: var(--ink-primary);
+      background: var(--bg-surface); border: 1px solid var(--border-hairline);
+      border-radius: var(--radius); padding: 12px 14px; width: 100%;
+      transition: border-color .24s var(--ease), box-shadow .24s var(--ease);
+    }
+    .form-row textarea { min-height: 110px; resize: vertical; font-family: inherit; }
+    .form-row select {
+      appearance: none;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none' stroke='%236B7280' stroke-width='1.5'><path d='M1 1l5 5 5-5'/></svg>");
+      background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px;
+    }
+    .form-row input:focus, .form-row select:focus, .form-row textarea:focus {
+      outline: none; border-color: var(--accent-primary);
+      box-shadow: 0 0 0 3px rgba(0, 117, 201, 0.12);
+    }
+    .form-submit {
+      margin-top: 8px; padding: 14px 24px; width: 100%;
+      background: var(--accent-primary); color: #fff; border: none;
+      border-radius: var(--radius); font: inherit; font-size: 15px; font-weight: 600;
+      cursor: pointer; transition: background .24s var(--ease);
+    }
+    .form-submit:hover { background: var(--accent-primary-h); }
+
+    /* Final CTA donor variant */
+    .gov-cta .cta-actions { display: inline-flex; gap: 24px; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .gov-cta .btn-on-dark { background: #fff; color: var(--ink-primary); padding: 14px 28px; border-radius: var(--radius); font-weight: 600; font-size: 15px; text-decoration: none; transition: background .24s var(--ease); }
+    .gov-cta .btn-on-dark:hover { background: var(--ink-on-dark-2); }
+    .gov-cta .link-on-dark { color: #fff; text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.35); padding-bottom: 2px; }
+    .gov-cta .link-on-dark:hover { border-bottom-color: #fff; }
+
+    /* Insight grid (3 columns) */
+    .insight-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 1024px) { .insight-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 640px)  { .insight-grid { grid-template-columns: 1fr; } }
+    .insight-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 32px;
+      display: flex; flex-direction: column; gap: 14px;
+      opacity: 0.92;
+    }
+    .insight-card .tag { font-size: var(--type-eyebrow); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; color: var(--ink-muted); }
+    .insight-card .hr { height: 1px; background: var(--border-hairline); border: 0; margin: 0; }
+    .insight-card .card-h { font-size: var(--type-h4); font-weight: 700; line-height: 1.25; color: var(--ink-primary); margin: 0; letter-spacing: -0.005em; text-wrap: balance; }
+    .insight-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; flex: 1; }
+    .insight-card .author { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--border-hairline); font-size: 14px; color: var(--ink-muted); margin-bottom: 0; }
+
+    /* Topic grid 2x2 */
+    .topic-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+    @media (max-width: 640px) { .topic-grid { grid-template-columns: 1fr; } }
+    .topic-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 36px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .topic-card .eyebrow { margin: 0; color: var(--accent-primary); }
+    .topic-card .card-h { font-size: var(--type-h4); font-weight: 700; line-height: 1.25; color: var(--ink-primary); margin: 0; }
+    .topic-card .body { font-size: var(--type-body); line-height: 1.6; color: var(--ink-body); margin: 0; }
+    .topic-card .when { margin-top: 8px; font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); }
+
+    /* Newsletter section — 2-column with compact form */
+    .news-grid { display: grid; grid-template-columns: 6fr 4fr; gap: 64px; align-items: start; }
+    @media (max-width: 1024px) { .news-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .news-left .body-xl { color: var(--ink-body); margin: 0; max-width: 50ch; }
+
+    /* Dark-band CTA with link-only row of 3 separated by middle dots */
+    .gov-cta .triple-links {
+      display: inline-flex; gap: 16px; flex-wrap: wrap; justify-content: center; align-items: center;
+      font-size: var(--type-body-xl);
+    }
+    .gov-cta .triple-links a { color: #fff; text-decoration: none; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,0.35); padding-bottom: 2px; transition: border-color .24s var(--ease); }
+    .gov-cta .triple-links a:hover { border-bottom-color: #fff; }
+    .gov-cta .triple-links .sep { color: rgba(255,255,255,0.45); font-size: 22px; user-select: none; }
+    @media (max-width: 768px) { .gov-cta .triple-links { flex-direction: column; gap: 12px; } .gov-cta .triple-links .sep { display: none; } }
+  </style>
+</head>
+<body>
+  <script>
+    // Suppress the benign "ResizeObserver loop completed with undelivered notifications" message.
+    (function(){
+      const re = /ResizeObserver loop/;
+      if (typeof ResizeObserver !== 'undefined') {
+        const Native = ResizeObserver;
+        window.ResizeObserver = class extends Native {
+          constructor(cb) {
+            super((entries, observer) => {
+              requestAnimationFrame(() => { try { cb(entries, observer); } catch (e) {} });
+            });
+          }
+        };
+      }
+      window.addEventListener('error', (e) => {
+        if (e && e.message && re.test(e.message)) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+        }
+      });
+      const origError = console.error;
+      console.error = function(...args) {
+        const msg = args.map(a => (a && a.message) || String(a)).join(' ');
+        if (re.test(msg)) return;
+        return origError.apply(console, args);
+      };
+    })();  </script>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       NAVIGATION (inherited from homepage)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const MEGA = {
+      Academy: [
+        { l: 'Overview & Pathways',   h: '/academy' },
+        { l: 'Course Catalog',        h: '/academy/catalog' },
+        { l: 'Private Team Training', h: '/academy/private' },
+      ],
+      Advisory: [
+        { l: 'AI Readiness Audit',  h: '/audit' },
+        { l: 'Executive Briefing',  h: '/executive-briefing' },
+        { l: 'Donor / EU Programs', h: '/donor-programs' },
+      ],
+      Solutions: [
+        { l: 'GovAI',      h: '/govai' },
+        { l: 'EduAI',      h: '/eduai' },
+        { l: 'BusinessAI', h: '/businessai' },
+        { l: 'StrategyAI', h: '/strategyai' },
+        { divider: true },
+        { l: 'Agentic AI', h: '/agentic-ai' },
+      ],
+      Research: [
+        { l: 'Publications', h: '/research/publications' },
+        { l: 'Insights',     h: '/research/insights' },
+        { l: 'Frameworks',   h: '/research/frameworks' },
+      ],
+      About: [
+        { l: 'Team',    h: '/team' },
+        { l: 'Mission', h: '/about' },
+        { l: 'Contact', h: '/contact' },
+      ],
+    };
+
+    const Brand = ({ className = 'nav-brand' }) => (
+      <a href="/" className={className}>Horizon<span className="four">4</span>&nbsp;AI</a>
+    );
+
+    const Nav = () => {
+      const [open, setOpen] = useState(null);
+      const [drawer, setDrawer] = useState(false);
+      const [lang, setLang] = useState('EN');
+      const closeTimer = useRef(null);
+
+      const onEnter = (k) => { clearTimeout(closeTimer.current); setOpen(k); };
+      const onLeave = () => { closeTimer.current = setTimeout(() => setOpen(null), 120); };
+
+      useEffect(() => { document.body.style.overflow = drawer ? 'hidden' : ''; }, [drawer]);
+
+      return (
+        <React.Fragment>
+          <nav className="nav">
+            <div className="nav-inner">
+              <Brand/>
+              <div className="nav-center">
+                {Object.keys(MEGA).map(k => (
+                  <div
+                    key={k}
+                    className={`nav-item ${open === k ? 'open' : ''}`}
+                    onMouseEnter={() => onEnter(k)}
+                    onMouseLeave={onLeave}
+                  >
+                    <button className="nav-trigger" aria-haspopup="true" aria-expanded={open === k}>
+                      {k}<span className="chev"></span>
+                    </button>
+                    <div className="mega" role="menu">
+                      {MEGA[k].map((item, i) => (
+                        item.divider
+                          ? <div key={`d${i}`} className="mega-divider" role="separator"></div>
+                          : <a key={item.l} href={item.h}>{item.l}</a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="nav-right">
+                <div className="nav-lang">
+                  <button className={lang === 'EN' ? 'on' : ''} onClick={() => setLang('EN')}>EN</button>
+                  <span className="div">|</span>
+                  <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
+                </div>
+                <a href="/executive-briefing" className="nav-cta">Request Executive Briefing</a>
+                <button className="nav-burger" aria-label="Menu" onClick={() => setDrawer(true)}>
+                  <span></span><span></span><span></span>
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          <div className={`drawer-overlay ${drawer ? 'open' : ''}`} onClick={() => setDrawer(false)}></div>
+          <aside className={`drawer ${drawer ? 'open' : ''}`} aria-hidden={!drawer}>
+            <div className="drawer-head">
+              <Brand/>
+              <button className="drawer-close" onClick={() => setDrawer(false)} aria-label="Close">×</button>
+            </div>
+            <div className="drawer-body">
+              {Object.keys(MEGA).map(k => (
+                <details key={k} className="drawer-group">
+                  <summary>{k}</summary>
+                  <div className="drawer-sub">
+                    {MEGA[k].map((item, i) => (
+                      item.divider ? null : <a key={item.l} href={item.h}>{item.l}</a>
+                    ))}
+                  </div>
+                </details>
+              ))}
+            </div>
+            <div className="drawer-foot">
+              <a href="/executive-briefing" className="btn btn-primary">Request Executive Briefing</a>
+              <div className="nav-lang" style={{ justifyContent: 'center' }}>
+                <button className={lang === 'EN' ? 'on' : ''} onClick={() => setLang('EN')}>EN</button>
+                <span className="div">|</span>
+                <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
+              </div>
+            </div>
+          </aside>
+        </React.Fragment>
+      );
+    };
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SHARED ICONS (Lucide-style, 1.5px stroke)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Icon = ({ children, size = 32 }) => (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none"
+           stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+           className="icon" aria-hidden="true">{children}</svg>
+    );
+    const IconGlobe = () => (
+      <Icon>
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>
+      </Icon>
+    );
+    const IconHandshakeD = () => (
+      <Icon>
+        <path d="M11 17l-4-4 6-6 4 4M11 17l3 3 7-7-3-3M5 9l-3 3 4 4 3-3M14 4l3-3 4 4-3 3"/>
+      </Icon>
+    );
+    const IconBank = () => (
+      <Icon>
+        <path d="M3 21h18M5 21V10M9 21V10M13 21V10M17 21V10M19 21V10M3 10h18M12 3l9 5H3l9-5z"/>
+      </Icon>
+    );
+    const IconGovBuilding = () => (
+      <Icon>
+        <path d="M3 21h18M5 21V8l7-4 7 4v13M9 21v-6h6v6M9 11h.01M15 11h.01"/>
+      </Icon>
+    );
+    const ChevDown = () => (
+      <Icon size={18}><path d="M6 9l6 6 6-6"/></Icon>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 1 — HERO
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Hero = () => (
+      <section className="gov-hero" data-screen-label="Hero">
+        <div className="container">
+          <div className="eyebrow">Research · Insights</div>
+          <h1 className="h1">Perspectives on institutional AI.</h1>
+          <p className="body-xl hero-lead">
+            Short-form analysis on AI policy, governance, capability building,
+            and institutional transitions in the EU and Western Balkans.
+          </p>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 2 — INSIGHTS GRID
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const INSIGHTS = [
+      { h: 'Why AI capability is a sovereignty question',
+        b: "Most countries treat AI as a technology adoption problem. It's actually a sovereignty question about compute, data, and capability infrastructure.",
+        author: 'By Mario Keputa · Q3 2026' },
+      { h: 'The EU AI Act in EU candidate states',
+        b: 'Candidate states must adapt to the EU AI Act before accession. Most are unprepared. What it takes to catch up.',
+        author: 'By Mario Keputa · Q3 2026' },
+      { h: 'Faculty readiness is the bottleneck',
+        b: 'Universities cannot teach responsible AI use without practical AI capability themselves. The faculty layer is where AI integration succeeds or fails.',
+        author: 'By Indri Dyrmishi · Q4 2026' },
+    ];
+
+    const InsightsGrid = () => (
+      <section className="band surface" data-screen-label="Recent insights">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Recent insights</div>
+            <h2 className="h2">Latest perspectives.</h2>
+            <p className="body-xl">
+              Published insights from Horizon4 leadership on institutional AI
+              capability, governance, and the Western Balkans context.
+            </p>
+          </div>
+          <div className="insight-grid">
+            {INSIGHTS.map(it => (
+              <article key={it.h} className="insight-card">
+                <div className="tag">Coming Soon</div>
+                <hr className="hr"/>
+                <h3 className="card-h">{it.h}</h3>
+                <p className="body">{it.b}</p>
+                <p className="author">{it.author}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 3 — INSIGHTS BY TOPIC
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const TOPICS = [
+      ['Topic', 'AI Policy & Regulation',
+       'EU AI Act, ISO 42001, OECD Principles, and implementation in candidate states.',
+       'Articles coming Q3 2026'],
+      ['Topic', 'Institutional Capability',
+       'How institutions build, scale, and sustain AI capability across government, education, and business.',
+       'Articles coming Q3 2026'],
+      ['Topic', 'Governance & Compliance',
+       'Governance operating models, oversight frameworks, and compliance preparation across the four Horizons.',
+       'Articles coming Q4 2026'],
+      ['Topic', 'Western Balkans & EU Accession',
+       'AI capability and governance challenges specific to EU candidate states and the Western Balkans context.',
+       'Articles coming Q4 2026'],
+    ];
+
+    const InsightTopics = () => (
+      <section className="band base" data-screen-label="Browse by topic">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Browse by topic</div>
+            <h2 className="h2">Insights organized by research domain.</h2>
+          </div>
+          <div className="topic-grid">
+            {TOPICS.map(([eb, h, b, when]) => (
+              <article key={h} className="topic-card">
+                <div className="eyebrow">{eb}</div>
+                <h3 className="card-h">{h}</h3>
+                <p className="body">{b}</p>
+                <p className="when">{when}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 4 — NEWSLETTER
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Newsletter = () => (
+      <section className="band surface" data-screen-label="Newsletter">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Newsletter</div>
+            <h2 className="h2">Updates on new research.</h2>
+            <p className="body-xl">
+              Periodic updates when new publications, insights, and framework
+              releases are published. No more than once per month.
+            </p>
+          </div>
+          <div className="news-grid">
+            <div className="news-left">
+              <p className="body-xl">
+                Subscribe to receive new publications, insights, and framework
+                releases. We publish in English and Albanian.
+              </p>
+            </div>
+            <form className="form-card" onSubmit={(e) => e.preventDefault()}>
+              <div className="form-row">
+                <label htmlFor="nl-email">Email<span className="req">*</span></label>
+                <input id="nl-email" type="email" required />
+              </div>
+              <div className="form-row">
+                <label htmlFor="nl-name">Name<span className="req">*</span></label>
+                <input id="nl-name" type="text" required />
+              </div>
+              <div className="form-row">
+                <label htmlFor="nl-org">Organization (optional)</label>
+                <input id="nl-org" type="text" />
+              </div>
+              <div className="form-row">
+                <label htmlFor="nl-lang">Preferred language</label>
+                <select id="nl-lang" defaultValue="">
+                  <option value="" disabled>Select an option</option>
+                  <option>English</option>
+                  <option>Albanian</option>
+                  <option>Both</option>
+                </select>
+              </div>
+              <button type="submit" className="form-submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 5 — FINAL CTA (dark band)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const FinalCTA = () => (
+      <section className="gov-cta" data-screen-label="Final CTA">
+        <div className="container">
+          <div className="eyebrow">Read more</div>
+          <h2 className="h2">Explore Horizon4 research.</h2>
+          <div className="triple-links">
+            <a href="/research/publications">Publications</a>
+            <span className="sep">·</span>
+            <a href="/research/frameworks">Frameworks</a>
+            <span className="sep">·</span>
+            <a href="/team">About the team</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       FOOTER (inherited from homepage)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const LinkedInIcon = () => (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M4.98 3.5C4.98 4.881 3.87 6 2.5 6S0 4.881 0 3.5 1.11 1 2.5 1s2.48 1.119 2.48 2.5zM.22 8h4.56v14H.22V8zm7.5 0h4.36v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.56v-6.59c0-1.57-.03-3.59-2.19-3.59-2.19 0-2.53 1.71-2.53 3.48V22H7.72V8z"/>
+      </svg>
+    );
+
+    const Footer = () => (
+      <footer className="foot" data-screen-label="Footer">
+        <div className="container">
+          <div className="foot-grid">
+            <div className="foot-brand foot-col">
+              <div className="wm">Horizon<span className="four">4</span>&nbsp;AI</div>
+              <p className="tag">
+                Albania's responsible AI capability partner. We help institutions
+                move from AI experimentation to embedded, governed practice.
+              </p>
+              <div className="meta">
+                <span>Tirana, Albania · Europe-ready</span>
+                <span>hello@horizon4.ai</span>
+                <span style={{ marginTop: 8 }}><a href="#" style={{ color: 'inherit' }}><LinkedInIcon/></a></span>
+              </div>
+            </div>
+            <div className="foot-col">
+              <div className="head">Academy</div>
+              <a href="/academy">Overview & Pathways</a>
+              <a href="/academy/catalog">Course Catalog</a>
+              <a href="/academy/private">Private Training</a>
+              <a href="/academy/certificates">Certificates</a>
+            </div>
+            <div className="foot-col">
+              <div className="head">Advisory</div>
+              <a href="/audit">AI Readiness Audit</a>
+              <a href="/executive-briefing">Executive Briefing</a>
+              <a href="/strategyai">StrategyAI</a>
+              <a href="/donor-programs">Donor / EU Programs</a>
+            </div>
+            <div className="foot-col">
+              <div className="head">Solutions</div>
+              <a href="/govai">GovAI</a>
+              <a href="/eduai">EduAI</a>
+              <a href="/businessai">BusinessAI</a>
+              <a href="/agentic-ai">Agentic AI</a>
+            </div>
+            <div className="foot-col">
+              <div className="head">Research & About</div>
+              <a href="/research/publications">Publications</a>
+              <a href="/research/insights">Insights</a>
+              <a href="/team">Team</a>
+              <a href="/about">Mission</a>
+              <a href="/contact">Contact</a>
+            </div>
+          </div>
+          <div className="foot-bar">
+            <span>© 2026 Horizon4 AI</span>
+            <span className="center">Pre-launch · September 2026</span>
+            <span className="right">Privacy · Terms</span>
+          </div>
+        </div>
+      </footer>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       APP
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const App = () => (
+      <div data-screen-label="Insights">
+        <Nav/>
+        <Hero/>
+        <InsightsGrid/>
+        <InsightTopics/>
+        <Newsletter/>
+        <FinalCTA/>
+        <Footer/>
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>

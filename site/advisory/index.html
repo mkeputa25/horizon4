@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Advisory — Horizon4 AI</title>
+  <meta name="description" content="AI readiness audits, governance design, and executive briefings for Albanian institutions making real AI decisions. Practical work, with deliverables your board can defend.">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <link rel="stylesheet" href="/styles/pages.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="/scripts/chrome.jsx"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+    const { Nav, Footer, ComputedSun, route } = window.H4Chrome;
+
+    /* ─── ICONS ────────────────────────────── */
+    const Icon = ({ d, size = 32 }) => (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {d.split('|').map((p, i) => <path key={i} d={p}/>)}
+      </svg>
+    );
+    const ICONS = {
+      audit:    'M11 19a8 8 0 1 0 0-16 8 8 0 0 0 0 16z|M21 21l-4.3-4.3|M11 7v8|M7 11h8',
+      shield:   'M12 2 4 5v6c0 5 3.5 9.4 8 11 4.5-1.6 8-6 8-11V5l-8-3z|M9 12l2 2 4-4',
+      target:   'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z|M12 18a6 6 0 1 0 0-12 6 6 0 0 0 0 12z|M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z',
+      gov:      'M3 21h18|M5 21V10|M19 21V10|M9 21V14h6v7|M3 10l9-7 9 7|M12 7v0',
+      edu:      'M2 9l10-5 10 5-10 5-10-5z|M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5|M22 9v6',
+      city:     'M3 21h18|M5 21V8l4-3v16|M9 21V11l4-3v13|M13 21V14l4-3v10|M17 21V17l4-2v6|M7 11h0|M11 13h0|M15 15h0',
+      globe:    'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20z|M2 12h20|M12 2a15 15 0 0 1 4 10 15 15 0 0 1-4 10|M12 2a15 15 0 0 0-4 10 15 15 0 0 0 4 10',
+      arrow:    'M5 12h14|M13 6l6 6-6 6',
+    };
+
+    /* ─── HERO ─────────────────────────────── */
+    const Hero = () => (
+      <section className="hero hero-compact" data-screen-label="Hero">
+        <div className="container">
+          <h1 className="h1">AI adoption that survives audit.</h1>
+          <p className="body-xl hero-lead">
+            Readiness diagnostics, governance design, and executive briefings
+            for institutions making real AI decisions. Practical work, with
+            deliverables your board can defend.
+          </p>
+          <div className="hero-actions">
+            <a href={route('/audit')} className="btn btn-primary">Request Audit Scope</a>
+            <a href={route('/executive-briefing')} className="btn btn-secondary">Request Executive Briefing</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── WHY ADVISORY ─────────────────────── */
+    const Why = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Why advisory">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Why advisory</div>
+            <h2 className="h2">Most AI failures start before deployment.</h2>
+            <p className="body-xl">
+              Wrong use cases. Missing governance. Untrained staff. Vendor
+              lock-in before the first procurement question gets asked.
+              Advisory work catches these before they become public problems.
+            </p>
+          </div>
+          <div className="adv-why-grid">
+            {[
+              { ic: 'audit',  eb: 'Readiness first',     h: 'Diagnose before training.',          d: 'Training without diagnosis wastes budget. We map readiness across six dimensions before anyone schedules a workshop.' },
+              { ic: 'shield', eb: 'Governance-first',    h: 'Procurement without exposure.',      d: 'EU AI Act and ISO 42001 alignment built into every engagement. Your procurement files survive scrutiny.' },
+              { ic: 'target', eb: 'Defensible',          h: 'Decisions your board can defend.',   d: 'Every deliverable is written for institutional circulation. Scorecards, risk registers, and roadmaps with named authors.' },
+            ].map(c => (
+              <div key={c.h} className="adv-why">
+                <div className="icon"><Icon d={ICONS[c.ic]} size={32}/></div>
+                <div className="eyebrow">{c.eb}</div>
+                <h3>{c.h}</h3>
+                <p>{c.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── ENGAGEMENT TYPES ─────────────────── */
+    const Engagements = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Engagement types">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Engagement types</div>
+            <h2 className="h2">Three ways to start.</h2>
+            <p className="body-xl">
+              From a 60-minute leadership briefing to a multi-week readiness
+              audit. Match your timeline and decision horizon.
+            </p>
+          </div>
+          <div className="eng-grid">
+            {/* Card 1 — Executive Briefing */}
+            <div className="eng-card">
+              <div className="eng-tag eyebrow muted">Timeline: 1 week</div>
+              <div className="divider"></div>
+              <h3>Executive Briefing</h3>
+              <p className="eng-lead">
+                A 60-minute private session with Horizon4 leadership.
+                Bilingual, on the record, with a written summary you can
+                circulate.
+              </p>
+              <ul className="eng-list">
+                <li>AI opportunity and risk overview for your institution</li>
+                <li>Sector-specific examples and governance considerations</li>
+                <li>Written next-step recommendation memo</li>
+              </ul>
+              <div className="eng-foot">
+                <span className="eng-price">Request Scope</span>
+                <a href={route('/executive-briefing')} className="eng-cta">Request Briefing →</a>
+              </div>
+            </div>
+
+            {/* Card 2 — Audit (flagship) */}
+            <div className="eng-card flagship">
+              <div className="accent-bar"></div>
+              <div className="eng-tag eyebrow">Flagship · 2-6 weeks</div>
+              <div className="divider"></div>
+              <h3>AI Readiness &amp; Governance Audit</h3>
+              <p className="eng-lead">
+                Structured diagnostic across six dimensions. Delivered as a
+                written report your leadership can circulate, present, and
+                defend.
+              </p>
+              <ul className="eng-list">
+                <li>Readiness scorecard across six institutional dimensions</li>
+                <li>Risk register with severity and mitigation</li>
+                <li>Use-case portfolio prioritized for your context</li>
+                <li>Governance gap review and 90-day roadmap</li>
+              </ul>
+              <div className="eng-foot">
+                <span className="eng-price">Request Scope</span>
+                <a href={route('/audit')} className="eng-cta">Request Audit Scope →</a>
+              </div>
+            </div>
+
+            {/* Card 3 — Donor / EU Programs */}
+            <div className="eng-card">
+              <div className="eng-tag eyebrow muted">Timeline: 3-12 months</div>
+              <div className="divider"></div>
+              <h3>Donor / EU Programs</h3>
+              <p className="eng-lead">
+                Responsible AI capacity-building programs for donor-funded and
+                EU-aligned institutional transformation projects.
+              </p>
+              <ul className="eng-list">
+                <li>Program design with M&amp;E framework</li>
+                <li>Curriculum, governance templates, train-the-trainer</li>
+                <li>Local delivery with bilingual instruction</li>
+                <li>Aligned with EU AI Act and OECD AI Principles</li>
+              </ul>
+              <div className="eng-foot">
+                <span className="eng-price">Request quote</span>
+                <a href={route('/donor-programs')} className="eng-cta">Discuss Program →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── WHO WE WORK WITH ─────────────────── */
+    const WhoWeWorkWith = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Who we work with">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Who we work with</div>
+            <h2 className="h2">Built for serious institutional buyers.</h2>
+            <p className="body-xl">
+              Our advisory work is designed for institutions that need to
+              defend their AI decisions in front of boards, ministers,
+              faculty, or donors.
+            </p>
+          </div>
+          <div className="adv-aud-grid">
+            {[
+              { ic: 'gov',   eb: 'Public sector',  h: 'Ministries and agencies.', d: 'Readiness audits, procurement governance, public servant capability programs, and donor program design.' },
+              { ic: 'edu',   eb: 'Education',      h: 'Universities and schools.', d: 'Faculty readiness, academic integrity policy, institutional AI governance, and assessment redesign.' },
+              { ic: 'city',  eb: 'Municipalities', h: 'Local government.',         d: 'AI governance kits, procurement risk review, citizen service workflows, and public servant training.' },
+              { ic: 'globe', eb: 'Donors',         h: 'EU and international programs.', d: 'Capacity-building program design, M&E frameworks, train-the-trainer curricula, and local implementation.' },
+            ].map(c => (
+              <div key={c.h} className="adv-aud">
+                <div className="icon"><Icon d={ICONS[c.ic]} size={32}/></div>
+                <div>
+                  <div className="eyebrow">{c.eb}</div>
+                  <h3>{c.h}</h3>
+                  <p>{c.d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── METHODOLOGY ──────────────────────── */
+    const Methodology = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Methodology">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Methodology</div>
+            <h2 className="h2">Diagnose. Design. Train. Embed.</h2>
+            <p className="body-xl">
+              One discipline across audits, briefings, sector work, and
+              capacity-building programs.
+            </p>
+          </div>
+          <div className="adv-method">
+            {[
+              ['01', 'Diagnose', 'Map decisions, data, capability, and accountability surfaces. Identify where AI helps and where it must not be allowed.'],
+              ['02', 'Design',   'Define use-cases, governance, procurement guardrails, training plan, and a 90-day institutional roadmap.'],
+              ['03', 'Train',    'Role-specific cohorts and workshops with real deliverables. Bilingual delivery in Albanian and English.'],
+              ['04', 'Embed',    'Pilot, measure, and steward. Human-approved workflows, monitoring routines, and policy refresh cycles.'],
+            ].map(([n, h, d]) => (
+              <div key={n} className="adv-method-step">
+                <div className="num">{n}</div>
+                <h3>{h}</h3>
+                <p>{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FRAMEWORKS ───────────────────────── */
+    const Frameworks = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Frameworks">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Frameworks</div>
+            <h2 className="h2">Built on international AI governance standards.</h2>
+            <p className="body-xl">
+              We translate global frameworks into implementable decisions,
+              policies, and workflows. We do not certify compliance. We
+              prepare institutions to engage with these standards confidently.
+            </p>
+          </div>
+          <div className="fw-grid">
+            {[
+              { eb: 'Regulation',       h: 'EU AI Act',          d: 'Risk classification, high-risk system obligations, transparency requirements, and conformity assessment readiness.', m: 'Phasing in 2025-2027' },
+              { eb: 'Management system', h: 'ISO/IEC 42001',     d: 'AI management system requirements: governance, risk, lifecycle, and continuous improvement.',                         m: 'Published 2023' },
+              { eb: 'Principles',       h: 'OECD AI Principles', d: 'Trustworthy AI: inclusivity, transparency, accountability, safety, and human-centered values.',                       m: 'Adopted by 46+ countries' },
+              { eb: 'Risk framework',   h: 'NIST AI RMF',        d: 'Risk management framework with Generative AI Profile. Practical, voluntary, widely adopted by enterprise.',           m: 'v1.0 published 2023' },
+            ].map(f => (
+              <div key={f.h} className="fw-card">
+                <div className="eyebrow">{f.eb}</div>
+                <h3>{f.h}</h3>
+                <p>{f.d}</p>
+                <div className="fw-meta">{f.m}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FAQ ──────────────────────────────── */
+    const FAQ_ITEMS = [
+      ['How is advisory work priced?', 'Pricing depends on engagement type, scope, institutional size, and customization. Every engagement begins with a free 30-minute scoping call, after which we provide a written proposal with detailed pricing for your specific context.'],
+      ['Do you certify EU AI Act or ISO 42001 compliance?', 'No. Horizon4 prepares institutions to engage with these standards through readiness diagnostics, governance design, and capability building. Formal certification is conducted by accredited certification bodies. We support readiness; we do not certify compliance.'],
+      ["What's the difference between an Executive Briefing and an Audit?", 'A briefing is a 60-minute leadership session designed to clarify decisions before scoping larger work. An audit is a 2-6 week diagnostic engagement with written deliverables. Briefings often precede audits.'],
+      ['Who delivers the advisory work?', 'Horizon4 leadership conducts every engagement directly. We do not subcontract advisory work or use junior staff for delivery. For implementation phases that require technical build, we work with vetted technical partners with named accountability.'],
+      ['Can advisory work be funded through donor or EU programs?', 'Yes. Horizon4 has experience designing capacity-building programs for donor and EU-aligned procurement frameworks. Audit and advisory work can be scoped into larger program budgets where applicable.'],
+      ['What happens after an audit or briefing?', 'Every engagement ends with a written deliverable and a recommended next step. Common follow-ups: private team training, sector solution programs (GovAI, EduAI, BusinessAI), implementation retainers, or Institutional AI Academy engagements. There is no obligation to continue. The deliverable stands on its own.'],
+    ];
+    const FAQ = () => {
+      const [open, setOpen] = useState(0);
+      return (
+        <section style={{ background: 'var(--bg-base)' }} data-screen-label="FAQ">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">FAQ</div>
+              <h2 className="h2">Common questions.</h2>
+              <p className="body-xl">Pricing, scope, deliverables, and follow-up.</p>
+            </div>
+            <div className="faq-list">
+              {FAQ_ITEMS.map(([q, a], i) => (
+                <div key={q} className="faq-item">
+                  <button className="faq-q" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)}>
+                    <span>{q}</span>
+                    <span className="icn">{open === i ? '−' : '+'}</span>
+                  </button>
+                  {open === i && <div className="faq-a">{a}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    /* ─── FINAL CTA (dark) ─────────────────── */
+    const CTA = () => (
+      <section className="cta" data-screen-label="Final CTA">
+        <div className="cta-inner">
+          <div className="eyebrow on-dark">Start</div>
+          <h2 className="h2">Begin with the right conversation.</h2>
+          <p className="body-xl">
+            Most engagements begin with a 30-minute scoping call. We respond
+            to all serious inquiries within 2 business days.
+          </p>
+          <div className="cta-row">
+            <a href={route('/audit')} className="btn btn-primary on-dark">Request Audit Scope</a>
+            <a href={route('/executive-briefing')} className="btn-link on-dark">or book an executive briefing →</a>
+          </div>
+          <div className="cta-loc">Tirana, Albania · Available regionally and remotely</div>
+        </div>
+      </section>
+    );
+
+    /* ─── APP ──────────────────────────────── */
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div data-screen-label="Advisory">
+        <Nav/>
+        <Hero/>
+        <Why/>
+        <Engagements/>
+        <WhoWeWorkWith/>
+        <Methodology/>
+        <Frameworks/>
+        <FAQ/>
+        <CTA/>
+        <Footer/>
+      </div>
+    );
+  </script>
+</body>
+</html>

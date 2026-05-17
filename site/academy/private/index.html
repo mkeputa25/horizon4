@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Private Team Training — Horizon4 AI Academy</title>
+  <meta name="description" content="Custom AI training for your team, adapted to your sector, role mix, and institutional context. Half-day to multi-week formats, on-site or remote, in Albanian, English, or bilingual delivery.">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <link rel="stylesheet" href="/styles/pages.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="/scripts/chrome.jsx"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+    const { Nav, Footer, route } = window.H4Chrome;
+
+    /* ─── HERO ────────────────────────────── */
+    const Hero = () => (
+      <section className="hero hero-compact" data-screen-label="Hero">
+        <div className="container">
+          <div className="eyebrow">Academy · Private Training</div>
+          <h1 className="h1" style={{ marginTop: 24 }}>Bring Horizon4 to your team.</h1>
+          <p className="body-xl hero-lead" style={{ marginTop: 32 }}>
+            Custom AI training adapted to your team's sector, role mix, and
+            institutional context. Half-day to multi-week formats, on-site
+            or remote, in Albanian, English, or bilingual delivery.
+          </p>
+          <div className="hero-actions">
+            <a href="#request" className="btn btn-primary">Request Private Training</a>
+            <a href={route('/academy/catalog')} className="btn btn-secondary">Browse Public Courses</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── WHY PRIVATE ─────────────────────── */
+    const Why = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Why private">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Why private training</div>
+            <h2 className="h2">When a public cohort isn't enough.</h2>
+            <p className="body-xl">
+              Public cohorts are for individuals. Private training is for teams
+              with a shared workflow, shared context, and a shared standard to
+              hold each other to.
+            </p>
+          </div>
+          <div className="what-grid">
+            {[
+              ['01', 'Your team, your work', 'We design the cohort around your actual sector, tools, and workflows — not a generic curriculum your team has to translate themselves.'],
+              ['02', 'Confidential by design', 'On-site or private remote delivery. Exercises use your team\'s real artefacts under NDA. Nothing leaves the room.'],
+              ['03', 'A shared standard', 'Everyone learns the same governance, prompts, and review practice — so the team comes out aligned, not fragmented.'],
+            ].map(([n, t, d]) => (
+              <div key={n} className="what-col">
+                <div className="num">{n}</div>
+                <h3 className="h4">{t}</h3>
+                <p>{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── PROCESS ─────────────────────────── */
+    const Process = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Process">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">How it works</div>
+            <h2 className="h2">Four stages. Four to eight weeks.</h2>
+            <p className="body-xl">
+              We work in the open. Scope, schedule, and deliverables are
+              agreed before any session is delivered.
+            </p>
+          </div>
+          <div className="stages">
+            {[
+              ['01', 'Scoping call',     'A 45-minute conversation to understand your team, sector, current AI exposure, and what "better" looks like in 90 days.'],
+              ['02', 'Custom design',    'A written program proposal — sessions, exercises, deliverables, language, format — with a fixed fee.'],
+              ['03', 'Delivery',         'Live sessions with your team. Real institutional artefacts under NDA. Working files between sessions.'],
+              ['04', 'Embed & handoff',  'A short post-program review with managers. Materials, prompts, and policies stay with your team to keep using.'],
+            ].map(([n, t, d]) => (
+              <div key={n} className="stage">
+                <div className="num">{n}</div>
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── OUTCOMES ────────────────────────── */
+    const CheckIcon = () => (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M5 12l5 5L20 7"></path>
+      </svg>
+    );
+
+    const Outcomes = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Outcomes">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">What teams take home</div>
+            <h2 className="h2">Concrete artefacts. Aligned practice.</h2>
+            <p className="body-xl">
+              Every private program produces tools and documents the team
+              keeps using after we leave.
+            </p>
+          </div>
+          <div className="outcomes">
+            {[
+              ['Shared prompt library',  'A curated set of prompts for your team\'s top tasks, version-controlled and reviewed.'],
+              ['Acceptable-use policy',  'A team-level AUP draft you can take to your governance function for adoption.'],
+              ['Human-review patterns',  'Patterns for which outputs need review, by whom, and how to document decisions.'],
+              ['Pilot use-case list',    'A prioritized shortlist of low-risk, high-value AI workflows ready to pilot.'],
+              ['Capability map',         'A role-by-role picture of where the team is today and where to invest next.'],
+              ['90-day uplift plan',     'A named plan for the first 90 days after training — owners, milestones, and check-ins.'],
+            ].map(([t, d]) => (
+              <div key={t} className="outcome">
+                <div className="ic"><CheckIcon/></div>
+                <h4>{t}</h4>
+                <p>{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── AUDIENCES ───────────────────────── */
+    const Audiences = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Audiences">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Who we work with</div>
+            <h2 className="h2">Teams of 8 to 80.</h2>
+            <p className="body-xl">
+              We run private programs for teams large enough to share a
+              workflow, small enough to share a room. Larger institutional
+              academies are scoped separately.
+            </p>
+          </div>
+          <div className="aud-tags">
+            <span className="aud-tag primary">Ministries & agencies</span>
+            <span className="aud-tag primary">Municipalities</span>
+            <span className="aud-tag primary">Universities & schools</span>
+            <span className="aud-tag">Professional service firms</span>
+            <span className="aud-tag">Mid-market & large SMEs</span>
+            <span className="aud-tag">Healthcare & financial institutions</span>
+            <span className="aud-tag">Donor & EU programs</span>
+            <span className="aud-tag">Foundations & NGOs</span>
+          </div>
+          <p className="body" style={{ marginTop: 40, color: 'var(--ink-muted)', maxWidth: '60ch' }}>
+            For institutions seeking a multi-cohort, multi-quarter AI capability
+            program with internal governance and champions, see <a href={route('/contact')} style={{ color: 'var(--accent-primary)' }}>Institutional Academy</a>.
+          </p>
+        </div>
+      </section>
+    );
+
+    /* ─── FORMATS ─────────────────────────── */
+    const Formats = () => (
+      <section className="fmt" data-screen-label="Formats">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Formats</div>
+            <h2 className="h2">Six private formats. We pick with you.</h2>
+          </div>
+          <div className="fmt-strip">
+            {[
+              ['01', 'Half-day workshop'],
+              ['02', '1-day intensive'],
+              ['03', '2-day lab'],
+              ['04', '3 × ½-day sprint'],
+              ['05', '4-week cohort'],
+              ['06', 'Multi-month program'],
+            ].map(([n, name]) => (
+              <div key={n} className="fmt-cell">
+                <div className="fmt-num">{n}</div>
+                <div className="fmt-name">{name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FAQ ─────────────────────────────── */
+    const FAQ_ITEMS = [
+      ['How much does private training cost?', 'Pricing depends on format, duration, group size, and customization. Every engagement begins with a discovery call, after which we provide a written proposal with detailed pricing for your specific context.'],
+      ['Do you deliver on-site, remote, or both?', 'Both. We deliver on-site across Albania (and travel-distance), private remote sessions, or a mix. Hybrid cohorts work well for distributed teams.'],
+      ['What languages do you deliver in?', 'Albanian, English, or bilingual — chosen with you during scoping based on your team\'s preference and material.'],
+      ['Can you use our team\'s real documents in exercises?', 'Yes, under NDA. We design exercises with your team\'s real artefacts so the practice transfers directly to the work — not invented examples.'],
+      ['How is private training different from a public cohort?', 'Public cohorts are for individuals. Private training is for an entire team with a shared workflow and a shared standard to land on at the end.'],
+      ['How fast can you start?', 'From a first scoping call, most engagements begin within 4–6 weeks. Faster delivery is possible for shorter formats; multi-month programs are usually scheduled a quarter in advance.'],
+    ];
+
+    const FAQ = () => {
+      const [open, setOpen] = useState(0);
+      return (
+        <section style={{ background: 'var(--bg-base)' }} data-screen-label="FAQ">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Frequently asked</div>
+              <h2 className="h2">Common questions.</h2>
+            </div>
+            <div className="faq-list">
+              {FAQ_ITEMS.map(([q, a], i) => (
+                <div key={q} className="faq-item">
+                  <button className="faq-q" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)}>
+                    <span>{q}</span>
+                    <span className="icn">{open === i ? '−' : '+'}</span>
+                  </button>
+                  {open === i && <div className="faq-a">{a}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    /* ─── REQUEST FORM ────────────────────── */
+    const Request = () => (
+      <section id="request" style={{ background: 'var(--bg-surface)' }} data-screen-label="Request">
+        <div className="container" style={{ maxWidth: 960 }}>
+          <div className="section-head">
+            <div className="eyebrow">Request Private Training</div>
+            <h2 className="h2">Tell us about your team.</h2>
+            <p className="body-xl">
+              We'll reply within 3 business days with a recommended next step —
+              a scoping call, an alternative format, or both.
+            </p>
+          </div>
+          <form className="inline-form" onSubmit={(e) => e.preventDefault()}>
+            <label>Full name<input type="text" required/></label>
+            <label>Work email<input type="email" required/></label>
+            <label>Organization<input type="text" required/></label>
+            <label>Role / title<input type="text"/></label>
+            <label>Sector
+              <select>
+                <option>Public administration · Ministry / Agency</option>
+                <option>Public administration · Municipality</option>
+                <option>Higher education / University</option>
+                <option>School / K–12</option>
+                <option>Professional services</option>
+                <option>SME / Mid-market</option>
+                <option>Healthcare</option>
+                <option>Financial institution</option>
+                <option>Donor / EU / NGO program</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>Team size
+              <select>
+                <option>8–15</option>
+                <option>16–30</option>
+                <option>31–50</option>
+                <option>51–80</option>
+                <option>80+ (Institutional Academy)</option>
+              </select>
+            </label>
+            <label>Preferred format
+              <select>
+                <option>Half-day workshop</option>
+                <option>1-day intensive</option>
+                <option>2-day lab</option>
+                <option>3 × half-day sprint</option>
+                <option>4-week cohort</option>
+                <option>Multi-month program</option>
+                <option>Not sure — recommend</option>
+              </select>
+            </label>
+            <label>Delivery
+              <select><option>On-site</option><option>Remote</option><option>Hybrid</option><option>Open to either</option></select>
+            </label>
+            <label>Preferred language
+              <select><option>English</option><option>Albanian</option><option>Bilingual</option></select>
+            </label>
+            <label>Timeline
+              <select><option>Within 30 days</option><option>This quarter</option><option>Next quarter</option><option>Exploring</option></select>
+            </label>
+            <label className="full">What does your team need to do with AI?<textarea placeholder="Describe the team, the work, and what 'better' looks like in 90 days."></textarea></label>
+            <div className="full submit-row">
+              <button className="btn btn-primary" type="submit">Submit request</button>
+              <span className="legal">We respond within 3 business days. Your information is handled per our privacy notice.</span>
+            </div>
+          </form>
+        </div>
+      </section>
+    );
+
+    /* ─── FINAL CTA ───────────────────────── */
+    const CTA = () => (
+      <section className="cta" data-screen-label="Final CTA">
+        <div className="cta-inner">
+          <div className="eyebrow on-dark">Or start with a conversation</div>
+          <h2 className="h2">A 45-minute scoping call. No pitch.</h2>
+          <p className="body-xl">
+            We'll listen, ask hard questions, and tell you honestly whether
+            private training is the right next step or not.
+          </p>
+          <div className="cta-row">
+            <a href="#request" className="btn btn-primary on-dark">Request Private Training</a>
+            <a href={route('/contact')} className="btn-link on-dark">or just say hello →</a>
+          </div>
+          <div className="cta-loc">Tirana, Albania · Europe-ready · Pre-launch September 2026</div>
+        </div>
+      </section>
+    );
+
+    /* ─── APP ─────────────────────────────── */
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div data-screen-label="Academy Private">
+        <Nav/>
+        <Hero/>
+        <Why/>
+        <Process/>
+        <Outcomes/>
+        <Audiences/>
+        <Formats/>
+        <FAQ/>
+        <Request/>
+        <CTA/>
+        <Footer/>
+      </div>
+    );
+  </script>
+</body>
+</html>

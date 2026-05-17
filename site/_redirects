@@ -1,0 +1,19 @@
+# Netlify / Cloudflare Pages — serve clean URLs
+/academy            /academy/index.html         200
+/academy/catalog    /academy/catalog/index.html  200
+/academy/private    /academy/private/index.html  200
+/advisory           /advisory/index.html         200
+/audit              /audit/index.html            200
+/executive-briefing /executive-briefing/index.html 200
+/donor-programs     /donor-programs/index.html   200
+/govai              /govai/index.html            200
+/eduai              /eduai/index.html            200
+/businessai         /businessai/index.html       200
+/strategyai         /strategyai/index.html       200
+/agentic-ai         /agentic-ai/index.html       200
+/research/publications /research/publications/index.html 200
+/research/insights  /research/insights/index.html 200
+/research/frameworks /research/frameworks/index.html 200
+/about              /about/index.html            200
+/team               /team/index.html             200
+/contact            /contact/index.html          200

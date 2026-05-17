@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>About — Horizon4 AI</title>
+  <meta name="description" content="Horizon4 AI is an institutional AI advisory, training, and implementation firm based in Tirana. Built by four cofounders for institutions, agencies, and serious teams.">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <link rel="stylesheet" href="/styles/pages.css">
+  <style>
+    /* ── What-we-do: 4 cards in 2x2 grid ───────────────── */
+    .work-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+    }
+    @media (max-width: 768px) { .work-grid { grid-template-columns: 1fr; } }
+    .work-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      padding: 40px;
+      display: flex; flex-direction: column;
+      transition: box-shadow var(--dur) var(--ease), border-color var(--dur) var(--ease);
+    }
+    @media (max-width: 768px) { .work-card { padding: 28px; } }
+    .work-card:hover { box-shadow: var(--shadow-card-hov); border-color: var(--border-strong); }
+    .work-card .eyebrow { margin-bottom: 16px; }
+    .work-card h4 {
+      font-size: 24px; font-weight: 700; color: var(--ink-primary);
+      letter-spacing: -0.01em; line-height: 1.25; margin-bottom: 14px;
+    }
+    .work-card p {
+      font-size: 16px; line-height: 1.6; color: var(--ink-body);
+      margin-bottom: 28px;
+    }
+    .work-card .more {
+      margin-top: auto; padding-top: 20px;
+      border-top: 1px solid var(--border-hairline);
+      color: var(--accent-primary); font-size: 15px; font-weight: 600;
+      text-decoration: none;
+    }
+    .work-card .more:hover { color: var(--accent-primary-h); }
+
+    /* ── Positioning 2-column with founding-context card ── */
+    .pos-grid {
+      display: grid; grid-template-columns: 6fr 4fr; gap: 64px;
+      align-items: start;
+    }
+    @media (max-width: 1024px) { .pos-grid { grid-template-columns: 1fr; gap: 48px; } }
+    .pos-prose { display: flex; flex-direction: column; gap: 20px; }
+    .pos-prose p.body-xl { max-width: 60ch; }
+    .pos-prose p.body { max-width: 60ch; }
+
+    .context-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      padding: 40px;
+    }
+    @media (max-width: 768px) { .context-card { padding: 28px; } }
+    .context-card .head {
+      margin-bottom: 24px; padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .context-row {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .context-row:last-child { border-bottom: 0; padding-bottom: 0; }
+    .context-row:first-of-type { padding-top: 0; }
+    .context-row .yr {
+      display: block;
+      font-size: 13px; font-weight: 600; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--accent-primary);
+      margin-bottom: 10px;
+    }
+    .context-row h4 {
+      font-size: 17px; font-weight: 600; color: var(--ink-primary);
+      letter-spacing: -0.005em; line-height: 1.3; margin-bottom: 6px;
+    }
+    .context-row p {
+      font-size: 14px; line-height: 1.55; color: var(--ink-muted);
+    }
+
+    /* ── Leadership preview 4-up (smaller cards) ────────── */
+    .leadership-preview-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+    }
+    @media (max-width: 1024px) { .leadership-preview-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; } }
+    @media (max-width: 540px)  { .leadership-preview-grid { grid-template-columns: 1fr; } }
+    .lp-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      padding: 24px;
+      display: flex; flex-direction: column;
+    }
+    .lp-photo {
+      aspect-ratio: 1 / 1;
+      background: #E0E6EC;
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; font-weight: 600; color: var(--ink-primary);
+      letter-spacing: 0.02em;
+      margin-bottom: 16px;
+    }
+    .lp-name {
+      font-size: 18px; font-weight: 600; color: var(--ink-primary);
+      letter-spacing: -0.005em; margin-bottom: 4px; line-height: 1.3;
+    }
+    .lp-role {
+      font-size: 14px; color: var(--ink-muted); margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .lp-cred {
+      font-size: 14px; font-weight: 500; color: var(--ink-body);
+      line-height: 1.5;
+    }
+    .leadership-cta { text-align: center; margin-top: 48px; }
+    .leadership-cta a { color: var(--accent-primary); font-size: 16px; font-weight: 600; }
+
+    /* ── Network 3-column strip with hairline dividers ──── */
+    .network-strip {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+    @media (max-width: 900px) { .network-strip { grid-template-columns: 1fr; } }
+    .network-col {
+      padding: 40px;
+      border-right: 1px solid var(--border-hairline);
+    }
+    .network-col:last-child { border-right: 0; }
+    @media (max-width: 900px) {
+      .network-col { border-right: 0; border-bottom: 1px solid var(--border-hairline); padding: 32px; }
+      .network-col:last-child { border-bottom: 0; }
+    }
+    .network-col .eyebrow { margin-bottom: 16px; }
+    .network-col p {
+      font-size: 16px; line-height: 1.7; color: var(--ink-body);
+    }
+
+    /* ── Publications preview ──────────────────────────── */
+    .pubs-preview .pub-grid { margin-bottom: 0; }
+    .pubs-cta { text-align: center; margin-top: 48px; }
+    .pubs-cta a { color: var(--accent-primary); font-size: 16px; font-weight: 600; }
+
+    /* ── Final CTA: dot-separated text links ───────────── */
+    .cta-links {
+      display: inline-flex; flex-wrap: wrap; justify-content: center;
+      align-items: center; gap: 12px 20px;
+    }
+    .cta-links a {
+      color: #fff; font-size: 17px; font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.4);
+      padding-bottom: 3px;
+      transition: border-color var(--dur) var(--ease);
+    }
+    .cta-links a:hover { color: #fff; border-bottom-color: #fff; }
+    .cta-links .sep { color: rgba(255,255,255,0.4); font-size: 17px; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="/scripts/chrome.jsx"></script>
+
+  <script type="text/babel">
+    const { Nav, Footer, route } = window.H4Chrome;
+
+    /* ─── HERO ─── */
+    const Hero = () => (
+      <section className="hero hero-compact" data-screen-label="Hero">
+        <div className="container">
+          <h1 className="h1">Built for Albania's transition to governed AI.</h1>
+          <p className="body-xl hero-lead" style={{ maxWidth: '60ch' }}>
+            Horizon4 is an AI advisory, training, and implementation firm
+            based in Tirana. Built by four cofounders for institutions,
+            agencies, and serious teams that need to use AI well, and defend
+            the decisions.
+          </p>
+        </div>
+      </section>
+    );
+
+    /* ─── WHAT WE DO ─── */
+    const WhatWeDo = () => {
+      const items = [
+        { eb: 'Advisory',  h: 'Audits, briefings, and governance design.',
+          d: 'Six-dimension readiness audits, executive briefings, and donor program design for institutional buyers.',
+          link: '/advisory', cta: 'Explore Advisory' },
+        { eb: 'Academy',   h: 'Live AI courses and private team training.',
+          d: 'Nine pathways, eighteen courses, bilingual delivery. Private team programs from half-day to multi-week.',
+          link: '/academy', cta: 'Explore Academy' },
+        { eb: 'Solutions', h: 'Sector-specific AI capability programs.',
+          d: 'GovAI, EduAI, BusinessAI, and StrategyAI: four horizons of institutional AI work, plus Agentic AI as capability layer.',
+          link: '/govai', cta: 'Explore Solutions' },
+        { eb: 'Research',  h: 'Publications, frameworks, and policy work.',
+          d: 'Published research on institutional AI transitions, governance frameworks, and Albanian capability development.',
+          link: '/research/publications', cta: 'Explore Research' },
+      ];
+      return (
+        <section style={{ background: 'var(--bg-surface)' }} data-screen-label="What we do">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">What we do</div>
+              <h2 className="h2">Four lines of work, one discipline.</h2>
+              <p className="body-xl">
+                Advisory engagements, Academy programs, sector solutions, and
+                research. All grounded in the same governance discipline.
+              </p>
+            </div>
+            <div className="work-grid">
+              {items.map(c => (
+                <div key={c.eb} className="work-card">
+                  <div className="eyebrow">{c.eb}</div>
+                  <h4>{c.h}</h4>
+                  <p>{c.d}</p>
+                  <a href={route(c.link)} className="more">{c.cta} →</a>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    /* ─── OUR APPROACH ─── */
+    const Approach = () => {
+      const items = [
+        { eb: 'Practical',         h: 'Real work, defensible deliverables.',
+          d: 'Every engagement produces written artifacts your institution can circulate, present, and defend. No slide decks without substance.' },
+        { eb: 'Governance-first',  h: 'EU AI Act and ISO 42001 aligned.',
+          d: 'We translate global standards into implementable decisions. We prepare institutions for compliance, we do not certify it.' },
+        { eb: 'Bilingual',         h: 'Albanian and English, in parallel.',
+          d: 'All work delivered in Albanian, English, or bilingual format. Materials produced bilingually for institutional circulation.' },
+      ];
+      return (
+        <section style={{ background: 'var(--bg-base)' }} data-screen-label="Our approach">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Our approach</div>
+              <h2 className="h2">We help organizations use AI without losing control.</h2>
+              <p className="body-xl">Three principles shape every engagement.</p>
+            </div>
+            <div className="adv-why-grid">
+              {items.map(c => (
+                <div key={c.eb} className="adv-why">
+                  <div className="eyebrow">{c.eb}</div>
+                  <h3>{c.h}</h3>
+                  <p>{c.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    /* ─── POSITIONING ─── */
+    const Positioning = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Positioning">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Why Albania, why now</div>
+            <h2 className="h2">Albania's AI transition needs structure.</h2>
+            <p className="body-xl">
+              A short statement on context, framing, and where Horizon4 fits.
+            </p>
+          </div>
+
+          <div className="pos-grid">
+            <div className="pos-prose">
+              <p className="body-xl">
+                Albania is entering a critical AI adoption window. EU
+                accession discussions, donor program priorities, and a young
+                digital workforce are converging at the same moment as the EU
+                AI Act enters force and global AI capability accelerates.
+              </p>
+              <p className="body">
+                Most institutional AI conversations in the region today focus
+                on awareness and access. Both matter. Neither is sufficient.
+              </p>
+              <p className="body">
+                Horizon4 exists for the next layer: practical capability
+                building, governance design, and implementation discipline
+                for institutions that need to make defensible AI decisions.
+              </p>
+              <p className="body">
+                We are not an awareness organization. We are not a community.
+                We are an institutional-grade advisory and training firm
+                built for serious work.
+              </p>
+            </div>
+
+            <aside className="context-card">
+              <div className="head">
+                <div className="eyebrow">Founding context</div>
+              </div>
+              <div className="context-row">
+                <span className="yr">2025</span>
+                <h4>EU AI Act enters force</h4>
+                <p>Phased obligations through 2027</p>
+              </div>
+              <div className="context-row">
+                <span className="yr">2026</span>
+                <h4>Horizon4 founded</h4>
+                <p>Four cofounders, all PhD candidates, based in Tirana</p>
+              </div>
+              <div className="context-row">
+                <span className="yr">2026</span>
+                <h4>First publications</h4>
+                <p>Cornell-published research on European institutional capability</p>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── LEADERSHIP PREVIEW ─── */
+    const LeadershipPreview = () => {
+      const people = [
+        { i: 'MK', n: 'Mario Keputa',   r: 'Founder & CEO',
+          c: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate' },
+        { i: 'YS', n: 'Yllka Sela',     r: 'Cofounder · Economic Development',
+          c: 'Brandeis University · STEM MBA · PhD candidate' },
+        { i: 'ID', n: 'Indri Dyrmishi', r: 'Cofounder · Education & Innovation',
+          c: 'University of Minnesota · Carlson School MBA · PhD candidate' },
+        { i: 'FS', n: 'Fregis Sala',    r: 'Cofounder · AI Engineering',
+          c: 'University of Southern California · MS Electrical & Computer Engineering · PhD candidate' },
+      ];
+      return (
+        <section style={{ background: 'var(--bg-base)' }} data-screen-label="Leadership">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Leadership</div>
+              <h2 className="h2">Built by four cofounders.</h2>
+              <p className="body-xl">
+                All PhD candidates. Cornell, Brandeis, Minnesota, and USC.
+                Based in Tirana.
+              </p>
+            </div>
+            <div className="leadership-preview-grid">
+              {people.map(p => (
+                <div key={p.i} className="lp-card">
+                  <div className="lp-photo">{p.i}</div>
+                  <div className="lp-name">{p.n}</div>
+                  <div className="lp-role">{p.r}</div>
+                  <div className="lp-cred">{p.c}</div>
+                </div>
+              ))}
+            </div>
+            <div className="leadership-cta">
+              <a href={route('/team')}>Read full leadership bios →</a>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    /* ─── INSTITUTIONAL NETWORK ─── */
+    const Network = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Institutional network">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Institutional network</div>
+            <h2 className="h2">Built into Albania's institutional ecosystem.</h2>
+            <p className="body-xl">
+              Cofounder backgrounds span international development, public
+              service, academia, and AI engineering.
+            </p>
+          </div>
+          <div className="network-strip">
+            <div className="network-col">
+              <div className="eyebrow">International development</div>
+              <p>World Bank · OSCE · GIZ · EDYN network (23 countries, 700+ members) · UNDP</p>
+            </div>
+            <div className="network-col">
+              <div className="eyebrow">Academic institutions</div>
+              <p>Cornell University · Brandeis University · University of Minnesota · University of Southern California · University of Tirana · American University of the Middle East</p>
+            </div>
+            <div className="network-col">
+              <div className="eyebrow">Public service &amp; tech</div>
+              <p>Albanian Office of Minister of State for Youth · NVIDIA · Tech Transfer Office University of Tirana</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── PUBLICATIONS PREVIEW ─── */
+    const Publications = () => (
+      <section className="pubs-preview" style={{ background: 'var(--bg-base)' }} data-screen-label="Publications">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Research</div>
+            <h2 className="h2">Published institutional research.</h2>
+            <p className="body-xl">Selected publications from Horizon4 leadership.</p>
+          </div>
+
+          <div className="pub-grid">
+            <article className="pub-card">
+              <div className="pub-zone-top">
+                <div className="pub-tag live">Published · Apr 2026</div>
+              </div>
+              <div className="pub-zone-mid">
+                <h4 className="pub-title">
+                  The Next Europe: Why Europe Produces Nobel Prize Winners but Not Elon Musks
+                </h4>
+                <p className="pub-desc">
+                  182-page institutional analysis of Europe's innovation and
+                  capability ecosystem. Published on SSRN.
+                </p>
+                <div className="pub-meta">260 downloads · 490 abstract views · By Mario Keputa</div>
+              </div>
+              <div className="pub-zone-bot">
+                <span></span>
+                <a href="#" className="pub-link">Read on SSRN →</a>
+              </div>
+            </article>
+
+            <article className="pub-card muted">
+              <div className="pub-zone-top">
+                <div className="pub-tag soon">Forthcoming · 2026</div>
+              </div>
+              <div className="pub-zone-mid">
+                <h4 className="pub-title">AI Infrastructure and the Superintelligence Race</h4>
+                <p className="pub-desc">
+                  Working paper on global AI infrastructure development,
+                  compute access, and capability sovereignty for small states.
+                </p>
+                <div className="pub-meta">In review · By Mario Keputa</div>
+              </div>
+              <div className="pub-zone-bot">
+                <span></span>
+                <span className="pub-coming">Available soon</span>
+              </div>
+            </article>
+          </div>
+
+          <div className="pubs-cta">
+            <a href={route('/research/publications')}>View all publications →</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FINAL CTA ─── */
+    const CTA = () => (
+      <section className="cta" data-screen-label="Final CTA">
+        <div className="cta-inner">
+          <div className="eyebrow on-dark">Work with Horizon4</div>
+          <h2 className="h2">Three ways to start.</h2>
+          <p className="body-xl">
+            A briefing, an audit, or a conversation about your institution's
+            AI transition.
+          </p>
+          <div className="cta-row">
+            <div className="cta-links">
+              <a href={route('/executive-briefing')}>Request Briefing</a>
+              <span className="sep">·</span>
+              <a href={route('/audit')}>Request Audit Scope</a>
+              <span className="sep">·</span>
+              <a href={route('/contact')}>General Inquiry</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div data-screen-label="About">
+        <Nav/>
+        <Hero/>
+        <WhatWeDo/>
+        <Approach/>
+        <Positioning/>
+        <LeadershipPreview/>
+        <Network/>
+        <Publications/>
+        <CTA/>
+        <Footer/>
+      </div>
+    );
+  </script>
+</body>
+</html>

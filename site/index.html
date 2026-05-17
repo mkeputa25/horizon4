@@ -1,0 +1,988 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Horizon4 AI — Governed AI capability for Albanian institutions</title>
+  <meta name="description" content="Horizon4 AI is Albania's responsible AI capability partner. We help ministries, universities, and serious teams move from AI experimentation to embedded, governed practice.">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <style>
+    /* ━━━ H4 hero visual — point-cloud sphere + centered H4 monogram ━━━ */
+    .h4-viz {
+      position: relative;
+      width: 100%;
+      max-width: 640px;
+      margin: 0 auto;
+      aspect-ratio: 1 / 1;
+      container-type: inline-size;
+    }
+    .h4-viz-canvas {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+    .h4-viz-canvas canvas { display: block; width: 100%; height: 100%; }
+
+    /* Embedded H4 monogram — sits at the visual center of the sphere, fixed (no rotation) */
+    .h4-monogram {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      pointer-events: none;
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 25cqi;
+      color: #0A1F44;
+      opacity: 0.4;
+      filter: blur(4px);
+      text-transform: uppercase;
+      letter-spacing: -0.04em;
+      line-height: 1;
+      user-select: none;
+    }
+    @media (max-width: 768px) {
+      .h4-viz { max-width: 460px; }
+    }
+  </style>
+</head>
+<body>
+  <script>
+    // Suppress the benign "ResizeObserver loop completed with undelivered notifications" message —
+    // browsers report it as an error but it is not actionable.
+    (function(){
+      const re = /ResizeObserver loop/;
+      // Wrap ResizeObserver so callbacks run on next frame (avoids the loop warning entirely).
+      if (typeof ResizeObserver !== 'undefined') {
+        const Native = ResizeObserver;
+        window.ResizeObserver = class extends Native {
+          constructor(cb) {
+            super((entries, observer) => {
+              requestAnimationFrame(() => { try { cb(entries, observer); } catch (e) {} });
+            });
+          }
+        };
+      }
+      window.addEventListener('error', (e) => {
+        if (e && e.message && re.test(e.message)) {
+          e.stopImmediatePropagation();
+          e.preventDefault();
+        }
+      });
+      const origError = console.error;
+      console.error = function(...args) {
+        const msg = args.map(a => (a && a.message) || String(a)).join(' ');
+        if (re.test(msg)) return;
+        return origError.apply(console, args);
+      };
+      const origWarn = console.warn;
+      console.warn = function(...args) {
+        const msg = args.map(a => String(a)).join(' ');
+        if (re.test(msg)) return;
+        return origWarn.apply(console, args);
+      };
+    })();
+  </script>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       NAVIGATION
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const MEGA = {
+      Academy: [
+        { l: 'Overview & Pathways', h: '/academy' },
+        { l: 'Course Catalog',      h: '/academy/catalog' },
+        { l: 'Private Team Training', h: '/academy/private' },
+      ],
+      Advisory: [
+        { l: 'AI Readiness Audit',     h: '/audit' },
+        { l: 'Executive Briefing',     h: '/executive-briefing' },
+        { l: 'Donor / EU Programs',    h: '/donor-programs' },
+      ],
+      Solutions: [
+        { l: 'GovAI',       h: '/govai' },
+        { l: 'EduAI',       h: '/eduai' },
+        { l: 'BusinessAI',  h: '/businessai' },
+        { l: 'StrategyAI',  h: '/strategyai' },
+        { divider: true },
+        { l: 'Agentic AI',  h: '/agentic-ai' },
+      ],
+      Research: [
+        { l: 'Publications', h: '/research/publications' },
+        { l: 'Insights',     h: '/research/insights' },
+        { l: 'Frameworks',   h: '/research/frameworks' },
+      ],
+      About: [
+        { l: 'Team',     h: '/team' },
+        { l: 'Mission',  h: '/about' },
+        { l: 'Contact',  h: '/contact' },
+      ],
+    };
+
+    const Brand = ({ className = 'nav-brand' }) => (
+      <a href="/" className={className}>Horizon<span className="four">4</span>&nbsp;AI</a>
+    );
+
+    const Nav = () => {
+      const [open, setOpen] = useState(null);
+      const [drawer, setDrawer] = useState(false);
+      const [lang, setLang] = useState('EN');
+      const closeTimer = useRef(null);
+
+      const onEnter = (k) => {
+        clearTimeout(closeTimer.current);
+        setOpen(k);
+      };
+      const onLeave = () => {
+        closeTimer.current = setTimeout(() => setOpen(null), 120);
+      };
+
+      useEffect(() => {
+        document.body.style.overflow = drawer ? 'hidden' : '';
+      }, [drawer]);
+
+      return (
+        <React.Fragment>
+          <nav className="nav">
+            <div className="nav-inner">
+              <Brand/>
+              <div className="nav-center">
+                {Object.keys(MEGA).map(k => (
+                  <div
+                    key={k}
+                    className={`nav-item ${open === k ? 'open' : ''}`}
+                    onMouseEnter={() => onEnter(k)}
+                    onMouseLeave={onLeave}
+                  >
+                    <button className="nav-trigger" aria-haspopup="true" aria-expanded={open === k}>
+                      {k}<span className="chev"></span>
+                    </button>
+                    <div className="mega" role="menu">
+                      {MEGA[k].map((item, i) => (
+                        item.divider
+                          ? <div key={`d${i}`} className="mega-divider" role="separator"></div>
+                          : <a key={item.l} href={item.h}>{item.l}</a>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="nav-right">
+                <div className="nav-lang">
+                  <button className={lang === 'EN' ? 'on' : ''} onClick={() => setLang('EN')}>EN</button>
+                  <span className="div">|</span>
+                  <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
+                </div>
+                <a href="/executive-briefing" className="nav-cta">Request Executive Briefing</a>
+                <button className="nav-burger" aria-label="Menu" onClick={() => setDrawer(true)}>
+                  <span></span><span></span><span></span>
+                </button>
+              </div>
+            </div>
+          </nav>
+
+          {/* Mobile drawer */}
+          <div className={`drawer-overlay ${drawer ? 'open' : ''}`} onClick={() => setDrawer(false)}></div>
+          <aside className={`drawer ${drawer ? 'open' : ''}`} aria-hidden={!drawer}>
+            <div className="drawer-head">
+              <Brand/>
+              <button className="drawer-close" onClick={() => setDrawer(false)} aria-label="Close">×</button>
+            </div>
+            <div className="drawer-body">
+              {Object.keys(MEGA).map(k => (
+                <details key={k} className="drawer-group">
+                  <summary>{k}</summary>
+                  <div className="drawer-sub">
+                    {MEGA[k].map((item, i) => (
+                      item.divider ? null : <a key={item.l} href={item.h}>{item.l}</a>
+                    ))}
+                  </div>
+                </details>
+              ))}
+            </div>
+            <div className="drawer-foot">
+              <a href="/executive-briefing" className="btn btn-primary">Request Executive Briefing</a>
+              <div className="nav-lang" style={{ justifyContent: 'center' }}>
+                <button className={lang === 'EN' ? 'on' : ''} onClick={() => setLang('EN')}>EN</button>
+                <span className="div">|</span>
+                <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
+              </div>
+            </div>
+          </aside>
+        </React.Fragment>
+      );
+    };
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 1 — HERO
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    /* Pulse schedule — deterministic so sphere + page-level rings stay in sync. */
+    const pulseTimeForN = (n) => {
+      const noise = ((Math.sin(n * 12.9898) * 43758.5453) % 1 + 1) % 1;
+      return 1.2 + n * 5.5 + noise * 0.6;
+    };
+    const activePulses = (now) => {
+      const result = [];
+      const approxN = Math.floor((now - 1.2) / 5.5);
+      for (let n = Math.max(0, approxN - 2); n <= approxN + 1; n++) {
+        const t = pulseTimeForN(n);
+        if (now - t >= 0 && now - t <= 5) result.push(t);
+      }
+      return result.slice(-3);
+    };
+
+    const Hero = () => {
+      const heroRef    = React.useRef(null);
+      const sphereRef  = React.useRef(null);
+      const ringsRef   = React.useRef(null);
+      const auraRef    = React.useRef(null);
+
+      // Page-level resonance rings (canvas behind hero content)
+      React.useEffect(() => {
+        const canvas   = ringsRef.current;
+        const heroEl   = heroRef.current;
+        const sphereEl = sphereRef.current;
+        const auraEl   = auraRef.current;
+        if (!canvas || !heroEl || !sphereEl) return;
+        const ctx = canvas.getContext('2d');
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+        const resize = () => {
+          canvas.width  = heroEl.clientWidth  * dpr;
+          canvas.height = heroEl.clientHeight * dpr;
+          canvas.style.width  = heroEl.clientWidth  + 'px';
+          canvas.style.height = heroEl.clientHeight + 'px';
+        };
+        resize();
+        const ro = new ResizeObserver(() => { requestAnimationFrame(resize); });
+        ro.observe(heroEl);
+
+        const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const start = performance.now();
+        let raf;
+        let lastBoostT0 = -10;
+
+        if (reduced) {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          if (auraEl) auraEl.style.opacity = '0.55';
+          return () => { ro.disconnect(); };
+        }
+
+        const tick = () => {
+          const now = (performance.now() - start) / 1000;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          const sRect = sphereEl.getBoundingClientRect();
+          const hRect = heroEl.getBoundingClientRect();
+          const cx = (sRect.left + sRect.right) / 2 - hRect.left;
+          const cy = (sRect.top  + sRect.bottom) / 2 - hRect.top;
+          const sphereR = Math.min(sRect.width, sRect.height) / 2 * 0.92;
+
+          ctx.save();
+          ctx.scale(dpr, dpr);
+          const pulses = activePulses(now);
+          let auraIntensity = 0;
+          for (const t0 of pulses) {
+            const e = now - t0;
+            if (e < 0) continue;
+            if (e < 0.5) auraIntensity = Math.max(auraIntensity, 1 - e / 0.5);
+            if (e < 2) continue;
+            const ext = (e - 2) / 3;
+            if (ext > 1) continue;
+            const radius = sphereR + ext * 600;
+            const alpha  = 0.15 * (1 - ext);
+            const width  = 2.4 - ext * 1.2;
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(13, 155, 132, ${alpha})`;
+            ctx.lineWidth   = width;
+            ctx.shadowColor = `rgba(13, 155, 132, ${alpha * 0.7})`;
+            ctx.shadowBlur  = 12 * (1 - ext * 0.5);
+            ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+            ctx.stroke();
+          }
+          ctx.restore();
+
+          if (auraEl) auraEl.style.opacity = String(0.55 + auraIntensity * 0.45);
+
+          raf = requestAnimationFrame(tick);
+        };
+        tick();
+
+        return () => {
+          cancelAnimationFrame(raf);
+          ro.disconnect();
+        };
+      }, []);
+
+      return (
+        <section className="hero" data-screen-label="Hero" ref={heroRef}>
+          <canvas ref={ringsRef} className="hero-rings" aria-hidden="true"></canvas>
+          <div className="container hero-grid">
+            <div>
+              <h1 className="h1">The future belongs to those who use AI well.</h1>
+              <p className="body-xl hero-lead">
+                Practical training, governance, and implementation across
+                government, education, business, and strategy.
+              </p>
+              <div className="hero-actions">
+                <a href="/executive-briefing" className="btn btn-primary">Request Executive Briefing</a>
+                <a href="/solutions" className="btn btn-secondary">Explore Capability Pathways</a>
+              </div>
+            </div>
+
+            <div>
+              <EnergyEngine sphereRef={sphereRef}/>
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    /* H4 hero visual — Three.js point-cloud sphere with embedded H4 monogram.
+       Subtle wireframe, occasional data streams along great circles, slow tilted rotation. */
+    const EnergyEngine = ({ sphereRef }) => {
+      const mountRef = React.useRef(null);
+
+      React.useEffect(() => {
+        const THREE = window.THREE;
+        const mount = mountRef.current;
+        if (!THREE || !mount) return;
+
+        const w = () => mount.clientWidth  || 1;
+        const h = () => mount.clientHeight || 1;
+
+        const scene  = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(50, w() / h(), 0.1, 50);
+        camera.position.set(0, 0, 4);
+        camera.lookAt(0, 0, 0);
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+        renderer.setSize(w(), h());
+        renderer.setClearColor(0x000000, 0);
+        mount.appendChild(renderer.domElement);
+
+        /* ─── Lighting ─── */
+        scene.add(new THREE.AmbientLight(0x1A2540, 0.5));
+        const dir = new THREE.DirectionalLight(0xFFFFFF, 0.3);
+        dir.position.set(0, 1.5, 2);
+        scene.add(dir);
+
+        /* Sphere group — tilted 15° on X, rotates on Y */
+        const sphereGroup = new THREE.Group();
+        sphereGroup.rotation.x = 15 * Math.PI / 180;
+        scene.add(sphereGroup);
+
+        const RAD = 1.5;
+        const N = 2000;
+
+        /* ─── COMPONENT 1 · DOT CLOUD (Fibonacci sphere) ─── */
+        const positions = new Float32Array(N * 3);
+        const colors    = new Float32Array(N * 3);
+        const baseAlpha = new Float32Array(N);
+        const pulseAmt  = new Float32Array(N);   // 0 = no pulse, otherwise pulse amplitude
+        const pulsePh   = new Float32Array(N);
+        const pulseSpd  = new Float32Array(N);
+
+        const goldenAngle = Math.PI * (1 + Math.sqrt(5));
+        for (let i = 0; i < N; i++) {
+          // Fibonacci spherical distribution
+          const phi   = Math.acos(1 - 2 * (i + 0.5) / N);
+          const theta = goldenAngle * i;
+          const sp = Math.sin(phi), cp = Math.cos(phi);
+          positions[i*3]   = RAD * sp * Math.cos(theta);
+          positions[i*3+1] = RAD * sp * Math.sin(theta);
+          positions[i*3+2] = RAD * cp;
+
+          // Color: 65% teal, 25% electric blue, 10% white
+          const roll = Math.random();
+          let r, g, b;
+          if (roll < 0.65)      { r = 0.051; g = 0.608; b = 0.518; }   // teal
+          else if (roll < 0.90) { r = 0.373; g = 0.522; b = 0.937; }   // electric blue
+          else                  { r = 1.000; g = 1.000; b = 1.000; }   // white
+          const br = 0.7 + Math.random() * 0.3;
+          colors[i*3]   = r * br;
+          colors[i*3+1] = g * br;
+          colors[i*3+2] = b * br;
+
+          baseAlpha[i] = 1.0;
+          // 5% of dots pulse
+          if (Math.random() < 0.05) {
+            pulseAmt[i] = 0.25 + Math.random() * 0.25;
+            pulsePh[i]  = Math.random() * Math.PI * 2;
+            pulseSpd[i] = 2 * Math.PI / (2 + Math.random() * 2); // 2–4s period
+          }
+        }
+
+        const dotsGeom = new THREE.BufferGeometry();
+        dotsGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+        // Store originals separately so pulse modulation can reference an unchanging base.
+        const origColors = new Float32Array(colors);
+        dotsGeom.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+        const dotsMat = new THREE.PointsMaterial({
+          size: 0.025, sizeAttenuation: true, vertexColors: true,
+          transparent: true, opacity: 0.85, depthWrite: false,
+          blending: THREE.AdditiveBlending,
+        });
+        const dots = new THREE.Points(dotsGeom, dotsMat);
+        sphereGroup.add(dots);
+
+        /* ─── COMPONENT 2 · WIREFRAME (8 latitudes + 12 longitudes) ─── */
+        const wireMat = new THREE.LineBasicMaterial({
+          color: 0xFFFFFF, transparent: true, opacity: 0.11, depthWrite: false,
+        });
+        const wireGeom = new THREE.BufferGeometry();
+        const wireVerts = [];
+
+        // 8 latitude rings — heights from -0.9R to +0.9R
+        const latCount = 8;
+        for (let li = 0; li < latCount; li++) {
+          const phi = ((li + 1) / (latCount + 1)) * Math.PI; // skip poles
+          const y = Math.cos(phi) * RAD;
+          const r = Math.sin(phi) * RAD;
+          const segs = 96;
+          for (let s = 0; s < segs; s++) {
+            const a1 = (s     / segs) * Math.PI * 2;
+            const a2 = ((s+1) / segs) * Math.PI * 2;
+            wireVerts.push(r * Math.cos(a1), y, r * Math.sin(a1));
+            wireVerts.push(r * Math.cos(a2), y, r * Math.sin(a2));
+          }
+        }
+        // 12 longitude arcs — pole-to-pole great circles
+        const lonCount = 12;
+        for (let li = 0; li < lonCount; li++) {
+          const lon = (li / lonCount) * Math.PI * 2;
+          const segs = 64;
+          for (let s = 0; s < segs; s++) {
+            const phi1 = (s     / segs) * Math.PI;
+            const phi2 = ((s+1) / segs) * Math.PI;
+            const r1 = Math.sin(phi1) * RAD, y1 = Math.cos(phi1) * RAD;
+            const r2 = Math.sin(phi2) * RAD, y2 = Math.cos(phi2) * RAD;
+            wireVerts.push(r1 * Math.cos(lon), y1, r1 * Math.sin(lon));
+            wireVerts.push(r2 * Math.cos(lon), y2, r2 * Math.sin(lon));
+          }
+        }
+        wireGeom.setAttribute('position', new THREE.BufferAttribute(new Float32Array(wireVerts), 3));
+        const wire = new THREE.LineSegments(wireGeom, wireMat);
+        sphereGroup.add(wire);
+
+        /* ─── COMPONENT 4 · DATA STREAMS along great circles ─── */
+        const MAX_STREAMS = 2;
+        const STREAM_RES = 48;      // segments along the arc
+        const STREAM_LEN = 0.35;    // fraction of full great-circle length the stream spans
+        const STREAM_DURATION = 2.6; // seconds
+
+        const streams = [];
+        for (let i = 0; i < MAX_STREAMS; i++) {
+          const sPos = new Float32Array(STREAM_RES * 6); // segments use 2 verts each
+          const sCol = new Float32Array(STREAM_RES * 6);
+          const sGeom = new THREE.BufferGeometry();
+          sGeom.setAttribute('position', new THREE.BufferAttribute(sPos, 3));
+          sGeom.setAttribute('color',    new THREE.BufferAttribute(sCol, 3));
+          const sMat = new THREE.LineBasicMaterial({
+            vertexColors: true, transparent: true, opacity: 1.0, depthWrite: false,
+            blending: THREE.AdditiveBlending,
+          });
+          const line = new THREE.LineSegments(sGeom, sMat);
+          line.visible = false;
+          sphereGroup.add(line);
+          streams.push({
+            line, geom: sGeom, mat: sMat, positions: sPos, colors: sCol,
+            t0: -100, axis: new THREE.Vector3(0, 1, 0), startAngle: 0,
+          });
+        }
+
+        const spawnStream = (slotIdx, now) => {
+          const s = streams[slotIdx];
+          // Random great-circle: pick a random unit axis perpendicular to a random start point
+          // Build via two random orthonormal vectors u, v on the unit sphere
+          const u = new THREE.Vector3(
+            Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1
+          ).normalize();
+          let v = new THREE.Vector3(
+            Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1
+          );
+          v.sub(u.clone().multiplyScalar(u.dot(v))).normalize();
+          s.axisU = u;
+          s.axisV = v;
+          s.startAngle = Math.random() * Math.PI * 2;
+          s.t0 = now;
+          s.line.visible = true;
+        };
+
+        const updateStream = (s, now) => {
+          const elapsed = now - s.t0;
+          if (elapsed < 0 || elapsed > STREAM_DURATION) {
+            s.line.visible = false;
+            return;
+          }
+          // Travel progresses from 0 to 1, the visible arc spans [head - STREAM_LEN, head]
+          const head = (elapsed / STREAM_DURATION) * (Math.PI * 2 * 0.55); // ~55% of full circle
+          const tail = head - STREAM_LEN * Math.PI * 2;
+          const surface = RAD * 1.01;
+          const pos = s.positions, col = s.colors;
+          // Build STREAM_RES segments along the head→tail arc
+          for (let i = 0; i < STREAM_RES; i++) {
+            const a1 = tail + (i     / STREAM_RES) * (head - tail);
+            const a2 = tail + ((i+1) / STREAM_RES) * (head - tail);
+            // Position on great circle: cos(a)·u + sin(a)·v
+            const p1x = surface * (Math.cos(s.startAngle + a1) * s.axisU.x + Math.sin(s.startAngle + a1) * s.axisV.x);
+            const p1y = surface * (Math.cos(s.startAngle + a1) * s.axisU.y + Math.sin(s.startAngle + a1) * s.axisV.y);
+            const p1z = surface * (Math.cos(s.startAngle + a1) * s.axisU.z + Math.sin(s.startAngle + a1) * s.axisV.z);
+            const p2x = surface * (Math.cos(s.startAngle + a2) * s.axisU.x + Math.sin(s.startAngle + a2) * s.axisV.x);
+            const p2y = surface * (Math.cos(s.startAngle + a2) * s.axisU.y + Math.sin(s.startAngle + a2) * s.axisV.y);
+            const p2z = surface * (Math.cos(s.startAngle + a2) * s.axisU.z + Math.sin(s.startAngle + a2) * s.axisV.z);
+            pos[i*6+0] = p1x; pos[i*6+1] = p1y; pos[i*6+2] = p1z;
+            pos[i*6+3] = p2x; pos[i*6+4] = p2y; pos[i*6+5] = p2z;
+            // Fade along stream: head bright (white core), tail teal-dim
+            const u1 = i / STREAM_RES;
+            const u2 = (i + 1) / STREAM_RES;
+            const intensity1 = Math.pow(u1, 1.4);
+            const intensity2 = Math.pow(u2, 1.4);
+            // Mix teal (0.05, 0.61, 0.52) → white (1,1,1) by intensity
+            col[i*6+0] = 0.051 + (1 - 0.051) * intensity1;
+            col[i*6+1] = 0.608 + (1 - 0.608) * intensity1;
+            col[i*6+2] = 0.518 + (1 - 0.518) * intensity1;
+            col[i*6+3] = 0.051 + (1 - 0.051) * intensity2;
+            col[i*6+4] = 0.608 + (1 - 0.608) * intensity2;
+            col[i*6+5] = 0.518 + (1 - 0.518) * intensity2;
+          }
+          // Fade the overall opacity at the start and end of the lifecycle
+          const lifeT = elapsed / STREAM_DURATION;
+          const fade = lifeT < 0.15 ? lifeT / 0.15 : lifeT > 0.8 ? (1 - lifeT) / 0.2 : 1;
+          s.mat.opacity = Math.max(0, Math.min(1, fade));
+          s.geom.attributes.position.needsUpdate = true;
+          s.geom.attributes.color.needsUpdate    = true;
+        };
+
+        let nextSpawn = 1.0; // first stream spawns at t=1s
+
+        /* ─── ANIMATE ─── */
+        const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        let raf;
+        const start = performance.now();
+
+        const tick = () => {
+          const now = (performance.now() - start) / 1000;
+
+          if (!reduced) {
+            sphereGroup.rotation.y = (now / 60) * Math.PI * 2;
+
+            // Per-dot pulse — modulate color brightness of the 5% flagged dots via a ShaderMaterial-lite
+            // pattern: we keep originals in `colors`, scale into the live buffer.
+            const cArr = dotsGeom.attributes.color.array;
+            let pulseTouched = false;
+            for (let i = 0; i < N; i++) {
+              if (pulseAmt[i] === 0) continue;
+              pulseTouched = true;
+              const mult = 1 + Math.sin(now * pulseSpd[i] + pulsePh[i]) * pulseAmt[i];
+              cArr[i*3]   = Math.min(1, origColors[i*3]   * mult);
+              cArr[i*3+1] = Math.min(1, origColors[i*3+1] * mult);
+              cArr[i*3+2] = Math.min(1, origColors[i*3+2] * mult);
+            }
+            if (pulseTouched) dotsGeom.attributes.color.needsUpdate = true;
+
+            // Streams — spawn periodically
+            if (now >= nextSpawn) {
+              const slot = streams.findIndex(s => !s.line.visible);
+              if (slot >= 0) spawnStream(slot, now);
+              nextSpawn = now + 2.5 + Math.random() * 1.5; // 2.5–4s
+            }
+            streams.forEach(s => { if (s.line.visible) updateStream(s, now); });
+          }
+
+          renderer.render(scene, camera);
+          raf = requestAnimationFrame(tick);
+        };
+        if (reduced) renderer.render(scene, camera); else tick();
+
+        /* ─── Resize ─── */
+        const onResize = () => {
+          if (!mount) return;
+          renderer.setSize(w(), h());
+          camera.aspect = w() / h();
+          camera.updateProjectionMatrix();
+        };
+        window.addEventListener('resize', onResize);
+        const ro = new ResizeObserver(() => requestAnimationFrame(onResize));
+        ro.observe(mount);
+
+        /* ─── Cleanup ─── */
+        return () => {
+          cancelAnimationFrame(raf);
+          window.removeEventListener('resize', onResize);
+          ro.disconnect();
+          try { mount.removeChild(renderer.domElement); } catch (e) {}
+          renderer.dispose();
+          dotsGeom.dispose(); dotsMat.dispose();
+          wireGeom.dispose(); wireMat.dispose();
+          streams.forEach(s => { s.geom.dispose(); s.mat.dispose(); });
+        };
+      }, []);
+
+      return (
+        <div className="h4-viz" ref={sphereRef} aria-hidden="true">
+          <div ref={mountRef} className="h4-viz-canvas"></div>
+          <div className="h4-monogram">H4</div>
+        </div>
+      );
+    };
+
+
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 2 — POSITIONING
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Positioning = () => (
+      <section className="positioning" data-screen-label="Positioning">
+        <div className="positioning-inner">
+          <div className="eyebrow">What we do</div>
+          <h2 className="h2" style={{ fontSize: 'var(--type-h2)', fontWeight: 700, letterSpacing: '-0.015em', lineHeight: 1.12, marginBottom: 24, textWrap: 'balance' }}>
+            We help organizations use AI without losing control.
+          </h2>
+          <p className="body-xl" style={{ maxWidth: '60ch', margin: '0 auto 96px', textAlign: 'center' }}>
+            Training for your people. Governance for your decisions.
+            Implementation that stays inside your organization.
+          </p>
+          <div className="pos-strip">
+            <div className="eyebrow">Working with</div>
+            <div className="items">
+              <span>Ministries</span><span className="dot">·</span>
+              <span>Universities</span><span className="dot">·</span>
+              <span>Schools</span><span className="dot">·</span>
+              <span>Municipalities</span><span className="dot">·</span>
+              <span>Public agencies</span><span className="dot">·</span>
+              <span>Businesses</span><span className="dot">·</span>
+              <span>Donor programs</span>
+            </div>
+          </div>
+          <div className="pos-strip">
+            <div className="eyebrow">Built on</div>
+            <div className="items">
+              <span>EU AI Act</span><span className="dot">·</span>
+              <span>ISO 42001</span><span className="dot">·</span>
+              <span>OECD AI Principles</span><span className="dot">·</span>
+              <span>NIST AI RMF</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 3 — FOUR HORIZONS
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const HORIZONS = [
+      { label: '01 · GOVERNMENT', name: 'GovAI',      desc: 'Readiness, governance, and procurement capability for ministries and municipalities.', accent: 'var(--gov-accent)',   href: '/govai' },
+      { label: '02 · EDUCATION',  name: 'EduAI',      desc: 'Faculty training, academic integrity, and university AI governance.',                  accent: 'var(--edu-accent)',   href: '/eduai' },
+      { label: '03 · BUSINESS',   name: 'BusinessAI', desc: 'Productivity, prompt systems, and workflow training for SMEs and services.',           accent: 'var(--biz-accent)',   href: '/businessai' },
+      { label: '04 · STRATEGY',   name: 'StrategyAI', desc: 'Roadmaps, governance operating models, and donor program design.',                     accent: 'var(--strat-accent)', href: '/strategyai' },
+    ];
+
+    const Horizons = () => (
+      <section className="horizons" data-screen-label="Four Horizons">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Four Horizons</div>
+            <h2 className="h2">One framework. Four pathways.</h2>
+            <p className="body-xl">
+              Each pathway is shaped to the institution it serves — governance-first,
+              bilingual, EU-aligned. The discipline underneath is the same.
+            </p>
+          </div>
+          <div className="horizon-grid">
+            {HORIZONS.map(h => (
+              <a key={h.name} href={h.href} className="horizon-card">
+                <span className="accent" style={{ background: h.accent }}></span>
+                <div className="label">{h.label}</div>
+                <h3 className="h3">{h.name}</h3>
+                <p className="desc">{h.desc}</p>
+                <span className="more">Explore the pathway →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 4 — HOW WE WORK
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const STEPS = [
+      ['01', 'Diagnose', 'Map decisions, data, capability, and accountability surfaces. Identify where AI helps and where it must not be allowed.'],
+      ['02', 'Design',   'Define use-cases, governance, procurement guardrails, training plan, and a 90-day institutional roadmap.'],
+      ['03', 'Train',    'Role-specific cohorts and workshops with real artefacts. Bilingual delivery in Albanian and English.'],
+      ['04', 'Embed',    'Pilot, measure, and steward. Human-approved workflows, monitoring routines, and policy refresh cycles.'],
+    ];
+
+    const HowWeWork = () => (
+      <section className="method" data-screen-label="How we work">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Methodology</div>
+            <h2 className="h2">Diagnose. Design. Train. Embed.</h2>
+            <p className="body-xl">
+              One discipline across courses, audits, sector solutions, and
+              human-approved AI implementation.
+            </p>
+          </div>
+          <div className="method-grid">
+            {STEPS.map(([n, t, d]) => (
+              <div key={n} className="method-col">
+                <div className="num">{n}</div>
+                <h3 className="h4">{t}</h3>
+                <p className="body">{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 5 — LEADERSHIP (static)
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const TEAM = [
+      {
+        initials: 'MK',
+        name: 'Mario Keputa',
+        role: 'Founder & CEO',
+        cred: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate',
+        bio:  "Public administration and AI governance lead. Institutional experience with the World Bank, OSCE, and the EDYN regional network. Author of 'The Next Europe' (Cornell, 2026) on European competitiveness reform.",
+      },
+      {
+        initials: 'YS',
+        name: 'Yllka Sela',
+        role: 'Cofounder · Economic Development',
+        cred: 'Brandeis University · STEM MBA · PhD candidate (Austria)',
+        bio:  'Eight years at GIZ across economic development, environmental initiatives, and regional cooperation. Former lecturer in Economic Policy and Microeconomics. Recipient of the Brandeis Excellence and Leadership Award.',
+      },
+      {
+        initials: 'ID',
+        name: 'Indri Dyrmishi',
+        role: 'Cofounder · Education & Innovation',
+        cred: 'University of Minnesota · Carlson School MBA · PhD candidate (Spain)',
+        bio:  'Technology commercialization and venture development background. Former Senior Instructor and Entrepreneurship Hub lead at the American University of the Middle East; former director of the Technology Transfer Office at the University of Tirana.',
+      },
+      {
+        initials: 'FS',
+        name: 'Fregis Sala',
+        role: 'Cofounder · AI Engineering',
+        cred: 'University of Southern California · MS Electrical & Computer Engineering · PhD candidate',
+        bio:  "Mixed-signal design verification at NVIDIA. Three years as Advisor to Albania's Minister of State for Youth and Children. Technical depth across AI infrastructure, integrated circuits, and applied AI engineering.",
+      },
+    ];
+
+    const LinkedInIcon = () => (
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M4.98 3.5C4.98 4.881 3.87 6 2.5 6S0 4.881 0 3.5 1.11 1 2.5 1s2.48 1.119 2.48 2.5zM.22 8h4.56v14H.22V8zm7.5 0h4.36v1.92h.06c.61-1.15 2.1-2.36 4.32-2.36 4.62 0 5.47 3.04 5.47 7v7.44h-4.56v-6.59c0-1.57-.03-3.59-2.19-3.59-2.19 0-2.53 1.71-2.53 3.48V22H7.72V8z"/>
+      </svg>
+    );
+
+    const Leadership = () => (
+      <section className="leadership" data-screen-label="Leadership">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Leadership</div>
+            <h2 className="h2">A team built for governed AI implementation.</h2>
+            <p className="body-xl">
+              Four cofounders. Four PhD candidates. Cornell, Brandeis, Minnesota,
+              and USC. One mission: Albania's transition to governed AI practice.
+            </p>
+          </div>
+
+          <div className="lead-grid">
+            {TEAM.map(p => (
+              <article key={p.initials} className="lead-card">
+                <div className="lead-photo" aria-label={`${p.name} portrait placeholder`}>{p.initials}</div>
+                <h3 className="lead-name">{p.name}</h3>
+                <div className="lead-role">{p.role}</div>
+                <div className="lead-cred">{p.cred}</div>
+                <p className="lead-bio">{p.bio}</p>
+                <div className="lead-link">
+                  <a href="#" aria-label={`${p.name} on LinkedIn`}><LinkedInIcon/></a>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="advisory-note">
+            <div className="eyebrow">Advisory Board · Announcing 2026</div>
+            <p>Senior advisors joining from EU AI law, public administration, and donor program design.</p>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 5b — PUBLICATIONS & RESEARCH
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Publications = () => (
+      <section className="publications" data-screen-label="Publications">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Publications & Research</div>
+            <h2 className="h2">Original research on Europe, AI, and institutional capability.</h2>
+            <p className="body-xl">
+              Our team publishes on the systems that shape AI adoption — from
+              competitiveness reform to governance implementation.
+            </p>
+          </div>
+
+          <div className="pub-grid">
+            <article className="pub-card">
+              <div className="pub-zone-top">
+                <div className="pub-tag live">Published · April 2026</div>
+              </div>
+              <div className="pub-zone-mid">
+                <h3 className="pub-title">The Next Europe: Why Europe Produces Nobel Prize Winners but Not Elon Musks</h3>
+                <div className="pub-meta">Mario Keputa · Cornell University · 182 pages</div>
+                <p className="pub-quote">
+                  Europe's competitiveness deficit is not a failure of science, talent, or savings but a system failure — and the system failure is describable, and therefore fixable.
+                </p>
+              </div>
+              <div className="pub-zone-bot">
+                <div className="pub-stats">
+                  <div className="pub-stat"><div className="lbl">Downloads</div><div className="val">260</div></div>
+                  <div className="pub-stat"><div className="lbl">Abstract Views</div><div className="val">490</div></div>
+                  <div className="pub-stat"><div className="lbl">Posted</div><div className="val">20 Apr 2026</div></div>
+                </div>
+                <a href="#" className="pub-link">Read on SSRN →</a>
+              </div>
+            </article>
+
+            <article className="pub-card muted">
+              <div className="pub-zone-top">
+                <div className="pub-tag soon">Forthcoming · 2026</div>
+              </div>
+              <div className="pub-zone-mid">
+                <h3 className="pub-title">AI Infrastructure and the Superintelligence Race: A European Perspective</h3>
+                <div className="pub-meta">Mario Keputa · In progress</div>
+                <p className="pub-desc">
+                  Compute, sovereignty, and Europe's path through the next decade of AI infrastructure.
+                </p>
+              </div>
+              <div className="pub-zone-bot">
+                <div className="pub-coming">Coming 2026</div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 6 — CTA
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const CTA = () => (
+      <section className="cta" data-screen-label="CTA">
+        <div className="cta-inner">
+          <div className="eyebrow on-dark">Start here</div>
+          <h2 className="h2">One conversation. Bilingual. On the record.</h2>
+          <p className="body-xl">
+            A 60-minute Executive Briefing with Horizon4 leadership. Written
+            summary you can circulate internally.
+          </p>
+          <div className="cta-row">
+            <a href="/executive-briefing" className="btn btn-primary on-dark">Request Executive Briefing</a>
+            <a href="/audit" className="btn-link on-dark">or request an audit scope →</a>
+          </div>
+          <div className="cta-loc">Tirana, Albania · Europe-ready · Pre-launch September 2026</div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       FOOTER
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const Footer = () => (
+      <footer className="foot" data-screen-label="Footer">
+        <div className="container">
+          <div className="foot-grid">
+            <div className="foot-brand foot-col">
+              <div className="wm">Horizon<span className="four">4</span>&nbsp;AI</div>
+              <p className="tag">
+                Albania's responsible AI capability partner. We help institutions
+                move from AI experimentation to embedded, governed practice.
+              </p>
+              <div className="meta">
+                <span>Tirana, Albania · Europe-ready</span>
+                <span>hello@horizon4.ai</span>
+                <span style={{ marginTop: 8 }}><a href="#" style={{ color: 'inherit' }}><LinkedInIcon/></a></span>
+              </div>
+            </div>
+
+            <div className="foot-col">
+              <div className="head">Academy</div>
+              <a href="/academy">Overview & Pathways</a>
+              <a href="/academy/catalog">Course Catalog</a>
+              <a href="/academy/private">Private Training</a>
+              <a href="/academy/certificates">Certificates</a>
+            </div>
+
+            <div className="foot-col">
+              <div className="head">Advisory</div>
+              <a href="/audit">AI Readiness Audit</a>
+              <a href="/executive-briefing">Executive Briefing</a>
+              <a href="/strategyai">StrategyAI</a>
+              <a href="/donor-programs">Donor / EU Programs</a>
+            </div>
+
+            <div className="foot-col">
+              <div className="head">Solutions</div>
+              <a href="/govai">GovAI</a>
+              <a href="/eduai">EduAI</a>
+              <a href="/businessai">BusinessAI</a>
+              <a href="/agentic-ai">Agentic AI</a>
+            </div>
+
+            <div className="foot-col">
+              <div className="head">Research & About</div>
+              <a href="/research/publications">Publications</a>
+              <a href="/research/insights">Insights</a>
+              <a href="/team">Team</a>
+              <a href="/about">Mission</a>
+              <a href="/contact">Contact</a>
+            </div>
+          </div>
+
+          <div className="foot-bar">
+            <span>© 2026 Horizon4 AI</span>
+            <span className="center">Pre-launch · September 2026</span>
+            <span className="right">Privacy · Terms</span>
+          </div>
+        </div>
+      </footer>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       APP
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const App = () => (
+      <div data-screen-label="Marketing home">
+        <Nav/>
+        <Hero/>
+        <Positioning/>
+        <Horizons/>
+        <HowWeWork/>
+        <Leadership/>
+        <Publications/>
+        <CTA/>
+        <Footer/>
+      </div>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+  </script>
+</body>
+</html>

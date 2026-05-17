@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Horizon4 AI Academy — Practical AI capability for Albanian professionals</title>
+  <meta name="description" content="Horizon4 AI Academy: practical, hands-on AI courses, workshops, and pathways for Albanian professionals, teams, and institutions. Fundamentals, prompt engineering, agents, governance, and sector pathways.">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <link rel="stylesheet" href="/styles/pages.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="/scripts/chrome.jsx"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+    const { Nav, Footer, ComputedSun, route } = window.H4Chrome;
+
+    /* ─── HERO ─────────────────────────────── */
+    const Hero = () => (
+      <section className="hero hero-compact" data-screen-label="Hero">
+        <div className="container">
+          <h1 className="h1">Practical AI capability for the new world of work.</h1>
+          <p className="body-xl hero-lead">
+            Live, hands-on courses, pathways, and private programs across
+            fundamentals, prompt engineering, data, marketing, agents,
+            governance, and sector practice.
+          </p>
+          <div className="hero-actions">
+            <a href={route('/academy/catalog')} className="btn btn-primary">Browse Course Catalog</a>
+            <a href={route('/academy/private')} className="btn btn-secondary">Request Private Training</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── WHAT THE ACADEMY IS ───────────────── */
+    const What = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="What it is">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">What the Academy is</div>
+            <h2 className="h2">Built for Albanian work — not generic AI hype.</h2>
+            <p className="body-xl">
+              Every course is built for the institutions, sectors, and roles we
+              actually serve. Practical artefacts, bilingual delivery,
+              governance baked in.
+            </p>
+          </div>
+          <div className="what-grid">
+            {[
+              ['01', 'Built for Albanian work', 'Courses adapted for Albanian workplaces, language, and institutional context — not translated from generic global curricula.'],
+              ['02', 'Practical, not theoretical', 'Every course produces a concrete deliverable students use the next day: a prompt set, a workflow, a policy, a plan.'],
+              ['03', 'Governance-aware by default', 'Every course includes responsible AI, data privacy, and human oversight — built in, not added on.'],
+            ].map(([n, t, d]) => (
+              <div key={n} className="what-col">
+                <div className="num">{n}</div>
+                <h3 className="h4">{t}</h3>
+                <p>{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── PATHWAYS ───────────────────────────── */
+    const PATHWAYS = [
+      ['A', 'AI Fundamentals',               'Foundations of AI for everyday professional work.', 4],
+      ['B', 'AI Data & Reporting',           'AI for analysis, dashboards, and decision support.', 4],
+      ['C', 'AI Builders & Systems',         'Prototype, build, and test reliable AI systems.',    4],
+      ['D', 'AI Marketing & Communication',  'AI for content, campaigns, sales, and client work.', 4],
+      ['E', 'AI Product & Innovation',       'AI-first product strategy, management, and delivery.', 4],
+      ['F', 'AI Software & Web Apps',        'Front-end, back-end, and AI app engineering.',       4],
+      ['G', 'AI Experience & Service Design','UX research, service design, and AI product storytelling.', 4],
+      ['H', 'AI Agents & Workflow Automation','Discover, design, and govern human-approved AI agents.', 5],
+      ['I', 'Horizon4 Sector Pathways',      'Public sector, education, SMEs, and professional services.', 7],
+    ];
+
+    const Pathways = () => (
+      <section className="pathways" data-screen-label="Learning pathways">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Learning pathways</div>
+            <h2 className="h2">Nine pathways. Every role from professional to public servant.</h2>
+            <p className="body-xl">
+              Take a single course or follow a full pathway from foundations to
+              certificate.
+            </p>
+          </div>
+          <div className="pathway-grid">
+            {PATHWAYS.map(([l, name, tag, count]) => (
+              <a key={l} href={route('/academy/catalog')} className="pathway-card">
+                <span className="accent"></span>
+                <span className="pathway-letter">{l}</span>
+                <div className="pathway-name">{name}</div>
+                <p className="pathway-tag">{tag}</p>
+                <div className="pathway-foot">
+                  <span className="pathway-count">{count} courses</span>
+                  <span className="pathway-link">View pathway →</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FEATURED LAUNCH COURSES (6) ──────── */
+    const FEATURED = [
+      { t: 'AI Workplace Fundamentals',         pw: 'AI Fundamentals', lvl: 'Beginner',     dur: '3h · 1d · 4w', lang: 'Bilingual', d: 'How AI works, where it helps, where it fails, and how to use it responsibly in everyday work.' },
+      { t: 'Prompt Engineering for Professionals', pw: 'AI Fundamentals', lvl: 'Beginner',   dur: '3h · 1d · 4w', lang: 'Bilingual', d: 'Prompt design, testing, and reusable prompt systems for real professional tasks.' },
+      { t: 'AI for Teachers and Professors',    pw: 'Sector',          lvl: 'Beginner',     dur: '3h · 1d · 4w', lang: 'Bilingual', d: 'Lesson design, student feedback, research, and responsible classroom use of AI.' },
+      { t: 'AI and Academic Integrity',         pw: 'Sector',          lvl: 'Intermediate', dur: '3h · 1d · 4w', lang: 'Bilingual', d: 'Assignment redesign, detection limits, disclosure norms, and academic-integrity policy.' },
+      { t: 'AI Productivity for SMEs',          pw: 'Sector',          lvl: 'Beginner',     dur: '3h · 1d · 4w', lang: 'Bilingual', d: 'Practical AI for small businesses: operations, marketing, sales, and admin.' },
+      { t: 'AI for Professional Services',      pw: 'Sector',          lvl: 'Intermediate', dur: '1d · 2d · 4w', lang: 'Bilingual', d: 'AI workflows for legal, audit, consulting, and advisory teams — with confidentiality built in.' },
+    ];
+
+    const Featured = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Launch courses">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Launch cohort · Available now</div>
+            <h2 className="h2">Six courses open for enrolment.</h2>
+            <p className="body-xl">
+              First cohort opens October–December 2026. Twelve more courses are
+              in development for 2027.
+            </p>
+          </div>
+          <div className="course-grid">
+            {FEATURED.map((c) => (
+              <div key={c.t} className="course-card">
+                <span className="course-badge">Available</span>
+                <div className="course-title">{c.t}</div>
+                <p className="course-desc">{c.d}</p>
+                <div className="course-tags">
+                  <span className="course-tag pw">{c.pw}</span>
+                  <span className="course-tag">{c.lvl}</span>
+                  <span className="course-tag">{c.lang}</span>
+                </div>
+                <div className="course-meta">
+                  <span>{c.dur}</span>
+                </div>
+                <div className="course-actions">
+                  <a href="#" className="btn btn-primary">View course</a>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ marginTop: 64 }}>
+            <h3 className="h4" style={{ marginBottom: 6 }}>12 more courses launching 2027</h3>
+            <p className="body-sm" style={{ color: 'var(--ink-muted)' }}>In development for upcoming cohorts.</p>
+            <div className="cs-grid">
+              {[
+                'AI Tools for Productivity',
+                'Responsible AI & Data Privacy',
+                'AI for Data Analysis',
+                'AI for Marketing & Content',
+                'AI for Sales & Client Work',
+                'AI Product Strategy',
+                'Project Management with AI',
+                'Agentic AI Discovery Workshop',
+                'No-Code AI Agents',
+                'Agentic AI for Leaders',
+                'AI for Public Servants',
+                'AI Governance for Municipalities',
+              ].map(n => (
+                <div key={n} className="cs-item">
+                  <span className="nm">{n}</span>
+                  <span className="tag">2027</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FORMATS ───────────────────────────── */
+    const Formats = () => (
+      <section className="fmt" data-screen-label="Course formats">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Course formats</div>
+            <h2 className="h2">Six ways to learn. Pick the depth that fits.</h2>
+          </div>
+          <div className="fmt-strip">
+            {[
+              ['01', '3-hour workshop'],
+              ['02', '1-day intensive'],
+              ['03', '2-day lab'],
+              ['04', '4-week cohort'],
+              ['05', 'Full pathway'],
+              ['06', 'Private team training'],
+            ].map(([n, name]) => (
+              <div key={n} className="fmt-cell">
+                <div className="fmt-num">{n}</div>
+                <div className="fmt-name">{name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── PROGRAM BLOCKS ────────────────────── */
+    const Programs = () => (
+      <section className="blocks" data-screen-label="Programs">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Programs</div>
+            <h2 className="h2">From a single course to a full institutional academy.</h2>
+          </div>
+          <div className="block-card">
+            <div>
+              <h3>Public cohorts for individual professionals.</h3>
+              <p>Live, instructor-led courses for individuals building practical AI skills alongside other Albanian professionals. Rolling schedule.</p>
+            </div>
+            <div className="actions">
+              <a href={route('/academy/catalog')} className="btn btn-primary">Browse Catalog</a>
+            </div>
+          </div>
+          <div className="block-card dark">
+            <div>
+              <h3>Bring Horizon4 to your team.</h3>
+              <p>Custom AI training for your organization. Half-day to multi-week formats, adapted to your team's role, sector, and goals. Albanian, English, or bilingual delivery.</p>
+            </div>
+            <div className="actions">
+              <a href={route('/academy/private')} className="btn btn-primary on-dark">Private Training</a>
+            </div>
+          </div>
+          <div className="block-card muted">
+            <div>
+              <h3>Building an AI Academy inside your institution.</h3>
+              <p>For ministries, universities, and large organizations: a custom multi-cohort AI capability program with governance, training pathways, and internal champions.</p>
+            </div>
+            <div className="actions">
+              <a href={route('/contact')} className="btn btn-secondary">Discuss Institutional Academy</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── CERTIFICATE ────────────────────────── */
+    const Cert = () => (
+      <section className="cert" data-screen-label="Certificate">
+        <div className="container cert-grid">
+          <div>
+            <div className="eyebrow">Certificate of Completion</div>
+            <h2 className="h2" style={{ marginBottom: 24 }}>A Horizon4 AI Academy certificate for every course.</h2>
+            <p className="body-xl" style={{ marginBottom: 24 }}>
+              Every course concludes with a Horizon4 AI Academy Certificate
+              based on attendance, exercises, and a final deliverable. An
+              industry-recognized credential roadmap launches in 2027.
+            </p>
+            <p className="body" style={{ color: 'var(--ink-muted)', maxWidth: '52ch' }}>
+              We do not issue conformity certifications for the EU AI Act, ISO
+              42001, or other external standards. We do build the capability
+              your team needs to be ready for them.
+            </p>
+          </div>
+          <div className="cert-visual" aria-hidden="true">
+            <div className="cert-seal">Horizon4 AI Academy · Certificate of Completion</div>
+            <div className="cert-name">Awarded to Participant Name</div>
+            <div className="cert-course">AI Workplace Fundamentals · 4-week cohort · 2026</div>
+            <div className="cert-issued">
+              <div>
+                <div className="lbl">Issued</div>
+                <div className="val">December 2026</div>
+              </div>
+              <div>
+                <div className="lbl">Verification ID</div>
+                <div className="val">H4-AC-0001</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FAQ ────────────────────────────────── */
+    const FAQ_ITEMS = [
+      ['Who are these courses for?', "Albanian professionals, teams, public servants, educators, SME leaders, and professional service firms. Each course flags its primary audience and any prerequisites."],
+      ['Are courses in English or Albanian?', 'All launch courses are bilingual. Public cohorts run in Albanian, English, or mixed format. Private team training is delivered in your team\'s preferred language.'],
+      ['What\'s the difference between a workshop, intensive, lab, and cohort?', 'Workshops are 3-hour focused sessions. Intensives are full-day deep dives. Labs are two-day hands-on builds. Cohorts run live over four weeks with practice between sessions and a final deliverable.'],
+      ['Do I get a certificate?', 'Every course concludes with a Horizon4 AI Academy Certificate of Completion based on attendance, exercises, and a final deliverable. We do not certify external standards.'],
+      ['Can my organization commission private training?', 'Yes. We design private cohorts adapted to your sector, role mix, and institutional context — half-day to multi-week formats, on-site or remote.'],
+      ['How much do courses cost?', 'Pricing varies by format and audience. Public cohort fees, group discounts, and private training scopes are confirmed after a brief intake.'],
+    ];
+
+    const FAQ = () => {
+      const [open, setOpen] = useState(0);
+      return (
+        <section style={{ background: 'var(--bg-surface)' }} data-screen-label="FAQ">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">Frequently asked</div>
+              <h2 className="h2">Common questions.</h2>
+            </div>
+            <div className="faq-list">
+              {FAQ_ITEMS.map(([q, a], i) => (
+                <div key={q} className="faq-item">
+                  <button className="faq-q" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)}>
+                    <span>{q}</span>
+                    <span className="icn">{open === i ? '−' : '+'}</span>
+                  </button>
+                  {open === i && <div className="faq-a">{a}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    /* ─── FINAL CTA (dark) ────────────────── */
+    const CTA = () => (
+      <section className="cta" data-screen-label="Final CTA">
+        <div className="cta-inner">
+          <div className="eyebrow on-dark">Get started</div>
+          <h2 className="h2">Find the course that fits your role.</h2>
+          <p className="body-xl">
+            Browse the full catalog or request private training for your team.
+          </p>
+          <div className="cta-row">
+            <a href={route('/academy/catalog')} className="btn btn-primary on-dark">Browse Course Catalog</a>
+            <a href={route('/academy/private')} className="btn-link on-dark">or request private training →</a>
+          </div>
+          <div className="cta-loc">Tirana, Albania · Europe-ready · Pre-launch September 2026</div>
+        </div>
+      </section>
+    );
+
+    /* ─── APP ────────────────────────────────── */
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div data-screen-label="Academy">
+        <Nav/>
+        <Hero/>
+        <What/>
+        <Pathways/>
+        <Featured/>
+        <Formats/>
+        <Programs/>
+        <Cert/>
+        <FAQ/>
+        <CTA/>
+        <Footer/>
+      </div>
+    );
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+Options -Indexes
+DirectoryIndex index.html
+
+# Clean URL rewriting
+RewriteEngine On
+RewriteBase /
+
+# Skip real files/dirs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# Serve index.html from the matching directory
+RewriteRule ^([^/]+)/?$ /$1/index.html [L]
+RewriteRule ^([^/]+)/([^/]+)/?$ /$1/$2/index.html [L]
+RewriteRule ^([^/]+)/([^/]+)/([^/]+)/?$ /$1/$2/$3/index.html [L]

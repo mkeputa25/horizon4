@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Executive Briefing — Horizon4 AI</title>
+  <meta name="description" content="A 60-minute private session with Horizon4 leadership for ministers, mayors, rectors, deans, CEOs, and board members preparing AI decisions.">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <link rel="stylesheet" href="/styles/pages.css">
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/three@0.160.0/build/three.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="/scripts/chrome.jsx"></script>
+
+  <script type="text/babel">
+    const { useState } = React;
+    const { Nav, Footer, route } = window.H4Chrome;
+
+    const Icon = ({ d, size = 32 }) => (
+      <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {d.split('|').map((p, i) => <path key={i} d={p}/>)}
+      </svg>
+    );
+    const ICONS = {
+      clipChk: 'M9 3h6a1 1 0 0 1 1 1v2H8V4a1 1 0 0 1 1-1z|M8 4H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-2|M9 14l2 2 4-4',
+      docMemo: 'M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z|M14 3v6h6|M8 13h8|M8 17h6',
+      arrowFwd:'M5 12h14|M13 6l6 6-6 6',
+      gov:     'M3 21h18|M5 21V10|M19 21V10|M9 21V14h6v7|M3 10l9-7 9 7',
+      edu:     'M2 9l10-5 10 5-10 5-10-5z|M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5|M22 9v6',
+      city:    'M3 21h18|M5 21V8l4-3v16|M9 21V11l4-3v13|M13 21V14l4-3v10|M17 21V17l4-2v6',
+      board:   'M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2|M11 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z|M23 21v-2a4 4 0 0 0-3-3.9|M17 3.1a4 4 0 0 1 0 7.75',
+    };
+
+    /* ─── HERO (centered) ──────────────────── */
+    const Hero = () => (
+      <section className="hero hero-compact" data-screen-label="Hero">
+        <div className="container">
+          <h1 className="h1">One conversation. Bilingual. On the record.</h1>
+          <p className="body-xl hero-lead">
+            A 60-minute private session with Horizon4 leadership for
+            ministers, mayors, rectors, deans, CEOs, and board members
+            preparing AI decisions.
+          </p>
+          <div className="hero-actions">
+            <a href="#form" className="btn btn-primary">Request Briefing</a>
+            <a href={route('/audit')} className="btn btn-secondary">Or request audit scope</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── WHAT IT DELIVERS ─────────────────── */
+    const Delivers = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="What it delivers">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">What it delivers</div>
+            <h2 className="h2">Leadership clarity before larger commitment.</h2>
+            <p className="body-xl">
+              Most institutional AI decisions get made under pressure with
+              incomplete information. This briefing exists to fix that.
+            </p>
+          </div>
+          <div className="adv-why-grid">
+            {[
+              { ic: 'clipChk',  eb: 'Tailored content',  h: 'AI opportunity and risk for your institution.', d: 'Sector-specific examples, regulatory landscape, and governance considerations tailored to your institutional context.' },
+              { ic: 'docMemo',  eb: 'Written memo',      h: 'A decision memo your board can circulate.',      d: 'Bilingual one-page summary with named recommendation, delivered within 5 business days of the briefing.' },
+              { ic: 'arrowFwd', eb: 'Next step clarity', h: 'A recommended path forward.',                    d: "Whether your next step is internal alignment, audit, training, or no immediate action, you'll leave the session knowing." },
+            ].map(c => (
+              <div key={c.h} className="adv-why">
+                <div className="icon"><Icon d={ICONS[c.ic]}/></div>
+                <div className="eyebrow">{c.eb}</div>
+                <h3>{c.h}</h3>
+                <p>{c.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FORMATS ──────────────────────────── */
+    const Formats = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Formats">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Formats</div>
+            <h2 className="h2">Three briefing sizes.</h2>
+            <p className="body-xl">
+              Scope and pricing scaled to institutional context. Every format
+              includes the written decision memo.
+            </p>
+          </div>
+          <div className="eng-grid">
+            <div className="eng-card">
+              <div className="eng-tag eyebrow muted">Entry</div>
+              <div className="divider"></div>
+              <h3>Standard Briefing</h3>
+              <div className="tier-meta">90 minutes · Online or in-person</div>
+              <p className="eng-lead">
+                Focused leadership conversation with one or two senior
+                decision-makers. Most common entry point.
+              </p>
+              <ul className="eng-list">
+                <li>90-minute private session</li>
+                <li>Tailored slide deck for your institution</li>
+                <li>Written decision memo within 5 business days</li>
+              </ul>
+              <div className="eng-foot">
+                <span className="eng-price">Request Scope</span>
+                <a href="#form" className="eng-cta">Request Briefing →</a>
+              </div>
+            </div>
+
+            <div className="eng-card flagship">
+              <div className="accent-bar"></div>
+              <div className="eng-tag eyebrow">Standard</div>
+              <div className="divider"></div>
+              <h3>Leadership Briefing</h3>
+              <div className="tier-meta">Half-day · In-person preferred</div>
+              <p className="eng-lead">
+                Extended session for full leadership team, board, or senior
+                management group. Most common format for institutional
+                decision points.
+              </p>
+              <ul className="eng-list">
+                <li>3-4 hour session with leadership team</li>
+                <li>Sector-specific scenarios and governance examples</li>
+                <li>Working session with Q&amp;A</li>
+                <li>Written decision memo within 5 business days</li>
+              </ul>
+              <div className="eng-foot">
+                <span className="eng-price">Request Scope</span>
+                <a href="#form" className="eng-cta">Request Briefing →</a>
+              </div>
+            </div>
+
+            <div className="eng-card">
+              <div className="eng-tag eyebrow muted">Extended</div>
+              <div className="divider"></div>
+              <h3>Board Briefing</h3>
+              <div className="tier-meta">Full day · On-site</div>
+              <p className="eng-lead">
+                Comprehensive session for boards, councils, and large
+                leadership groups requiring full-context briefing before
+                major commitments.
+              </p>
+              <ul className="eng-list">
+                <li>Full-day on-site session</li>
+                <li>Pre-briefing institutional analysis</li>
+                <li>Multiple working sessions with breakouts</li>
+                <li>Decision memo plus board-ready presentation pack</li>
+              </ul>
+              <div className="eng-foot">
+                <span className="eng-price">Request Scope</span>
+                <a href="#form" className="eng-cta">Request Briefing →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── WHO IT'S FOR ─────────────────────── */
+    const WhoFor = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Who it's for">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Who it's for</div>
+            <h2 className="h2">Built for institutional decision-makers.</h2>
+            <p className="body-xl">
+              Leaders preparing to make AI decisions that will be visible,
+              audited, or publicly defended.
+            </p>
+          </div>
+          <div className="adv-aud-grid">
+            {[
+              { ic: 'gov',   h: 'Ministers and deputy ministers', d: 'Policy direction and capacity-building decisions.' },
+              { ic: 'edu',   h: 'Rectors and deans',              d: 'Academic integrity, faculty readiness, and institutional AI governance.' },
+              { ic: 'city',  h: 'Mayors and municipal leaders',    d: 'Service modernization decisions and procurement direction.' },
+              { ic: 'board', h: 'Boards and senior leadership',    d: 'Strategic AI commitments, investment decisions, and public accountability.' },
+            ].map(c => (
+              <div key={c.h} className="adv-aud">
+                <div className="icon"><Icon d={ICONS[c.ic]}/></div>
+                <div>
+                  <h3 style={{ marginTop: 0 }}>{c.h}</h3>
+                  <p>{c.d}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── TOPICS COVERED ───────────────────── */
+    const Topics = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Briefing topics">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Briefing topics</div>
+            <h2 className="h2">What we cover.</h2>
+            <p className="body-xl">
+              Topics adapted to your institutional context. These are the
+              common themes. Actual content is tailored.
+            </p>
+          </div>
+          <div className="topics-grid">
+            {[
+              ['01', 'The current AI landscape, simplified.',          "What's real, what's hype, what's coming. No technical jargon. Sector-specific framing."],
+              ['02', 'Governance and regulatory landscape.',           'EU AI Act phasing, ISO 42001, OECD principles, and what they mean for your institution practically.'],
+              ['03', 'Decision points specific to your institution.',  'Where AI helps, where AI is risky, what to do first, and what to delay.'],
+            ].map(([n, h, d]) => (
+              <div key={n} className="topic-card">
+                <div className="eyebrow">{n}</div>
+                <h4>{h}</h4>
+                <p>{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── DELIVERABLE PREVIEW ──────────────── */
+    const Memo = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Deliverable preview">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">What you take away</div>
+            <h2 className="h2">A decision memo your leadership can circulate.</h2>
+            <p className="body-xl">
+              Every briefing concludes with a written deliverable designed
+              for institutional circulation.
+            </p>
+          </div>
+          <div className="deliv-grid">
+            <div>
+              <p className="body-xl">Within 5 business days of the briefing, we deliver:</p>
+              <ol className="deliv-list" style={{ marginTop: 32 }}>
+                <li><span className="n">01</span><span>A one-page bilingual executive summary</span></li>
+                <li><span className="n">02</span><span>Named recommendations for next steps</span></li>
+                <li><span className="n">03</span><span>Risk and opportunity framing for your sector</span></li>
+                <li><span className="n">04</span><span>Suggested governance considerations</span></li>
+                <li><span className="n">05</span><span>Optional follow-up engagement scope (if relevant)</span></li>
+              </ol>
+            </div>
+            <div className="memo-preview" aria-label="Sample decision memo preview">
+              <div className="memo-stamp">Horizon4 AI · Decision Memo</div>
+              <div className="memo-divider"></div>
+              <h4>AI Adoption: Recommended Next Steps</h4>
+              <div className="memo-prepared">
+                Prepared for: [Institution Name]<br/>
+                Date: [Date]
+              </div>
+              <div className="memo-divider thin"></div>
+              <p>
+                Following the leadership briefing of [date], this memo
+                summarizes the recommended path forward for AI adoption
+                across [Institution Name], framed around three priorities
+                surfaced during the session.
+              </p>
+              <p>
+                Three priorities emerge from the discussion: clarifying
+                acceptable-use policy before procurement, mapping where AI
+                helps versus where AI is risky in current workflows, and
+                identifying a small set of pilot use cases with measurable
+                outcomes.
+              </p>
+              <p>
+                The recommended sequence over the next 90 days starts with
+                a focused governance review, paired with a short pilot
+                portfolio under named human-approval oversight. A full
+                readiness audit is suggested as the follow-up engagement.
+              </p>
+              <div className="memo-sig">M. Keputa · Horizon4 AI · Tirana</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FAQ ──────────────────────────────── */
+    const FAQ_ITEMS = [
+      ['Who attends the briefing from Horizon4?', 'Briefings are conducted by Horizon4 leadership directly. The specific cofounder leading the session depends on your institutional context. Public sector briefings are typically led by Mario Keputa (Cornell MPA, public administration). University briefings are co-led with Indri Dyrmishi (Carlson MBA, education and innovation).'],
+      ['Can the briefing be delivered in Albanian?', 'Yes. Briefings are delivered in English, Albanian, or bilingual format. The written decision memo is delivered bilingually for institutional circulation.'],
+      ['Is there preparation required from our side?', 'Minimal. We send a 2-page pre-briefing questionnaire covering your institutional context, current AI activity (if any), and primary concerns. 30 minutes to complete.'],
+      ['How does the briefing relate to a full audit?', 'A briefing is designed to clarify decisions before scoping an audit. Many institutions choose to engage a briefing first to determine whether an audit is the right next step. Briefing fees can be credited toward an audit engagement if contracted within 60 days.'],
+      ['Can the briefing be confidential?', 'Yes. All briefings are conducted under confidentiality. Written decision memos are delivered only to participants. Horizon4 does not publish or reference client engagements without explicit written permission.'],
+    ];
+    const FAQ = () => {
+      const [open, setOpen] = useState(0);
+      return (
+        <section style={{ background: 'var(--bg-base)' }} data-screen-label="FAQ">
+          <div className="container">
+            <div className="section-head">
+              <div className="eyebrow">FAQ</div>
+              <h2 className="h2">Common questions.</h2>
+            </div>
+            <div className="faq-list">
+              {FAQ_ITEMS.map(([q, a], i) => (
+                <div key={q} className="faq-item">
+                  <button className="faq-q" aria-expanded={open === i} onClick={() => setOpen(open === i ? -1 : i)}>
+                    <span>{q}</span>
+                    <span className="icn">{open === i ? '−' : '+'}</span>
+                  </button>
+                  {open === i && <div className="faq-a">{a}</div>}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      );
+    };
+
+    /* ─── REQUEST FORM ─────────────────────── */
+    const RequestForm = () => (
+      <section id="form" style={{ background: 'var(--bg-surface)' }} data-screen-label="Request form">
+        <div className="container">
+          <div className="request-grid">
+            <div className="request-left">
+              <div className="section-head">
+                <div className="eyebrow">Request briefing</div>
+                <h2 className="h2">Tell us about your institution.</h2>
+                <p className="body-xl">
+                  We'll respond within 2 business days with available dates
+                  and a brief pre-session questionnaire.
+                </p>
+              </div>
+              <div className="request-divider"></div>
+              <div className="request-contact">
+                Or email directly: <a href="mailto:hello@horizon4.ai">hello@horizon4.ai</a><br/>
+                Tirana, Albania · Available regionally and remotely
+              </div>
+            </div>
+            <form className="inline-form" onSubmit={(e) => e.preventDefault()}>
+              <label>Institution name<input type="text" required/></label>
+              <label>Your role<input type="text" required/></label>
+              <label>Email<input type="email" required/></label>
+              <label>Phone (optional)<input type="tel"/></label>
+              <label>Institution type
+                <select>
+                  <option>Ministry</option>
+                  <option>Agency</option>
+                  <option>University</option>
+                  <option>Municipality</option>
+                  <option>Public enterprise</option>
+                  <option>Donor program</option>
+                  <option>Other</option>
+                </select>
+              </label>
+              <label>Briefing format
+                <select><option>Standard</option><option>Leadership</option><option>Board</option><option>Not sure</option></select>
+              </label>
+              <label>Format preference
+                <select><option>Online</option><option>In-person</option><option>Hybrid</option></select>
+              </label>
+              <label>Timeline
+                <select><option>Within 2 weeks</option><option>Within 30 days</option><option>Within 90 days</option><option>Exploring</option></select>
+              </label>
+              <label className="full">What's driving this conversation?<textarea rows="4"></textarea></label>
+              <label>Preferred language
+                <select><option>English</option><option>Albanian</option><option>Bilingual</option></select>
+              </label>
+              <div className="full submit-row" style={{ marginTop: 8 }}>
+                <button className="btn btn-primary" type="submit" style={{ width: '100%', justifyContent: 'center' }}>Request Briefing</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FINAL CTA (dark) ─────────────────── */
+    const CTA = () => (
+      <section className="cta" data-screen-label="Final CTA">
+        <div className="cta-inner">
+          <div className="eyebrow on-dark">Begin</div>
+          <h2 className="h2">One conversation. Real clarity.</h2>
+          <p className="body-xl">
+            Most briefings are scheduled within two weeks of inquiry.
+            Written memo follows within 5 business days.
+          </p>
+          <div className="cta-row">
+            <a href="#form" className="btn btn-primary on-dark">Request Briefing</a>
+            <a href={route('/audit')} className="btn-link on-dark">or request audit scope →</a>
+          </div>
+          <div className="cta-loc">Tirana, Albania · Available regionally and remotely</div>
+        </div>
+      </section>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div data-screen-label="Executive Briefing">
+        <Nav/>
+        <Hero/>
+        <Delivers/>
+        <Formats/>
+        <WhoFor/>
+        <Topics/>
+        <Memo/>
+        <FAQ/>
+        <RequestForm/>
+        <CTA/>
+        <Footer/>
+      </div>
+    );
+  </script>
+</body>
+</html>
