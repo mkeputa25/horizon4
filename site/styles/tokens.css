@@ -78,9 +78,34 @@
 
   /* ─── MOTION ────────────────────────────────────── */
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --dur-fast: 150ms;
   --dur:      250ms;
   --dur-slow: 380ms;
+
+  /* ─── PREMIUM POLISH — Batch 1A ─────────────────── */
+  /* Soft institutional gold — decorative accent, used sparingly */
+  --accent-gold:      #A8842E;
+  --accent-gold-soft: rgba(168, 132, 46, 0.12);
+
+  /* Layered shadow scale */
+  --shadow-xs:   0 1px 2px rgba(10, 31, 68, 0.05);
+  --shadow-sm:   0 2px 10px rgba(10, 31, 68, 0.06);
+  --shadow-lg:   0 24px 56px rgba(10, 31, 68, 0.14);
+  --shadow-glow: 0 10px 30px rgba(0, 117, 201, 0.16);
+
+  /* Soft gradient backgrounds — very low contrast */
+  --gradient-page:    linear-gradient(180deg, #F4F6F9 0%, #F0F2F5 100%);
+  --gradient-mesh:    radial-gradient(58% 48% at 12% 0%, rgba(0,117,201,0.06), transparent 70%),
+                      radial-gradient(48% 44% at 100% 8%, rgba(13,155,132,0.05), transparent 72%);
+  --gradient-surface: linear-gradient(180deg, #FFFFFF 0%, #FBFCFD 100%);
+
+  /* Refined borders */
+  --border-accent: rgba(0, 117, 201, 0.35);
+
+  /* Extra type + spacing steps */
+  --type-display: 84px;
+  --s-20: 80px;
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
@@ -111,5 +136,26 @@ h1, h2, h3, h4, h5, h6 {
 
 a { color: var(--accent-primary); text-decoration: none; transition: color var(--dur) var(--ease); }
 a:hover { color: var(--accent-primary-h); }
-a:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 3px; }
-button:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 3px; }
+
+/* ─── Global focus states (keyboard-visible) ─────── */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ─── Reduced-motion fallback (global) ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
