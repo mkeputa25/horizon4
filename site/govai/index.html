@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>AI Training for Public Administration in Albania · Horizon4 AI</title>
-  <meta name="description" content="AI skilling, governance, and workflow training for ministries, agencies, municipalities, and public servants.">
+  <title>Public Sector AI · Sector Pathway · Horizon4 AI</title>
+  <meta name="description" content="AI capability for public administration. Training, toolkits, agents and workflows, and safe-use guidance for ministries, agencies, municipalities, and public-sector teams.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <style>
@@ -284,8 +284,8 @@
     .band.base    { background: var(--bg-base); }
     @media (max-width: 768px) { .band { padding: var(--section-y-mobile) 0; } }
 
-    /* Six-step method grid (Approach) */
-    .method-grid.steps-6 { grid-template-columns: repeat(3, 1fr); gap: 32px 40px; }
+    /* Four-step method grid (Approach) */
+    .method-grid.steps-6 { grid-template-columns: repeat(4, 1fr); gap: 32px 40px; }
     @media (max-width: 1024px) { .method-grid.steps-6 { grid-template-columns: repeat(2, 1fr); gap: 40px; } }
     @media (max-width: 640px)  { .method-grid.steps-6 { grid-template-columns: 1fr; gap: 32px; } }
   </style>
@@ -520,16 +520,16 @@
     const Hero = () => (
       <section className="gov-hero" data-screen-label="Hero">
         <div className="container">
-          <div className="eyebrow">Horizon 01 · Public Administration</div>
-          <h1 className="h1">AI skilling for public administration.</h1>
+          <div className="eyebrow">Sector Pathway · Public Sector</div>
+          <h1 className="h1">AI capability for public administration.</h1>
           <p className="body-xl hero-lead">
-            Horizon4 trains ministries, agencies, municipalities, and public
-            servants to use AI better, legally, responsibly, and more
-            productively for citizens and the country.
+            Training, toolkits, workflow support, and safe-use guidance for
+            public-sector teams. Practical AI adoption for municipalities,
+            ministries, agencies, and public institutions.
           </p>
           <div className="hero-actions">
-            <a href="/contact" className="btn btn-primary">Request Public Administration Training</a>
-            <a href="/audit" className="btn btn-secondary">Request AI Readiness Audit</a>
+            <a href="/executive-briefing" className="btn btn-primary">Book an AI Briefing</a>
+            <a href="/executive-briefing" className="btn btn-secondary">Discuss Public-Sector AI Readiness</a>
           </div>
         </div>
       </section>
@@ -542,12 +542,14 @@
       <section className="band surface" data-screen-label="Why GovAI">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Why GovAI</div>
+            <div className="eyebrow">Why this pathway</div>
             <h2 className="h2">Public administration needs AI capability, not uncontrolled experimentation.</h2>
             <p className="body-xl">
-              Public servants are already using AI. The question is whether
-              they use it with skill, inside the rules, and in service of
-              better public work.
+              The Four Horizons define the capabilities we build: training,
+              toolkits, agents, and safe AI use. This sector pathway applies
+              those capabilities to the realities of public institutions:
+              documentation, reporting, citizen service, procurement, internal
+              administration, and policy work.
             </p>
           </div>
           <div className="icon-grid cols-3">
@@ -711,12 +713,10 @@
        SECTION 5 — APPROACH
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const STEPS = [
-      ['01', 'Assess', 'Readiness, skill baseline, legal exposure, and a map of useful AI use cases.'],
-      ['02', 'Train',  'Role-specific cohorts for public servants, sized to each institution.'],
-      ['03', 'Equip',  'Prompt libraries, workbooks, templates, and policies teams can use immediately.'],
-      ['04', 'Embed',  'Apply AI to real public services and workflows, not abstract exercises.'],
-      ['05', 'Govern', 'Data privacy, disclosure, human review, procurement safeguards, and EU AI Act readiness.'],
-      ['06', 'Scale',  'Champions, train-the-trainer, multi-cohort programs, and reporting dashboards.'],
+      ['01', 'Diagnose', 'Readiness, skill baseline, legal exposure, and a map of useful AI use cases across the institution.'],
+      ['02', 'Train',    'Role-specific cohorts for public servants, sized to each institution and its real tasks.'],
+      ['03', 'Equip',    'Prompt libraries, workbooks, templates, and safe-use policies teams can apply immediately.'],
+      ['04', 'Embed',    'Apply AI to real public services and workflows, with human review and governance built in.'],
     ];
 
     const Approach = () => (
@@ -724,9 +724,9 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Approach</div>
-            <h2 className="h2">Assess. Train. Equip. Embed. Govern. Scale.</h2>
+            <h2 className="h2">Diagnose. Train. Equip. Embed.</h2>
             <p className="body-xl">
-              The same six-step model runs through every public administration
+              The same four-step model runs through every public administration
               engagement, sized to the institution.
             </p>
           </div>
@@ -794,7 +794,7 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Engagement types</div>
-            <h2 className="h2">What GovAI work looks like in practice.</h2>
+            <h2 className="h2">What public-sector work looks like in practice.</h2>
             <p className="body-xl">
               Three formats of public administration engagement, sized to
               different institutional contexts.
@@ -881,14 +881,14 @@
     const FAQS = [
       ['Do you only work in Albania?',
        "Horizon4 is headquartered in Tirana. Our cofounders' institutional network extends to the EU and beyond. We serve regional and international clients with in-person and remote delivery."],
-      ['Can GovAI engagements be donor-funded?',
-       "Yes. We have experience designing capacity-building programs for donor and EU-aligned frameworks. GovAI scope can be incorporated into larger program budgets."],
+      ['Can public-sector engagements be donor-funded?',
+       "Yes. We have experience designing capacity-building programs for donor and EU-aligned frameworks. Public-sector scope can be incorporated into larger program budgets."],
       ['Do you support EU AI Act compliance?',
        "We prepare institutions to engage with EU AI Act requirements through readiness diagnostics, governance design, and capability building. Formal certification is conducted by accredited certification bodies. We support readiness; we do not certify compliance."],
       ['Can you work in Albanian?',
        "Yes. All work is delivered in Albanian, English, or bilingual format. Materials are produced bilingually for institutional circulation."],
-      ['Who delivers GovAI engagements?',
-       "Horizon4 leadership conducts every engagement directly. GovAI is typically led by Mario Keputa (Cornell MPA, World Bank and OSCE experience) with cofounders engaged based on scope."],
+      ['Who delivers public-sector engagements?',
+       "Horizon4 leadership conducts every engagement directly. Public-sector work is typically led by Mario Keputa (Cornell MPA, World Bank and OSCE experience) with cofounders engaged based on scope."],
     ];
 
     const FAQ = () => (
@@ -914,20 +914,21 @@
        SECTION 9 — RELATED HORIZONS
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const RELATED = [
-      { eb: 'Horizon 02', h: 'EduAI',       b: 'Faculty readiness, academic integrity, university governance.',     more: 'Explore EduAI →',       href: '/eduai' },
-      { eb: 'Horizon 03', h: 'BusinessAI',  b: 'Productivity, prompt systems, and workflow training for SMEs.',     more: 'Explore BusinessAI →',  href: '/businessai' },
-      { eb: 'Horizon 04', h: 'StrategyAI',  b: 'Roadmaps, governance operating models, and donor program design.',  more: 'Explore StrategyAI →',  href: '/strategyai' },
+      { eb: 'Sector Pathway', h: 'EduAI',       b: 'Faculty readiness, academic integrity, and university governance.', more: 'Explore EduAI →',      href: '/eduai' },
+      { eb: 'Sector Pathway', h: 'BusinessAI',  b: 'Productivity, prompt systems, and workflow training for SMEs.',     more: 'Explore BusinessAI →', href: '/businessai' },
+      { eb: 'Strategy',       h: 'StrategyAI',  b: 'Roadmaps, governance operating models, and donor program design.',  more: 'Explore StrategyAI →', href: '/strategyai' },
     ];
 
     const Related = () => (
-      <section className="band base" data-screen-label="Related horizons">
+      <section className="band base" data-screen-label="Related pathways">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Related capability pathways</div>
-            <h2 className="h2">GovAI is one of four horizons.</h2>
+            <div className="eyebrow">Related pathways</div>
+            <h2 className="h2">Capabilities applied across other sectors.</h2>
             <p className="body-xl">
-              Each horizon addresses a distinct sector. GovAI focuses on
-              government. The other three focus on education, business, and strategy.
+              The Four Horizons stay the same. Each sector pathway applies that
+              training, toolkit, agent, and safe-use capability to a different
+              audience: education, business, and strategy.
             </p>
           </div>
           <div className="rel-grid">
@@ -953,15 +954,15 @@
           <div className="eyebrow">Start</div>
           <h2 className="h2">AI capability for public administration.</h2>
           <p className="body-xl">
-            Start with a training program, a readiness audit, or a briefing for
-            institutional leadership.
+            Help public institutions train people, equip teams with templates
+            and workflows, explore local AI assistants, and adopt AI safely.
           </p>
           <div className="links">
-            <a href="/contact">Request Public Administration Training</a>
+            <a href="/executive-briefing">Book an AI Briefing</a>
             <span className="sep">·</span>
-            <a href="/audit">Request AI Readiness Audit</a>
+            <a href="/executive-briefing">Discuss Public-Sector AI Readiness</a>
             <span className="sep">·</span>
-            <a href="/executive-briefing">Book Executive Briefing</a>
+            <a href="/contact">Contact the team</a>
           </div>
         </div>
       </section>
@@ -1032,7 +1033,7 @@
        APP
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const App = () => (
-      <div data-screen-label="GovAI">
+      <div data-screen-label="Public Sector">
         <Nav/>
         <Hero/>
         <WhyGov/>

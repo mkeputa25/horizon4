@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Donor and EU AI Capability Programs - Horizon4 AI</title>
-  <meta name="description" content="Multi-cohort AI skilling programs for EU-aligned and donor-funded public administration, education, and workforce capability work in Albania.">
+  <title>Donor & EU Programs · Sector Pathway · Horizon4 AI</title>
+  <meta name="description" content="AI capability-building for donor-funded and EU-aligned programs: training, toolkits, agents and workflows, and governance and safe AI use, with implementation support for institutional development work.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <style>
@@ -343,11 +343,6 @@
     }
     .form-submit:hover { background: var(--accent-primary-h); }
 
-    /* Six-step approach grid */
-    .method-grid.cols-6 { grid-template-columns: repeat(6, 1fr); }
-    @media (max-width: 1024px) { .method-grid.cols-6 { grid-template-columns: repeat(3, 1fr); } }
-    @media (max-width: 640px)  { .method-grid.cols-6 { grid-template-columns: 1fr; } }
-
     /* Donor Program Stack visual */
     .stack {
       display: flex; flex-direction: column; gap: 8px;
@@ -597,17 +592,19 @@
     const Hero = () => (
       <section className="gov-hero" data-screen-label="Hero">
         <div className="container">
-          <div className="eyebrow">Advisory · Donor & EU Programs</div>
-          <h1 className="h1">Donor-ready AI skilling programs for public institutions and education systems.</h1>
+          <div className="eyebrow">Sector Pathway · Donor &amp; EU Programs</div>
+          <h1 className="h1">AI capability-building for donor and EU-funded programs.</h1>
           <p className="body-xl hero-lead">
-            Horizon4 designs and delivers multi-cohort AI capability programs
-            for EU-aligned and donor-funded work, combining public
-            administration training, teacher training, governance, M&amp;E,
-            train-the-trainer infrastructure, and institutional sustainability.
+            Horizon4 helps donor and EU programs design practical AI
+            capacity-building components: training, toolkits, agents and
+            workflows, governance, and implementation support. Designed for
+            public-sector modernization, education, workforce capability, and
+            digital transformation programs. Albania-first, with relevance for
+            the wider Western Balkans where appropriate.
           </p>
           <div className="hero-actions">
-            <a href="/contact" className="btn btn-primary">Discuss Donor Program</a>
-            <a href="/executive-briefing" className="btn btn-secondary">Request Program Briefing</a>
+            <a href="/executive-briefing" className="btn btn-primary">Book an AI Briefing</a>
+            <a href="/executive-briefing" className="btn btn-secondary">Discuss a Donor Program</a>
           </div>
         </div>
       </section>
@@ -790,12 +787,10 @@
        SECTION 5 — APPROACH
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const STEPS = [
-      ['01', 'Assess', 'Baseline study, readiness diagnostic, theory of change, and M&E framework design for donor submission.'],
-      ['02', 'Train',  'Multi-cohort AI skilling delivered bilingually to civil servants, teachers, or workforce participants.'],
-      ['03', 'Equip',  'Practical tools, curriculum materials, and applied workflows that participants can use in real work.'],
-      ['04', 'Embed',  'Embedded practice and institutional routines so AI use continues beyond the training room.'],
-      ['05', 'Govern', 'Governance components, EU AI Act readiness, and policy alignment for participating institutions.'],
-      ['06', 'Scale',  'Train-the-trainer infrastructure and sustainability handoff so capability grows after the program closes.'],
+      ['01', 'Diagnose', 'Baseline study, readiness diagnostic, theory of change, and M&E framework design for donor submission.'],
+      ['02', 'Train',    'Practical AI skilling delivered bilingually to civil servants, teachers, or workforce participants.'],
+      ['03', 'Equip',    'Toolkits, curriculum materials, and applied agent and workflow patterns participants can use in real work.'],
+      ['04', 'Embed',    'Governance, safe AI use, and institutional routines so capability continues beyond the program.'],
     ];
 
     const Approach = () => (
@@ -803,13 +798,13 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Approach</div>
-            <h2 className="h2">Assess. Train. Equip. Embed. Govern. Scale.</h2>
+            <h2 className="h2">Diagnose. Train. Equip. Embed.</h2>
             <p className="body-xl">
-              A six-step model across the full program lifecycle, from baseline
-              study through sustainability handoff.
+              A four-step model across the program lifecycle, from baseline
+              study through embedded governance and sustainable practice.
             </p>
           </div>
-          <div className="method-grid cols-6">
+          <div className="method-grid">
             {STEPS.map(([n, t, d]) => (
               <div key={n} className="method-col">
                 <div className="num">{n}</div>
@@ -869,8 +864,8 @@
        SECTION 8 — FAQ
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const FAQS = [
-      ['What does an AI skilling program actually deliver?',
-       "A multi-cohort program that moves participants from AI awareness to applied, governed practice. It combines a baseline assessment, sequenced curriculum, cohort delivery, trainer development, governance artifacts, M&E tracking, and a sustainability handoff to the institution."],
+      ['What does an AI capability-building component actually deliver?',
+       "A program component that moves participants from AI awareness to applied, governed practice. It combines a baseline assessment, sequenced curriculum, toolkits and applied workflows, trainer development, governance artifacts, M&E tracking, and a sustainability handoff to the institution."],
       ['Can you support proposal design as well as delivery?',
        "Yes. We support proposal design for institutions and partners applying for EU-aligned and donor-funded work, including theory of change, M&E framework drafting, curriculum architecture, and implementation planning. We also deliver the program and report against it."],
       ['How do you make a program sustainable after it ends?',
@@ -1005,7 +1000,7 @@
                   <option>Bilingual</option>
                 </select>
               </div>
-              <button type="submit" className="form-submit">Discuss Donor Program</button>
+              <button type="submit" className="form-submit">Send program inquiry</button>
             </form>
           </div>
         </div>
@@ -1018,18 +1013,19 @@
     const FinalCTA = () => (
       <section className="gov-cta" data-screen-label="Final CTA">
         <div className="container">
-          <div className="eyebrow">Program partnerships</div>
-          <h2 className="h2">AI skilling at scale, designed to last.</h2>
+          <div className="eyebrow">Sector Pathway · Donor &amp; EU Programs</div>
+          <h2 className="h2">Training, toolkits, governance, and implementation support.</h2>
           <p className="body-xl">
-            Multi-cohort programs built for donor M&amp;E discipline and
-            institutional sustainability.
+            The Four Horizons define the capabilities we build: training,
+            toolkits, agents, and safe AI use. This sector pathway applies
+            those capabilities to the realities of donor-funded programs.
           </p>
           <div className="links">
-            <a href="/contact">Discuss Donor Program</a>
+            <a href="/executive-briefing">Book an AI Briefing</a>
             <span className="sep">·</span>
-            <a href="/executive-briefing">Request Program Briefing</a>
+            <a href="/executive-briefing">Discuss a Donor Program</a>
             <span className="sep">·</span>
-            <a href="/contact">Request Training Program</a>
+            <a href="/contact">Contact the team</a>
           </div>
         </div>
       </section>
