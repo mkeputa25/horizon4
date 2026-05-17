@@ -335,6 +335,65 @@
     }
     .diag-step-sep { color: var(--border-strong); }
     .diag-cta { margin-top: 36px; text-align: center; }
+
+    /* ━━━ Phase 2B — AI Agents, Governance, Academy ━━━ */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(212px, 1fr)); gap: 20px; }
+
+    .h-card-sm { padding: 26px; }
+    @media (max-width: 768px) { .h-card-sm { padding: 22px; } }
+    .h-card-sm h3 { font-size: 18px; margin-bottom: 10px; letter-spacing: -0.005em; }
+    .h-card-sm .card-body { font-size: 14px; line-height: 1.6; color: var(--ink-body); flex-grow: 1; }
+    .card-num {
+      font-family: var(--font-mono); font-size: 13px;
+      color: var(--accent-primary-h); letter-spacing: 0.06em; margin-bottom: 14px;
+    }
+    .card-icon {
+      width: 38px; height: 38px; border-radius: var(--radius);
+      background: var(--accent-gold-soft); color: var(--accent-primary-h);
+      display: flex; align-items: center; justify-content: center; margin-bottom: 16px;
+    }
+    .section-cta { margin-top: 48px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    /* AI Agents */
+    .ai-agents { background: var(--bg-surface); }
+    .agent-coreidea {
+      max-width: 62ch; margin: 0 auto 44px; text-align: center;
+      font-size: 18px; line-height: 1.65; color: var(--ink-body);
+    }
+    .agent-coreidea strong { color: var(--ink-primary); font-weight: 600; }
+    .agent-flow-panel {
+      background: var(--bg-base);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 36px 24px;
+      margin-bottom: 44px;
+    }
+    .agent-flow { display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .flow-node {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      font-size: 14px; font-weight: 600; color: var(--ink-primary);
+      box-shadow: var(--shadow-xs); text-align: center;
+    }
+    .flow-node-key {
+      border-color: var(--border-accent);
+      box-shadow: 0 0 0 1px var(--border-accent) inset, var(--shadow-xs);
+      color: var(--accent-primary-h);
+    }
+    .flow-arrow { color: var(--accent-primary); font-size: 16px; flex: none; }
+    @media (max-width: 720px) {
+      .agent-flow { flex-direction: column; }
+      .flow-node { width: 100%; max-width: 300px; }
+      .flow-arrow { transform: rotate(90deg); }
+    }
+
+    /* Governance */
+    .governance { background: var(--bg-base); }
+
+    /* Academy section */
+    .academy-home { background: var(--bg-surface); }
   </style>
 </head>
 <body>
@@ -1515,6 +1574,146 @@
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       PHASE 2B — AI AGENTS / GOVERNANCE / ACADEMY
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const AGENT_CARDS = [
+      ['01', 'Opportunity Mapping', 'Identify where agents can reduce repetitive work and support higher-value decisions.'],
+      ['02', 'Workflow Design', 'Turn real institutional processes into structured, governable agent workflows.'],
+      ['03', 'Tool Integration', 'Connect agents to documents, systems, and knowledge sources with clear boundaries.'],
+      ['04', 'Human Oversight', 'Keep people in control with approval points, audit trails, and escalation rules.'],
+      ['05', 'Pilot Implementation', 'Start with focused pilots before scaling across teams or departments.'],
+    ];
+
+    const AIAgents = () => (
+      <section className="ai-agents" data-screen-label="AI Agents">
+        <div className="container">
+          <div className="section-head center reveal">
+            <div className="eyebrow">AI Agents</div>
+            <h2 className="h2">AI Agents Built for Real Institutional Workflows.</h2>
+            <p className="body-xl">
+              We help organizations identify, design, and govern AI agents that
+              support reporting, administration, documentation, training,
+              operations, and citizen or customer service.
+            </p>
+          </div>
+          <p className="agent-coreidea reveal">
+            Generative AI can <strong>answer</strong>. AI agents can help{' '}
+            <strong>act</strong>, by observing context, reasoning through next
+            steps, using tools, and staying under human oversight.
+          </p>
+          <div className="agent-flow-panel reveal reveal-d1">
+            <div className="agent-flow" role="img" aria-label="Agent workflow: Input, Reasoning, Tools, Human Oversight, Output">
+              <div className="flow-node">Input</div>
+              <span className="flow-arrow" aria-hidden="true">→</span>
+              <div className="flow-node">Reasoning</div>
+              <span className="flow-arrow" aria-hidden="true">→</span>
+              <div className="flow-node">Tools</div>
+              <span className="flow-arrow" aria-hidden="true">→</span>
+              <div className="flow-node flow-node-key">Human Oversight</div>
+              <span className="flow-arrow" aria-hidden="true">→</span>
+              <div className="flow-node">Output</div>
+            </div>
+          </div>
+          <div className="card-grid">
+            {AGENT_CARDS.map(([n, t, d], i) => (
+              <div key={n} className={`h-card h-card-sm reveal reveal-d${Math.min(i + 1, 4)}`}>
+                <div className="card-num">{n}</div>
+                <h3>{t}</h3>
+                <p className="card-body">{d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="section-cta reveal">
+            <a href="/agentic-ai" className="btn btn-secondary">Discover AI Agents</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    const GOV_CARDS = [
+      ['M6 3h12v18H6z|M9 8h6|M9 12h6|M9 16h4', 'Responsible Use Guidelines',
+       'Clear, practical guidance on where and how teams should use AI.'],
+      ['M6 3h9l3 3v15H6z|M9 13l2 2 4-4', 'AI Policy Readiness',
+       'Assess and shape the policies an institution needs before scaling AI.'],
+      ['M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z|M12 9.5a2.5 2.5 0 100 5 2.5 2.5 0 000-5z', 'Risk & Oversight Model',
+       'Define risks, controls, and review points for AI in real operations.'],
+      ['M21 12a9 9 0 11-3-6.7|M21 4v4h-4', 'Human-in-the-Loop Workflows',
+       'Keep people in control with approval steps and clear escalation.'],
+      ['M3 8l9-4 9 4-9 4-9-4z|M7 10.5V15c0 1.4 2.7 2.6 5 2.6s5-1.2 5-2.6v-4.5', 'Training for Safe Adoption',
+       'Equip teams to use AI within institutional rules and good judgment.'],
+    ];
+
+    const Governance = () => (
+      <section className="governance" data-screen-label="Governance">
+        <div className="container">
+          <div className="section-head center reveal">
+            <div className="eyebrow">Governance & Responsible AI</div>
+            <h2 className="h2">Trustworthy AI Starts with Governance.</h2>
+            <p className="body-xl">
+              AI adoption requires more than tools. Institutions need policies,
+              oversight, training, and workflows that protect trust while
+              enabling innovation.
+            </p>
+          </div>
+          <div className="card-grid">
+            {GOV_CARDS.map(([icon, t, d], i) => (
+              <div key={t} className={`h-card h-card-sm reveal reveal-d${Math.min(i + 1, 4)}`}>
+                <span className="card-icon"><FHIcon d={icon}/></span>
+                <h3>{t}</h3>
+                <p className="card-body">{d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="section-cta reveal">
+            <a href="/audit" className="btn btn-secondary">Start a Governance Sprint</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    const ACADEMY_CARDS = [
+      ['M3 4h18|M4 4v10h16V4|M12 14v4|M9 21l3-3 3 3', 'Executive AI Briefing',
+       'A focused session for leaders to understand AI opportunities, risks, and next steps.'],
+      ['M4 5a2 2 0 012-2h12v18H6a2 2 0 01-2-2z|M4 17h14', 'AI Foundations for Teams',
+       'Practical training that helps teams use AI tools with clarity, safety, and confidence.'],
+      ['M12 3v4|M12 17v4|M3 12h4|M17 12h4|M5.6 5.6l2.8 2.8|M15.6 15.6l2.8 2.8', 'AI Productivity Workshops',
+       'Hands-on sessions for improving everyday workflows, documents, research, and operations.'],
+      ['M12 3l8 3v5c0 5-3.4 8.2-8 10-4.6-1.8-8-5-8-10V6l8-3z', 'AI Governance Training',
+       'Training for responsible AI use, oversight, policy awareness, and risk management.'],
+      ['M7 7h10v10H7z|M9 3v4|M15 3v4|M9 17v4|M15 17v4|M3 9h4|M3 15h4|M17 9h4|M17 15h4', 'AI Agents for Operations',
+       'Learn how agentic workflows can support real tasks while keeping humans in control.'],
+    ];
+
+    const AcademyHome = () => (
+      <section className="academy-home" data-screen-label="Academy">
+        <div className="container">
+          <div className="section-head center reveal">
+            <div className="eyebrow">Horizon4 Academy</div>
+            <h2 className="h2">From AI Literacy to Institutional Capability.</h2>
+            <p className="body-xl">
+              Horizon4 Academy equips leaders, teams, and institutions with the
+              practical skills to use AI responsibly, productively, and
+              confidently.
+            </p>
+          </div>
+          <div className="card-grid">
+            {ACADEMY_CARDS.map(([icon, t, d], i) => (
+              <div key={t} className={`h-card h-card-sm reveal reveal-d${Math.min(i + 1, 4)}`}>
+                <span className="card-icon"><FHIcon d={icon}/></span>
+                <h3>{t}</h3>
+                <p className="card-body">{d}</p>
+              </div>
+            ))}
+          </div>
+          <div className="section-cta reveal">
+            <a href="/academy" className="btn btn-secondary">Explore the Academy</a>
+            <a href="/executive-briefing" className="btn btn-primary">Book an AI Briefing</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        APP
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const App = () => {
@@ -1541,6 +1740,9 @@
           <ProblemSection/>
           <FourHorizons/>
           <DiagnosticPreview/>
+          <AIAgents/>
+          <Governance/>
+          <AcademyHome/>
           <FlagshipPrograms/>
           <OperatingModel/>
           <EnablingLayers/>
