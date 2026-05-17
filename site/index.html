@@ -497,6 +497,7 @@
         { l: 'EduAI',       h: '/eduai' },
         { l: 'BusinessAI',  h: '/businessai' },
         { l: 'Agentic AI',  h: '/agentic-ai' },
+        { l: 'Templates & Toolkits', h: '/toolkits' },
       ],
       Research: [
         { l: 'Publications', h: '/research/publications' },
@@ -1073,14 +1074,14 @@
        PHASE 2C — PROCESS / INSIGHTS
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const PROCESS_STEPS = [
-      { n: '01', t: 'Diagnose', label: 'Diagnose readiness',
-        d: 'Assess where the institution stands across strategy, skills, data, workflows, and governance.' },
-      { n: '02', t: 'Design', label: 'Design strategy and workflows',
-        d: 'Shape a practical roadmap and define where AI fits real institutional processes.' },
-      { n: '03', t: 'Train', label: 'Train leaders and teams',
-        d: 'Build practical capability through role-specific, bilingual training.' },
-      { n: '04', t: 'Embed', label: 'Embed systems and governance', key: true,
-        d: 'We stay focused on adoption after the workshop ends, helping teams turn AI strategy into workflows, habits, safeguards, and measurable institutional capability.' },
+      { n: '01', t: 'Diagnose', label: 'Diagnose where the institution is',
+        d: 'Assess current AI use, skills, workflows, and risks to find where capability is missing.' },
+      { n: '02', t: 'Train', label: 'Train people in practical AI use',
+        d: 'Run role-specific, bilingual courses that build real, everyday AI skill.' },
+      { n: '03', t: 'Equip', label: 'Equip teams with toolkits',
+        d: 'Hand teams the prompts, templates, playbooks, and workflows they will reuse.' },
+      { n: '04', t: 'Embed', label: 'Embed AI into daily work', key: true,
+        d: 'Embed AI into real workflows through human-approved agents, governance, and ongoing support, so capability sticks after the course ends.' },
     ];
 
     const Process = () => (
@@ -1438,21 +1439,21 @@
     );
 
     const HORIZONS4 = [
-      { n: '01', t: 'AI Strategy & Consulting',
-        d: 'Turn AI ambition into a practical roadmap for your organization.',
-        cta: 'Explore Strategy', href: '/strategyai',
-        icon: 'M12 2v3|M12 19v3|M2 12h3|M19 12h3|M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z' },
-      { n: '02', t: 'AI Skilling & Academy',
-        d: 'Equip leaders and teams with the skills to use AI responsibly and productively.',
-        cta: 'Explore Academy', href: '/academy',
+      { n: '01', t: 'Academy & Training',
+        d: 'Professional AI courses that train public servants, teachers, lawyers, and business teams to use AI well.',
+        cta: 'Explore the Academy', href: '/academy',
         icon: 'M3 8l9-4 9 4-9 4-9-4z|M7 10.5V15c0 1.4 2.7 2.6 5 2.6s5-1.2 5-2.6v-4.5|M21 8v5' },
-      { n: '03', t: 'AI Agents & Automation',
-        d: 'Design intelligent systems that support real workflows, not abstract demos.',
-        cta: 'Discover Agents', href: '/agentic-ai',
+      { n: '02', t: 'Templates & Toolkits',
+        d: 'Prompt libraries, playbooks, and workflow templates that equip teams to apply AI to real work.',
+        cta: 'Explore Toolkits', href: '/toolkits',
+        icon: 'M4 4h7v7H4z|M13 4h7v7h-7z|M4 13h7v7H4z|M13 13h7v7h-7z' },
+      { n: '03', t: 'Agents & Workflows',
+        d: 'Local, human-approved AI assistants that support real institutional workflows.',
+        cta: 'Discover AI Agents', href: '/agentic-ai',
         icon: 'M9 4h6v4H9z|M4 14h6v6H4z|M14 14h6v6h-6z|M12 8v3|M7 14v-3h10v3' },
-      { n: '04', t: 'AI Governance & Ethics',
-        d: 'Build policies, oversight, and human-centered safeguards for responsible adoption.',
-        cta: 'Explore Governance', href: '/audit',
+      { n: '04', t: 'Governance & Safe Use',
+        d: 'Practical safeguards, acceptable-use guidance, and human review for responsible adoption.',
+        cta: 'Explore Safe Use', href: '/audit',
         icon: 'M12 3l8 3v5c0 5-3.4 8.2-8 10-4.6-1.8-8-5-8-10V6l8-3z|M9 11.5l2 2 4-4' },
     ];
 
@@ -1464,7 +1465,7 @@
             <h2 className="h2">Four Horizons, One Vision.</h2>
             <p className="body-xl">
               A structured approach to building AI-ready organizations, from
-              strategy and skills to intelligent systems and responsible
+              training and toolkits to AI agents and responsible
               governance.
             </p>
           </div>

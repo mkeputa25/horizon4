@@ -28,6 +28,7 @@ const H4Chrome = (() => {
       { l: 'EduAI',      h: '/eduai' },
       { l: 'BusinessAI', h: '/businessai' },
       { l: 'Agentic AI', h: '/agentic-ai' },
+      { l: 'Templates & Toolkits', h: '/toolkits' },
     ],
     Research: [
       { l: 'Publications', h: '/research/publications' },

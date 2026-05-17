@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Templates &amp; Toolkits · Horizon4 AI</title>
+  <meta name="description" content="Prompt libraries, role-based playbooks, workflow templates, and policy starters that equip teams to apply AI to real work after training.">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <link rel="stylesheet" href="/styles/pages.css">
+  <style>
+    /* ━━━ Templates & Toolkits — page-local styles ━━━ */
+    .tk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .tk-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 600px) { .tk-grid { grid-template-columns: 1fr; } }
+    .tk-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    @media (max-width: 700px) { .tk-grid.cols-2 { grid-template-columns: 1fr; } }
+
+    .tk-card {
+      background: var(--bg-surface); border: 1px solid var(--border-hairline);
+      border-radius: var(--radius); box-shadow: var(--shadow-sm);
+      padding: 32px; display: flex; flex-direction: column; gap: 14px;
+      transition: box-shadow var(--dur) var(--ease),
+                  border-color var(--dur) var(--ease), transform var(--dur) var(--ease);
+    }
+    @media (max-width: 768px) { .tk-card { padding: 24px; } }
+    .tk-card:hover { box-shadow: var(--shadow-lg); border-color: var(--border-strong); transform: translateY(-3px); }
+    .tk-icon {
+      width: 40px; height: 40px; border-radius: var(--radius);
+      background: var(--accent-gold-soft); color: var(--accent-primary-h);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tk-card h3 { font-size: 19px; font-weight: 700; color: var(--ink-primary); letter-spacing: -0.01em; }
+    .tk-card p { font-size: 15px; line-height: 1.6; color: var(--ink-body); }
+
+    .tk-deliver { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    @media (max-width: 768px) { .tk-deliver { grid-template-columns: 1fr; gap: 28px; } }
+    .tk-step .d-num {
+      font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em;
+      color: var(--accent-primary-h); margin-bottom: 12px;
+    }
+    .tk-step h3 { font-size: 18px; font-weight: 700; color: var(--ink-primary); margin-bottom: 8px; }
+    .tk-step p { font-size: 15px; line-height: 1.6; color: var(--ink-body); }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="/scripts/chrome.jsx"></script>
+
+  <script type="text/babel">
+    const { Nav, Footer, route } = window.H4Chrome;
+
+    const Icon = ({ d }) => (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {d.split('|').map((p, i) => <path key={i} d={p}/>)}
+      </svg>
+    );
+
+    /* ─── HERO ─────────────────────────────── */
+    const Hero = () => (
+      <section className="hero hero-compact" data-screen-label="Hero">
+        <div className="container">
+          <div className="eyebrow">Horizon · Templates &amp; Toolkits</div>
+          <h1 className="h1">Templates, prompts, and toolkits your teams keep using.</h1>
+          <p className="body-xl hero-lead">
+            Every Horizon4 engagement equips teams with practical artifacts:
+            prompt libraries, playbooks, workflow templates, and policy starters
+            they reuse long after the training ends.
+          </p>
+          <div className="hero-actions">
+            <a href={route('/executive-briefing')} className="btn btn-primary">Book an AI Briefing</a>
+            <a href={route('/contact')} className="btn btn-secondary">Discuss Toolkits</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── TOOLKIT CATEGORIES ───────────────── */
+    const CATEGORIES = [
+      { ic: 'M5 4h9l5 5v11H5z|M14 4v5h5|M8 13h8|M8 17h5',
+        t: 'Prompt libraries',
+        d: 'Curated, tested prompts for the tasks a role actually does, organized and ready to reuse.' },
+      { ic: 'M4 5h16v14H4z|M4 9h16|M8 5v14',
+        t: 'Role-based playbooks',
+        d: 'Step-by-step guides for applying AI to specific roles and responsibilities.' },
+      { ic: 'M4 4h7v7H4z|M13 13h7v7h-7z|M14 6h6|M4 16h6|M17 4v5|M7 14v6',
+        t: 'Workflow templates',
+        d: 'Reusable templates that show where AI fits inside a real process.' },
+      { ic: 'M3 8l9-4 9 4-9 4-9-4z|M7 10.5V15c0 1.4 2.7 2.6 5 2.6s5-1.2 5-2.6v-4.5',
+        t: 'Classroom kits',
+        d: 'Practical AI activities and materials for teachers and education settings.' },
+      { ic: 'M12 3l8 3v5c0 5-3.4 8.2-8 10-4.6-1.8-8-5-8-10V6l8-3z|M9 11.5l2 2 4-4',
+        t: 'Acceptable-use templates',
+        d: 'Starter policies and guidance for using AI safely and responsibly.' },
+      { ic: 'M5 4a1 1 0 0 1 1-1h12v18H6a1 1 0 0 1-1-1z|M5 17h13|M9 7h6',
+        t: 'Workbooks',
+        d: 'Hands-on training workbooks teams keep and return to after a course.' },
+    ];
+
+    const Categories = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Toolkit categories">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">What we equip teams with</div>
+            <h2 className="h2">Toolkit categories.</h2>
+            <p className="body-xl">
+              Toolkits are the Equip step of how we work, the practical artifacts
+              that turn an AI course into capability your teams use every day.
+            </p>
+          </div>
+          <div className="tk-grid">
+            {CATEGORIES.map(c => (
+              <div key={c.t} className="tk-card">
+                <span className="tk-icon"><Icon d={c.ic}/></span>
+                <h3>{c.t}</h3>
+                <p>{c.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── BY SECTOR ────────────────────────── */
+    const SECTORS = [
+      { ic: 'M3 21h18|M5 21V10|M19 21V10|M9 21V14h6v7|M3 10l9-7 9 7',
+        t: 'Public administration templates',
+        d: 'Drafting, summarization, and citizen-service templates for public servants.' },
+      { ic: 'M12 3l9 5-9 5-9-5z|M12 13v8|M7 21a5 3 0 0 1 10 0',
+        t: 'Legal & professional service prompts',
+        d: 'Prompt sets for research, drafting, and review in legal and professional work.' },
+      { ic: 'M4 20V8l8-5 8 5v12H4z|M9 20v-6h6v6|M4 12h16',
+        t: 'Business productivity templates',
+        d: 'Meeting, reporting, and analysis templates for everyday business work.' },
+      { ic: 'M2 9l10-5 10 5-10 5-10-5z|M6 11v5c0 1.5 3 3 6 3s6-1.5 6-3v-5|M22 9v6',
+        t: 'Education & teacher toolkits',
+        d: 'Lesson design, feedback, and assessment toolkits for teachers and professors.' },
+    ];
+
+    const Sectors = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Toolkits by sector">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Built for your sector</div>
+            <h2 className="h2">Toolkits shaped to the work.</h2>
+            <p className="body-xl">
+              Toolkits are tailored to the roles and sectors a team works in, not
+              generic samples.
+            </p>
+          </div>
+          <div className="tk-grid cols-2">
+            {SECTORS.map(c => (
+              <div key={c.t} className="tk-card">
+                <span className="tk-icon"><Icon d={c.ic}/></span>
+                <h3>{c.t}</h3>
+                <p>{c.d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── HOW TOOLKITS ARE DELIVERED ───────── */
+    const DELIVER = [
+      ['01', 'Customized to your work',
+       'Toolkits are shaped around the real tasks and workflows of your teams, not off-the-shelf samples.'],
+      ['02', 'Delivered with training',
+       'Teams learn to use and adapt their toolkits during Academy courses and implementation work.'],
+      ['03', 'Yours to keep',
+       'Every toolkit stays with your institution to extend and maintain over time.'],
+    ];
+
+    const Delivery = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="How toolkits work">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">How toolkits work</div>
+            <h2 className="h2">Capability, not a catalogue.</h2>
+            <p className="body-xl">
+              Templates and toolkits are part of how Horizon4 builds capability.
+              They are developed with each engagement, not sold as a fixed
+              product list.
+            </p>
+          </div>
+          <div className="tk-deliver">
+            {DELIVER.map(([n, t, d]) => (
+              <div key={n} className="tk-step">
+                <div className="d-num">{n}</div>
+                <h3>{t}</h3>
+                <p>{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ─── FINAL CTA ────────────────────────── */
+    const CTA = () => (
+      <section className="cta" data-screen-label="Final CTA">
+        <div className="cta-inner">
+          <div className="eyebrow on-dark">Start here</div>
+          <h2 className="h2">Equip your teams with AI they can actually use.</h2>
+          <p className="body-xl">
+            Start with a focused briefing. We will identify which toolkits would
+            help most and how they fit your training and workflows.
+          </p>
+          <div className="cta-row">
+            <a href={route('/executive-briefing')} className="btn btn-primary on-dark">Book an AI Briefing</a>
+            <a href={route('/contact')} className="btn-link on-dark">or discuss toolkits →</a>
+          </div>
+          <div className="cta-loc">Tirana, Albania · Local expertise, global AI governance perspective</div>
+        </div>
+      </section>
+    );
+
+    /* ─── APP ──────────────────────────────── */
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div data-screen-label="Templates & Toolkits">
+        <Nav/>
+        <Hero/>
+        <Categories/>
+        <Sectors/>
+        <Delivery/>
+        <CTA/>
+        <Footer/>
+      </div>
+    );
+  </script>
+</body>
+</html>
