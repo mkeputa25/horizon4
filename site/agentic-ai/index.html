@@ -421,16 +421,28 @@
       const [open, setOpen] = useState(null);
       const [drawer, setDrawer] = useState(false);
       const [lang, setLang] = useState('EN');
+      const [scrolled, setScrolled] = useState(false);
       const closeTimer = useRef(null);
 
       const onEnter = (k) => { clearTimeout(closeTimer.current); setOpen(k); };
       const onLeave = () => { closeTimer.current = setTimeout(() => setOpen(null), 120); };
 
       useEffect(() => { document.body.style.overflow = drawer ? 'hidden' : ''; }, [drawer]);
+      useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 8);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+      }, []);
+      useEffect(() => {
+        const onKey = (e) => { if (e.key === 'Escape') { setOpen(null); setDrawer(false); } };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+      }, []);
 
       return (
         <React.Fragment>
-          <nav className="nav">
+          <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
             <div className="nav-inner">
               <Brand/>
               <div className="nav-center">
@@ -441,8 +453,8 @@
                     onMouseEnter={() => onEnter(k)}
                     onMouseLeave={onLeave}
                   >
-                    <button className="nav-trigger" aria-haspopup="true" aria-expanded={open === k}>
-                      {k}<span className="chev"></span>
+                    <button className="nav-trigger" aria-haspopup="true" aria-expanded={open === k} onClick={() => setOpen(o => (o === k ? null : k))}>
+                      {k}<span className="chev" aria-hidden="true"></span>
                     </button>
                     <div className="mega" role="menu">
                       {MEGA[k].map((item, i) => (
@@ -460,8 +472,8 @@
                   <span className="div">|</span>
                   <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
                 </div>
-                <a href="/contact" className="nav-cta">Request Training Program</a>
-                <button className="nav-burger" aria-label="Menu" onClick={() => setDrawer(true)}>
+                <a href="/executive-briefing" className="nav-cta">Book an AI Briefing</a>
+                <button className="nav-burger" aria-label="Open menu" aria-expanded={drawer} aria-controls="nav-drawer" onClick={() => setDrawer(true)}>
                   <span></span><span></span><span></span>
                 </button>
               </div>
@@ -469,7 +481,7 @@
           </nav>
 
           <div className={`drawer-overlay ${drawer ? 'open' : ''}`} onClick={() => setDrawer(false)}></div>
-          <aside className={`drawer ${drawer ? 'open' : ''}`} aria-hidden={!drawer}>
+          <aside id="nav-drawer" className={`drawer ${drawer ? 'open' : ''}`} aria-hidden={!drawer} aria-label="Site menu">
             <div className="drawer-head">
               <Brand/>
               <button className="drawer-close" onClick={() => setDrawer(false)} aria-label="Close">×</button>
@@ -480,14 +492,14 @@
                   <summary>{k}</summary>
                   <div className="drawer-sub">
                     {MEGA[k].map((item, i) => (
-                      item.divider ? null : <a key={item.l} href={item.h}>{item.l}</a>
+                      item.divider ? null : <a key={item.l} href={item.h} onClick={() => setDrawer(false)}>{item.l}</a>
                     ))}
                   </div>
                 </details>
               ))}
             </div>
             <div className="drawer-foot">
-              <a href="/contact" className="btn btn-primary">Request Training Program</a>
+              <a href="/executive-briefing" className="btn btn-primary" onClick={() => setDrawer(false)}>Book an AI Briefing</a>
               <div className="nav-lang" style={{ justifyContent: 'center' }}>
                 <button className={lang === 'EN' ? 'on' : ''} onClick={() => setLang('EN')}>EN</button>
                 <span className="div">|</span>

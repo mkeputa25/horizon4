@@ -43,55 +43,70 @@ const H4Chrome = (() => {
 
   /* ─── NAV ─────────────────────────────────── */
   const Nav = () => {
-    const [open, setOpen]     = useState(null);
-    const [drawer, setDrawer] = useState(false);
-    const [lang, setLang]     = useState('EN');
-    const closeTimer          = useRef(null);
+    const [open, setOpen]         = useState(null);
+    const [drawer, setDrawer]     = useState(false);
+    const [lang, setLang]         = useState('EN');
+    const [scrolled, setScrolled] = useState(false);
+    const closeTimer              = useRef(null);
     const onEnter = (k) => { clearTimeout(closeTimer.current); setOpen(k); };
     const onLeave = ()  => { closeTimer.current = setTimeout(() => setOpen(null), 120); };
+    const toggle  = (k) => setOpen(o => (o === k ? null : k));
     useEffect(() => { document.body.style.overflow = drawer ? 'hidden' : ''; }, [drawer]);
+    useEffect(() => {
+      const onScroll = () => setScrolled(window.scrollY > 8);
+      onScroll();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+    useEffect(() => {
+      const onKey = (e) => { if (e.key === 'Escape') { setOpen(null); setDrawer(false); } };
+      window.addEventListener('keydown', onKey);
+      return () => window.removeEventListener('keydown', onKey);
+    }, []);
 
     return (
       <React.Fragment>
-        <nav className="nav">
+        <nav className={`nav ${scrolled ? 'scrolled' : ''}`}>
           <div className="nav-inner">
-            <a href={route('/')} className="nav-brand">Horizon<span className="four">4</span>&nbsp;AI</a>
+            <a href={route('/')} className="nav-brand" aria-label="Horizon4 AI home">Horizon<span className="four">4</span>&nbsp;AI</a>
             <div className="nav-center">
               {Object.keys(MEGA).map(k => (
                 <div key={k}
                      className={`nav-item ${open === k ? 'open' : ''}`}
                      onMouseEnter={() => onEnter(k)} onMouseLeave={onLeave}>
-                  <button className="nav-trigger" aria-haspopup="true" aria-expanded={open === k}>
-                    {k}<span className="chev"></span>
+                  <button className="nav-trigger" aria-haspopup="true" aria-expanded={open === k}
+                          onClick={() => toggle(k)}>
+                    {k}<span className="chev" aria-hidden="true"></span>
                   </button>
                   <div className="mega" role="menu">
                     {MEGA[k].map((item, i) => (
                       item.divider
                         ? <div key={`d${i}`} className="mega-divider" role="separator"></div>
-                        : <a key={item.l} href={route(item.h)}>{item.l}</a>
+                        : <a key={item.l} href={route(item.h)} role="menuitem">{item.l}</a>
                     ))}
                   </div>
                 </div>
               ))}
             </div>
             <div className="nav-right">
-              <div className="nav-lang">
-                <button className={lang === 'EN' ? 'on' : ''} onClick={() => setLang('EN')}>EN</button>
-                <span className="div">|</span>
-                <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
+              <div className="nav-lang" role="group" aria-label="Language">
+                <button className={lang === 'EN' ? 'on' : ''} aria-pressed={lang === 'EN'} onClick={() => setLang('EN')}>EN</button>
+                <span className="div" aria-hidden="true">|</span>
+                <button className={lang === 'SQ' ? 'on' : ''} aria-pressed={lang === 'SQ'} onClick={() => setLang('SQ')}>SQ</button>
               </div>
-              <a href={route('/contact')} className="nav-cta">Request Training Program</a>
-              <button className="nav-burger" aria-label="Menu" onClick={() => setDrawer(true)}>
+              <a href={route('/executive-briefing')} className="nav-cta">Book an AI Briefing</a>
+              <button className="nav-burger" aria-label="Open menu" aria-expanded={drawer}
+                      aria-controls="nav-drawer" onClick={() => setDrawer(true)}>
                 <span></span><span></span><span></span>
               </button>
             </div>
           </div>
         </nav>
         <div className={`drawer-overlay ${drawer ? 'open' : ''}`} onClick={() => setDrawer(false)}></div>
-        <aside className={`drawer ${drawer ? 'open' : ''}`} aria-hidden={!drawer}>
+        <aside id="nav-drawer" className={`drawer ${drawer ? 'open' : ''}`} aria-hidden={!drawer} aria-label="Site menu">
           <div className="drawer-head">
             <a href={route('/')} className="nav-brand">Horizon<span className="four">4</span>&nbsp;AI</a>
-            <button className="drawer-close" onClick={() => setDrawer(false)} aria-label="Close">×</button>
+            <button className="drawer-close" onClick={() => setDrawer(false)} aria-label="Close menu">×</button>
           </div>
           <div className="drawer-body">
             {Object.keys(MEGA).map(k => (
@@ -99,15 +114,15 @@ const H4Chrome = (() => {
                 <summary>{k}</summary>
                 <div className="drawer-sub">
                   {MEGA[k].map((item) => (
-                    item.divider ? null : <a key={item.l} href={route(item.h)}>{item.l}</a>
+                    item.divider ? null : <a key={item.l} href={route(item.h)} onClick={() => setDrawer(false)}>{item.l}</a>
                   ))}
                 </div>
               </details>
             ))}
           </div>
           <div className="drawer-foot">
-            <a href={route('/contact')} className="btn btn-primary">Request Training Program</a>
-            <a href={route('/executive-briefing')} className="btn btn-secondary" style={{ marginTop: 10 }}>Book Executive Briefing</a>
+            <a href={route('/executive-briefing')} className="btn btn-primary" onClick={() => setDrawer(false)}>Book an AI Briefing</a>
+            <a href={route('/academy')} className="btn btn-secondary" style={{ marginTop: 10 }} onClick={() => setDrawer(false)}>Explore Academy</a>
           </div>
         </aside>
       </React.Fragment>
