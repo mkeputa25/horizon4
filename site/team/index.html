@@ -201,6 +201,8 @@
       {
         initials: 'MK',
         img: 'mario',
+        linkedin: 'https://www.linkedin.com/in/mariokeputa/',
+        pos: '50% 18%',
         name: 'Mario Keputa',
         role: 'Founder & CEO',
         education: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate',
@@ -215,6 +217,7 @@
       {
         initials: 'YS',
         img: 'yllka',
+        linkedin: 'https://www.linkedin.com/in/yllka-sela/',
         name: 'Yllka Sela',
         role: 'Cofounder · Economic Development',
         education: 'Brandeis University · STEM MBA (Excellence & Leadership Award) · PhD candidate (Austria)',
@@ -229,6 +232,8 @@
       {
         initials: 'ID',
         img: 'indri',
+        linkedin: 'https://www.linkedin.com/in/indridyrmishi/',
+        pos: '50% 18%',
         name: 'Indri Dyrmishi',
         role: 'Cofounder · Education & Innovation',
         education: 'University of Minnesota · Carlson School of Management MBA · PhD candidate (Spain)',
@@ -243,6 +248,7 @@
       {
         initials: 'FS',
         img: 'fregis',
+        linkedin: 'https://www.linkedin.com/in/fregis-sala/',
         name: 'Fregis Sala',
         role: 'Cofounder · AI Engineering',
         education: 'University of Southern California · MS Electrical & Computer Engineering · PhD candidate',
@@ -262,12 +268,13 @@
           <div className="profile-photo">
             <span aria-hidden="true">{p.initials}</span>
             <img src={`/assets/team/${p.img}.jpg`} alt={p.name}
+                 style={p.pos ? { objectPosition: p.pos } : undefined}
                  onError={(e) => { e.currentTarget.remove(); }} />
           </div>
           <div className="profile-name">{p.name}</div>
           <div className="profile-role">{p.role}</div>
           <div className="profile-social">
-            <a href="#" aria-label={`LinkedIn, ${p.name}`}>
+            <a href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`LinkedIn, ${p.name}`}>
               <LinkedInIcon/>
             </a>
           </div>

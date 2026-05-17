@@ -893,6 +893,8 @@
       {
         initials: 'MK',
         img: 'mario',
+        linkedin: 'https://www.linkedin.com/in/mariokeputa/',
+        pos: '50% 18%',
         name: 'Mario Keputa',
         role: 'Founder & CEO',
         cred: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate',
@@ -901,6 +903,7 @@
       {
         initials: 'YS',
         img: 'yllka',
+        linkedin: 'https://www.linkedin.com/in/yllka-sela/',
         name: 'Yllka Sela',
         role: 'Cofounder · Economic Development',
         cred: 'Brandeis University · STEM MBA · PhD candidate (Austria)',
@@ -909,6 +912,8 @@
       {
         initials: 'ID',
         img: 'indri',
+        linkedin: 'https://www.linkedin.com/in/indridyrmishi/',
+        pos: '50% 18%',
         name: 'Indri Dyrmishi',
         role: 'Cofounder · Education & Innovation',
         cred: 'University of Minnesota · Carlson School MBA · PhD candidate (Spain)',
@@ -917,6 +922,7 @@
       {
         initials: 'FS',
         img: 'fregis',
+        linkedin: 'https://www.linkedin.com/in/fregis-sala/',
         name: 'Fregis Sala',
         role: 'Cofounder · AI Engineering',
         cred: 'University of Southern California · MS Electrical & Computer Engineering · PhD candidate',
@@ -948,6 +954,7 @@
                 <div className="lead-photo">
                   <span aria-hidden="true">{p.initials}</span>
                   <img src={`/assets/team/${p.img}.jpg`} alt={p.name}
+                       style={p.pos ? { objectPosition: p.pos } : undefined}
                        onError={(e) => { e.currentTarget.remove(); }} />
                 </div>
                 <h3 className="lead-name">{p.name}</h3>
@@ -955,7 +962,7 @@
                 <div className="lead-cred">{p.cred}</div>
                 <p className="lead-bio">{p.bio}</p>
                 <div className="lead-link">
-                  <a href="#" aria-label={`${p.name} on LinkedIn`}><LinkedInIcon/></a>
+                  <a href={p.linkedin} target="_blank" rel="noopener noreferrer" aria-label={`${p.name} on LinkedIn`}><LinkedInIcon/></a>
                 </div>
               </article>
             ))}
