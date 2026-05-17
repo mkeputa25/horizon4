@@ -109,6 +109,79 @@
     .layer-card h3 { font-size: 22px; margin-bottom: 12px; }
     .layer-card p { font-size: 15px; line-height: 1.6; color: var(--ink-body); flex-grow: 1; }
     .layer-card .lc-link { margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--accent-primary); }
+
+    /* ━━━ Batch 1C — Homepage hero ━━━ */
+    .hero-home {
+      background-color: var(--bg-base);
+      background-image: var(--gradient-mesh);
+      padding: 132px 0 112px;
+    }
+    @media (max-width: 768px) { .hero-home { padding: 96px 0 72px; } }
+
+    /* faint data-grid, faded toward the lower-left */
+    .hero-home::before {
+      content: ''; position: absolute; inset: 0; z-index: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(10,31,68,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10,31,68,0.04) 1px, transparent 1px);
+      background-size: 72px 72px;
+      -webkit-mask-image: radial-gradient(118% 92% at 74% 2%, #000 30%, transparent 80%);
+              mask-image: radial-gradient(118% 92% at 74% 2%, #000 30%, transparent 80%);
+    }
+    /* soft horizon glow behind the visual */
+    .hero-home::after {
+      content: ''; position: absolute; z-index: 0; pointer-events: none;
+      left: 62%; bottom: -34%; width: 92%; height: 88%;
+      transform: translateX(-50%);
+      background: radial-gradient(ellipse 50% 50% at 50% 50%,
+                  rgba(0,117,201,0.12), rgba(13,155,132,0.05) 46%, transparent 72%);
+      animation: heroGlow 16s ease-in-out infinite alternate;
+    }
+    @keyframes heroGlow {
+      from { opacity: 0.62; transform: translateX(-50%) translateY(10px); }
+      to   { opacity: 1;    transform: translateX(-50%) translateY(-10px); }
+    }
+
+    .hero-grid h1 {
+      font-size: clamp(44px, 5.6vw, 84px);
+      line-height: 1.04; letter-spacing: -0.025em;
+    }
+    .hero-copy, .hero-visual { position: relative; }
+
+    /* entrance reveal — runs once on load */
+    .hero-reveal {
+      opacity: 0; transform: translateY(20px);
+      animation: heroReveal 0.7s var(--ease-out) forwards;
+    }
+    .hero-reveal.d1 { animation-delay: 0.05s; }
+    .hero-reveal.d2 { animation-delay: 0.13s; }
+    .hero-reveal.d3 { animation-delay: 0.21s; }
+    .hero-reveal.d4 { animation-delay: 0.29s; }
+    @keyframes heroReveal { to { opacity: 1; transform: none; } }
+
+    /* scroll indicator */
+    .hero-scroll {
+      position: absolute; left: 50%; bottom: 22px;
+      transform: translateX(-50%); z-index: 2; pointer-events: none;
+    }
+    .hero-scroll-line {
+      display: block; width: 1px; height: 46px;
+      background: var(--border-strong); position: relative; overflow: hidden;
+    }
+    .hero-scroll-line::after {
+      content: ''; position: absolute; left: 0; top: -55%;
+      width: 100%; height: 55%;
+      background: linear-gradient(var(--accent-primary), transparent);
+      animation: heroScroll 2.1s var(--ease) infinite;
+    }
+    @keyframes heroScroll { to { top: 100%; } }
+    @media (max-width: 768px) { .hero-scroll { display: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-reveal { opacity: 1; transform: none; animation: none; }
+      .hero-home::after { animation: none; }
+      .hero-scroll-line::after { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -404,32 +477,28 @@
       }, []);
 
       return (
-        <section className="hero" data-screen-label="Hero" ref={heroRef}>
+        <section className="hero hero-home" data-screen-label="Hero" ref={heroRef}>
           <canvas ref={ringsRef} className="hero-rings" aria-hidden="true"></canvas>
           <div className="container hero-grid">
-            <div>
-              <h1 className="h1">AI skilling at scale for Albania's institutions and workforce.</h1>
-              <p className="body-xl hero-lead">
-                Horizon4 trains public servants, teachers, and working teams to
-                use AI legally, responsibly, and productively, then helps leaders
-                design the strategy, workflows, and agentic systems that make
-                adoption real.
+            <div className="hero-copy">
+              <h1 className="h1 hero-reveal d1">Leading Albania into the AI Era.</h1>
+              <p className="body-xl hero-lead hero-reveal d2">
+                We help institutions, businesses, and leaders build the skills,
+                systems, and strategies to adopt AI with confidence and impact.
               </p>
-              <div className="hero-actions">
-                <a href="/executive-briefing" className="btn btn-primary" onClick={() => setDrawer(false)}>Book an AI Briefing</a>
-                <a href="/academy" className="btn btn-secondary">Explore Academy</a>
+              <div className="hero-actions hero-reveal d3">
+                <a href="/executive-briefing" className="btn btn-primary">Book an AI Briefing</a>
+                <a href="#solutions" className="btn btn-secondary">Explore Solutions</a>
               </div>
-              <p className="hero-tertiary">
-                For leaders: <a href="/executive-briefing">Book Executive Briefing</a>
-              </p>
-              <p className="hero-proof">
-                Public administration · Education · Business teams · Donor programs · Agentic workflows
-              </p>
+              <p className="hero-proof hero-reveal d4">AI Strategy · Skilling · Agents · Governance</p>
             </div>
 
-            <div>
+            <div className="hero-visual hero-reveal d3">
               <EnergyEngine sphereRef={sphereRef}/>
             </div>
+          </div>
+          <div className="hero-scroll" aria-hidden="true">
+            <span className="hero-scroll-line"></span>
           </div>
         </section>
       );
@@ -783,7 +852,7 @@
     ];
 
     const FlagshipPrograms = () => (
-      <section className="horizons" data-screen-label="Flagship programs">
+      <section id="solutions" className="horizons" data-screen-label="Flagship programs">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Flagship programs</div>
