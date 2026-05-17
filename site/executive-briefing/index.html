@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Executive AI Briefing for Institutional Leaders, Horizon4 AI</title>
-  <meta name="description" content="A private AI briefing with Horizon4 leadership for ministers, mayors, rectors, CEOs, and boards preparing AI training and implementation decisions.">
+  <title>Book an AI Briefing · Horizon4 AI</title>
+  <meta name="description" content="Book a focused AI briefing to clarify your organization's AI readiness, training needs, workflow opportunities, and safe-use priorities.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <link rel="stylesheet" href="/styles/pages.css">
@@ -42,16 +42,16 @@
     const Hero = () => (
       <section className="hero hero-compact" data-screen-label="Hero">
         <div className="container">
-          <h1 className="h1">One executive conversation before a larger AI capability program.</h1>
+          <div className="eyebrow">Start here</div>
+          <h1 className="h1">Leadership clarity before your institution invests in AI.</h1>
           <p className="body-xl hero-lead">
-            A private briefing with Horizon4 leadership for ministers,
-            mayors, rectors, deans, CEOs, boards, and senior teams
-            preparing AI training, strategy, governance, or implementation
-            decisions.
+            A focused conversation before your institution invests in AI
+            training, toolkits, agents, or governance. Clarify where AI can
+            create value, what your team needs, and what should happen next.
           </p>
           <div className="hero-actions">
-            <a href={route('/contact')} className="btn btn-primary">Book Executive Briefing</a>
-            <a href={route('/contact')} className="btn btn-secondary">Request Training Program</a>
+            <a href="#form" className="btn btn-primary">Book an AI Briefing</a>
+            <a href={route('/strategyai')} className="btn btn-secondary">Explore Strategy &amp; Planning</a>
           </div>
         </div>
       </section>
@@ -62,18 +62,19 @@
       <section style={{ background: 'var(--bg-surface)' }} data-screen-label="What it delivers">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">What it delivers</div>
-            <h2 className="h2">Leadership clarity before larger commitment.</h2>
+            <div className="eyebrow">What you leave with</div>
+            <h2 className="h2">A clearer view of your AI readiness and next steps.</h2>
             <p className="body-xl">
               Most institutional AI decisions get made under pressure with
-              incomplete information. This briefing exists to fix that.
+              incomplete information. The briefing exists to give leadership
+              clarity before committing budget or people.
             </p>
           </div>
           <div className="adv-why-grid">
             {[
-              { ic: 'clipChk',  eb: 'Tailored content',  h: 'AI opportunity and risk for your institution.', d: 'Sector-specific examples, regulatory landscape, and governance considerations tailored to your institutional context.' },
-              { ic: 'docMemo',  eb: 'Written memo',      h: 'A decision memo your board can circulate.',      d: 'Bilingual one-page summary with named recommendation, delivered within 5 business days of the briefing.' },
-              { ic: 'arrowFwd', eb: 'Next step clarity', h: 'A recommended path forward.',                    d: "Whether your next step is internal alignment, audit, training, or no immediate action, you'll leave the session knowing." },
+              { ic: 'clipChk',  eb: 'Readiness',     h: 'A clearer understanding of your AI readiness.',   d: 'A sector-aware view of where your institution stands today, framed for leadership rather than technical teams.' },
+              { ic: 'docMemo',  eb: 'Opportunities', h: 'Where AI can create value for your institution.',  d: 'A grounded sense of the opportunities worth exploring and the priorities worth deferring, written for board circulation.' },
+              { ic: 'arrowFwd', eb: 'Next steps',    h: 'A clear recommended next step.',                   d: "Whether the next step is training, toolkits, agents, governance, or strategy and planning, you will leave knowing what to weigh." },
             ].map(c => (
               <div key={c.h} className="adv-why">
                 <div className="icon"><Icon d={ICONS[c.ic]}/></div>
@@ -92,20 +93,20 @@
       <section style={{ background: 'var(--bg-base)' }} data-screen-label="When to book">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">When to book a briefing</div>
-            <h2 className="h2">The right moment is before the commitment.</h2>
+            <div className="eyebrow">Who should book</div>
+            <h2 className="h2">The briefing fits leaders weighing an AI decision.</h2>
             <p className="body-xl">
-              A 90-minute briefing is most valuable just ahead of a
-              decision that will be visible, funded, or hard to reverse.
+              A briefing is most useful just ahead of a decision about what
+              to train, equip, automate, or govern.
             </p>
           </div>
           <div className="dim-grid">
             {[
-              ['01', 'Before training public servants',  'Ahead of an AI capability program for a ministry, agency, or municipal workforce.'],
-              ['02', 'Before launching teacher AI programs', 'Ahead of school or university AI training, with academic integrity in view.'],
-              ['03', 'Before buying AI tools',            'Ahead of procurement, so governance and oversight evidence is in place first.'],
-              ['04', 'Before donor program design',       'Ahead of scoping a donor-funded or multi-cohort capability program.'],
-              ['05', 'Before agentic AI implementation',  'Ahead of putting human-approved AI agents into real institutional workflows.'],
+              ['01', 'Before training your team',        'When you are weighing an AI capability program for staff and want to know what to prioritize.'],
+              ['02', 'Before adopting toolkits',         'When you are considering AI templates and toolkits and want to choose where they fit first.'],
+              ['03', 'Before buying or building AI',     'When procurement or implementation is ahead and you want governance and oversight clear first.'],
+              ['04', 'Before automating workflows',      'When you are exploring AI agents in real workflows and want to scope this with human oversight in view.'],
+              ['05', 'Before setting AI policy',         'When you need a safe-use and governance position before AI activity scales across the institution.'],
             ].map(([n, h, d]) => (
               <div key={n} className="dim-card">
                 <div className="num">{n}</div>
@@ -237,18 +238,18 @@
       <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Briefing topics">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Briefing topics</div>
-            <h2 className="h2">What we cover.</h2>
+            <div className="eyebrow">What we discuss</div>
+            <h2 className="h2">A focused conversation about your AI next step.</h2>
             <p className="body-xl">
-              Topics adapted to your institutional context. These are the
-              common themes. Actual content is tailored.
+              The conversation is adapted to your institutional context.
+              These are the common themes we work through together.
             </p>
           </div>
           <div className="topics-grid">
             {[
-              ['01', 'The current AI landscape, simplified.',          "What's real, what's hype, what's coming. No technical jargon. Sector-specific framing."],
-              ['02', 'Governance and regulatory landscape.',           'EU AI Act phasing, ISO 42001, OECD principles, and what they mean for your institution practically.'],
-              ['03', 'Decision points specific to your institution.',  'Where AI helps, where AI is risky, what to do first, and what to delay.'],
+              ['01', 'Where AI can create value for you.',             "What is realistic for your institution, framed without technical jargon and grounded in your sector."],
+              ['02', 'What your team needs to be ready.',              'The skills, toolkits, and support that would help your people use AI well, and where to start.'],
+              ['03', 'What should happen next, and what to defer.',    'Where AI helps, where AI is risky, what to prioritize, and what governance to put in place first.'],
             ].map(([n, h, d]) => (
               <div key={n} className="topic-card">
                 <div className="eyebrow">{n}</div>
@@ -359,11 +360,11 @@
           <div className="request-grid">
             <div className="request-left">
               <div className="section-head">
-                <div className="eyebrow">Request briefing</div>
+                <div className="eyebrow">Book an AI briefing</div>
                 <h2 className="h2">Tell us about your institution.</h2>
                 <p className="body-xl">
-                  We'll respond within 2 business days with available dates
-                  and a brief pre-session questionnaire.
+                  Share a little context and we'll respond with available
+                  dates and a brief pre-session questionnaire.
                 </p>
               </div>
               <div className="request-divider"></div>
@@ -410,19 +411,51 @@
       </section>
     );
 
+    /* ─── HOW THE BRIEFING CONNECTS ────────── */
+    const Connects = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Next possible steps">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Next possible steps</div>
+            <h2 className="h2">How the briefing connects to the Four Horizons.</h2>
+            <p className="body-xl">
+              The briefing is the front door. It helps you choose which of
+              the Four Horizons to act on first, with no obligation to
+              continue.
+            </p>
+          </div>
+          <div className="dim-grid">
+            {[
+              ['Academy &amp; Training',   'If your team needs structured AI capability building.', '/academy'],
+              ['Templates &amp; Toolkits', 'If your team needs practical templates and toolkits to apply AI.', '/toolkits'],
+              ['Agents &amp; Workflows',   'If you are ready to explore AI agents in real workflows.', '/agentic-ai'],
+              ['Governance &amp; Safe Use','If you need a safe-use position and oversight before AI scales.', '/audit'],
+              ['Strategy &amp; Planning',  'If you want to plan the sequence before committing to any one step.', '/strategyai'],
+            ].map(([h, d, r]) => (
+              <div key={h} className="dim-card">
+                <h3 dangerouslySetInnerHTML={{ __html: h }}/>
+                <p>{d}</p>
+                <a href={route(r)} className="eng-cta">Learn more →</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
     /* ─── FINAL CTA (dark) ─────────────────── */
     const CTA = () => (
       <section className="cta" data-screen-label="Final CTA">
         <div className="cta-inner">
           <div className="eyebrow on-dark">Begin</div>
-          <h2 className="h2">One conversation. Real clarity.</h2>
+          <h2 className="h2">One conversation. A clearer next step.</h2>
           <p className="body-xl">
-            Most briefings are scheduled within two weeks of inquiry.
-            Written memo follows within 5 business days.
+            Book a focused briefing to clarify where AI can create value,
+            what your team needs, and what should happen next.
           </p>
           <div className="cta-row">
-            <a href="#form" className="btn btn-primary on-dark">Request Briefing</a>
-            <a href={route('/audit')} className="btn-link on-dark">or request audit scope →</a>
+            <a href="#form" className="btn btn-primary on-dark">Book an AI Briefing</a>
+            <a href={route('/contact')} className="btn-link on-dark">or get in touch →</a>
           </div>
           <div className="cta-loc">Tirana, Albania · Available regionally and remotely</div>
         </div>
@@ -439,6 +472,7 @@
         <Topics/>
         <Memo/>
         <FAQ/>
+        <Connects/>
         <RequestForm/>
         <CTA/>
         <Footer/>
