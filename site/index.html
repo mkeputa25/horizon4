@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Horizon4 AI — Governed AI capability for Albanian institutions</title>
-  <meta name="description" content="Horizon4 AI is Albania's responsible AI capability partner. We help ministries, universities, and serious teams move from AI experimentation to embedded, governed practice.">
+  <title>Horizon4 AI — AI Skilling at Scale for Albanian Institutions</title>
+  <meta name="description" content="AI training, strategy, governance, and implementation for public administration, teachers, businesses, donor programs, and agentic workflows in Albania.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <style>
@@ -46,6 +46,69 @@
     @media (max-width: 768px) {
       .h4-viz { max-width: 460px; }
     }
+
+    /* ━━━ Skilling-at-scale homepage sections ━━━ */
+    .hero-tertiary { margin-top: 20px; font-size: 15px; color: var(--ink-muted); }
+    .hero-proof {
+      margin-top: 28px; font-size: 12px; font-weight: 600;
+      letter-spacing: 0.06em; color: var(--ink-muted); text-transform: uppercase;
+    }
+
+    .proof-chips {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      max-width: 920px; margin: 24px auto 0;
+    }
+    .proof-chip {
+      font-size: 13px; font-weight: 500; color: var(--ink-body);
+      background: var(--bg-surface); border: 1px solid var(--border-hairline);
+      border-radius: 999px; padding: 8px 16px;
+    }
+
+    .prog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 1024px) { .prog-grid { grid-template-columns: 1fr; } }
+    .prog-card.featured {
+      border-color: var(--accent-primary);
+      box-shadow: 0 0 0 1px var(--accent-primary) inset, var(--shadow-card);
+    }
+    .prog-card .featured-tag {
+      display: inline-block; font-size: 11px; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #fff;
+      background: var(--accent-primary); border-radius: 4px;
+      padding: 4px 10px; margin-bottom: 16px;
+    }
+
+    .op-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .op-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .op-grid { grid-template-columns: 1fr; } }
+    .op-step {
+      background: var(--bg-surface); border: 1px solid var(--border-hairline);
+      border-radius: var(--radius); padding: 28px;
+    }
+    .op-step .op-num {
+      font-family: var(--font-mono); font-size: 13px; color: var(--accent-primary);
+      letter-spacing: 0.06em; margin-bottom: 12px;
+    }
+    .op-step h3 { font-size: 22px; margin-bottom: 8px; }
+    .op-step .op-desc { font-size: 15px; line-height: 1.55; color: var(--ink-body); margin-bottom: 16px; }
+    .op-step .op-artifact {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--accent-secondary);
+      border-top: 1px solid var(--border-hairline); padding-top: 12px;
+    }
+
+    .layer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 900px) { .layer-grid { grid-template-columns: 1fr; } }
+    .layer-card {
+      background: var(--bg-surface); border: 1px solid var(--border-hairline);
+      border-radius: var(--radius); padding: 32px; display: flex; flex-direction: column;
+    }
+    .layer-card .lc-eyebrow {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--accent-primary); margin-bottom: 12px;
+    }
+    .layer-card h3 { font-size: 22px; margin-bottom: 12px; }
+    .layer-card p { font-size: 15px; line-height: 1.6; color: var(--ink-body); flex-grow: 1; }
+    .layer-card .lc-link { margin-top: 16px; font-size: 14px; font-weight: 600; color: var(--accent-primary); }
   </style>
 </head>
 <body>
@@ -100,32 +163,35 @@
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const MEGA = {
       Academy: [
-        { l: 'Overview & Pathways', h: '/academy' },
-        { l: 'Course Catalog',      h: '/academy/catalog' },
-        { l: 'Private Team Training', h: '/academy/private' },
+        { l: 'Overview',                 h: '/academy' },
+        { l: 'Public Administration AI', h: '/academy#public-administration' },
+        { l: 'Teachers & Education',     h: '/academy#teachers' },
+        { l: 'Business Teams',           h: '/academy#business-teams' },
+        { divider: true },
+        { l: 'Course Catalog',           h: '/academy/catalog' },
+        { l: 'Private Training',         h: '/academy/private' },
       ],
       Advisory: [
         { l: 'AI Readiness Audit',     h: '/audit' },
         { l: 'Executive Briefing',     h: '/executive-briefing' },
+        { l: 'StrategyAI',             h: '/strategyai' },
         { l: 'Donor / EU Programs',    h: '/donor-programs' },
       ],
       Solutions: [
         { l: 'GovAI',       h: '/govai' },
         { l: 'EduAI',       h: '/eduai' },
         { l: 'BusinessAI',  h: '/businessai' },
-        { l: 'StrategyAI',  h: '/strategyai' },
-        { divider: true },
         { l: 'Agentic AI',  h: '/agentic-ai' },
       ],
       Research: [
         { l: 'Publications', h: '/research/publications' },
-        { l: 'Insights',     h: '/research/insights' },
         { l: 'Frameworks',   h: '/research/frameworks' },
+        { l: 'Insights',     h: '/research/insights' },
       ],
       About: [
-        { l: 'Team',     h: '/team' },
-        { l: 'Mission',  h: '/about' },
-        { l: 'Contact',  h: '/contact' },
+        { l: 'About Horizon4', h: '/about' },
+        { l: 'Team',           h: '/team' },
+        { l: 'Contact',        h: '/contact' },
       ],
     };
 
@@ -183,7 +249,7 @@
                   <span className="div">|</span>
                   <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
                 </div>
-                <a href="/executive-briefing" className="nav-cta">Request Executive Briefing</a>
+                <a href="/contact" className="nav-cta">Request Training Program</a>
                 <button className="nav-burger" aria-label="Menu" onClick={() => setDrawer(true)}>
                   <span></span><span></span><span></span>
                 </button>
@@ -211,8 +277,9 @@
               ))}
             </div>
             <div className="drawer-foot">
-              <a href="/executive-briefing" className="btn btn-primary">Request Executive Briefing</a>
-              <div className="nav-lang" style={{ justifyContent: 'center' }}>
+              <a href="/contact" className="btn btn-primary">Request Training Program</a>
+              <a href="/executive-briefing" className="btn btn-secondary" style={{ marginTop: 10 }}>Book Executive Briefing</a>
+              <div className="nav-lang" style={{ justifyContent: 'center', marginTop: 12 }}>
                 <button className={lang === 'EN' ? 'on' : ''} onClick={() => setLang('EN')}>EN</button>
                 <span className="div">|</span>
                 <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
@@ -329,15 +396,23 @@
           <canvas ref={ringsRef} className="hero-rings" aria-hidden="true"></canvas>
           <div className="container hero-grid">
             <div>
-              <h1 className="h1">The future belongs to those who use AI well.</h1>
+              <h1 className="h1">AI skilling at scale for Albania's institutions and workforce.</h1>
               <p className="body-xl hero-lead">
-                Practical training, governance, and implementation across
-                government, education, business, and strategy.
+                Horizon4 trains public servants, teachers, and working teams to
+                use AI legally, responsibly, and productively, then helps leaders
+                design the strategy, workflows, and agentic systems that make
+                adoption real.
               </p>
               <div className="hero-actions">
-                <a href="/executive-briefing" className="btn btn-primary">Request Executive Briefing</a>
-                <a href="/solutions" className="btn btn-secondary">Explore Capability Pathways</a>
+                <a href="/contact" className="btn btn-primary">Request Training Program</a>
+                <a href="/academy" className="btn btn-secondary">Explore Academy</a>
               </div>
+              <p className="hero-tertiary">
+                For leaders: <a href="/executive-briefing">Book Executive Briefing</a>
+              </p>
+              <p className="hero-proof">
+                Public administration · Education · Business teams · Donor programs · Agentic workflows
+              </p>
             </div>
 
             <div>
@@ -646,68 +721,76 @@
     const Positioning = () => (
       <section className="positioning" data-screen-label="Positioning">
         <div className="positioning-inner">
-          <div className="eyebrow">What we do</div>
+          <div className="eyebrow">What Horizon4 does</div>
           <h2 className="h2" style={{ fontSize: 'var(--type-h2)', fontWeight: 700, letterSpacing: '-0.015em', lineHeight: 1.12, marginBottom: 24, textWrap: 'balance' }}>
-            We help organizations use AI without losing control.
+            We build institutional AI capability, not AI hype.
           </h2>
-          <p className="body-xl" style={{ maxWidth: '60ch', margin: '0 auto 96px', textAlign: 'center' }}>
-            Training for your people. Governance for your decisions.
-            Implementation that stays inside your organization.
+          <p className="body-xl" style={{ maxWidth: '62ch', margin: '0 auto 8px', textAlign: 'center' }}>
+            Horizon4 trains public servants, teachers, and working teams at the
+            level where AI adoption actually succeeds, then equips leaders with
+            the strategy and governance to scale it.
           </p>
-          <div className="pos-strip">
-            <div className="eyebrow">Working with</div>
-            <div className="items">
-              <span>Ministries</span><span className="dot">·</span>
-              <span>Universities</span><span className="dot">·</span>
-              <span>Schools</span><span className="dot">·</span>
-              <span>Municipalities</span><span className="dot">·</span>
-              <span>Public agencies</span><span className="dot">·</span>
-              <span>Businesses</span><span className="dot">·</span>
-              <span>Donor programs</span>
-            </div>
-          </div>
-          <div className="pos-strip">
-            <div className="eyebrow">Built on</div>
-            <div className="items">
-              <span>EU AI Act</span><span className="dot">·</span>
-              <span>ISO 42001</span><span className="dot">·</span>
-              <span>OECD AI Principles</span><span className="dot">·</span>
-              <span>NIST AI RMF</span>
-            </div>
+          <div className="proof-chips">
+            {['Public servants','Teachers','Municipalities','Ministries','Agencies','Schools','Universities','SMEs','Donor programs','Bilingual delivery','EU AI Act readiness','Human review','Written artifacts'].map(c => (
+              <span key={c} className="proof-chip">{c}</span>
+            ))}
           </div>
         </div>
       </section>
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SECTION 3 — FOUR HORIZONS
+       SECTION 3 — FLAGSHIP SKILLING PROGRAMS
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    const HORIZONS = [
-      { label: '01 · GOVERNMENT', name: 'GovAI',      desc: 'Readiness, governance, and procurement capability for ministries and municipalities.', accent: 'var(--gov-accent)',   href: '/govai' },
-      { label: '02 · EDUCATION',  name: 'EduAI',      desc: 'Faculty training, academic integrity, and university AI governance.',                  accent: 'var(--edu-accent)',   href: '/eduai' },
-      { label: '03 · BUSINESS',   name: 'BusinessAI', desc: 'Productivity, prompt systems, and workflow training for SMEs and services.',           accent: 'var(--biz-accent)',   href: '/businessai' },
-      { label: '04 · STRATEGY',   name: 'StrategyAI', desc: 'Roadmaps, governance operating models, and donor program design.',                     accent: 'var(--strat-accent)', href: '/strategyai' },
+    const FLAGSHIP = [
+      {
+        featured: true,
+        eyebrow: 'Skilling at scale · Public administration',
+        accent: 'var(--gov-accent)',
+        name: 'Public Administration AI Skills',
+        desc: 'For ministries, agencies, municipalities, and public servants who need AI to improve service delivery without creating legal, procurement, or accountability risk.',
+        cta: 'Request Public Administration Training',
+        href: '/govai',
+      },
+      {
+        eyebrow: 'Skilling at scale · Education',
+        accent: 'var(--edu-accent)',
+        name: 'Teacher & Education AI Skills',
+        desc: 'For teachers, professors, schools, and education leaders who need to use AI, teach AI, redesign assessment, and guide students responsibly.',
+        cta: 'Request Teacher AI Training',
+        href: '/eduai',
+      },
+      {
+        eyebrow: 'Skilling at scale · Teams',
+        accent: 'var(--biz-accent)',
+        name: 'Business & Organization AI Productivity',
+        desc: 'For SMEs, professional services, NGOs, and operating teams that want employees using AI for real work: writing, analysis, meetings, sales, reporting, and client service.',
+        cta: 'Request Business Team Training',
+        href: '/businessai',
+      },
     ];
 
-    const Horizons = () => (
-      <section className="horizons" data-screen-label="Four Horizons">
+    const FlagshipPrograms = () => (
+      <section className="horizons" data-screen-label="Flagship programs">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Four Horizons</div>
-            <h2 className="h2">One framework. Four pathways.</h2>
+            <div className="eyebrow">Flagship programs</div>
+            <h2 className="h2">Three ways Horizon4 builds AI capability at scale.</h2>
             <p className="body-xl">
-              Each pathway is shaped to the institution it serves — governance-first,
-              bilingual, EU-aligned. The discipline underneath is the same.
+              Most AI adoption fails because people are left to experiment alone.
+              Horizon4 trains role-specific groups with shared rules, shared
+              workflows, and practical artifacts they keep using.
             </p>
           </div>
-          <div className="horizon-grid">
-            {HORIZONS.map(h => (
-              <a key={h.name} href={h.href} className="horizon-card">
-                <span className="accent" style={{ background: h.accent }}></span>
-                <div className="label">{h.label}</div>
-                <h3 className="h3">{h.name}</h3>
-                <p className="desc">{h.desc}</p>
-                <span className="more">Explore the pathway →</span>
+          <div className="prog-grid">
+            {FLAGSHIP.map(p => (
+              <a key={p.name} href={p.href} className={`horizon-card prog-card ${p.featured ? 'featured' : ''}`}>
+                <span className="accent" style={{ background: p.accent }}></span>
+                {p.featured && <span className="featured-tag">Primary focus</span>}
+                <div className="label">{p.eyebrow}</div>
+                <h3 className="h3">{p.name}</h3>
+                <p className="desc">{p.desc}</p>
+                <span className="more">{p.cta} →</span>
               </a>
             ))}
           </div>
@@ -716,32 +799,86 @@
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SECTION 4 — HOW WE WORK
+       SECTION 5 — ENABLING LAYERS
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    const STEPS = [
-      ['01', 'Diagnose', 'Map decisions, data, capability, and accountability surfaces. Identify where AI helps and where it must not be allowed.'],
-      ['02', 'Design',   'Define use-cases, governance, procurement guardrails, training plan, and a 90-day institutional roadmap.'],
-      ['03', 'Train',    'Role-specific cohorts and workshops with real artefacts. Bilingual delivery in Albanian and English.'],
-      ['04', 'Embed',    'Pilot, measure, and steward. Human-approved workflows, monitoring routines, and policy refresh cycles.'],
+    const LAYERS = [
+      {
+        eyebrow: 'Strategy · Implementation',
+        name: 'Strategy & Implementation',
+        desc: 'For leadership teams that need roadmaps, governance operating models, program design, and a training sequence with owners and timelines. AI ambition turned into an implementation plan.',
+        link: 'Explore StrategyAI', href: '/strategyai',
+      },
+      {
+        eyebrow: 'Donor programs · EU alignment',
+        name: 'Donor & EU Programs',
+        desc: 'Multi-cohort AI skilling programs for EU-aligned and donor-funded work, combining public administration and teacher training, governance, M&E, and train-the-trainer infrastructure.',
+        link: 'Explore Donor Programs', href: '/donor-programs',
+      },
+      {
+        eyebrow: 'Capability layer · Agentic AI',
+        name: 'Agentic AI',
+        desc: 'Agentic AI is not a separate audience vertical. It is a capability layer we design and train across public administration, education, business, and strategy, with human approval and audit trails built in.',
+        link: 'Explore Agentic AI', href: '/agentic-ai',
+      },
     ];
 
-    const HowWeWork = () => (
-      <section className="method" data-screen-label="How we work">
+    const EnablingLayers = () => (
+      <section className="horizons" data-screen-label="Enabling layers">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Methodology</div>
-            <h2 className="h2">Diagnose. Design. Train. Embed.</h2>
+            <div className="eyebrow">Enabling layers</div>
+            <h2 className="h2">Training is the core. Strategy, governance, and agentic AI make it stick.</h2>
             <p className="body-xl">
-              One discipline across courses, audits, sector solutions, and
-              human-approved AI implementation.
+              Strategy, audits, donor programs, and agentic AI are not separate
+              random services. They are the enabling layers around the core
+              skilling mission.
             </p>
           </div>
-          <div className="method-grid">
-            {STEPS.map(([n, t, d]) => (
-              <div key={n} className="method-col">
-                <div className="num">{n}</div>
-                <h3 className="h4">{t}</h3>
-                <p className="body">{d}</p>
+          <div className="layer-grid">
+            {LAYERS.map(l => (
+              <div key={l.name} className="layer-card">
+                <div className="lc-eyebrow">{l.eyebrow}</div>
+                <h3>{l.name}</h3>
+                <p>{l.desc}</p>
+                <a className="lc-link" href={l.href}>{l.link} →</a>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 4 — SKILLING-AT-SCALE OPERATING MODEL
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const OP_STEPS = [
+      ['01', 'Assess',  'Map current AI use, skills, risks, and priority workflows.', 'Readiness scorecard'],
+      ['02', 'Train',   'Run role-specific cohorts for public servants, teachers, employees, leaders, or champions.', 'Cohort workbook'],
+      ['03', 'Equip',   'Give teams reusable prompts, policies, classroom kits, or workflow playbooks.', 'Toolkits'],
+      ['04', 'Embed',   'Apply AI to real documents, services, lessons, reports, meetings, and operational workflows.', 'Workflow map'],
+      ['05', 'Govern',  'Add human review, disclosure, privacy, and institutional rules.', 'Acceptable-use policy'],
+      ['06', 'Scale',   'Build champions, trainers, dashboards, and repeatable program infrastructure.', 'Scale plan'],
+    ];
+
+    const OperatingModel = () => (
+      <section className="method" data-screen-label="Operating model">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">How we scale capability</div>
+            <h2 className="h2">Assess. Train. Equip. Embed. Govern. Scale.</h2>
+            <p className="body-xl">
+              One operating model for skilling at scale, from a single workshop
+              to a national capability program. Every step produces an artifact
+              the institution keeps.
+            </p>
+          </div>
+          <div className="op-grid">
+            {OP_STEPS.map(([n, t, d, a]) => (
+              <div key={n} className="op-step">
+                <div className="op-num">{n}</div>
+                <h3>{t}</h3>
+                <p className="op-desc">{d}</p>
+                <div className="op-artifact">Artifact · {a}</div>
               </div>
             ))}
           </div>
@@ -888,14 +1025,15 @@
       <section className="cta" data-screen-label="CTA">
         <div className="cta-inner">
           <div className="eyebrow on-dark">Start here</div>
-          <h2 className="h2">One conversation. Bilingual. On the record.</h2>
+          <h2 className="h2">Tell us who you need to train.</h2>
           <p className="body-xl">
-            A 60-minute Executive Briefing with Horizon4 leadership. Written
-            summary you can circulate internally.
+            Public servants, teachers, employees, leaders, or internal champions.
+            Horizon4 will recommend the right program format, governance layer,
+            and next step.
           </p>
           <div className="cta-row">
-            <a href="/executive-briefing" className="btn btn-primary on-dark">Request Executive Briefing</a>
-            <a href="/audit" className="btn-link on-dark">or request an audit scope →</a>
+            <a href="/contact" className="btn btn-primary on-dark">Request Training Program</a>
+            <a href="/executive-briefing" className="btn-link on-dark">or book an executive briefing →</a>
           </div>
           <div className="cta-loc">Tirana, Albania · Europe-ready · Pre-launch September 2026</div>
         </div>
@@ -912,8 +1050,9 @@
             <div className="foot-brand foot-col">
               <div className="wm">Horizon<span className="four">4</span>&nbsp;AI</div>
               <p className="tag">
-                Albania's responsible AI capability partner. We help institutions
-                move from AI experimentation to embedded, governed practice.
+                AI skilling at scale for Albania's institutions. We train public
+                servants, teachers, and working teams to use AI responsibly,
+                productively, and inside institutional rules.
               </p>
               <div className="meta">
                 <span>Tirana, Albania · Europe-ready</span>
@@ -924,10 +1063,11 @@
 
             <div className="foot-col">
               <div className="head">Academy</div>
-              <a href="/academy">Overview & Pathways</a>
+              <a href="/academy">Overview</a>
+              <a href="/academy#public-administration">Public Administration AI</a>
+              <a href="/academy#teachers">Teachers & Education</a>
               <a href="/academy/catalog">Course Catalog</a>
               <a href="/academy/private">Private Training</a>
-              <a href="/academy/certificates">Certificates</a>
             </div>
 
             <div className="foot-col">
@@ -951,7 +1091,7 @@
               <a href="/research/publications">Publications</a>
               <a href="/research/insights">Insights</a>
               <a href="/team">Team</a>
-              <a href="/about">Mission</a>
+              <a href="/about">About</a>
               <a href="/contact">Contact</a>
             </div>
           </div>
@@ -973,8 +1113,9 @@
         <Nav/>
         <Hero/>
         <Positioning/>
-        <Horizons/>
-        <HowWeWork/>
+        <FlagshipPrograms/>
+        <OperatingModel/>
+        <EnablingLayers/>
         <Leadership/>
         <Publications/>
         <CTA/>

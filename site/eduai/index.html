@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>EduAI · Horizon4 AI — AI for serious educational institutions</title>
-  <meta name="description" content="Faculty readiness, academic integrity, and university governance for the AI era. Built for institutions preparing graduates and protecting credentials.">
+  <title>AI Training for Teachers and Education Institutions — Horizon4 AI</title>
+  <meta name="description" content="AI training for teachers, professors, schools, universities, classroom practice, assessment redesign, and academic integrity.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <style>
@@ -283,6 +283,11 @@
     .band.surface { background: var(--bg-surface); }
     .band.base    { background: var(--bg-base); }
     @media (max-width: 768px) { .band { padding: var(--section-y-mobile) 0; } }
+
+    /* Six-step method grid (Approach) */
+    .method-grid.steps-6 { grid-template-columns: repeat(3, 1fr); gap: 32px 40px; }
+    @media (max-width: 1024px) { .method-grid.steps-6 { grid-template-columns: repeat(2, 1fr); gap: 40px; } }
+    @media (max-width: 640px)  { .method-grid.steps-6 { grid-template-columns: 1fr; gap: 32px; } }
   </style>
 </head>
 <body>
@@ -490,64 +495,75 @@
     const Hero = () => (
       <section className="gov-hero" data-screen-label="Hero">
         <div className="container">
-          <div className="eyebrow">Horizon 02 · EduAI</div>
-          <h1 className="h1">AI for serious educational institutions.</h1>
+          <div className="eyebrow">Horizon 02 · Education</div>
+          <h1 className="h1">AI training for teachers and education institutions across Albania.</h1>
           <p className="body-xl hero-lead">
-            Faculty readiness, academic integrity, and university governance
-            for the AI era. Built for institutions preparing graduates and
-            protecting credentials.
+            Horizon4 helps teachers, professors, schools, universities, and
+            education leaders use AI responsibly, teach AI to students,
+            redesign assessment, and build classroom practices that protect
+            learning.
           </p>
           <div className="hero-actions">
-            <a href="/audit" className="btn btn-primary">Request Audit Scope</a>
-            <a href="/executive-briefing" className="btn btn-secondary">Request Executive Briefing</a>
+            <a href="/contact" className="btn btn-primary">Request Teacher AI Training</a>
+            <a href="/academy" className="btn btn-secondary">Explore Education Programs</a>
           </div>
         </div>
       </section>
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SECTION 2 — WHY GOVAI
+       SECTION 2 — WHY EDUAI
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const WhyGov = () => (
       <section className="band surface" data-screen-label="Why EduAI">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Why EduAI</div>
-            <h2 className="h2">Education's AI moment is different.</h2>
+            <h2 className="h2">Teachers need AI capability before students are left to figure it out alone.</h2>
             <p className="body-xl">
-              Universities and schools face a unique AI challenge: they must
-              teach students to use AI responsibly while protecting the
-              integrity of their credentials.
+              Students are already using AI. The question is whether teachers
+              have the skills to guide that use, protect learning, and adapt
+              assessment.
             </p>
           </div>
-          <div className="icon-grid cols-3">
-            <article className="icon-card">
-              <IconBook/>
-              <div className="eyebrow">Academic Integrity</div>
-              <h3 className="card-h">Credentials need defensible policy.</h3>
-              <p className="body">
-                Without explicit AI policy, every graded assessment becomes
-                contestable. We design policy frameworks faculty and students
-                can both work within.
-              </p>
-            </article>
+          <div className="icon-grid cols-2">
             <article className="icon-card">
               <IconChalk/>
-              <div className="eyebrow">Faculty Readiness</div>
-              <h3 className="card-h">Teaching AI requires using AI.</h3>
+              <div className="eyebrow">Teacher fluency</div>
+              <h3 className="card-h">Teachers need practical AI fluency.</h3>
               <p className="body">
-                Faculty cannot teach responsible AI use without practical
-                capability themselves. We build that capability institutionally.
+                Teachers cannot guide AI use if they have not practiced it
+                themselves. We train educators on real classroom and
+                preparation workflows.
               </p>
             </article>
             <article className="icon-card">
-              <IconGov/>
-              <div className="eyebrow">Governance</div>
-              <h3 className="card-h">Institutional AI strategy is now mandatory.</h3>
+              <IconSchool/>
+              <div className="eyebrow">Student literacy</div>
+              <h3 className="card-h">Students need age-appropriate AI literacy.</h3>
               <p className="body">
-                EU AI Act treats educational AI applications as high-risk.
-                Universities need governance frameworks that survive
-                accreditation scrutiny.
+                AI should be taught differently to different age groups. We
+                help schools design practical, age-aware student guidance.
+              </p>
+            </article>
+            <article className="icon-card">
+              <IconBook/>
+              <div className="eyebrow">Assessment</div>
+              <h3 className="card-h">Assessment must change.</h3>
+              <p className="body">
+                AI detection alone is not enough. We help institutions redesign
+                assignments, disclosure rules, collaboration norms, and
+                academic integrity practice.
+              </p>
+            </article>
+            <article className="icon-card">
+              <IconLaptop/>
+              <div className="eyebrow">Classroom support</div>
+              <h3 className="card-h">AI can support classroom work.</h3>
+              <p className="body">
+                Lesson planning, feedback, differentiation, research, and
+                classroom activities can improve when AI is used transparently
+                and responsibly.
               </p>
             </article>
           </div>
@@ -556,55 +572,88 @@
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SECTION 3 — WHO WE SERVE
+       SECTION 3 — WHAT TEACHERS LEARN
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    const WhoWeServe = () => (
-      <section className="band base" data-screen-label="Who we serve">
+    const LEARN = [
+      ['01', 'AI fundamentals for educators',
+       'How AI tools work, what they do well, where they fail, and what responsible use means in a teaching context.'],
+      ['02', 'Prompting for lesson design',
+       'Practical prompting technique applied to lesson plans, materials, activities, and classroom preparation.'],
+      ['03', 'AI-assisted feedback and differentiation',
+       'Using AI to support feedback and differentiated instruction while keeping teacher judgment central.'],
+      ['04', 'Classroom AI collaboration activities',
+       'Designing transparent classroom activities where students and AI work together under clear rules.'],
+      ['05', 'Student disclosure and responsible use',
+       'Setting disclosure expectations and responsible-use norms appropriate to each age group.'],
+      ['06', 'Assessment redesign',
+       'Redesigning assignments and assessment so they remain meaningful when students have access to AI.'],
+      ['07', 'Limits of AI detection',
+       'Understanding what AI detection tools can and cannot do, and why detection alone is not a strategy.'],
+      ['08', 'Academic integrity policy practice',
+       'Translating academic integrity principles into practical, evidence-based classroom and institutional practice.'],
+    ];
+
+    const Learn = () => (
+      <section className="band base" data-screen-label="What teachers learn">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">What teachers learn</div>
+            <h2 className="h2">A practical curriculum for educators.</h2>
+            <p className="body-xl">
+              Every cohort builds the same core capabilities, adapted to the
+              age groups and subjects in the room.
+            </p>
+          </div>
+          <div className="offering-grid">
+            {LEARN.map(([n, t, d]) => (
+              <article key={n} className="offering-card">
+                <div className="num">{n}</div>
+                <h3 className="card-h">{t}</h3>
+                <p className="body">{d}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 3B — BUILT FOR ALL EDUCATION LEVELS
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const AUDIENCES = [
+      [<IconSchool/>, 'Primary and lower secondary',
+       'Early-stage education building age-appropriate AI literacy and responsible classroom practice.'],
+      [<IconChalk/>, 'Upper secondary schools',
+       'High schools preparing students and teachers for AI-aware learning and assessment.'],
+      [<IconUni/>, 'Universities',
+       'Public and private universities skilling faculty and redesigning assessment for the AI era.'],
+      [<IconBook/>, 'Teacher-training institutions',
+       'Institutions that prepare future teachers and need AI capability built into their programs.'],
+      [<IconGov/>, 'Education ministries',
+       'National and regional authorities designing system-wide AI capability and guidance.'],
+      [<IconLaptop/>, 'Donor-funded education programs',
+       'Programs delivering education-sector capacity building under donor and EU-aligned frameworks.'],
+    ];
+
+    const Audiences = () => (
+      <section className="band surface" data-screen-label="Built for all education levels">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Who we serve</div>
-            <h2 className="h2">Built for serious educational institutions.</h2>
+            <h2 className="h2">Built for all education levels.</h2>
             <p className="body-xl">
-              Four educational audience profiles with distinct AI capability needs.
+              From primary classrooms to universities and ministries, every
+              level of education needs AI capability.
             </p>
           </div>
-          <div className="icon-grid cols-2">
-            <article className="icon-card">
-              <IconUni/>
-              <div className="eyebrow">Universities</div>
-              <h3 className="card-h">Public and private universities.</h3>
-              <p className="body">
-                Faculty programs, academic integrity policy, AI governance
-                frameworks, and curriculum redesign for AI integration.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconSchool/>
-              <div className="eyebrow">Secondary Schools</div>
-              <h3 className="card-h">High schools and secondary education.</h3>
-              <p className="body">
-                Teacher training, classroom AI integration, parent and student
-                communication frameworks, assessment redesign.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconGov/>
-              <div className="eyebrow">Education Ministries</div>
-              <h3 className="card-h">National and regional education authorities.</h3>
-              <p className="body">
-                Policy guidance, system-wide capability programs, framework
-                design for sector-wide AI integration.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconLaptop/>
-              <div className="eyebrow">EdTech Providers</div>
-              <h3 className="card-h">EdTech companies and platforms.</h3>
-              <p className="body">
-                Governance reviews, EU AI Act high-risk classification support,
-                conformity assessment readiness.
-              </p>
-            </article>
+          <div className="icon-grid cols-3">
+            {AUDIENCES.map(([icon, t, d]) => (
+              <article key={t} className="icon-card">
+                {icon}
+                <h3 className="card-h">{t}</h3>
+                <p className="body">{d}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -614,12 +663,14 @@
        SECTION 4 — WHAT WE DELIVER
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const OFFERINGS = [
-      ['01', 'Faculty AI Readiness Program',     'Multi-week capability program for faculty. Practical AI use, classroom integration, and responsible AI fundamentals.'],
-      ['02', 'Academic Integrity Policy Design', 'Written policy frameworks for student AI use, disclosure requirements, and assessment design adapted for the AI era.'],
-      ['03', 'Institutional AI Governance',      'University-level AI governance: oversight committees, faculty senate integration, and student protections.'],
-      ['04', 'Curriculum Redesign Support',      'Course-level AI integration: where AI helps learning, where it must be restricted, and assessment alternatives.'],
-      ['05', 'Student AI Capability Programs',   'Student-facing AI literacy programs aligned with academic integrity requirements.'],
-      ['06', 'EdTech Governance Review',         'Vendor assessment frameworks, EU AI Act readiness, and conformity assessment support for educational AI providers.'],
+      ['01', 'Teacher AI Skills Program',            'Role-specific AI capability training for teachers across lesson design, feedback, and classroom practice.'],
+      ['02', 'AI for Classroom Practice',            'Hands-on training on applying AI transparently to lesson planning, differentiation, and classroom activities.'],
+      ['03', 'Academic Integrity & Assessment Redesign', 'Redesigning assignments, disclosure rules, and integrity practice so assessment stays meaningful with AI.'],
+      ['04', 'Student AI Literacy Program',          'Age-appropriate student-facing AI literacy aligned with responsible-use and disclosure expectations.'],
+      ['05', 'Faculty / Professor AI Readiness',     'University-focused capability building for professors across teaching, research, and assessment workflows.'],
+      ['06', 'Education Leadership Briefing',        'Briefings for school and university leadership on AI capability, governance, and institutional priorities.'],
+      ['07', 'Education AI Governance Program',      'Practical governance support: institutional policy, disclosure, human review, and EU AI Act readiness.'],
+      ['08', 'Train-the-Trainer for AI Education',   'Programs that prepare educators to train and support their own colleagues at scale.'],
     ];
 
     const Offerings = () => (
@@ -627,10 +678,10 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">What we deliver</div>
-            <h2 className="h2">Six core service offerings.</h2>
+            <h2 className="h2">Service offerings for education.</h2>
             <p className="body-xl">
-              All available standalone or as integrated programs. Pricing
-              scoped per engagement.
+              All available standalone or as integrated programs. Scope and
+              cost are defined per engagement.
             </p>
           </div>
           <div className="offering-grid">
@@ -650,10 +701,12 @@
        SECTION 5 — APPROACH
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const STEPS = [
-      ['01', 'Diagnose', 'Six-dimension readiness assessment. Where AI helps, where it must not be allowed.'],
-      ['02', 'Design',   'Governance framework, use-case portfolio, training plan, and 90-day roadmap.'],
-      ['03', 'Train',    'Role-specific cohorts and workshops with real deliverables. Bilingual.'],
-      ['04', 'Embed',    'Pilot, measure, refresh. Human-approved workflows and monitoring routines.'],
+      ['01', 'Assess', 'Readiness, skill baseline, legal exposure, and a map of useful classroom and institutional AI use cases.'],
+      ['02', 'Train',  'Role-specific cohorts for teachers, professors, and education staff, sized to each institution.'],
+      ['03', 'Equip',  'Prompt libraries, workbooks, templates, and policies educators can use immediately.'],
+      ['04', 'Embed',  'Apply AI to real classroom practice and assessment, not abstract exercises.'],
+      ['05', 'Govern', 'Data privacy, disclosure, human review, academic integrity practice, and EU AI Act readiness.'],
+      ['06', 'Scale',  'Champions, train-the-trainer, multi-cohort programs, and reporting dashboards.'],
     ];
 
     const Approach = () => (
@@ -661,12 +714,13 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Approach</div>
-            <h2 className="h2">Diagnose. Design. Train. Embed.</h2>
+            <h2 className="h2">Assess. Train. Equip. Embed. Govern. Scale.</h2>
             <p className="body-xl">
-              Same discipline across all GovAI engagements. Same four-stage methodology.
+              The same six-step model runs through every education engagement,
+              sized to the institution.
             </p>
           </div>
-          <div className="method-grid">
+          <div className="method-grid steps-6">
             {STEPS.map(([n, t, d]) => (
               <div key={n} className="method-col">
                 <div className="num">{n}</div>
@@ -704,8 +758,8 @@
             <div className="eyebrow">Frameworks</div>
             <h2 className="h2">Built on international AI governance standards.</h2>
             <p className="body-xl">
-              Adapted for public-sector context, EU candidate-state alignment,
-              and donor program compliance.
+              Adapted for education context, EU candidate-state alignment, and
+              donor program requirements.
             </p>
           </div>
           <div className="fw-grid">
@@ -730,34 +784,34 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Engagement types</div>
-            <h2 className="h2">What GovAI work looks like in practice.</h2>
+            <h2 className="h2">What EduAI work looks like in practice.</h2>
             <p className="body-xl">
-              Three patterns of GovAI engagement, sized to different institutional contexts.
+              Three formats of education engagement, sized to different
+              institutional contexts.
             </p>
           </div>
 
           <div className="eng-grid">
-            {/* CARD 1 — FOCUSED */}
+            {/* CARD 1 — TEACHER COHORT */}
             <article className="eng-card">
               <div className="tag">Focused</div>
               <hr className="hr"/>
-              <h3 className="card-h">Faculty Readiness Program</h3>
-              <p className="meta">1-3 months</p>
+              <h3 className="card-h">Teacher Cohort</h3>
+              <p className="meta">A single group of educators</p>
               <p className="body">
-                Focused capability program for one faculty cohort or
-                department. Practical AI use plus academic integrity
-                fundamentals.
+                A focused skilling format for one group of teachers, delivered
+                in the format that fits the school.
               </p>
               <ul className="bullets">
-                <li>Multi-session live training</li>
-                <li>Bilingual workbook materials</li>
-                <li>Departmental policy template</li>
-                <li>Completion certificates</li>
+                <li>Role-specific AI skills training</li>
+                <li>Hands-on prompting practice</li>
+                <li>Workbook and prompt starter set</li>
+                <li>Responsible-use and disclosure basics</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
                 <span className="price">Request Scope</span>
-                <a href="/audit" className="cta-link">Request Scope →</a>
+                <a href="/contact" className="cta-link">Request Training →</a>
               </div>
             </article>
 
@@ -765,45 +819,44 @@
             <article className="eng-card flagship">
               <div className="tag">Flagship · Institutional</div>
               <hr className="hr"/>
-              <h3 className="card-h">Full University Program</h3>
-              <p className="meta">6-12 months</p>
+              <h3 className="card-h">School / University Program</h3>
+              <p className="meta">Multi-cohort, role-specific</p>
               <p className="body">
-                Institutional AI governance, faculty capability, academic
-                integrity policy, and curriculum support. Most common
-                university engagement.
+                A full capability program across multiple cohorts and roles,
+                delivered with the governance artifacts an institution needs.
               </p>
               <ul className="bullets">
-                <li>Institutional AI readiness audit</li>
-                <li>Custom academic integrity policy</li>
-                <li>Full faculty capability program</li>
-                <li>Curriculum redesign support</li>
+                <li>Readiness and skills baseline</li>
+                <li>Role-specific training cohorts</li>
+                <li>Assessment redesign and integrity practice</li>
+                <li>Governance artifacts and review routines</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
                 <span className="price">Request Scope</span>
-                <a href="/audit" className="cta-link">Request Scope →</a>
+                <a href="/contact" className="cta-link">Request Program →</a>
               </div>
             </article>
 
-            {/* CARD 3 — MULTI-YEAR */}
+            {/* CARD 3 — NATIONAL */}
             <article className="eng-card">
               <div className="tag">Multi-Year</div>
               <hr className="hr"/>
-              <h3 className="card-h">Education Sector Program</h3>
-              <p className="meta">12-36 months</p>
+              <h3 className="card-h">National Education Capability Program</h3>
+              <p className="meta">Multi-year, train-the-trainer</p>
               <p className="body">
-                Multi-institution program for education ministries or
-                donor-funded education capability initiatives.
+                A multi-year program for national-scale education skilling,
+                designed for ministries and donor-aligned funding.
               </p>
               <ul className="bullets">
-                <li>Sector-wide readiness study</li>
-                <li>Train-the-trainer programs</li>
-                <li>M&amp;E framework</li>
-                <li>Multi-site bilingual delivery</li>
+                <li>Multi-cohort national delivery</li>
+                <li>Train-the-trainer curricula</li>
+                <li>M&amp;E framework with baseline study</li>
+                <li>Bilingual delivery infrastructure</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
-                <span className="price">Request Quote</span>
+                <span className="price">Discuss Scope</span>
                 <a href="/donor-programs" className="cta-link">Discuss Program →</a>
               </div>
             </article>
@@ -816,16 +869,16 @@
        SECTION 8 — FAQ
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const FAQS = [
-      ['Do you support EU AI Act compliance for educational AI?',
-       "EU AI Act treats certain educational AI uses as high-risk. We help institutions prepare for these requirements through readiness work and governance design. We don't certify compliance. Certification is conducted by accredited bodies."],
+      ['Do you only work with universities?',
+       "No. EduAI serves teachers and education institutions at every level, from primary and secondary schools to universities, teacher-training institutions, and education ministries across Albania."],
+      ['Can you reliably detect AI cheating?',
+       "No tool does that reliably, and we do not claim to. We teach detection limits, evidence-based academic integrity practice, and assessment redesign so that integrity does not depend on detection alone."],
       ['Can you adapt academic integrity policy for our institution?',
-       "Yes. Every policy engagement begins with understanding your accreditation context, faculty culture, and student population. Templates are starting points, not finished products."],
-      ['Do you work with private and public universities?',
-       "Yes. Both have AI capability needs. Private institutions often face faster competitive pressure; public institutions often face more regulatory scrutiny. Both deserve serious work."],
-      ['Can faculty training be delivered in Albanian?',
-       "Yes. All EduAI programs are delivered in Albanian, English, or bilingual format. Bilingual is the most common request for institutional clients."],
-      ['Who delivers EduAI engagements?',
-       "EduAI engagements are typically led by Indri Dyrmishi (University of Minnesota Carlson MBA, former University of Tirana Tech Transfer Office director, former Senior Instructor at AUM) with cofounders engaged based on scope."],
+       "Yes. Every policy engagement begins with understanding your context, teaching culture, and student population. Templates are starting points, not finished products, and remain aligned with institutional policy."],
+      ['Can teacher training be delivered in Albanian?',
+       "Yes. All EduAI programs are delivered in Albanian, English, or bilingual format. Materials are produced bilingually for institutional circulation."],
+      ['Do you support EU AI Act readiness for education?',
+       "We prepare institutions to engage with EU AI Act requirements through readiness work, governance design, and capability building. Formal certification is conducted by accredited certification bodies. We support readiness; we do not certify compliance."],
     ];
 
     const FAQ = () => (
@@ -888,17 +941,17 @@
       <section className="gov-cta" data-screen-label="Final CTA">
         <div className="container">
           <div className="eyebrow">Start</div>
-          <h2 className="h2">AI capability for educational institutions.</h2>
+          <h2 className="h2">AI capability for teachers and education institutions.</h2>
           <p className="body-xl">
-            Start with an audit, a briefing, or a direct conversation about
-            your institution.
+            Start with teacher training, explore our education programs, or
+            book a briefing for institutional leadership.
           </p>
           <div className="links">
-            <a href="/audit">Request Audit Scope</a>
+            <a href="/contact">Request Teacher AI Training</a>
             <span className="sep">·</span>
-            <a href="/executive-briefing">Request Briefing</a>
+            <a href="/academy">Explore Education Programs</a>
             <span className="sep">·</span>
-            <a href="/contact">General Inquiry</a>
+            <a href="/executive-briefing">Book Executive Briefing</a>
           </div>
         </div>
       </section>
@@ -976,7 +1029,8 @@
         <Nav/>
         <Hero/>
         <WhyGov/>
-        <WhoWeServe/>
+        <Learn/>
+        <Audiences/>
         <Offerings/>
         <Approach/>
         <Frameworks/>

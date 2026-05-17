@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Agentic AI · Horizon4 AI — Agentic AI under institutional control</title>
-  <meta name="description" content="Agentic AI capability across government, education, business, and strategy. Designed with human approval, governance, and accountability at every decision point.">
+  <title>Agentic AI Implementation and Training - Horizon4 AI</title>
+  <meta name="description" content="Human-approved agentic AI workflows, training, governance, audit trails, and implementation support for institutions and teams.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <style>
-    /* ━━━ GovAI page-local styles ━━━ */
+    /* ━━━ Agentic AI page-local styles ━━━ */
 
     /* Hero variant: full-width content, no sphere */
     .gov-hero {
@@ -288,6 +288,55 @@
     .band.surface { background: var(--bg-surface); }
     .band.base    { background: var(--bg-base); }
     @media (max-width: 768px) { .band { padding: var(--section-y-mobile) 0; } }
+
+    /* Cross-sector example cards */
+    .xs-card .list {
+      list-style: none; padding: 0; margin: 0;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .xs-card .list li {
+      font-size: 15px; line-height: 1.5; color: var(--ink-body);
+      padding-left: 18px; position: relative;
+    }
+    .xs-card .list li::before {
+      content: ''; position: absolute; left: 4px; top: 0.55em;
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--accent-secondary);
+    }
+
+    /* Agentic architecture flow */
+    .arch-flow {
+      display: flex; flex-wrap: wrap; align-items: stretch;
+      gap: 0; justify-content: center;
+    }
+    .arch-step {
+      flex: 1 1 130px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 20px 16px;
+      display: flex; flex-direction: column; gap: 8px;
+      text-align: center;
+      min-width: 130px;
+    }
+    .arch-step .step-num {
+      font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em;
+      color: var(--accent-primary); font-weight: 600;
+    }
+    .arch-step .step-label {
+      font-size: 15px; font-weight: 700; line-height: 1.3; color: var(--ink-primary);
+    }
+    .arch-step.approval { border-color: rgba(0, 117, 201, 0.40); }
+    .arch-arrow {
+      display: flex; align-items: center; justify-content: center;
+      color: var(--ink-muted); font-size: 18px;
+      padding: 0 6px; flex: 0 0 auto;
+    }
+    @media (max-width: 768px) {
+      .arch-flow { flex-direction: column; }
+      .arch-step { width: 100%; }
+      .arch-arrow { transform: rotate(90deg); padding: 4px 0; }
+    }
   </style>
 </head>
 <body>
@@ -501,25 +550,46 @@
       <section className="gov-hero" data-screen-label="Hero">
         <div className="container">
           <div className="eyebrow">Capability Layer · Agentic AI</div>
-          <h1 className="h1">Agentic AI under institutional control.</h1>
+          <h1 className="h1">Human-approved agentic AI for public, education, and business workflows.</h1>
           <p className="body-xl hero-lead">
-            Agentic AI capability across government, education, business, and
-            strategy. Designed with human approval, governance, and
-            accountability at every decision point.
+            Horizon4 helps institutions understand, train for, and implement
+            agentic AI with human approval, audit trails, rollback paths, and
+            governance at every decision point.
           </p>
           <div className="hero-actions">
-            <a href="/audit" className="btn btn-primary">Request Audit Scope</a>
-            <a href="/executive-briefing" className="btn btn-secondary">Request Executive Briefing</a>
+            <a href="/contact" className="btn btn-primary">Discuss Agentic AI Workflow</a>
+            <a href="/contact" className="btn btn-secondary">Request Agentic AI Training</a>
           </div>
         </div>
       </section>
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SECTION 2 — WHY GOVAI
+       SECTION 1B — CLARIFICATION: NOT A VERTICAL
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const NotAVertical = () => (
+      <section className="band surface" data-screen-label="Not a separate vertical">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">A layer, not a vertical</div>
+            <h2 className="h2">Agentic AI is not a separate vertical. It is a layer across your work.</h2>
+            <p className="body-xl">
+              Agentic AI can support public administration, education, business
+              operations, strategy, and donor programs. The question is not
+              whether agents are exciting. The question is where they can act
+              safely, who approves actions, what gets logged, and how failure
+              is contained.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 2 — WHY AGENTIC AI NOW
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const WhyGov = () => (
-      <section className="band surface" data-screen-label="Why Agentic AI now">
+      <section className="band base" data-screen-label="Why Agentic AI now">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Why Agentic AI now</div>
@@ -567,56 +637,75 @@
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SECTION 3 — WHO WE SERVE
+       SECTION 3 — CROSS-SECTOR EXAMPLES
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    const WhoWeServe = () => (
-      <section className="band base" data-screen-label="Who we serve">
+    const SECTORS = [
+      { icon: <IconGov2/>, eb: 'Public administration', h: 'Public-sector workflows',
+        items: ['Document intake and routing', 'Public-service knowledge assistant', 'Procurement support', 'Internal policy summarization', 'Citizen-service triage under human approval'] },
+      { icon: <IconUniA/>, eb: 'Education', h: 'Education workflows',
+        items: ['Lesson planning assistant', 'Student feedback support', 'Classroom activity generator', 'Academic integrity workflow assistant', 'Internal education policy support'] },
+      { icon: <IconBiz/>, eb: 'Business', h: 'Business operations workflows',
+        items: ['Sales follow-up assistant', 'Proposal drafting workflow', 'Client-service knowledge assistant', 'Meeting-to-action workflow', 'Reporting and dashboard support'] },
+      { icon: <IconChip/>, eb: 'Strategy / donor', h: 'Strategy and donor workflows',
+        items: ['Program reporting assistant', 'M&E document review', 'Donor proposal support', 'Training dashboard assistant', 'Stakeholder briefing preparation'] },
+    ];
+
+    const CrossSector = () => (
+      <section className="band surface" data-screen-label="Cross-sector examples">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Who we serve</div>
-            <h2 className="h2">Built for institutional agentic adoption.</h2>
+            <div className="eyebrow">Where agentic AI applies</div>
+            <h2 className="h2">Cross-sector agentic workflow examples.</h2>
             <p className="body-xl">
-              Four audience profiles preparing to deploy agentic AI with
-              governance and accountability.
+              The same governance discipline applies wherever agents act.
+              These are illustrative workflow patterns, not fixed products.
             </p>
           </div>
           <div className="icon-grid cols-2">
-            <article className="icon-card">
-              <IconGov2/>
-              <div className="eyebrow">Government Agencies</div>
-              <h3 className="card-h">Public-sector agentic deployment.</h3>
-              <p className="body">
-                Citizen-facing service workflows, internal operational agents,
-                and regulatory-grade governance frameworks.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconUniA/>
-              <div className="eyebrow">Universities</div>
-              <h3 className="card-h">Educational agentic capability.</h3>
-              <p className="body">
-                Student-facing AI agents under academic integrity frameworks,
-                faculty agent workflows, institutional governance.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconBiz/>
-              <div className="eyebrow">Enterprises & SMEs</div>
-              <h3 className="card-h">Operational agentic deployment.</h3>
-              <p className="body">
-                Workflow automation, customer service agents, internal
-                operational agents with confidentiality and IP protection.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconChip/>
-              <div className="eyebrow">Technical Leadership</div>
-              <h3 className="card-h">CTOs and engineering directors.</h3>
-              <p className="body">
-                Technical governance frameworks, agentic architecture review,
-                and integration with existing institutional systems.
-              </p>
-            </article>
+            {SECTORS.map(s => (
+              <article key={s.eb} className="icon-card xs-card">
+                {s.icon}
+                <div className="eyebrow">{s.eb}</div>
+                <h3 className="card-h">{s.h}</h3>
+                <ul className="list">
+                  {s.items.map(it => <li key={it}>{it}</li>)}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 3B — ARCHITECTURE FLOW
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const FLOW = [
+      'User request', 'Agent plan', 'Tool/data access check',
+      'Human approval', 'Action', 'Audit log', 'Review / rollback',
+    ];
+
+    const Architecture = () => (
+      <section className="band base" data-screen-label="Architecture">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">How a controlled agent runs</div>
+            <h2 className="h2">A decision path with approval and audit built in.</h2>
+            <p className="body-xl">
+              Every agentic workflow we design follows the same controlled
+              path. Approval and logging are structural, not optional.
+            </p>
+          </div>
+          <div className="arch-flow">
+            {FLOW.map((label, i) => (
+              <React.Fragment key={label}>
+                <div className={`arch-step ${label === 'Human approval' ? 'approval' : ''}`}>
+                  <div className="step-num">{String(i + 1).padStart(2, '0')}</div>
+                  <div className="step-label">{label}</div>
+                </div>
+                {i < FLOW.length - 1 && <div className="arch-arrow">&#8594;</div>}
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </section>
@@ -626,12 +715,13 @@
        SECTION 4 — WHAT WE DELIVER
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const OFFERINGS = [
-      ['01', 'Agentic AI Discovery Workshop',  'Half-day to one-day workshop. What agentic AI is, what it isn\'t, and where it fits in your institution.'],
-      ['02', 'Agentic Readiness Assessment',   'Institutional readiness for agentic deployment: governance, technical infrastructure, oversight capacity.'],
-      ['03', 'Agentic Governance Framework',   'Custom governance framework for agentic AI: approval workflows, oversight bodies, failure containment, audit trails.'],
-      ['04', 'Agentic Workflow Design',        'Design and prototyping of specific agentic workflows with human approval points and rollback mechanisms.'],
-      ['05', 'Technical Architecture Review',  'Review of agentic systems against institutional risk tolerance, including integration architecture and security review.'],
-      ['06', 'Agentic Capability Programs',    'Multi-cohort capability programs for teams deploying or overseeing agentic systems.'],
+      ['01', 'Agentic AI Discovery Workshop',          'Half-day to one-day workshop. What agentic AI is, what it is not, and where it fits across your work.'],
+      ['02', 'Agentic Workflow Readiness Assessment',  'Readiness for agentic deployment: governance, data access, technical infrastructure, and oversight capacity.'],
+      ['03', 'Human-Approved Agentic Workflow Design', 'Design of specific agentic workflows with explicit human approval points, audit trails, and rollback paths.'],
+      ['04', 'Agent Governance Framework',             'A governance framework for agentic AI: approval rules, oversight roles, failure containment, and logging standards.'],
+      ['05', 'Agentic AI Training for Teams',          'Role-specific training for teams that build, operate, or oversee agentic systems. Delivered bilingually.'],
+      ['06', 'Prototype / Implementation Support',     'Hands-on support to prototype and implement agentic workflows with vetted technical partners.'],
+      ['07', 'Monitoring and Review Model',            'An ongoing model for monitoring agent behavior, reviewing decisions, and refreshing governance over time.'],
     ];
 
     const Offerings = () => (
@@ -639,10 +729,10 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">What we deliver</div>
-            <h2 className="h2">Six core service offerings.</h2>
+            <h2 className="h2">Seven ways to work with us on agentic AI.</h2>
             <p className="body-xl">
-              All available standalone or as integrated programs. Pricing
-              scoped per engagement.
+              All available standalone or as integrated programs. Scope and
+              pricing are confirmed per engagement.
             </p>
           </div>
           <div className="offering-grid">
@@ -662,10 +752,10 @@
        SECTION 5 — APPROACH
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const STEPS = [
-      ['01', 'Diagnose', 'Six-dimension readiness assessment. Where AI helps, where it must not be allowed.'],
-      ['02', 'Design',   'Governance framework, use-case portfolio, training plan, and 90-day roadmap.'],
-      ['03', 'Train',    'Role-specific cohorts and workshops with real deliverables. Bilingual.'],
-      ['04', 'Embed',    'Pilot, measure, refresh. Human-approved workflows and monitoring routines.'],
+      ['01', 'Diagnose', 'Readiness assessment. Where agents can act safely, and where they must not be allowed.'],
+      ['02', 'Design',   'Workflow design, agent governance framework, approval points, and audit and rollback paths.'],
+      ['03', 'Train',    'Role-specific cohorts for teams that build, operate, or oversee agents. Bilingual.'],
+      ['04', 'Embed',    'Prototype, monitor, review. Human-approved workflows and ongoing review routines.'],
     ];
 
     const Approach = () => (
@@ -675,7 +765,8 @@
             <div className="eyebrow">Approach</div>
             <h2 className="h2">Diagnose. Design. Train. Embed.</h2>
             <p className="body-xl">
-              Same discipline across all GovAI engagements. Same four-stage methodology.
+              The same discipline applies to every agentic engagement, from a
+              single workflow to a sector-wide program.
             </p>
           </div>
           <div className="method-grid">
@@ -742,9 +833,10 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Engagement types</div>
-            <h2 className="h2">What GovAI work looks like in practice.</h2>
+            <h2 className="h2">What Agentic AI work looks like in practice.</h2>
             <p className="body-xl">
-              Three patterns of GovAI engagement, sized to different institutional contexts.
+              Three patterns of agentic AI engagement, sized to different
+              institutional contexts.
             </p>
           </div>
 
@@ -762,13 +854,13 @@
               <ul className="bullets">
                 <li>Discovery workshop</li>
                 <li>Readiness scorecard</li>
-                <li>Initial use-case shortlist</li>
+                <li>Initial workflow shortlist</li>
                 <li>Governance gap review</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
                 <span className="price">Request Scope</span>
-                <a href="/audit" className="cta-link">Request Scope →</a>
+                <a href="/contact" className="cta-link">Request Scope →</a>
               </div>
             </article>
 
@@ -785,14 +877,14 @@
               </p>
               <ul className="bullets">
                 <li>Discovery and readiness</li>
-                <li>Custom agentic governance</li>
-                <li>Workflow prototyping</li>
-                <li>Embedded deployment oversight</li>
+                <li>Agent governance framework</li>
+                <li>Human-approved workflow prototyping</li>
+                <li>Embedded implementation support</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
-                <span className="price">Request Scope</span>
-                <a href="/audit" className="cta-link">Request Scope →</a>
+                <span className="price">Discuss Scope</span>
+                <a href="/contact" className="cta-link">Discuss Scope →</a>
               </div>
             </article>
 
@@ -827,16 +919,16 @@
        SECTION 8 — FAQ
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const FAQS = [
-      ['Is agentic AI ready for institutional use?',
-       "Some agentic systems are mature enough for low-stakes institutional deployment today, under proper governance. Higher-stakes use cases require careful readiness work. We help institutions calibrate that decision."],
-      ["What's the difference between Agentic AI and the four sector Horizons?",
-       "The four Horizons (GovAI, EduAI, BusinessAI, StrategyAI) are sector-specific. Agentic AI is a capability layer that cuts across all four. A ministry might deploy agentic AI under GovAI; a university under EduAI."],
+      ['What is agentic AI, in practical terms?',
+       "Agentic AI describes systems that can plan and take actions, not just produce text. That makes the questions practical: which actions an agent may take, who approves them, what is logged, and how a wrong action is contained or reversed."],
+      ['Is agentic AI a separate part of our work?',
+       "No. Agentic AI is a capability layer that runs across public administration, education, business operations, strategy, and donor programs. We help you decide where agents can act safely within the work you already do."],
+      ['How does human approval actually work in your designs?',
+       "Every workflow we design routes consequential actions through an explicit human approval point before they execute. Approval roles, audit logging, and rollback paths are structural parts of the design, not features added later."],
       ['Do you build agentic systems for clients?',
-       "We design governance, workflows, and integration architecture for agentic systems. Technical build is typically done by vetted technical partners with named accountability, under our governance framework."],
-      ['Can you assess existing agentic deployments?',
-       "Yes. Agentic AI Discovery and Readiness work can include review of existing or planned agentic deployments against institutional risk tolerance."],
-      ['Who delivers Agentic AI engagements?',
-       "Agentic AI work is led by Fregis Sala (USC MS Electrical & Computer Engineering, NVIDIA, former Albanian public service advisor) with full cofounder team engaged for institutional or multi-year programs."],
+       "We design the workflows, governance, and decision paths. Technical build is typically delivered by vetted technical partners with named accountability, working under the governance framework we design."],
+      ['How do you handle agentic AI governance and EU AI Act readiness?',
+       "We design agent governance frameworks that are data privacy-aware, aligned with institutional policy, and structured for EU AI Act readiness. Horizon4 does not certify compliance. Formal certification is conducted by accredited bodies."],
     ];
 
     const FAQ = () => (
@@ -903,15 +995,15 @@
           <div className="eyebrow">Start</div>
           <h2 className="h2">Agentic AI, under institutional control.</h2>
           <p className="body-xl">
-            Start with an audit, a briefing, or a direct conversation about
-            your institution.
+            Start with a workflow conversation, a training program, or an
+            executive briefing for your institution.
           </p>
           <div className="links">
-            <a href="/audit">Request Audit Scope</a>
+            <a href="/contact">Discuss Agentic AI Workflow</a>
             <span className="sep">·</span>
-            <a href="/executive-briefing">Request Briefing</a>
+            <a href="/contact">Request Training Program</a>
             <span className="sep">·</span>
-            <a href="/contact">General Inquiry</a>
+            <a href="/executive-briefing">Book Executive Briefing</a>
           </div>
         </div>
       </section>
@@ -988,8 +1080,10 @@
       <div data-screen-label="Agentic AI">
         <Nav/>
         <Hero/>
+        <NotAVertical/>
         <WhyGov/>
-        <WhoWeServe/>
+        <CrossSector/>
+        <Architecture/>
         <Offerings/>
         <Approach/>
         <Frameworks/>

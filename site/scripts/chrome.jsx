@@ -9,32 +9,35 @@ const H4Chrome = (() => {
   /* ─── MEGA MENU ────────────────────────────── */
   const MEGA = {
     Academy: [
-      { l: 'Overview & Pathways',   h: '/academy' },
-      { l: 'Course Catalog',        h: '/academy/catalog' },
-      { l: 'Private Team Training', h: '/academy/private' },
+      { l: 'Overview',                h: '/academy' },
+      { l: 'Public Administration AI', h: '/academy#public-administration' },
+      { l: 'Teachers & Education',    h: '/academy#teachers' },
+      { l: 'Business Teams',          h: '/academy#business-teams' },
+      { divider: true },
+      { l: 'Course Catalog',          h: '/academy/catalog' },
+      { l: 'Private Training',        h: '/academy/private' },
     ],
     Advisory: [
       { l: 'AI Readiness Audit',  h: '/audit' },
       { l: 'Executive Briefing',  h: '/executive-briefing' },
+      { l: 'StrategyAI',          h: '/strategyai' },
       { l: 'Donor / EU Programs', h: '/donor-programs' },
     ],
     Solutions: [
       { l: 'GovAI',      h: '/govai' },
       { l: 'EduAI',      h: '/eduai' },
       { l: 'BusinessAI', h: '/businessai' },
-      { l: 'StrategyAI', h: '/strategyai' },
-      { divider: true },
       { l: 'Agentic AI', h: '/agentic-ai' },
     ],
     Research: [
       { l: 'Publications', h: '/research/publications' },
-      { l: 'Insights',     h: '/research/insights' },
       { l: 'Frameworks',   h: '/research/frameworks' },
+      { l: 'Insights',     h: '/research/insights' },
     ],
     About: [
-      { l: 'Team',    h: '/team' },
-      { l: 'Mission', h: '/about' },
-      { l: 'Contact', h: '/contact' },
+      { l: 'About Horizon4', h: '/about' },
+      { l: 'Team',           h: '/team' },
+      { l: 'Contact',        h: '/contact' },
     ],
   };
 
@@ -77,7 +80,7 @@ const H4Chrome = (() => {
                 <span className="div">|</span>
                 <button className={lang === 'SQ' ? 'on' : ''} onClick={() => setLang('SQ')}>SQ</button>
               </div>
-              <a href={route('/executive-briefing')} className="nav-cta">Request Executive Briefing</a>
+              <a href={route('/contact')} className="nav-cta">Request Training Program</a>
               <button className="nav-burger" aria-label="Menu" onClick={() => setDrawer(true)}>
                 <span></span><span></span><span></span>
               </button>
@@ -103,7 +106,8 @@ const H4Chrome = (() => {
             ))}
           </div>
           <div className="drawer-foot">
-            <a href={route('/executive-briefing')} className="btn btn-primary">Request Executive Briefing</a>
+            <a href={route('/contact')} className="btn btn-primary">Request Training Program</a>
+            <a href={route('/executive-briefing')} className="btn btn-secondary" style={{ marginTop: 10 }}>Book Executive Briefing</a>
           </div>
         </aside>
       </React.Fragment>
@@ -125,8 +129,9 @@ const H4Chrome = (() => {
           <div className="foot-brand foot-col">
             <div className="wm">Horizon<span className="four">4</span>&nbsp;AI</div>
             <p className="tag">
-              Albania's responsible AI capability partner. We help institutions
-              move from AI experimentation to embedded, governed practice.
+              AI skilling at scale for Albania's institutions. We train public
+              servants, teachers, and working teams to use AI responsibly,
+              productively, and inside institutional rules.
             </p>
             <div className="meta">
               <span>Tirana, Albania · Europe-ready</span>
@@ -136,10 +141,11 @@ const H4Chrome = (() => {
           </div>
           <div className="foot-col">
             <div className="head">Academy</div>
-            <a href={route('/academy')}>Overview & Pathways</a>
+            <a href={route('/academy')}>Overview</a>
+            <a href={route('/academy#public-administration')}>Public Administration AI</a>
+            <a href={route('/academy#teachers')}>Teachers & Education</a>
             <a href={route('/academy/catalog')}>Course Catalog</a>
             <a href={route('/academy/private')}>Private Training</a>
-            <a href="#">Certificates</a>
           </div>
           <div className="foot-col">
             <div className="head">Advisory</div>
@@ -160,7 +166,7 @@ const H4Chrome = (() => {
             <a href={route('/research/publications')}>Publications</a>
             <a href={route('/research/insights')}>Insights</a>
             <a href={route('/team')}>Team</a>
-            <a href={route('/about')}>Mission</a>
+            <a href={route('/about')}>About</a>
             <a href={route('/contact')}>Contact</a>
           </div>
         </div>

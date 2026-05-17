@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>BusinessAI · Horizon4 AI — AI productivity for serious businesses</title>
-  <meta name="description" content="Workflow redesign, prompt systems, and team capability building for SMEs, professional services, and operating businesses. Practical productivity, governed properly.">
+  <title>AI Productivity Training for Albanian Businesses, Horizon4 AI</title>
+  <meta name="description" content="AI productivity, workflow, prompt systems, and responsible-use training for employees, SMEs, professional services, and organizations.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <style>
@@ -495,16 +495,16 @@
     const Hero = () => (
       <section className="gov-hero" data-screen-label="Hero">
         <div className="container">
-          <div className="eyebrow">Horizon 03 · BusinessAI</div>
-          <h1 className="h1">AI productivity for serious businesses.</h1>
+          <div className="eyebrow">HORIZON 03 · BUSINESS &amp; ORGANIZATIONS</div>
+          <h1 className="h1">AI productivity training for Albanian organizations and teams.</h1>
           <p className="body-xl hero-lead">
-            Workflow redesign, prompt systems, and team capability building
-            for SMEs, professional services, and operating businesses.
-            Practical productivity, governed properly.
+            Horizon4 trains employees to use AI better in daily work: documents,
+            meetings, research, sales, marketing, finance, operations, reporting,
+            and client service, with confidentiality and human review built in.
           </p>
           <div className="hero-actions">
-            <a href="/audit" className="btn btn-primary">Request Scope</a>
-            <a href="/executive-briefing" className="btn btn-secondary">Request Briefing</a>
+            <a href="/contact" className="btn btn-primary">Request Business Team Training</a>
+            <a href="/academy/private" className="btn btn-secondary">Explore Private Training</a>
           </div>
         </div>
       </section>
@@ -518,40 +518,39 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Why BusinessAI</div>
-            <h2 className="h2">Business AI fails by going generic.</h2>
+            <h2 className="h2">Productivity does not come from buying tools. It comes from training people around real workflows.</h2>
             <p className="body-xl">
-              Most business AI initiatives stall because they're deployed
-              without role context, workflow design, or governance. Tool
-              licenses are not capability.
+              Most business AI initiatives stall because employees are handed
+              tools without role context, shared standards, or clear rules.
+              Tool licenses are not capability.
             </p>
           </div>
           <div className="icon-grid cols-3">
             <article className="icon-card">
               <IconRole/>
               <div className="eyebrow">Role-Specific</div>
-              <h3 className="card-h">Productivity is role-specific.</h3>
+              <h3 className="card-h">Employees need role-specific practice.</h3>
               <p className="body">
-                AI helps a sales lead, a finance manager, and a project lead
-                in completely different ways. Generic training misses all three.
+                AI helps a sales lead, finance manager, teacher, public servant,
+                and consultant differently. Training must match the work.
               </p>
             </article>
             <article className="icon-card">
               <IconFlow/>
-              <div className="eyebrow">Workflow Design</div>
-              <h3 className="card-h">Tools alone don't create capability.</h3>
+              <div className="eyebrow">Shared Standards</div>
+              <h3 className="card-h">Shared prompts create shared standards.</h3>
               <p className="body">
-                Capability comes from redesigned workflows where AI handles
-                the right tasks at the right approval points. That requires
-                intentional design.
+                Teams need reusable prompt systems, review rules, and workflow
+                playbooks, not individual experimentation.
               </p>
             </article>
             <article className="icon-card">
               <IconShield/>
-              <div className="eyebrow">Governance</div>
-              <h3 className="card-h">Business AI under regulatory scrutiny.</h3>
+              <div className="eyebrow">Confidentiality</div>
+              <h3 className="card-h">Confidentiality matters.</h3>
               <p className="body">
-                Confidentiality, client data, and IP protection are not
-                optional. We design AI workflows that respect them by default.
+                Client data, internal documents, IP, and regulated information
+                require clear rules before employees use AI at scale.
               </p>
             </article>
           </div>
@@ -560,55 +559,75 @@
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SECTION 3 — WHO WE SERVE
+       SECTION 3 — WHAT TEAMS LEARN
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    const WhoWeServe = () => (
-      <section className="band base" data-screen-label="Who we serve">
+    const LEARN = [
+      ['01', 'AI for writing and communication',  'Clearer documents, emails, proposals, and internal communication, with human review built in.'],
+      ['02', 'Meeting preparation and summaries', 'Agendas, briefing notes, action items, and accurate summaries from meeting material.'],
+      ['03', 'Research and analysis',             'Faster desk research, structured comparisons, and first-draft analysis that people then verify.'],
+      ['04', 'Sales and client workflows',        'Outreach drafting, proposal support, follow-ups, and client-ready material with review steps.'],
+      ['05', 'Marketing and content workflows',   'Campaign drafts, content systems, and reusable templates aligned with brand and tone.'],
+      ['06', 'Finance and reporting support',     'Drafting commentary, structuring reports, and preparing summaries with human checks on numbers.'],
+      ['07', 'Internal knowledge workflows',      'Turning policies, procedures, and documents into usable, searchable internal knowledge.'],
+      ['08', 'Responsible use and confidentiality', 'Clear rules on data privacy-aware practice, IP, and what should never go into AI tools.'],
+    ];
+
+    const WhatTeamsLearn = () => (
+      <section className="band base" data-screen-label="What teams learn">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Who we serve</div>
-            <h2 className="h2">Built for serious operating businesses.</h2>
+            <div className="eyebrow">What teams learn</div>
+            <h2 className="h2">Practical AI skills for everyday work.</h2>
             <p className="body-xl">
-              Four business audience profiles with distinct AI capability needs.
+              Training is built around the work employees already do, not
+              abstract tool demonstrations.
             </p>
           </div>
-          <div className="icon-grid cols-2">
-            <article className="icon-card">
-              <IconBuilding/>
-              <div className="eyebrow">SMEs</div>
-              <h3 className="card-h">Small and medium enterprises.</h3>
-              <p className="body">
-                Workflow redesign, prompt systems, role-specific training, and
-                AI productivity playbooks tailored to operating businesses.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconBriefcase/>
-              <div className="eyebrow">Professional Services</div>
-              <h3 className="card-h">Law firms, consultancies, accountants.</h3>
-              <p className="body">
-                AI for research, drafting, and client work with confidentiality
-                and IP protection built into workflow design.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconChart/>
-              <div className="eyebrow">Operating Teams</div>
-              <h3 className="card-h">Sales, marketing, finance, ops.</h3>
-              <p className="body">
-                Function-specific capability programs: sales workflows,
-                marketing systems, financial analysis, operational excellence.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconExec/>
-              <div className="eyebrow">Executive Leadership</div>
-              <h3 className="card-h">C-suite and senior management.</h3>
-              <p className="body">
-                Strategic AI alignment, executive capability briefings, and
-                governance operating model design.
-              </p>
-            </article>
+          <div className="offering-grid">
+            {LEARN.map(([n, t, d]) => (
+              <article key={n} className="offering-card">
+                <div className="num">{n}</div>
+                <h3 className="card-h">{t}</h3>
+                <p className="body">{d}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 3B — WHERE AI PRODUCTIVITY SHOWS UP
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const WORKFLOW_MAP = [
+      ['Sales',               'Outreach, proposals, follow-ups, and pipeline notes.'],
+      ['Marketing',           'Content systems, campaign drafts, and reusable templates.'],
+      ['Finance',             'Report drafting, commentary, and reconciliation support.'],
+      ['Operations',          'Process documentation, checklists, and routine drafting.'],
+      ['HR',                  'Job descriptions, policy drafts, and onboarding material.'],
+      ['Client service',      'Response drafting, knowledge lookups, and case summaries.'],
+      ['Leadership reporting', 'Board notes, status summaries, and decision briefs.'],
+      ['Internal knowledge',  'Searchable procedures, FAQs, and shared playbooks.'],
+    ];
+
+    const WorkflowMap = () => (
+      <section className="band surface" data-screen-label="Where AI productivity shows up">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Where AI productivity shows up</div>
+            <h2 className="h2">A workflow map across the organization.</h2>
+            <p className="body-xl">
+              AI productivity gains are concentrated in a few recurring,
+              document-heavy workflows. Training targets them directly.
+            </p>
+          </div>
+          <div className="offering-grid">
+            {WORKFLOW_MAP.map(([t, d]) => (
+              <article key={t} className="offering-card">
+                <h3 className="card-h">{t}</h3>
+                <p className="body">{d}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -618,23 +637,25 @@
        SECTION 4 — WHAT WE DELIVER
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const OFFERINGS = [
-      ['01', 'AI Productivity Audit',           'Workflow assessment for one business unit. Where AI helps, where it doesn\'t, and governance gaps.'],
-      ['02', 'Prompt System Design',            'Custom prompt libraries and systems for role-specific use cases, designed for repeatable, defensible outputs.'],
-      ['03', 'Team Capability Programs',        'Role-specific AI training cohorts. Half-day to multi-week formats, with workbook and final deliverable.'],
-      ['04', 'Workflow Redesign',               'Function-level workflow redesign integrating AI with human approval points and quality controls.'],
-      ['05', 'Confidentiality & IP Governance', 'AI use policy frameworks for confidential client work, intellectual property protection, and regulatory compliance.'],
-      ['06', 'Executive AI Briefings',          'Leadership-level briefings on AI strategy, governance, and capability building decisions.'],
+      ['01', 'Business AI Productivity Program',  'Role-specific AI training cohorts built around your real workflows, with workbook and final deliverables.'],
+      ['02', 'Team Workflow Audit',               'A practical review of one team or function: where AI helps, where it should not be used, and the gaps to close.'],
+      ['03', 'Prompt System Design',              'Reusable prompt libraries and review rules for role-specific use cases, designed for consistent, defensible outputs.'],
+      ['04', 'AI for Sales & Client Work',        'Training and prompt systems for outreach, proposals, follow-ups, and client-ready material with review steps.'],
+      ['05', 'AI for Professional Services',      'AI for research, drafting, and client delivery in firms where confidentiality and IP are central to the work.'],
+      ['06', 'Confidentiality & IP Governance',   'Data privacy-aware AI use rules and policy frameworks, aligned with institutional policy and EU AI Act readiness.'],
+      ['07', 'Business AI Champions Program',     'A train-the-trainer track that builds internal champions who can sustain AI practice after the engagement.'],
+      ['08', 'Agentic Workflow Discovery',        'Structured discovery of where agentic AI workflows could safely support repetitive, rules-based business tasks.'],
     ];
 
     const Offerings = () => (
-      <section className="band surface" data-screen-label="What we deliver">
+      <section className="band base" data-screen-label="What we deliver">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">What we deliver</div>
-            <h2 className="h2">Six core service offerings.</h2>
+            <h2 className="h2">Eight core service offerings.</h2>
             <p className="body-xl">
-              All available standalone or as integrated programs. Pricing
-              scoped per engagement.
+              All available standalone or as integrated programs. Scope and
+              format are set per engagement.
             </p>
           </div>
           <div className="offering-grid">
@@ -654,10 +675,12 @@
        SECTION 5 — APPROACH
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const STEPS = [
-      ['01', 'Diagnose', 'Six-dimension readiness assessment. Where AI helps, where it must not be allowed.'],
-      ['02', 'Design',   'Governance framework, use-case portfolio, training plan, and 90-day roadmap.'],
-      ['03', 'Train',    'Role-specific cohorts and workshops with real deliverables. Bilingual.'],
-      ['04', 'Embed',    'Pilot, measure, refresh. Human-approved workflows and monitoring routines.'],
+      ['01', 'Assess', 'Review team workflows and current AI use. Where AI helps, where it should not be used.'],
+      ['02', 'Train',  'Role-specific cohorts and workshops built around real tasks and deliverables.'],
+      ['03', 'Equip',  'Reusable prompt systems, review rules, and workflow playbooks the team keeps.'],
+      ['04', 'Embed',  'Pilot the new workflows, gather feedback, and refine with human review in place.'],
+      ['05', 'Govern', 'Confidentiality and IP rules, data privacy-aware practice, aligned with institutional policy.'],
+      ['06', 'Scale',  'Internal champions and refresh cycles so AI practice continues across more teams.'],
     ];
 
     const Approach = () => (
@@ -665,9 +688,10 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Approach</div>
-            <h2 className="h2">Diagnose. Design. Train. Embed.</h2>
+            <h2 className="h2">Assess. Train. Equip. Embed. Govern. Scale.</h2>
             <p className="body-xl">
-              Same discipline across all GovAI engagements. Same four-stage methodology.
+              Same discipline across every BusinessAI engagement. A six-step
+              model that turns training into embedded team practice.
             </p>
           </div>
           <div className="method-grid">
@@ -708,8 +732,9 @@
             <div className="eyebrow">Frameworks</div>
             <h2 className="h2">Built on international AI governance standards.</h2>
             <p className="body-xl">
-              Adapted for public-sector context, EU candidate-state alignment,
-              and donor program compliance.
+              Confidentiality and responsible-use training is grounded in
+              recognized standards, aligned with institutional policy and
+              EU AI Act readiness. Horizon4 does not certify compliance.
             </p>
           </div>
           <div className="fw-grid">
@@ -734,9 +759,10 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Engagement types</div>
-            <h2 className="h2">What GovAI work looks like in practice.</h2>
+            <h2 className="h2">What BusinessAI work looks like in practice.</h2>
             <p className="body-xl">
-              Three patterns of GovAI engagement, sized to different institutional contexts.
+              Three patterns of BusinessAI engagement, sized to different
+              organizational contexts.
             </p>
           </div>
 
@@ -746,67 +772,67 @@
               <div className="tag">Focused</div>
               <hr className="hr"/>
               <h3 className="card-h">Team Productivity Sprint</h3>
-              <p className="meta">4-8 weeks</p>
+              <p className="meta">Short, focused engagement</p>
               <p className="body">
-                Focused AI productivity program for one team or function.
-                Workflow redesign and capability training.
+                A focused AI productivity program for one team or function,
+                built around their real workflows.
               </p>
               <ul className="bullets">
-                <li>Function-level assessment</li>
-                <li>Custom prompt library</li>
-                <li>Team workshop series</li>
+                <li>Team workflow review</li>
+                <li>Reusable prompt library</li>
+                <li>Hands-on workshop series</li>
                 <li>Productivity playbook</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
                 <span className="price">Request Scope</span>
-                <a href="/audit" className="cta-link">Request Scope →</a>
+                <a href="/contact" className="cta-link">Request Scope →</a>
               </div>
             </article>
 
             {/* CARD 2 — FLAGSHIP */}
             <article className="eng-card flagship">
-              <div className="tag">Flagship · Institutional</div>
+              <div className="tag">Flagship · Organization-wide</div>
               <hr className="hr"/>
-              <h3 className="card-h">Full Business Program</h3>
-              <p className="meta">3-6 months</p>
+              <h3 className="card-h">Business AI Capability Program</h3>
+              <p className="meta">Multi-team program</p>
               <p className="body">
-                Multi-team AI capability program with governance foundation.
-                Most common business engagement.
+                A multi-team AI capability program with a confidentiality and
+                governance foundation. The most common engagement.
               </p>
               <ul className="bullets">
-                <li>Business AI readiness audit</li>
-                <li>Custom governance and IP policy</li>
-                <li>Multi-team capability cohorts</li>
-                <li>Embedded workflow support</li>
+                <li>Workflow audit across teams</li>
+                <li>Confidentiality and IP use rules</li>
+                <li>Multi-team training cohorts</li>
+                <li>Internal champions and refresh cycle</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
-                <span className="price">Request Scope</span>
-                <a href="/audit" className="cta-link">Request Scope →</a>
+                <span className="price">Discuss Scope</span>
+                <a href="/contact" className="cta-link">Discuss Scope →</a>
               </div>
             </article>
 
-            {/* CARD 3 — MULTI-YEAR */}
+            {/* CARD 3 — SECTOR / ASSOCIATION */}
             <article className="eng-card">
-              <div className="tag">Multi-Year</div>
+              <div className="tag">Sector / Association</div>
               <hr className="hr"/>
-              <h3 className="card-h">Sector / Donor Program</h3>
-              <p className="meta">12-24 months</p>
+              <h3 className="card-h">Sector / Association Program</h3>
+              <p className="meta">Multi-organization program</p>
               <p className="body">
-                Multi-business or sector-wide AI capability program. Often
-                donor-funded for SME development.
+                A multi-organization or association-wide AI capability program,
+                often supported by donor or sector funding.
               </p>
               <ul className="bullets">
-                <li>Sector readiness study</li>
+                <li>Sector workflow study</li>
                 <li>Train-the-trainer infrastructure</li>
                 <li>Multi-cohort delivery</li>
-                <li>M&amp;E framework</li>
+                <li>Outcome and progress tracking</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
                 <span className="price">Request Quote</span>
-                <a href="/donor-programs" className="cta-link">Discuss Program →</a>
+                <a href="/contact" className="cta-link">Discuss Program →</a>
               </div>
             </article>
           </div>
@@ -818,16 +844,16 @@
        SECTION 8 — FAQ
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const FAQS = [
-      ['Are AI training programs really worth it for SMEs?',
-       "When designed around real workflows, yes. Generic training rarely is. The question isn't whether to train. It's whether to design training around your actual operating context. We do the latter."],
-      ['Can you sign NDAs for confidential engagements?',
-       "Yes. BusinessAI engagements routinely involve confidential information. We sign NDAs and operate under standard professional confidentiality."],
-      ['Do you work with sole proprietors and freelancers?',
-       "Our BusinessAI work is designed for teams of 5+ where workflow design and capability programs create real leverage. Individuals are better served by our public Academy courses."],
-      ['Can BusinessAI engagements be delivered remotely?',
-       "Yes. On-site, fully remote, and hybrid formats are all available. Remote works particularly well for multi-location teams."],
-      ['Who delivers BusinessAI engagements?',
-       "BusinessAI engagements are typically led by Yllka Sela (Brandeis STEM MBA, 8 years at GIZ, former Economic Policy lecturer) with cofounders engaged based on scope."],
+      ['Is AI productivity training worth it for our organization?',
+       "When training is built around the work employees already do, it changes how teams operate day to day. Generic tool demonstrations rarely do. BusinessAI training targets real documents, meetings, and workflows, so the practice sticks."],
+      ['Can you train teams on confidential and client work?',
+       "Yes. BusinessAI training routinely covers confidentiality, IP, and data privacy-aware practice. We help teams set clear rules on what should never go into AI tools, aligned with institutional policy."],
+      ['Do you work with smaller teams and SMEs?',
+       "Yes. BusinessAI is designed for teams where shared workflows and prompt systems create real leverage. Individuals are often better served by our public Academy courses."],
+      ['Can training be delivered remotely?',
+       "Yes. On-site, fully remote, and hybrid formats are all available. Remote delivery works well for multi-location teams and organizations."],
+      ['Does Horizon4 certify that our AI use is compliant?',
+       "No. BusinessAI training is aligned with recognized standards and supports EU AI Act readiness, but Horizon4 does not certify compliance. We help teams build governance-ready practice and clear internal rules."],
     ];
 
     const FAQ = () => (
@@ -890,17 +916,17 @@
       <section className="gov-cta" data-screen-label="Final CTA">
         <div className="container">
           <div className="eyebrow">Start</div>
-          <h2 className="h2">AI capability for serious businesses.</h2>
+          <h2 className="h2">AI productivity capability for serious organizations.</h2>
           <p className="body-xl">
-            Start with an audit, a briefing, or a direct conversation about
-            your institution.
+            Start with team training, private training for your organization,
+            or an executive briefing for leadership.
           </p>
           <div className="links">
-            <a href="/audit">Request Audit Scope</a>
+            <a href="/contact">Request Business Team Training</a>
             <span className="sep">·</span>
-            <a href="/executive-briefing">Request Briefing</a>
+            <a href="/academy/private">Explore Private Training</a>
             <span className="sep">·</span>
-            <a href="/contact">General Inquiry</a>
+            <a href="/executive-briefing">Book Executive Briefing</a>
           </div>
         </div>
       </section>
@@ -978,7 +1004,8 @@
         <Nav/>
         <Hero/>
         <WhyGov/>
-        <WhoWeServe/>
+        <WhatTeamsLearn/>
+        <WorkflowMap/>
         <Offerings/>
         <Approach/>
         <Frameworks/>

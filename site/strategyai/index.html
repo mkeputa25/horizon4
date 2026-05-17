@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>StrategyAI · Horizon4 AI — AI strategy that survives implementation</title>
-  <meta name="description" content="Roadmaps, governance operating models, and program design for institutions making multi-year AI commitments. Strategic clarity, governance discipline.">
+  <title>AI Strategy and Implementation for Albanian Institutions, Horizon4 AI</title>
+  <meta name="description" content="AI implementation strategy, governance operating models, training plans, and donor program design for governments, businesses, and organizations.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <style>
@@ -495,16 +495,17 @@
     const Hero = () => (
       <section className="gov-hero" data-screen-label="Hero">
         <div className="container">
-          <div className="eyebrow">Horizon 04 · StrategyAI</div>
-          <h1 className="h1">AI strategy that survives implementation.</h1>
+          <div className="eyebrow">HORIZON 04 · STRATEGY &amp; IMPLEMENTATION</div>
+          <h1 className="h1">AI strategy for implementation, training, and scale.</h1>
           <p className="body-xl hero-lead">
-            Roadmaps, governance operating models, and program design for
-            institutions making multi-year AI commitments. Strategic clarity,
-            governance discipline.
+            Horizon4 designs AI implementation strategies for governments,
+            municipalities, agencies, businesses, organizations, and donor
+            programs, with training plans, governance models, agentic
+            workflows, and 90-day execution built in.
           </p>
           <div className="hero-actions">
-            <a href="/audit" className="btn btn-primary">Request Audit Scope</a>
-            <a href="/executive-briefing" className="btn btn-secondary">Request Executive Briefing</a>
+            <a href="/contact" className="btn btn-primary">Discuss Strategy Program</a>
+            <a href="/executive-briefing" className="btn btn-secondary">Book Executive Briefing</a>
           </div>
         </div>
       </section>
@@ -518,40 +519,39 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Why StrategyAI</div>
-            <h2 className="h2">AI strategy fails by being abstract.</h2>
+            <h2 className="h2">AI strategy fails when it is disconnected from people.</h2>
             <p className="body-xl">
-              Most AI strategy documents become shelfware because they're
-              written for board presentations, not implementation. StrategyAI
-              work is written to be executed.
+              Most AI strategy documents become shelfware because they treat
+              roadmaps, skilling, and governance as separate exercises.
+              StrategyAI work is written to be executed.
             </p>
           </div>
           <div className="icon-grid cols-3">
             <article className="icon-card">
               <IconTarget/>
-              <div className="eyebrow">Implementable</div>
-              <h3 className="card-h">Strategy with named owners.</h3>
+              <div className="eyebrow">Skilling</div>
+              <h3 className="card-h">Strategy must include skilling.</h3>
               <p className="body">
-                Every strategic document we produce has accountability lines,
-                dependency maps, and 90-day execution sequencing built in.
+                No AI roadmap works if the workforce cannot use the tools.
+                Every Horizon4 strategy includes a capability-building plan.
               </p>
             </article>
             <article className="icon-card">
               <IconLink/>
-              <div className="eyebrow">Governance-Integrated</div>
-              <h3 className="card-h">Strategy and governance, designed together.</h3>
+              <div className="eyebrow">Governance</div>
+              <h3 className="card-h">Strategy must include governance.</h3>
               <p className="body">
-                We design AI strategy and AI governance as one continuous
-                artifact. Strategy without governance is risk; governance
-                without strategy is paperwork.
+                Training without rules creates risk. Governance without
+                training becomes paperwork.
               </p>
             </article>
             <article className="icon-card">
               <IconCalendar/>
-              <div className="eyebrow">Multi-Year</div>
-              <h3 className="card-h">Built for institutional time horizons.</h3>
+              <div className="eyebrow">Implementation</div>
+              <h3 className="card-h">Strategy must include implementation.</h3>
               <p className="body">
-                Government and donor work runs in 12-36 month cycles.
-                StrategyAI is designed for these horizons, not quarterly sprints.
+                Roadmaps must show owners, timelines, workflows, budgets,
+                training sequence, and review cycles.
               </p>
             </article>
           </div>
@@ -560,55 +560,38 @@
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SECTION 3 — WHO WE SERVE
+       SECTION 3 — WHAT STRATEGY INCLUDES
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    const WhoWeServe = () => (
-      <section className="band base" data-screen-label="Who we serve">
+    const STRATEGY_PARTS = [
+      ['01', 'AI readiness baseline',         'A clear picture of current capability, data, infrastructure, and governance, and the gaps to close.'],
+      ['02', 'Use-case portfolio',            'A prioritized set of AI use cases matched to mission, value, feasibility, and risk.'],
+      ['03', 'Workforce training plan',       'A sequenced skilling plan so employees and teams can actually use the tools the strategy depends on.'],
+      ['04', 'Governance operating model',    'Oversight bodies, decision authority, escalation paths, and review routines, aligned with institutional policy.'],
+      ['05', 'Agentic AI opportunity map',    'A structured view of where agentic AI workflows could safely support repetitive, rules-based tasks.'],
+      ['06', 'Donor / EU alignment',          'Strategy framing that supports donor and EU program design, with EU AI Act readiness in view.'],
+      ['07', 'M&E and outcome metrics',       'Monitoring and evaluation measures so progress and outcomes can be tracked, not assumed.'],
+      ['08', '90-day implementation roadmap', 'An executable first phase with owners, milestones, budgets, and review cycles.'],
+    ];
+
+    const WhatStrategyIncludes = () => (
+      <section className="band base" data-screen-label="What strategy includes">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Who we serve</div>
-            <h2 className="h2">Built for institutional leadership.</h2>
+            <div className="eyebrow">What strategy includes</div>
+            <h2 className="h2">A strategy that connects roadmap, people, and governance.</h2>
             <p className="body-xl">
-              Four strategic audience profiles with distinct AI capability needs.
+              Every Horizon4 AI strategy is built from the same components, so
+              the plan is ready to execute, not just to present.
             </p>
           </div>
-          <div className="icon-grid cols-2">
-            <article className="icon-card">
-              <IconMinister/>
-              <div className="eyebrow">Government Executives</div>
-              <h3 className="card-h">Ministers, deputy ministers, chiefs of staff.</h3>
-              <p className="body">
-                National-level AI strategy, cross-ministerial coordination,
-                and donor program alignment.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconLeader/>
-              <div className="eyebrow">Institutional Leadership</div>
-              <h3 className="card-h">University presidents, agency directors, board chairs.</h3>
-              <p className="body">
-                Multi-year institutional AI transformation strategy with
-                executable program design.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconGlobe/>
-              <div className="eyebrow">Donor Organizations</div>
-              <h3 className="card-h">EU delegations, World Bank, UN, GIZ, USAID.</h3>
-              <p className="body">
-                AI capability program design, M&amp;E frameworks, and delivery
-                infrastructure for institutional capacity building.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconBoard/>
-              <div className="eyebrow">Corporate Boards</div>
-              <h3 className="card-h">Public and private sector boards.</h3>
-              <p className="body">
-                Board-level AI strategy briefings, multi-year capability
-                roadmaps, and governance operating model design.
-              </p>
-            </article>
+          <div className="offering-grid">
+            {STRATEGY_PARTS.map(([n, t, d]) => (
+              <article key={n} className="offering-card">
+                <div className="num">{n}</div>
+                <h3 className="card-h">{t}</h3>
+                <p className="body">{d}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -618,12 +601,12 @@
        SECTION 4 — WHAT WE DELIVER
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const OFFERINGS = [
-      ['01', 'Multi-Year AI Strategy',           '12-36 month AI capability strategy with named workstreams, accountability lines, and milestone planning.'],
-      ['02', 'Governance Operating Model',       'Institutional AI governance design: oversight bodies, decision authority, escalation paths, monitoring routines.'],
-      ['03', 'Donor Program Design',             'EU and international donor program proposals: theory of change, M&E framework, delivery architecture, sustainability plan.'],
-      ['04', 'Cross-Institutional Coordination', 'Multi-ministry or multi-institution AI coordination frameworks for national-level capability building.'],
-      ['05', 'Strategic Roadmap Refresh',        'Annual or biennial review and refresh of existing AI strategies with implementation learning integrated.'],
-      ['06', 'Executive & Board Briefings',      'Strategic AI briefings for executives and boards preparing major capability commitments.'],
+      ['01', 'AI Implementation Strategy',       'A multi-year AI capability strategy with named workstreams, a training sequence, governance, and milestone planning.'],
+      ['02', 'Governance Operating Model',       'Institutional AI governance design: oversight bodies, decision authority, escalation paths, and monitoring routines.'],
+      ['03', 'Workforce Skilling Plan',          'A sequenced training plan that connects the roadmap to the people who have to use the tools day to day.'],
+      ['04', 'Donor and EU Program Design',      'Donor and EU program design: theory of change, M&E framework, delivery architecture, and sustainability plan.'],
+      ['05', 'Agentic Workflow Strategy',        'A structured map of where agentic AI workflows could safely support repetitive, rules-based institutional tasks.'],
+      ['06', 'Strategy Refresh and Review',      'Annual or biennial review and refresh of existing AI strategies with implementation learning integrated.'],
     ];
 
     const Offerings = () => (
@@ -633,8 +616,8 @@
             <div className="eyebrow">What we deliver</div>
             <h2 className="h2">Six core service offerings.</h2>
             <p className="body-xl">
-              All available standalone or as integrated programs. Pricing
-              scoped per engagement.
+              All available standalone or as integrated programs. Scope and
+              format are set per engagement.
             </p>
           </div>
           <div className="offering-grid">
@@ -654,10 +637,12 @@
        SECTION 5 — APPROACH
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const STEPS = [
-      ['01', 'Diagnose', 'Six-dimension readiness assessment. Where AI helps, where it must not be allowed.'],
-      ['02', 'Design',   'Governance framework, use-case portfolio, training plan, and 90-day roadmap.'],
-      ['03', 'Train',    'Role-specific cohorts and workshops with real deliverables. Bilingual.'],
-      ['04', 'Embed',    'Pilot, measure, refresh. Human-approved workflows and monitoring routines.'],
+      ['01', 'Assess', 'Review readiness, data, infrastructure, and current AI use. Where AI helps, where it should not be used.'],
+      ['02', 'Train',  'A sequenced workforce skilling plan so people can use the tools the strategy depends on.'],
+      ['03', 'Equip',  'Use-case portfolio, prompt systems, and agentic workflow opportunities mapped to real work.'],
+      ['04', 'Embed',  'Pilot priority use cases, gather evidence, and refine with human review in place.'],
+      ['05', 'Govern', 'Governance operating model, oversight routines, and EU AI Act readiness, aligned with institutional policy.'],
+      ['06', 'Scale',  'A 90-day roadmap, M&E metrics, and refresh cycles so the strategy continues beyond launch.'],
     ];
 
     const Approach = () => (
@@ -665,9 +650,10 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Approach</div>
-            <h2 className="h2">Diagnose. Design. Train. Embed.</h2>
+            <h2 className="h2">Assess. Train. Equip. Embed. Govern. Scale.</h2>
             <p className="body-xl">
-              Same discipline across all GovAI engagements. Same four-stage methodology.
+              Same discipline across every StrategyAI engagement. A six-step
+              model that turns strategy into implemented, governed practice.
             </p>
           </div>
           <div className="method-grid">
@@ -708,8 +694,9 @@
             <div className="eyebrow">Frameworks</div>
             <h2 className="h2">Built on international AI governance standards.</h2>
             <p className="body-xl">
-              Adapted for public-sector context, EU candidate-state alignment,
-              and donor program compliance.
+              Strategy and governance work is grounded in recognized standards,
+              aligned with institutional policy and EU AI Act readiness.
+              Horizon4 does not certify compliance.
             </p>
           </div>
           <div className="fw-grid">
@@ -734,9 +721,10 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Engagement types</div>
-            <h2 className="h2">What GovAI work looks like in practice.</h2>
+            <h2 className="h2">What StrategyAI work looks like in practice.</h2>
             <p className="body-xl">
-              Three patterns of GovAI engagement, sized to different institutional contexts.
+              Three patterns of StrategyAI engagement, sized to different
+              institutional contexts.
             </p>
           </div>
 
@@ -745,63 +733,63 @@
             <article className="eng-card">
               <div className="tag">Focused</div>
               <hr className="hr"/>
-              <h3 className="card-h">Strategic AI Roadmap</h3>
-              <p className="meta">2-3 months</p>
+              <h3 className="card-h">AI Implementation Roadmap</h3>
+              <p className="meta">Single institution or program</p>
               <p className="body">
-                Written multi-year AI strategy for one institution or program.
-                Implementation-ready, governance-integrated.
+                A written AI implementation strategy for one institution or
+                program. Training-aware and governance-integrated.
               </p>
               <ul className="bullets">
-                <li>Strategic readiness assessment</li>
-                <li>Multi-year roadmap with milestones</li>
-                <li>Governance operating model</li>
-                <li>Implementation handoff</li>
+                <li>AI readiness baseline</li>
+                <li>Use-case portfolio and roadmap</li>
+                <li>Workforce training plan</li>
+                <li>90-day implementation handoff</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
                 <span className="price">Request Scope</span>
-                <a href="/audit" className="cta-link">Request Scope →</a>
+                <a href="/contact" className="cta-link">Request Scope →</a>
               </div>
             </article>
 
             {/* CARD 2 — FLAGSHIP */}
             <article className="eng-card flagship">
-              <div className="tag">Flagship · Strategic</div>
+              <div className="tag">Flagship · Institutional</div>
               <hr className="hr"/>
-              <h3 className="card-h">Institutional Transformation</h3>
-              <p className="meta">6-18 months</p>
+              <h3 className="card-h">Institutional AI Capability Program</h3>
+              <p className="meta">Multi-team transformation</p>
               <p className="body">
-                Multi-year AI transformation engagement with strategy,
-                governance, program design, and execution support.
+                A full AI capability program with strategy, governance,
+                skilling, and execution support. The most common engagement.
               </p>
               <ul className="bullets">
-                <li>Full strategic engagement</li>
-                <li>Custom governance model</li>
-                <li>Donor program design (if relevant)</li>
-                <li>Quarterly review and refresh</li>
+                <li>Strategy and governance operating model</li>
+                <li>Workforce skilling across teams</li>
+                <li>Agentic workflow opportunity map</li>
+                <li>90-day roadmap and refresh cycle</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
-                <span className="price">Request Scope</span>
-                <a href="/audit" className="cta-link">Request Scope →</a>
+                <span className="price">Discuss Scope</span>
+                <a href="/contact" className="cta-link">Discuss Scope →</a>
               </div>
             </article>
 
-            {/* CARD 3 — MULTI-YEAR */}
+            {/* CARD 3 — DONOR / EU */}
             <article className="eng-card">
-              <div className="tag">Multi-Year</div>
+              <div className="tag">Donor / EU</div>
               <hr className="hr"/>
-              <h3 className="card-h">Donor / EU Program</h3>
-              <p className="meta">12-36 months</p>
+              <h3 className="card-h">Donor / EU Program Strategy</h3>
+              <p className="meta">Program design and oversight</p>
               <p className="body">
-                Full multi-year program design and oversight for EU or
-                international donor frameworks.
+                Program design and oversight support for donor and EU AI
+                capability frameworks.
               </p>
               <ul className="bullets">
                 <li>Program design with theory of change</li>
-                <li>M&amp;E framework</li>
-                <li>Delivery infrastructure design</li>
-                <li>Multi-year oversight handoff</li>
+                <li>M&amp;E and outcome metrics</li>
+                <li>Delivery and training architecture</li>
+                <li>Sustainability and oversight handoff</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
@@ -818,16 +806,16 @@
        SECTION 8 — FAQ
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const FAQS = [
-      ['Is this management consulting?',
-       "It's adjacent but different. Traditional management consulting writes strategy as a deliverable. StrategyAI writes strategy as an executable system, with governance and capability components built in. The unit of work is the system, not the deck."],
-      ['Do you work with donor and EU funding?',
-       "Yes. Multiple cofounders have institutional experience with World Bank, GIZ, OSCE, UNDP, and EU-funded programs. StrategyAI engagements are frequently incorporated into larger donor program frameworks."],
-      ['How is this different from your Advisory Audit work?',
-       "Audits are diagnostic. StrategyAI is prescriptive. An audit tells you where you are. A StrategyAI engagement tells you where you're going and how, with named accountability and execution discipline. Audits often precede StrategyAI engagements."],
-      ['Who delivers StrategyAI engagements?',
-       "StrategyAI is led by Mario Keputa (Cornell MPA, World Bank, OSCE, EDYN network) with full cofounder team engaged for multi-year programs."],
-      ['Can StrategyAI work span multiple countries?',
-       "Yes. Cofounder networks include institutional contacts across the EU and donor community. Regional and multi-country engagements are scoped accordingly."],
+      ['How is this different from a strategy document?',
+       "A StrategyAI engagement produces a strategy built to be executed. It connects the roadmap to a workforce training plan, a governance operating model, and a 90-day implementation phase, so the plan does not stop at a presentation."],
+      ['Why does an AI strategy need a training plan?',
+       "Because no roadmap works if the workforce cannot use the tools it depends on. Every Horizon4 strategy includes a sequenced skilling plan so capability is built alongside the technology, not after it."],
+      ['Do you work with donor and EU programs?',
+       "Yes. StrategyAI supports donor and EU program design, including theory of change, M&E frameworks, and delivery architecture. Strategy framing keeps EU AI Act readiness in view, though Horizon4 does not certify compliance."],
+      ['How does StrategyAI relate to an AI readiness audit?',
+       "An audit is diagnostic and tells you where you are. A StrategyAI engagement is prescriptive and sets out where you are going and how, with owners, timelines, and a training sequence. An audit often precedes a StrategyAI engagement."],
+      ['Can StrategyAI work for businesses as well as institutions?',
+       "Yes. StrategyAI is designed for governments, municipalities, agencies, businesses, organizations, and donor programs. Scope, training sequence, and governance model are set to fit each context."],
     ];
 
     const FAQ = () => (
@@ -890,17 +878,17 @@
       <section className="gov-cta" data-screen-label="Final CTA">
         <div className="container">
           <div className="eyebrow">Start</div>
-          <h2 className="h2">AI strategy with execution discipline.</h2>
+          <h2 className="h2">AI strategy built for implementation.</h2>
           <p className="body-xl">
-            Start with an audit, a briefing, or a direct conversation about
-            your institution.
+            Start with a strategy program, an executive briefing, or a
+            conversation about a donor program.
           </p>
           <div className="links">
-            <a href="/audit">Request Audit Scope</a>
+            <a href="/contact">Discuss Strategy Program</a>
             <span className="sep">·</span>
-            <a href="/executive-briefing">Request Briefing</a>
+            <a href="/executive-briefing">Book Executive Briefing</a>
             <span className="sep">·</span>
-            <a href="/contact">General Inquiry</a>
+            <a href="/donor-programs">Discuss Donor Program</a>
           </div>
         </div>
       </section>
@@ -978,7 +966,7 @@
         <Nav/>
         <Hero/>
         <WhyGov/>
-        <WhoWeServe/>
+        <WhatStrategyIncludes/>
         <Offerings/>
         <Approach/>
         <Frameworks/>

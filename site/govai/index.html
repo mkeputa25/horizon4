@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>GovAI · Horizon4 AI — Governed AI for the public sector</title>
-  <meta name="description" content="AI readiness, governance, and capability building for ministries, agencies, and municipalities. Designed to survive audit, procurement review, and public scrutiny.">
+  <title>AI Training for Public Administration in Albania — Horizon4 AI</title>
+  <meta name="description" content="AI skilling, governance, and workflow training for ministries, agencies, municipalities, and public servants.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <style>
@@ -283,6 +283,11 @@
     .band.surface { background: var(--bg-surface); }
     .band.base    { background: var(--bg-base); }
     @media (max-width: 768px) { .band { padding: var(--section-y-mobile) 0; } }
+
+    /* Six-step method grid (Approach) */
+    .method-grid.steps-6 { grid-template-columns: repeat(3, 1fr); gap: 32px 40px; }
+    @media (max-width: 1024px) { .method-grid.steps-6 { grid-template-columns: repeat(2, 1fr); gap: 40px; } }
+    @media (max-width: 640px)  { .method-grid.steps-6 { grid-template-columns: 1fr; gap: 32px; } }
   </style>
 </head>
 <body>
@@ -499,16 +504,16 @@
     const Hero = () => (
       <section className="gov-hero" data-screen-label="Hero">
         <div className="container">
-          <div className="eyebrow">Horizon 01 · GovAI</div>
-          <h1 className="h1">Governed AI for the public sector.</h1>
+          <div className="eyebrow">Horizon 01 · Public Administration</div>
+          <h1 className="h1">AI skilling for public administration.</h1>
           <p className="body-xl hero-lead">
-            AI readiness, governance, and capability building for ministries,
-            agencies, and municipalities. Designed to survive audit,
-            procurement review, and public scrutiny.
+            Horizon4 trains ministries, agencies, municipalities, and public
+            servants to use AI better, legally, responsibly, and more
+            productively for citizens and the country.
           </p>
           <div className="hero-actions">
-            <a href="/audit" className="btn btn-primary">Request Audit Scope</a>
-            <a href="/executive-briefing" className="btn btn-secondary">Request Executive Briefing</a>
+            <a href="/contact" className="btn btn-primary">Request Public Administration Training</a>
+            <a href="/audit" className="btn btn-secondary">Request AI Readiness Audit</a>
           </div>
         </div>
       </section>
@@ -522,38 +527,41 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Why GovAI</div>
-            <h2 className="h2">Public-sector AI fails differently.</h2>
+            <h2 className="h2">Public administration needs AI capability, not uncontrolled experimentation.</h2>
             <p className="body-xl">
-              When public institutions deploy AI without governance, the failure
-              mode isn't a bad product. It's a public accountability event.
+              Public servants are already using AI. The question is whether
+              they use it with skill, inside the rules, and in service of
+              better public work.
             </p>
           </div>
           <div className="icon-grid cols-3">
             <article className="icon-card">
-              <IconScale/>
-              <div className="eyebrow">Accountability</div>
-              <h3 className="card-h">Decisions need defensible logic.</h3>
+              <IconCitizens/>
+              <div className="eyebrow">Better service delivery</div>
+              <h3 className="card-h">Practical AI skills for daily public work.</h3>
               <p className="body">
-                Public AI use must be explainable to parliaments, oversight
-                bodies, and citizens. We design for defensibility from day one.
+                Public servants need practical AI skills for drafting,
+                summarization, research, reporting, service communication,
+                and internal coordination.
               </p>
             </article>
             <article className="icon-card">
               <IconStamp/>
-              <div className="eyebrow">Procurement</div>
-              <h3 className="card-h">AI procurement under EU AI Act scrutiny.</h3>
+              <div className="eyebrow">Inside the rules</div>
+              <h3 className="card-h">AI use that respects the rules.</h3>
               <p className="body">
-                Vendor selection, conformity assessment, and contractual
-                safeguards aligned with EU AI Act high-risk classification.
+                AI use must respect institutional policy, data privacy,
+                procurement safeguards, human review, and EU AI Act readiness.
               </p>
             </article>
             <article className="icon-card">
-              <IconCitizens/>
-              <div className="eyebrow">Service Delivery</div>
-              <h3 className="card-h">Citizen-facing AI under public obligation.</h3>
+              <IconScale/>
+              <div className="eyebrow">Productive for citizens</div>
+              <h3 className="card-h">Better public work, not adoption for its own sake.</h3>
               <p className="body">
-                Public services have duty-of-care obligations that private
-                SaaS doesn't. We design workflows that honor them.
+                The goal is not AI adoption for its own sake. The goal is
+                better public work: faster service, clearer communication,
+                and more capable institutions.
               </p>
             </article>
           </div>
@@ -562,55 +570,84 @@
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-       SECTION 3 — WHO WE SERVE
+       SECTION 3 — WHAT PUBLIC SERVANTS LEARN
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    const WhoWeServe = () => (
-      <section className="band base" data-screen-label="Who we serve">
+    const LEARN = [
+      ['01', 'Responsible AI fundamentals',
+       'How AI tools work, what they do well, where they fail, and the duties that come with using them in public work.'],
+      ['02', 'Prompting for public administration tasks',
+       'Practical prompting technique applied to the real documents, requests, and processes public servants handle every day.'],
+      ['03', 'Drafting, summarization, and policy analysis',
+       'Using AI to draft, condense, and analyze reports, briefs, correspondence, and policy material with human judgment intact.'],
+      ['04', 'Citizen-service communication support',
+       'Clearer, faster, more consistent communication with citizens, while keeping accuracy and tone under human control.'],
+      ['05', 'Data privacy, confidentiality, and human review',
+       'What may and may not be shared with AI tools, and how to keep a person accountable for every output.'],
+      ['06', 'Workflow redesign and AI use-case prioritization',
+       'Identifying where AI genuinely improves a public process and where it should not be introduced at all.'],
+    ];
+
+    const Learn = () => (
+      <section className="band base" data-screen-label="What public servants learn">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">What public servants learn</div>
+            <h2 className="h2">A practical curriculum for public work.</h2>
+            <p className="body-xl">
+              Every cohort builds the same core capabilities, adapted to the
+              roles and tasks in the room.
+            </p>
+          </div>
+          <div className="offering-grid">
+            {LEARN.map(([n, t, d]) => (
+              <article key={n} className="offering-card">
+                <div className="num">{n}</div>
+                <h3 className="card-h">{t}</h3>
+                <p className="body">{d}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 3B — BUILT FOR EVERY LEVEL OF PUBLIC ADMINISTRATION
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const AUDIENCES = [
+      [<IconCapitol/>, 'Ministries',
+       'Line ministries building AI capability across policy, analysis, and administrative teams.'],
+      [<IconAgency/>, 'Agencies',
+       'Executive and specialized agencies skilling staff for AI-supported operations.'],
+      [<IconCityHall/>, 'Municipalities',
+       'Local administrations improving citizen service and internal coordination with AI.'],
+      [<IconScale/>, 'Regulators',
+       'Regulatory and oversight bodies building informed, governance-ready AI practice.'],
+      [<IconCitizens/>, 'Public service delivery teams',
+       'Front-line teams that handle citizen requests, communication, and casework.'],
+      [<IconHandshake/>, 'Donor-funded public programs',
+       'Programs delivering public-sector capacity building under donor and EU-aligned frameworks.'],
+    ];
+
+    const Audiences = () => (
+      <section className="band surface" data-screen-label="Built for every level">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Who we serve</div>
-            <h2 className="h2">Built for institutional public sector.</h2>
+            <h2 className="h2">Built for every level of public administration.</h2>
             <p className="body-xl">
-              Four public-sector audience profiles with distinct AI capability needs.
+              From national ministries to municipal service desks, every level
+              of public administration needs AI capability.
             </p>
           </div>
-          <div className="icon-grid cols-2">
-            <article className="icon-card">
-              <IconCapitol/>
-              <div className="eyebrow">National Government</div>
-              <h3 className="card-h">Ministries and agencies.</h3>
-              <p className="body">
-                Policy direction, capability programs, governance frameworks,
-                and procurement guidance for line ministries and executive agencies.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconCityHall/>
-              <div className="eyebrow">Local Government</div>
-              <h3 className="card-h">Municipalities and regional bodies.</h3>
-              <p className="body">
-                Service modernization, public servant training, citizen-facing
-                workflow design, and procurement risk review.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconAgency/>
-              <div className="eyebrow">Public Agencies</div>
-              <h3 className="card-h">Specialized regulators and authorities.</h3>
-              <p className="body">
-                Vendor assessment frameworks, technical capacity building,
-                oversight protocol design, and governance operating models.
-              </p>
-            </article>
-            <article className="icon-card">
-              <IconHandshake/>
-              <div className="eyebrow">International & Donor</div>
-              <h3 className="card-h">EU-aligned and donor-funded programs.</h3>
-              <p className="body">
-                Capacity-building program design, M&amp;E frameworks,
-                train-the-trainer curricula, and bilingual local delivery.
-              </p>
-            </article>
+          <div className="icon-grid cols-3">
+            {AUDIENCES.map(([icon, t, d]) => (
+              <article key={t} className="icon-card">
+                {icon}
+                <h3 className="card-h">{t}</h3>
+                <p className="body">{d}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -620,12 +657,14 @@
        SECTION 4 — WHAT WE DELIVER
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const OFFERINGS = [
-      ['01', 'AI Readiness Audit',         'Six-dimension diagnostic for one ministry, agency, or municipality. Written report with scorecard and 90-day roadmap.'],
-      ['02', 'Procurement Governance Review', 'Vendor assessment frameworks, AI clauses for public contracts, and conformity assessment protocols.'],
-      ['03', 'Public Servant Training',    'Role-specific AI capability programs for public servants. Bilingual delivery, certificate completion.'],
-      ['04', 'Governance Operating Model', 'Institutional AI governance design: policies, oversight committees, human approval workflows, monitoring routines.'],
-      ['05', 'Service Redesign with AI',   'Citizen-facing service workflow redesign with AI components, human approval points, and accountability protocols.'],
-      ['06', 'Donor Program Design',       'Multi-year AI capacity-building programs designed for EU and international donor funding frameworks.'],
+      ['01', 'Public Administration AI Skills Program', 'Role-specific AI capability training for public servants across drafting, analysis, communication, and coordination tasks.'],
+      ['02', 'AI Readiness & Skills Baseline',          'Structured assessment of institutional readiness, current skill levels, legal exposure, and priority AI use cases.'],
+      ['03', 'Municipal AI Governance Training',        'Practical governance training for municipalities: policy, disclosure, human review, and procurement awareness.'],
+      ['04', 'Public Servant Prompt & Workflow Labs',   'Hands-on labs where teams build prompt libraries and redesign real workflows around AI.'],
+      ['05', 'AI Champions / Train-the-Trainer Program','Internal capability programs that prepare public servants to train and support their own colleagues.'],
+      ['06', 'Public-Sector Agentic Workflow Discovery','Structured discovery of where agentic AI workflows can responsibly support public processes.'],
+      ['07', 'Procurement and Vendor Awareness',        'Training and guidance on assessing AI vendors, contractual safeguards, and procurement risk.'],
+      ['08', 'Donor-Funded Public Sector Capacity Program','Multi-year public administration capacity building designed for donor and EU-aligned funding frameworks.'],
     ];
 
     const Offerings = () => (
@@ -633,10 +672,10 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">What we deliver</div>
-            <h2 className="h2">Six core service offerings.</h2>
+            <h2 className="h2">Service offerings for public administration.</h2>
             <p className="body-xl">
-              All available standalone or as integrated programs. Pricing
-              scoped per engagement.
+              All available standalone or as integrated programs. Scope and
+              cost are defined per engagement.
             </p>
           </div>
           <div className="offering-grid">
@@ -656,10 +695,12 @@
        SECTION 5 — APPROACH
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const STEPS = [
-      ['01', 'Diagnose', 'Six-dimension readiness assessment. Where AI helps, where it must not be allowed.'],
-      ['02', 'Design',   'Governance framework, use-case portfolio, training plan, and 90-day roadmap.'],
-      ['03', 'Train',    'Role-specific cohorts and workshops with real deliverables. Bilingual.'],
-      ['04', 'Embed',    'Pilot, measure, refresh. Human-approved workflows and monitoring routines.'],
+      ['01', 'Assess', 'Readiness, skill baseline, legal exposure, and a map of useful AI use cases.'],
+      ['02', 'Train',  'Role-specific cohorts for public servants, sized to each institution.'],
+      ['03', 'Equip',  'Prompt libraries, workbooks, templates, and policies teams can use immediately.'],
+      ['04', 'Embed',  'Apply AI to real public services and workflows, not abstract exercises.'],
+      ['05', 'Govern', 'Data privacy, disclosure, human review, procurement safeguards, and EU AI Act readiness.'],
+      ['06', 'Scale',  'Champions, train-the-trainer, multi-cohort programs, and reporting dashboards.'],
     ];
 
     const Approach = () => (
@@ -667,12 +708,13 @@
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Approach</div>
-            <h2 className="h2">Diagnose. Design. Train. Embed.</h2>
+            <h2 className="h2">Assess. Train. Equip. Embed. Govern. Scale.</h2>
             <p className="body-xl">
-              Same discipline across all GovAI engagements. Same four-stage methodology.
+              The same six-step model runs through every public administration
+              engagement, sized to the institution.
             </p>
           </div>
-          <div className="method-grid">
+          <div className="method-grid steps-6">
             {STEPS.map(([n, t, d]) => (
               <div key={n} className="method-col">
                 <div className="num">{n}</div>
@@ -738,31 +780,32 @@
             <div className="eyebrow">Engagement types</div>
             <h2 className="h2">What GovAI work looks like in practice.</h2>
             <p className="body-xl">
-              Three patterns of GovAI engagement, sized to different institutional contexts.
+              Three formats of public administration engagement, sized to
+              different institutional contexts.
             </p>
           </div>
 
           <div className="eng-grid">
-            {/* CARD 1 — FOCUSED */}
+            {/* CARD 1 — TRAINING SPRINT */}
             <article className="eng-card">
               <div className="tag">Focused</div>
               <hr className="hr"/>
-              <h3 className="card-h">Single-Ministry Audit</h3>
-              <p className="meta">2-4 weeks</p>
+              <h3 className="card-h">Public Servant Training Sprint</h3>
+              <p className="meta">3-hour, 1-day, or 4-week format</p>
               <p className="body">
-                Readiness assessment for one ministry or agency. Scorecard,
-                risk register, and 90-day roadmap.
+                A focused skilling format for a single team or unit, delivered
+                in the format that fits the institution.
               </p>
               <ul className="bullets">
-                <li>Six-dimension assessment</li>
-                <li>Use-case prioritization</li>
-                <li>Governance gap review</li>
-                <li>Roadmap with named owners</li>
+                <li>Role-specific AI skills training</li>
+                <li>Hands-on prompting practice</li>
+                <li>Workbook and prompt starter set</li>
+                <li>Responsible-use and review basics</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
                 <span className="price">Request Scope</span>
-                <a href="/audit" className="cta-link">Request Scope →</a>
+                <a href="/contact" className="cta-link">Request Training →</a>
               </div>
             </article>
 
@@ -770,45 +813,45 @@
             <article className="eng-card flagship">
               <div className="tag">Flagship · Institutional</div>
               <hr className="hr"/>
-              <h3 className="card-h">Full Institutional Program</h3>
-              <p className="meta">3-6 months</p>
+              <h3 className="card-h">Ministry / Agency Capability Program</h3>
+              <p className="meta">Multi-cohort, role-specific</p>
               <p className="body">
-                Audit + governance framework + training + 90-day embedded
-                support. Most common public-sector engagement.
+                A full capability program across multiple cohorts and roles,
+                delivered with the governance artifacts an institution needs.
               </p>
               <ul className="bullets">
-                <li>Institutional readiness audit</li>
-                <li>Custom governance operating model</li>
-                <li>Public servant capability program</li>
-                <li>Embedded oversight and monitoring</li>
+                <li>Readiness and skills baseline</li>
+                <li>Role-specific training cohorts</li>
+                <li>Prompt libraries, templates, and policies</li>
+                <li>Governance artifacts and review routines</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
                 <span className="price">Request Scope</span>
-                <a href="/audit" className="cta-link">Request Scope →</a>
+                <a href="/contact" className="cta-link">Request Program →</a>
               </div>
             </article>
 
-            {/* CARD 3 — MULTI-YEAR */}
+            {/* CARD 3 — NATIONAL / DONOR */}
             <article className="eng-card">
               <div className="tag">Multi-Year</div>
               <hr className="hr"/>
-              <h3 className="card-h">Donor / EU Program</h3>
-              <p className="meta">12-36 months</p>
+              <h3 className="card-h">National / Donor-Funded Public Administration Academy</h3>
+              <p className="meta">Multi-year, train-the-trainer</p>
               <p className="body">
-                Multi-year capacity-building program designed for EU or donor
-                funding frameworks. National-scale capability building.
+                A multi-year program for national-scale public administration
+                skilling, designed for donor and EU-aligned funding.
               </p>
               <ul className="bullets">
-                <li>Multi-cohort training programs</li>
+                <li>Multi-cohort national delivery</li>
                 <li>Train-the-trainer curricula</li>
                 <li>M&amp;E framework with baseline study</li>
                 <li>Bilingual delivery infrastructure</li>
               </ul>
               <hr className="hr"/>
               <div className="foot">
-                <span className="price">Request Quote</span>
-                <a href="/donor-programs" className="cta-link">Discuss Program →</a>
+                <span className="price">Discuss Scope</span>
+                <a href="/donor-programs" className="cta-link">Discuss Donor Program →</a>
               </div>
             </article>
           </div>
@@ -892,17 +935,17 @@
       <section className="gov-cta" data-screen-label="Final CTA">
         <div className="container">
           <div className="eyebrow">Start</div>
-          <h2 className="h2">AI capability for the public sector.</h2>
+          <h2 className="h2">AI capability for public administration.</h2>
           <p className="body-xl">
-            Start with an audit, a briefing, or a direct conversation about
-            your institution.
+            Start with a training program, a readiness audit, or a briefing for
+            institutional leadership.
           </p>
           <div className="links">
-            <a href="/audit">Request Audit Scope</a>
+            <a href="/contact">Request Public Administration Training</a>
             <span className="sep">·</span>
-            <a href="/executive-briefing">Request Briefing</a>
+            <a href="/audit">Request AI Readiness Audit</a>
             <span className="sep">·</span>
-            <a href="/contact">General Inquiry</a>
+            <a href="/executive-briefing">Book Executive Briefing</a>
           </div>
         </div>
       </section>
@@ -980,7 +1023,8 @@
         <Nav/>
         <Hero/>
         <WhyGov/>
-        <WhoWeServe/>
+        <Learn/>
+        <Audiences/>
         <Offerings/>
         <Approach/>
         <Frameworks/>

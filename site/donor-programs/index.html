@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Donor & EU Programs · Horizon4 AI — AI capacity programs for donor-funded work</title>
-  <meta name="description" content="Multi-year AI capability programs designed for EU AI Act alignment, donor M&E frameworks, and institutional sustainability.">
+  <title>Donor and EU AI Capability Programs - Horizon4 AI</title>
+  <meta name="description" content="Multi-cohort AI skilling programs for EU-aligned and donor-funded public administration, education, and workforce capability work in Albania.">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <style>
@@ -343,6 +343,40 @@
     }
     .form-submit:hover { background: var(--accent-primary-h); }
 
+    /* Six-step approach grid */
+    .method-grid.cols-6 { grid-template-columns: repeat(6, 1fr); }
+    @media (max-width: 1024px) { .method-grid.cols-6 { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 640px)  { .method-grid.cols-6 { grid-template-columns: 1fr; } }
+
+    /* Donor Program Stack visual */
+    .stack {
+      display: flex; flex-direction: column; gap: 8px;
+      max-width: 720px; margin: 0 auto;
+    }
+    .stack-layer {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      padding: 18px 24px;
+      display: flex; align-items: center; gap: 18px;
+    }
+    .stack-layer .layer-num {
+      font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em;
+      color: var(--accent-primary); font-weight: 600; flex: 0 0 auto;
+    }
+    .stack-layer .layer-label {
+      font-size: var(--type-body); font-weight: 700; color: var(--ink-primary);
+      flex: 0 0 auto; min-width: 200px;
+    }
+    .stack-layer .layer-desc {
+      font-size: 15px; line-height: 1.5; color: var(--ink-body); margin: 0;
+    }
+    .stack-layer.cap { border-color: rgba(0, 117, 201, 0.40); }
+    @media (max-width: 640px) {
+      .stack-layer { flex-direction: column; align-items: flex-start; gap: 6px; padding: 16px 18px; }
+      .stack-layer .layer-label { min-width: 0; }
+    }
+
     /* Final CTA donor variant */
     .gov-cta .cta-actions { display: inline-flex; gap: 24px; align-items: center; flex-wrap: wrap; justify-content: center; }
     .gov-cta .btn-on-dark { background: #fff; color: var(--ink-primary); padding: 14px 28px; border-radius: var(--radius); font-weight: 600; font-size: 15px; text-decoration: none; transition: background .24s var(--ease); }
@@ -548,14 +582,16 @@
       <section className="gov-hero" data-screen-label="Hero">
         <div className="container">
           <div className="eyebrow">Advisory · Donor & EU Programs</div>
-          <h1 className="h1">AI capacity programs for donor-funded and EU-aligned work.</h1>
+          <h1 className="h1">Donor-ready AI skilling programs for public institutions and education systems.</h1>
           <p className="body-xl hero-lead">
-            Multi-year AI capability programs designed for EU AI Act alignment,
-            donor M&amp;E frameworks, and institutional sustainability.
+            Horizon4 designs and delivers multi-cohort AI capability programs
+            for EU-aligned and donor-funded work, combining public
+            administration training, teacher training, governance, M&amp;E,
+            train-the-trainer infrastructure, and institutional sustainability.
           </p>
           <div className="hero-actions">
-            <a href="#form" className="btn btn-primary">Discuss a Program</a>
-            <a href="/executive-briefing" className="btn btn-secondary">Request Briefing</a>
+            <a href="/contact" className="btn btn-primary">Discuss Donor Program</a>
+            <a href="/executive-briefing" className="btn btn-secondary">Request Program Briefing</a>
           </div>
         </div>
       </section>
@@ -564,48 +600,40 @@
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        SECTION 2 — WHY GOVAI
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const ARCHETYPES = [
+      ['01', 'Public Administration', 'Public Administration AI Capability Program.',
+       'Multi-cohort AI skilling for ministries, agencies, and municipalities: practical productivity training, governance, and EU AI Act readiness for civil servants.'],
+      ['02', 'Education Systems', 'Teacher & Education AI Capability Program.',
+       'AI capability building for teachers, school leaders, and education authorities, with classroom-ready practice, academic integrity guidance, and policy support.'],
+      ['03', 'Workforce / SME', 'Workforce / SME AI Productivity Program.',
+       'AI productivity skilling for workforce development and small and medium enterprises, focused on measurable adoption and applied workplace use.'],
+      ['04', 'Train-the-Trainer', 'Train-the-Trainer AI Academy.',
+       'Local delivery infrastructure: instructor cohorts, curriculum, and a self-sustaining training system so capability continues after the program closes.'],
+      ['05', 'Agentic Readiness', 'Agentic AI Readiness & Governance Program.',
+       'Preparing institutions for human-approved agentic AI, with governance frameworks, approval and audit design, and oversight training for teams.'],
+    ];
+
     const WhyGov = () => (
-      <section className="band surface" data-screen-label="What we design">
+      <section className="band surface" data-screen-label="Program archetypes">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">What we design</div>
-            <h2 className="h2">Three program archetypes.</h2>
+            <div className="eyebrow">Program archetypes</div>
+            <h2 className="h2">Five AI capability program archetypes.</h2>
             <p className="body-xl">
-              Donor-funded AI capability programs typically fall into three
-              structures. We design proposals, deliver implementation, and
-              report against M&amp;E frameworks for all three.
+              Donor-funded AI skilling programs typically take one of five
+              shapes. We design proposals, deliver implementation, and report
+              against M&amp;E frameworks for each.
             </p>
           </div>
           <div className="arch-grid">
-            <article className="arch-card">
-              <div className="arch-num">01</div>
-              <div className="eyebrow">Institutional Capability</div>
-              <h3 className="card-h">Single-institution programs.</h3>
-              <p className="body">
-                Multi-year AI readiness, governance, and capability building
-                for one ministry, university, or agency. Typically 12-24 months.
-              </p>
-            </article>
-            <article className="arch-card">
-              <div className="arch-num">02</div>
-              <div className="eyebrow">Sector-Wide</div>
-              <h3 className="card-h">Multi-institution programs.</h3>
-              <p className="body">
-                National or regional AI capability programs across multiple
-                institutions in the same sector (for example, a national
-                university system, or all line ministries). Typically 18-36 months.
-              </p>
-            </article>
-            <article className="arch-card">
-              <div className="arch-num">03</div>
-              <div className="eyebrow">Train-the-Trainer</div>
-              <h3 className="card-h">Capability infrastructure programs.</h3>
-              <p className="body">
-                Building local AI capability delivery infrastructure: certified
-                instructor cohorts, curriculum infrastructure, and
-                self-sustaining training systems. Typically 24-36 months.
-              </p>
-            </article>
+            {ARCHETYPES.map(([n, eb, h, b]) => (
+              <article key={n} className="arch-card">
+                <div className="arch-num">{n}</div>
+                <div className="eyebrow">{eb}</div>
+                <h3 className="card-h">{h}</h3>
+                <p className="body">{b}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -687,8 +715,9 @@
             <div className="eyebrow">Program design</div>
             <h2 className="h2">Six components of a defensible program.</h2>
             <p className="body-xl">
-              Donor-grade AI capability programs require six components
-              designed together. We do all six.
+              Donor-grade AI skilling programs require six components designed
+              together. We support proposal design, implementation planning,
+              delivery, reporting, and institutional handoff.
             </p>
           </div>
           <div className="offering-grid">
@@ -705,27 +734,66 @@
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       SECTION 4B — DONOR PROGRAM STACK
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const STACK = [
+      ['01', 'Baseline assessment',   'Capability baseline and readiness diagnostic across target institutions.'],
+      ['02', 'Curriculum',            'Sequenced, bilingual curriculum architecture mapped to role and sector.'],
+      ['03', 'Cohorts',               'Multi-cohort delivery to civil servants, teachers, or workforce participants.'],
+      ['04', 'Trainers / champions',  'Local instructor cohorts and institutional champions trained to sustain delivery.'],
+      ['05', 'Governance artifacts',  'EU AI Act readiness materials, policy components, and institutional guidance.'],
+      ['06', 'M&E dashboard',         'Monitoring and evaluation indicators tracked from baseline to endline.'],
+      ['07', 'Sustainability handoff','Institutional ownership, continued delivery capacity, and follow-on planning.'],
+    ];
+
+    const ProgramStack = () => (
+      <section className="band base" data-screen-label="Donor program stack">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Donor program stack</div>
+            <h2 className="h2">How a program is built, layer by layer.</h2>
+            <p className="body-xl">
+              Every donor program we design is assembled from the same seven
+              layers, from baseline assessment through sustainability handoff.
+            </p>
+          </div>
+          <div className="stack">
+            {STACK.map(([n, t, d]) => (
+              <div key={n} className={`stack-layer ${n === '07' ? 'cap' : ''}`}>
+                <span className="layer-num">{n}</span>
+                <span className="layer-label">{t}</span>
+                <p className="layer-desc">{d}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        SECTION 5 — APPROACH
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const STEPS = [
-      ['01', 'Proposal', 'Proposal development, theory of change, budget design, and M&E framework drafting for donor submission.'],
-      ['02', 'Design',   'Detailed program design once awarded: curriculum, delivery infrastructure, governance components, baseline study.'],
-      ['03', 'Deliver',  'Multi-cohort program delivery with embedded quality assurance and continuous adaptation.'],
-      ['04', 'Report',   'Mid-term review, endline evaluation, donor reporting, and sustainability handoff.'],
+      ['01', 'Assess', 'Baseline study, readiness diagnostic, theory of change, and M&E framework design for donor submission.'],
+      ['02', 'Train',  'Multi-cohort AI skilling delivered bilingually to civil servants, teachers, or workforce participants.'],
+      ['03', 'Equip',  'Practical tools, curriculum materials, and applied workflows that participants can use in real work.'],
+      ['04', 'Embed',  'Embedded practice and institutional routines so AI use continues beyond the training room.'],
+      ['05', 'Govern', 'Governance components, EU AI Act readiness, and policy alignment for participating institutions.'],
+      ['06', 'Scale',  'Train-the-trainer infrastructure and sustainability handoff so capability grows after the program closes.'],
     ];
 
     const Approach = () => (
-      <section className="band base" data-screen-label="Approach">
+      <section className="band surface" data-screen-label="Approach">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Approach</div>
-            <h2 className="h2">Proposal. Design. Deliver. Report.</h2>
+            <h2 className="h2">Assess. Train. Equip. Embed. Govern. Scale.</h2>
             <p className="body-xl">
-              A four-stage methodology across the full program lifecycle from
-              proposal development through final donor reporting.
+              A six-step model across the full program lifecycle, from baseline
+              study through sustainability handoff.
             </p>
           </div>
-          <div className="method-grid">
+          <div className="method-grid cols-6">
             {STEPS.map(([n, t, d]) => (
               <div key={n} className="method-col">
                 <div className="num">{n}</div>
@@ -757,7 +825,7 @@
     ];
 
     const Frameworks = () => (
-      <section className="band surface" data-screen-label="Frameworks">
+      <section className="band base" data-screen-label="Frameworks">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Frameworks applied</div>
@@ -785,22 +853,20 @@
        SECTION 8 — FAQ
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const FAQS = [
-      ['Are donor programs different from regular advisory work?',
-       "Yes. Donor programs operate under specific procurement frameworks, M&E requirements, and reporting structures. Program design must align with donor expectations from the proposal stage, not just delivery. We do both: design and delivery."],
-      ['Can you support proposal development?',
-       "Yes. We support proposal development for institutions applying for EU, World Bank, UNDP, or bilateral donor funding. Proposal support includes theory of change, M&E framework drafting, budget design, and technical specifications."],
-      ['Do you have experience with EU IPA III and Horizon Europe?',
-       "Cofounder backgrounds include experience with EU instruments, including IPA pre-accession instruments, Horizon programs, and EU Delegation-led capability building in candidate states."],
-      ['Can programs include EU AI Act compliance preparation?',
-       "Yes. EU-funded programs increasingly require recipient institutions to demonstrate EU AI Act readiness. We incorporate EU AI Act preparation as a standard governance component. We don't certify compliance. Certification is conducted by accredited bodies."],
-      ['How long are typical donor programs?',
-       "Single-institution programs typically run 12-24 months. Multi-institution sector programs 18-36 months. Train-the-trainer capability infrastructure programs 24-36 months. Shorter pilot programs (3-9 months) are also possible."],
-      ['Who delivers donor programs?',
-       "Donor programs are led by Horizon4 cofounders with the most relevant institutional experience. Yllka Sela (Brandeis STEM MBA, 8 years at GIZ) typically leads economic development and bilateral donor programs. Mario Keputa (Cornell MPA, World Bank, OSCE) typically leads governance-heavy programs. For sector programs, cofounders are engaged based on sector."],
+      ['What does an AI skilling program actually deliver?',
+       "A multi-cohort program that moves participants from AI awareness to applied, governed practice. It combines a baseline assessment, sequenced curriculum, cohort delivery, trainer development, governance artifacts, M&E tracking, and a sustainability handoff to the institution."],
+      ['Can you support proposal design as well as delivery?',
+       "Yes. We support proposal design for institutions and partners applying for EU-aligned and donor-funded work, including theory of change, M&E framework drafting, curriculum architecture, and implementation planning. We also deliver the program and report against it."],
+      ['How do you make a program sustainable after it ends?',
+       "Sustainability is designed in from the start through the Train-the-Trainer AI Academy archetype: local instructor cohorts, institutional champions, and curriculum infrastructure. The goal is that the institution can continue delivery without ongoing external dependence."],
+      ['How do donor programs handle EU AI Act readiness?',
+       "EU-aligned programs increasingly expect participating institutions to demonstrate EU AI Act readiness. We include governance components and EU AI Act readiness materials, aligned with institutional policy. Horizon4 does not certify compliance. Formal certification is conducted by accredited bodies."],
+      ['How are programs measured and reported?',
+       "Each program includes an M&E framework with baseline, midline, and endline indicators and an M&E dashboard. Reporting is structured to align with donor expectations, covering capability outcomes, cohort progress, and institutional handoff."],
     ];
 
     const FAQ = () => (
-      <section className="band base" data-screen-label="FAQ">
+      <section className="band surface" data-screen-label="FAQ">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">FAQ</div>
@@ -829,9 +895,10 @@
               <div className="eyebrow">Discuss a program</div>
               <h2 className="h2">Tell us about your program.</h2>
               <p className="body-xl">
-                Whether you're a donor designing a program, an implementing
+                Whether you are a donor designing a program, an implementing
                 institution preparing a proposal, or a partner organization
-                seeking technical support, we'll respond within 3 business days.
+                seeking delivery support, we will respond within 3 business
+                days.
               </p>
               <hr className="hr"/>
               <div className="form-meta">
@@ -893,7 +960,7 @@
                 <select id="dp-geo" defaultValue="">
                   <option value="" disabled>Select an option</option>
                   <option>Albania</option>
-                  <option>Western Balkans regional</option>
+                  <option>Regional</option>
                   <option>EU candidate states</option>
                   <option>Multi-region</option>
                   <option>Other</option>
@@ -922,7 +989,7 @@
                   <option>Bilingual</option>
                 </select>
               </div>
-              <button type="submit" className="form-submit">Discuss Program</button>
+              <button type="submit" className="form-submit">Discuss Donor Program</button>
             </form>
           </div>
         </div>
@@ -936,14 +1003,17 @@
       <section className="gov-cta" data-screen-label="Final CTA">
         <div className="container">
           <div className="eyebrow">Program partnerships</div>
-          <h2 className="h2">AI capacity, designed to last.</h2>
+          <h2 className="h2">AI skilling at scale, designed to last.</h2>
           <p className="body-xl">
-            Multi-year programs built for donor M&amp;E discipline and
+            Multi-cohort programs built for donor M&amp;E discipline and
             institutional sustainability.
           </p>
-          <div className="cta-actions">
-            <a href="#form" className="btn-on-dark">Discuss a Program</a>
-            <a href="/executive-briefing" className="link-on-dark">or request a briefing →</a>
+          <div className="links">
+            <a href="/contact">Discuss Donor Program</a>
+            <span className="sep">·</span>
+            <a href="/executive-briefing">Request Program Briefing</a>
+            <span className="sep">·</span>
+            <a href="/contact">Request Training Program</a>
           </div>
         </div>
       </section>
@@ -1023,6 +1093,7 @@
         <WhyGov/>
         <WhoWeServe/>
         <Offerings/>
+        <ProgramStack/>
         <Approach/>
         <Frameworks/>
         <FAQ/>
