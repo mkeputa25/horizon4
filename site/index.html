@@ -204,6 +204,137 @@
       .hero-home::after { animation: none; }
       .hero-scroll-line::after { animation: none; }
     }
+
+    /* ━━━ Phase 2A — homepage journey ━━━ */
+    /* Reusable homepage card */
+    .h-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 32px;
+      display: flex; flex-direction: column;
+      color: inherit; text-decoration: none;
+      transition: box-shadow var(--dur) var(--ease),
+                  border-color var(--dur) var(--ease),
+                  transform var(--dur) var(--ease);
+    }
+    .h-card:hover {
+      box-shadow: var(--shadow-lg);
+      border-color: var(--border-strong);
+      transform: translateY(-3px);
+      color: inherit;
+    }
+    @media (max-width: 768px) { .h-card { padding: 24px; } }
+
+    .card-cta {
+      margin-top: auto; padding-top: 20px;
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--accent-primary-h);
+    }
+    .card-cta .arrow { transition: transform var(--dur) var(--ease); }
+    .h-card:hover .card-cta .arrow { transform: translateX(4px); }
+
+    /* Problem / urgency */
+    .problem { background: var(--bg-base); }
+    .problem-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
+    }
+    @media (max-width: 900px) { .problem-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .problem-copy .eyebrow { margin-bottom: 16px; }
+    .problem-copy h2 { margin-bottom: 20px; text-wrap: balance; }
+    .problem-copy .body-xl { margin-bottom: 32px; max-width: 46ch; }
+
+    .gap-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .gap-zone { padding: 28px 32px; }
+    .gap-zone-top { background: var(--bg-base); border-bottom: 1px solid var(--border-hairline); }
+    .gap-zone-label {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 10px;
+    }
+    .gap-zone-top .gap-zone-label { color: var(--ink-muted); }
+    .gap-zone-bot .gap-zone-label { color: var(--accent-primary-h); }
+    .gap-headline { font-size: 18px; font-weight: 700; color: var(--ink-primary); letter-spacing: -0.01em; }
+    .gap-items {
+      list-style: none; margin: 16px 0 0; padding: 0;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+    }
+    .gap-items li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 15px; font-weight: 500; color: var(--ink-primary);
+    }
+    .gap-items li::before {
+      content: ''; width: 6px; height: 6px; border-radius: 999px;
+      background: var(--accent-primary); flex: none;
+    }
+
+    /* Four Horizons */
+    .four-horizons { background: var(--bg-surface); }
+    .fh-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+    @media (max-width: 1024px) { .fh-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px)  { .fh-grid { grid-template-columns: 1fr; } }
+    .fh-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 22px; }
+    .fh-icon {
+      width: 40px; height: 40px; border-radius: var(--radius);
+      background: var(--accent-gold-soft);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--accent-primary-h);
+    }
+    .fh-num { font-family: var(--font-mono); font-size: 13px; color: var(--ink-muted); letter-spacing: 0.06em; }
+    .fh-card h3 { font-size: 20px; margin-bottom: 12px; letter-spacing: -0.01em; }
+    .fh-card p { font-size: 15px; line-height: 1.6; color: var(--ink-body); flex-grow: 1; }
+
+    /* Diagnostic preview */
+    .diagnostic { background: var(--bg-base); }
+    .diag-panel {
+      max-width: 940px; margin: 0 auto;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 40px;
+    }
+    @media (max-width: 768px) { .diag-panel { padding: 28px 24px; } }
+    .diag-panel-head {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-muted);
+      margin-bottom: 8px; padding-bottom: 18px;
+      border-bottom: 1px solid var(--border-hairline);
+    }
+    .diag-dims { display: flex; flex-direction: column; }
+    .diag-dim {
+      display: grid; grid-template-columns: 168px 1fr; gap: 24px; align-items: center;
+      padding: 16px 0; border-bottom: 1px solid var(--border-hairline);
+    }
+    .diag-dim:last-child { border-bottom: 0; }
+    @media (max-width: 560px) { .diag-dim { grid-template-columns: 1fr; gap: 6px; } }
+    .diag-dim-name { font-size: 16px; font-weight: 700; color: var(--ink-primary); display: flex; align-items: baseline; gap: 8px; }
+    .diag-dim-n { font-family: var(--font-mono); font-size: 12px; color: var(--accent-primary-h); }
+    .diag-dim-desc { font-size: 15px; color: var(--ink-body); line-height: 1.55; }
+    .diag-steps {
+      margin-top: 28px; padding-top: 24px;
+      border-top: 1px solid var(--border-hairline);
+      display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+    }
+    .diag-steps-label {
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-muted); margin-right: 4px;
+    }
+    .diag-step { display: inline-flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 600; color: var(--ink-primary); }
+    .diag-step .n {
+      width: 22px; height: 22px; border-radius: 999px;
+      background: var(--accent-primary-h); color: #fff;
+      font-size: 12px; font-family: var(--font-mono);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .diag-step-sep { color: var(--border-strong); }
+    .diag-cta { margin-top: 36px; text-align: center; }
   </style>
 </head>
 <body>
@@ -241,6 +372,19 @@
         if (re.test(msg)) return;
         return origWarn.apply(console, args);
       };
+    })();
+  </script>
+  <script>
+    // Arm scroll-reveal before first paint so .reveal elements never flash.
+    // Skipped under reduced-motion or when IntersectionObserver is unavailable,
+    // in which case .reveal content stays fully visible.
+    (function(){
+      try {
+        var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!reduce && 'IntersectionObserver' in window) {
+          document.documentElement.classList.add('reveal-ready');
+        }
+      } catch (e) {}
     })();
   </script>
   <div id="root"></div>
@@ -881,7 +1025,7 @@
     ];
 
     const FlagshipPrograms = () => (
-      <section id="solutions" className="horizons" data-screen-label="Flagship programs">
+      <section className="horizons" data-screen-label="Flagship programs">
         <div className="container">
           <div className="section-head">
             <div className="eyebrow">Flagship programs</div>
@@ -1231,22 +1375,182 @@
     );
 
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+       PHASE 2A — PROBLEM / FOUR HORIZONS / DIAGNOSTIC PREVIEW
+       ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+    const FHIcon = ({ d }) => (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        {d.split('|').map((p, i) => <path key={i} d={p}/>)}
+      </svg>
+    );
+
+    const ProblemSection = () => (
+      <section className="problem" data-screen-label="The AI gap">
+        <div className="container">
+          <div className="problem-grid">
+            <div className="problem-copy reveal">
+              <div className="eyebrow">The urgency</div>
+              <h2 className="h2">The AI Gap Is Widening.</h2>
+              <p className="body-xl">
+                Many organizations now have access to AI tools. Far fewer have
+                the readiness, governance, workflows, and skills to turn those
+                tools into real institutional capability.
+              </p>
+              <a href="/executive-briefing" className="btn btn-primary">Discuss Your AI Readiness</a>
+            </div>
+            <div className="gap-panel reveal reveal-d1">
+              <div className="gap-zone gap-zone-top">
+                <div className="gap-zone-label">Widely available now</div>
+                <div className="gap-headline">Access to AI tools and models</div>
+              </div>
+              <div className="gap-zone gap-zone-bot">
+                <div className="gap-zone-label">The real gap</div>
+                <div className="gap-headline">What turns tools into capability</div>
+                <ul className="gap-items">
+                  <li>Readiness</li>
+                  <li>Governance</li>
+                  <li>Workflows</li>
+                  <li>Skills</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
+    const HORIZONS4 = [
+      { n: '01', t: 'AI Strategy & Consulting',
+        d: 'Turn AI ambition into a practical roadmap for your organization.',
+        cta: 'Explore Strategy', href: '/strategyai',
+        icon: 'M12 2v3|M12 19v3|M2 12h3|M19 12h3|M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z' },
+      { n: '02', t: 'AI Skilling & Academy',
+        d: 'Equip leaders and teams with the skills to use AI responsibly and productively.',
+        cta: 'Explore Academy', href: '/academy',
+        icon: 'M3 8l9-4 9 4-9 4-9-4z|M7 10.5V15c0 1.4 2.7 2.6 5 2.6s5-1.2 5-2.6v-4.5|M21 8v5' },
+      { n: '03', t: 'AI Agents & Automation',
+        d: 'Design intelligent systems that support real workflows, not abstract demos.',
+        cta: 'Discover Agents', href: '/agentic-ai',
+        icon: 'M9 4h6v4H9z|M4 14h6v6H4z|M14 14h6v6h-6z|M12 8v3|M7 14v-3h10v3' },
+      { n: '04', t: 'AI Governance & Ethics',
+        d: 'Build policies, oversight, and human-centered safeguards for responsible adoption.',
+        cta: 'Explore Governance', href: '/audit',
+        icon: 'M12 3l8 3v5c0 5-3.4 8.2-8 10-4.6-1.8-8-5-8-10V6l8-3z|M9 11.5l2 2 4-4' },
+    ];
+
+    const FourHorizons = () => (
+      <section id="solutions" className="four-horizons" data-screen-label="Four Horizons">
+        <div className="container">
+          <div className="section-head center reveal">
+            <div className="eyebrow">The Horizon4 approach</div>
+            <h2 className="h2">Four Horizons, One Vision.</h2>
+            <p className="body-xl">
+              A structured approach to building AI-ready organizations, from
+              strategy and skills to intelligent systems and responsible
+              governance.
+            </p>
+          </div>
+          <div className="fh-grid">
+            {HORIZONS4.map((h, i) => (
+              <a key={h.n} href={h.href} className={`h-card fh-card reveal reveal-d${i + 1}`}>
+                <div className="fh-top">
+                  <span className="fh-icon"><FHIcon d={h.icon}/></span>
+                  <span className="fh-num">{h.n}</span>
+                </div>
+                <h3>{h.t}</h3>
+                <p>{h.d}</p>
+                <span className="card-cta">{h.cta} <span className="arrow">→</span></span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    const DIAG_DIMS = [
+      { n: '01', name: 'Strategy',   d: 'Vision, ownership, and a roadmap leaders agree on.' },
+      { n: '02', name: 'Skills',     d: 'Team capability and the training that closes gaps.' },
+      { n: '03', name: 'Data',       d: 'Quality, access, and privacy-aware foundations.' },
+      { n: '04', name: 'Workflows',  d: 'Where AI fits real processes and daily work.' },
+      { n: '05', name: 'Governance', d: 'Policies, oversight, and human review.' },
+    ];
+
+    const DiagnosticPreview = () => (
+      <section className="diagnostic" data-screen-label="AI readiness">
+        <div className="container">
+          <div className="section-head center reveal">
+            <div className="eyebrow">AI readiness</div>
+            <h2 className="h2">How Ready Is Your Institution?</h2>
+            <p className="body-xl">
+              Assess your organization across strategy, skills, data, workflows,
+              and governance, then identify the next practical steps.
+            </p>
+          </div>
+          <div className="diag-panel reveal reveal-d1">
+            <div className="diag-panel-head">Five dimensions we assess</div>
+            <div className="diag-dims">
+              {DIAG_DIMS.map(dim => (
+                <div key={dim.n} className="diag-dim">
+                  <div className="diag-dim-name">
+                    <span className="diag-dim-n">{dim.n}</span>{dim.name}
+                  </div>
+                  <div className="diag-dim-desc">{dim.d}</div>
+                </div>
+              ))}
+            </div>
+            <div className="diag-steps">
+              <span className="diag-steps-label">From assessment to action</span>
+              <span className="diag-step"><span className="n">1</span>Assess</span>
+              <span className="diag-step-sep" aria-hidden="true">→</span>
+              <span className="diag-step"><span className="n">2</span>Prioritize</span>
+              <span className="diag-step-sep" aria-hidden="true">→</span>
+              <span className="diag-step"><span className="n">3</span>Plan</span>
+            </div>
+          </div>
+          <div className="diag-cta">
+            <a href="/executive-briefing" className="btn btn-primary">Discuss Your AI Readiness</a>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        APP
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    const App = () => (
-      <div data-screen-label="Marketing home">
-        <Nav/>
-        <Hero/>
-        <Positioning/>
-        <FlagshipPrograms/>
-        <OperatingModel/>
-        <EnablingLayers/>
-        <Leadership/>
-        <Publications/>
-        <CTA/>
-        <Footer/>
-      </div>
-    );
+    const App = () => {
+      useEffect(() => {
+        if (!document.documentElement.classList.contains('reveal-ready')) return;
+        if (!('IntersectionObserver' in window)) return;
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              io.unobserve(e.target);
+            }
+          });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+        document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+        return () => io.disconnect();
+      }, []);
+
+      return (
+        <div data-screen-label="Marketing home">
+          <Nav/>
+          <Hero/>
+          <Positioning/>
+          <ProblemSection/>
+          <FourHorizons/>
+          <DiagnosticPreview/>
+          <FlagshipPrograms/>
+          <OperatingModel/>
+          <EnablingLayers/>
+          <Leadership/>
+          <Publications/>
+          <CTA/>
+          <Footer/>
+        </div>
+      );
+    };
 
     ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
   </script>
