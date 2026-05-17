@@ -99,6 +99,7 @@
       display: flex; flex-direction: column;
     }
     .lp-photo {
+      position: relative; overflow: hidden;
       aspect-ratio: 1 / 1;
       background: #E0E6EC;
       border-radius: var(--radius);
@@ -106,6 +107,10 @@
       font-size: 36px; font-weight: 600; color: var(--ink-primary);
       letter-spacing: 0.02em;
       margin-bottom: 16px;
+    }
+    .lp-photo img {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%; object-fit: cover;
     }
     .lp-name {
       font-size: 18px; font-weight: 600; color: var(--ink-primary);
@@ -341,13 +346,13 @@
     /* ─── LEADERSHIP PREVIEW ─── */
     const LeadershipPreview = () => {
       const people = [
-        { i: 'MK', n: 'Mario Keputa',   r: 'Founder & CEO',
+        { i: 'MK', img: 'mario', n: 'Mario Keputa',   r: 'Founder & CEO',
           c: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate' },
-        { i: 'YS', n: 'Yllka Sela',     r: 'Cofounder · Economic Development',
+        { i: 'YS', img: 'yllka', n: 'Yllka Sela',     r: 'Cofounder · Economic Development',
           c: 'Brandeis University · STEM MBA · PhD candidate' },
-        { i: 'ID', n: 'Indri Dyrmishi', r: 'Cofounder · Education & Innovation',
+        { i: 'ID', img: 'indri', n: 'Indri Dyrmishi', r: 'Cofounder · Education & Innovation',
           c: 'University of Minnesota · Carlson School MBA · PhD candidate' },
-        { i: 'FS', n: 'Fregis Sala',    r: 'Cofounder · AI Engineering',
+        { i: 'FS', img: 'fregis', n: 'Fregis Sala',    r: 'Cofounder · AI Engineering',
           c: 'University of Southern California · MS Electrical & Computer Engineering · PhD candidate' },
       ];
       return (
@@ -364,7 +369,11 @@
             <div className="leadership-preview-grid">
               {people.map(p => (
                 <div key={p.i} className="lp-card">
-                  <div className="lp-photo">{p.i}</div>
+                  <div className="lp-photo">
+                    <span aria-hidden="true">{p.i}</span>
+                    <img src={`/assets/team/${p.img}.jpg`} alt={p.n}
+                         onError={(e) => { e.currentTarget.remove(); }} />
+                  </div>
                   <div className="lp-name">{p.n}</div>
                   <div className="lp-role">{p.r}</div>
                   <div className="lp-cred">{p.c}</div>

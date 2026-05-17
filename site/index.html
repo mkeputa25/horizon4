@@ -892,6 +892,7 @@
     const TEAM = [
       {
         initials: 'MK',
+        img: 'mario',
         name: 'Mario Keputa',
         role: 'Founder & CEO',
         cred: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate',
@@ -899,6 +900,7 @@
       },
       {
         initials: 'YS',
+        img: 'yllka',
         name: 'Yllka Sela',
         role: 'Cofounder · Economic Development',
         cred: 'Brandeis University · STEM MBA · PhD candidate (Austria)',
@@ -906,6 +908,7 @@
       },
       {
         initials: 'ID',
+        img: 'indri',
         name: 'Indri Dyrmishi',
         role: 'Cofounder · Education & Innovation',
         cred: 'University of Minnesota · Carlson School MBA · PhD candidate (Spain)',
@@ -913,6 +916,7 @@
       },
       {
         initials: 'FS',
+        img: 'fregis',
         name: 'Fregis Sala',
         role: 'Cofounder · AI Engineering',
         cred: 'University of Southern California · MS Electrical & Computer Engineering · PhD candidate',
@@ -941,7 +945,11 @@
           <div className="lead-grid">
             {TEAM.map(p => (
               <article key={p.initials} className="lead-card">
-                <div className="lead-photo" aria-label={`${p.name} portrait placeholder`}>{p.initials}</div>
+                <div className="lead-photo">
+                  <span aria-hidden="true">{p.initials}</span>
+                  <img src={`/assets/team/${p.img}.jpg`} alt={p.name}
+                       onError={(e) => { e.currentTarget.remove(); }} />
+                </div>
                 <h3 className="lead-name">{p.name}</h3>
                 <div className="lead-role">{p.role}</div>
                 <div className="lead-cred">{p.cred}</div>
