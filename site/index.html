@@ -54,14 +54,36 @@
       letter-spacing: 0.06em; color: var(--ink-muted); text-transform: uppercase;
     }
 
-    .proof-chips {
-      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
-      max-width: 920px; margin: 24px auto 0;
+    /* ━━━ Batch 1D — Trust strip ━━━ */
+    .trust-strip {
+      max-width: 760px; margin: 56px auto 0;
+      padding-top: 40px; border-top: 1px solid var(--border-hairline);
     }
-    .proof-chip {
-      font-size: 13px; font-weight: 500; color: var(--ink-body);
-      background: var(--bg-surface); border: 1px solid var(--border-hairline);
-      border-radius: 999px; padding: 8px 16px;
+    .trust-line {
+      font-size: 16px; font-weight: 600; color: var(--ink-primary);
+      letter-spacing: -0.005em; margin-bottom: 32px;
+    }
+    .trust-frameworks-label {
+      display: block;
+      font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink-muted);
+      margin-bottom: 18px;
+    }
+    .framework-badges {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-wrap: wrap; gap: 12px; justify-content: center;
+    }
+    .framework-badges li {
+      font-size: 13px; font-weight: 600; color: var(--ink-body);
+      padding: 9px 16px;
+      border: 1px solid var(--border-hairline);
+      border-radius: var(--radius);
+      background: var(--bg-surface);
+      box-shadow: var(--shadow-xs);
+    }
+    @media (max-width: 768px) {
+      .trust-strip { margin-top: 40px; padding-top: 32px; }
+      .trust-line { font-size: 15px; }
     }
 
     .prog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
@@ -800,7 +822,7 @@
        SECTION 2 — POSITIONING
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const Positioning = () => (
-      <section className="positioning" data-screen-label="Positioning">
+      <section className="positioning" data-screen-label="Trust strip">
         <div className="positioning-inner">
           <div className="eyebrow">What Horizon4 does</div>
           <h2 className="h2" style={{ fontSize: 'var(--type-h2)', fontWeight: 700, letterSpacing: '-0.015em', lineHeight: 1.12, marginBottom: 24, textWrap: 'balance' }}>
@@ -811,10 +833,17 @@
             level where AI adoption actually succeeds, then equips leaders with
             the strategy and governance to scale it.
           </p>
-          <div className="proof-chips">
-            {['Public servants','Teachers','Municipalities','Ministries','Agencies','Schools','Universities','SMEs','Donor programs','Bilingual delivery','EU AI Act readiness','Human review','Written artifacts'].map(c => (
-              <span key={c} className="proof-chip">{c}</span>
-            ))}
+          <div className="trust-strip reveal">
+            <p className="trust-line">Built for institutions, businesses, and leaders across Albania.</p>
+            <div className="trust-frameworks">
+              <span className="trust-frameworks-label">Informed by global AI governance frameworks</span>
+              <ul className="framework-badges" aria-label="AI governance frameworks Horizon4 aligns its thinking with">
+                <li>EU AI Act</li>
+                <li>ISO 42001</li>
+                <li>OECD AI Principles</li>
+                <li>NIST AI RMF</li>
+              </ul>
+            </div>
           </div>
         </div>
       </section>
