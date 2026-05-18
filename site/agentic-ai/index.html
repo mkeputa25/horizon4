@@ -973,22 +973,21 @@
        SECTION 9 — RELATED HORIZONS
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const RELATED = [
-      { eb: 'Horizon 01', h: 'GovAI',      b: 'Government AI.',  more: 'Explore GovAI →',      href: '/govai' },
-      { eb: 'Horizon 02', h: 'EduAI',      b: 'Education AI.',   more: 'Explore EduAI →',      href: '/eduai' },
-      { eb: 'Horizon 03', h: 'BusinessAI', b: 'Business AI.',    more: 'Explore BusinessAI →', href: '/businessai' },
-      { eb: 'Horizon 04', h: 'StrategyAI', b: 'Strategy AI.',    more: 'Explore StrategyAI →', href: '/strategyai' },
+      { eb: 'Horizon', h: 'Academy & Training',   b: 'Professional AI training for teams and roles.', more: 'Explore Academy & Training →',   href: '/academy' },
+      { eb: 'Horizon', h: 'Templates & Toolkits', b: 'Prompts, playbooks, and workflow templates.',  more: 'Explore Templates & Toolkits →', href: '/toolkits' },
+      { eb: 'Horizon', h: 'Governance & Safe Use', b: 'Safe, responsible AI adoption.',               more: 'Explore Governance & Safe Use →', href: '/audit' },
+      { eb: 'Entry layer', h: 'Strategy & Planning', b: 'Plan before adoption.',                      more: 'Explore Strategy & Planning →',  href: '/strategyai' },
     ];
 
     const Related = () => (
       <section className="band base" data-screen-label="Related horizons">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Related capability pathways</div>
-            <h2 className="h2">Agents and workflows cut across all four horizons.</h2>
+            <div className="eyebrow">The rest of the Four Horizons</div>
+            <h2 className="h2">Agents and workflows are one of the Four Horizons.</h2>
             <p className="body-xl">
-              Agents and workflows are a capability layer. They apply to
-              government, education, business, and strategy work. Choose the
-              sector context that matches your institution.
+              Agents and workflows work alongside training, toolkits, and safe
+              use, with Strategy and Planning to decide where to begin.
             </p>
           </div>
           <div className="rel-grid cols-4">
