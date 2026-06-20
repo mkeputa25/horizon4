@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Terms of Use · Horizon4 AI</title>
+  <meta name="description" content="Terms of use for the Horizon4 AI website.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <link rel="stylesheet" href="/styles/pages.css">
+  <style>
+    .legal-body {
+      max-width: 760px; margin: 0 auto;
+      padding: 64px 0;
+    }
+    .legal-body h2 {
+      font-size: 22px; font-weight: 600; color: var(--ink-primary);
+      letter-spacing: -0.005em; margin: 40px 0 12px;
+    }
+    .legal-body h2:first-of-type { margin-top: 32px; }
+    .legal-body p { font-size: 17px; line-height: 1.7; color: var(--ink-body); margin-bottom: 16px; }
+    .legal-meta {
+      font-size: 14px; color: var(--ink-muted);
+      padding-bottom: 24px; border-bottom: 1px solid var(--border-hairline);
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="/scripts/chrome.jsx"></script>
+
+  <script type="text/babel">
+    const { Nav, Footer } = window.H4Chrome;
+
+    /*
+      Baseline terms of use template. Not legal advice.
+      Owner to-do: have counsel review and set the effective date below.
+    */
+    const Hero = () => (
+      <section className="hero hero-compact" data-screen-label="Hero">
+        <div className="container">
+          <div className="eyebrow">Legal</div>
+          <h1 className="h1">Terms of Use.</h1>
+        </div>
+      </section>
+    );
+
+    const Body = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Terms of use">
+        <div className="container">
+          <div className="legal-body">
+            <p className="legal-meta">Last updated: [INSERT DATE]</p>
+
+            <h2>Acceptance</h2>
+            <p>
+              By using horizon4.ai, you agree to these terms. If you do not
+              agree, please do not use the site.
+            </p>
+
+            <h2>Use of the site</h2>
+            <p>
+              You may use this website for lawful purposes only. You agree
+              not to misuse the site, interfere with its operation, or
+              attempt to access it in any unauthorized way.
+            </p>
+
+            <h2>Our content</h2>
+            <p>
+              The content on this website, including text, graphics, logos,
+              and research, is owned by Horizon4 AI or its contributors and
+              is protected by applicable law. You may read and share it with
+              attribution. You may not republish it as your own.
+            </p>
+
+            <h2>No professional advice</h2>
+            <p>
+              Information on this website is provided for general purposes
+              and does not constitute legal, financial, or compliance
+              advice. Engage us directly for advisory work tailored to your
+              institution.
+            </p>
+
+            <h2>No warranty</h2>
+            <p>
+              The website and its content are provided as is, without
+              warranties of any kind. We do not guarantee that the site
+              will be uninterrupted or error-free.
+            </p>
+
+            <h2>Limitation of liability</h2>
+            <p>
+              To the extent permitted by law, Horizon4 AI is not liable for
+              any indirect or consequential loss arising from your use of
+              this website.
+            </p>
+
+            <h2>External links</h2>
+            <p>
+              Our website may link to third-party sites. We are not
+              responsible for their content or practices.
+            </p>
+
+            <h2>Governing law</h2>
+            <p>
+              These terms are governed by the laws of Albania.
+            </p>
+
+            <h2>Changes</h2>
+            <p>
+              We may update these terms. The effective date above shows
+              the latest version.
+            </p>
+
+            <h2>Contact</h2>
+            <p>
+              <a href="mailto:info@horizon4.ai">info@horizon4.ai</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div data-screen-label="Terms">
+        <Nav/>
+        <Hero/>
+        <Body/>
+        <Footer/>
+      </div>
+    );
+  </script>
+</body>
+</html>

@@ -440,7 +440,6 @@
         { l: 'GovAI',       h: '/govai' },
         { l: 'EduAI',       h: '/eduai' },
         { l: 'BusinessAI',  h: '/businessai' },
-        { l: 'Agentic AI',  h: '/agentic-ai' },
         { l: 'Templates & Toolkits', h: '/toolkits' },
       ],
       Research: [
@@ -488,6 +487,7 @@
             <div className="nav-inner">
               <Brand/>
               <div className="nav-center">
+                <a href="/agentic-ai" className="nav-product" style={{ fontSize: '14px', fontWeight: 600, color: 'var(--accent-primary)', padding: '8px 12px', letterSpacing: '-0.005em' }}>Agentic AI</a>
                 {Object.keys(MEGA).map(k => (
                   <div
                     key={k}
@@ -1046,7 +1046,7 @@
           <div className="foot-grid">
             <div className="foot-brand foot-col">
               <div className="wm">Horizon<span className="four">4</span>&nbsp;AI</div>
-              <p className="tag">Building AI-ready capability through training, toolkits, agents, and safe implementation.</p>
+              <p className="tag">Governed AI for regulated institutions. Built in Albania, designed for Europe.</p>
               <div className="meta">
                 <span>Tirana, Albania · Europe-ready</span>
                 <span><a href="mailto:info@horizon4.ai" style={{ color: 'inherit' }}>info@horizon4.ai</a></span>
@@ -1086,7 +1086,7 @@
           <div className="foot-bar">
             <span>© 2026 Horizon4 AI</span>
             <span className="center">Based in Tirana. Built for Albania's AI era.</span>
-            <span className="right">Privacy · Terms</span>
+            <span className="right"><a href="/privacy" style={{ color: 'inherit' }}>Privacy</a> · <a href="/terms" style={{ color: 'inherit' }}>Terms</a></span>
           </div>
         </div>
       </footer>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Privacy Policy · Horizon4 AI</title>
+  <meta name="description" content="Privacy policy for Horizon4 AI: what we collect, why we collect it, your rights under GDPR, and how to contact us.">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  <link rel="stylesheet" href="/styles/tokens.css">
+  <link rel="stylesheet" href="/styles/site.css">
+  <link rel="stylesheet" href="/styles/pages.css">
+  <style>
+    .legal-body {
+      max-width: 760px; margin: 0 auto;
+      padding: 64px 0;
+    }
+    .legal-body h2 {
+      font-size: 22px; font-weight: 600; color: var(--ink-primary);
+      letter-spacing: -0.005em; margin: 40px 0 12px;
+    }
+    .legal-body h2:first-of-type { margin-top: 32px; }
+    .legal-body p { font-size: 17px; line-height: 1.7; color: var(--ink-body); margin-bottom: 16px; }
+    .legal-meta {
+      font-size: 14px; color: var(--ink-muted);
+      padding-bottom: 24px; border-bottom: 1px solid var(--border-hairline);
+      margin-bottom: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+  <script type="text/babel" src="/scripts/chrome.jsx"></script>
+
+  <script type="text/babel">
+    const { Nav, Footer } = window.H4Chrome;
+
+    /*
+      Baseline privacy policy template. Not legal advice.
+      Owner to-do: have counsel review and set the effective date below.
+    */
+    const Hero = () => (
+      <section className="hero hero-compact" data-screen-label="Hero">
+        <div className="container">
+          <div className="eyebrow">Legal</div>
+          <h1 className="h1">Privacy Policy.</h1>
+        </div>
+      </section>
+    );
+
+    const Body = () => (
+      <section style={{ background: 'var(--bg-base)' }} data-screen-label="Privacy policy">
+        <div className="container">
+          <div className="legal-body">
+            <p className="legal-meta">Last updated: [INSERT DATE]</p>
+
+            <h2>Who we are</h2>
+            <p>
+              Horizon4 AI is an AI governance, training, and advisory company
+              based in Tirana, Albania. For any privacy question, contact us
+              at <a href="mailto:info@horizon4.ai">info@horizon4.ai</a>.
+            </p>
+
+            <h2>What we collect</h2>
+            <p>
+              When you contact us or submit a form, we collect the information
+              you provide, such as your name, email address, organization, and
+              message. If we use website analytics, we may collect basic
+              technical data such as device type, browser, approximate
+              location, and pages visited.
+            </p>
+
+            <h2>Why we collect it</h2>
+            <p>
+              We use your information to respond to your inquiry, provide the
+              services you request, and improve our website. Our legal bases
+              are your consent, our legitimate interest in operating and
+              improving the business, and, where applicable, the performance
+              of a contract.
+            </p>
+
+            <h2>Who we share it with</h2>
+            <p>
+              We share data only with service providers that help us run the
+              website and respond to you, such as our form-handling and email
+              providers. We do not sell your personal data. Service providers
+              are bound by their own data protection obligations.
+            </p>
+
+            <h2>How long we keep it</h2>
+            <p>
+              We keep contact and inquiry data only as long as needed to
+              respond to you and to meet legal or operational requirements,
+              then delete or anonymize it.
+            </p>
+
+            <h2>International transfers</h2>
+            <p>
+              Some of our service providers may process data outside your
+              country. Where required, we rely on appropriate safeguards for
+              such transfers.
+            </p>
+
+            <h2>Your rights</h2>
+            <p>
+              If you are in the European Economic Area, you have the right to
+              access, correct, delete, restrict, or object to the processing
+              of your personal data, and the right to data portability. You
+              may withdraw consent at any time and lodge a complaint with
+              your local supervisory authority. To exercise any right, email
+              <a href="mailto:info@horizon4.ai"> info@horizon4.ai</a>.
+            </p>
+
+            <h2>Cookies and analytics</h2>
+            <p>
+              If our website uses cookies or analytics, we will describe them
+              here and provide controls where required. We do not use cookies
+              to track you across other websites for advertising.
+            </p>
+
+            <h2>Changes to this policy</h2>
+            <p>
+              We may update this policy. The effective date above shows the
+              latest version.
+            </p>
+
+            <h2>Contact</h2>
+            <p>
+              Questions about this policy or your data:{' '}
+              <a href="mailto:info@horizon4.ai">info@horizon4.ai</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+
+    ReactDOM.createRoot(document.getElementById('root')).render(
+      <div data-screen-label="Privacy">
+        <Nav/>
+        <Hero/>
+        <Body/>
+        <Footer/>
+      </div>
+    );
+  </script>
+</body>
+</html>

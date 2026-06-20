@@ -405,7 +405,7 @@
           <div className="network-strip">
             <div className="network-col">
               <div className="eyebrow">International development</div>
-              <p>World Bank · OSCE · GIZ · EDYN</p>
+              <p>World Bank · OSCE · GIZ</p>
             </div>
             <div className="network-col">
               <div className="eyebrow">Academic institutions</div>
@@ -500,10 +500,38 @@
       </section>
     );
 
+    /* ─── MISSION & VISION ─── */
+    const MissionVision = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Mission and vision">
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '48px', maxWidth: '980px', margin: '0 auto' }}>
+            <div>
+              <div className="eyebrow" style={{ marginBottom: '12px' }}>Mission</div>
+              <p className="body-xl" style={{ margin: 0, color: 'var(--ink-primary)' }}>
+                Horizon4 builds governed AI agents that help regulated
+                institutions adopt AI responsibly: compliant with European
+                rules, with human oversight and audit-ready evidence,
+                reducing operational risk and governance complexity.
+              </p>
+            </div>
+            <div>
+              <div className="eyebrow" style={{ marginBottom: '12px' }}>Vision</div>
+              <p className="body-xl" style={{ margin: 0, color: 'var(--ink-primary)' }}>
+                To become Europe's trusted platform for governed AI in
+                regulated institutions, proven first in Albania and the
+                Western Balkans.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+
     ReactDOM.createRoot(document.getElementById('root')).render(
       <div data-screen-label="About">
         <Nav/>
         <Hero/>
+        <MissionVision/>
         <WhatWeDo/>
         <Approach/>
         <Positioning/>

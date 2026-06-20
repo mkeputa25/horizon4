@@ -3,8 +3,23 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Horizon4 AI · Leading Albania into the AI Era</title>
-  <meta name="description" content="Horizon4 AI helps institutions, businesses, and leaders build AI capability through training, toolkits, agents, and safe AI use.">
+  <title>Horizon4 AI · Governed AI for Regulated Institutions</title>
+  <meta name="description" content="Horizon4 builds governed AI agents for operational and regulatory risk: human-in-the-loop, audit-ready, and aligned with EU rules including DORA, the AI Act, and GDPR. Built in Albania, designed for Europe.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Horizon4 AI">
+  <meta property="og:title" content="Horizon4 AI · Governed AI for Regulated Institutions">
+  <meta property="og:description" content="Governed AI agents for operational and regulatory risk: human-in-the-loop, audit-ready, and aligned with EU rules (DORA, AI Act, GDPR). Built in Albania, designed for Europe.">
+  <meta property="og:url" content="https://horizon4.ai/">
+  <meta property="og:image" content="https://horizon4.ai/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Horizon4 AI · Governed AI for Regulated Institutions">
+  <meta name="twitter:description" content="Governed AI agents for operational and regulatory risk: human-in-the-loop, audit-ready, EU-aligned. Built in Albania, designed for Europe.">
+  <meta name="twitter:image" content="https://horizon4.ai/og-image.png">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
   <link rel="stylesheet" href="/styles/tokens.css">
   <link rel="stylesheet" href="/styles/site.css">
   <style>
@@ -496,7 +511,6 @@
         { l: 'GovAI',       h: '/govai' },
         { l: 'EduAI',       h: '/eduai' },
         { l: 'BusinessAI',  h: '/businessai' },
-        { l: 'Agentic AI',  h: '/agentic-ai' },
         { l: 'Templates & Toolkits', h: '/toolkits' },
       ],
       Research: [
@@ -551,6 +565,7 @@
             <div className="nav-inner">
               <Brand/>
               <div className="nav-center">
+                <a href="/agentic-ai" className="nav-product" style={{ fontSize: '14px', fontWeight: 600, color: 'var(--accent-primary)', padding: '8px 12px', letterSpacing: '-0.005em' }}>Agentic AI</a>
                 {Object.keys(MEGA).map(k => (
                   <div
                     key={k}
@@ -724,16 +739,17 @@
           <canvas ref={ringsRef} className="hero-rings" aria-hidden="true"></canvas>
           <div className="container hero-grid">
             <div className="hero-copy">
-              <h1 className="h1 hero-reveal d1">Leading Albania into the AI Era.</h1>
+              <h1 className="h1 hero-reveal d1">Governed AI agents for regulated work.</h1>
               <p className="body-xl hero-lead hero-reveal d2">
-                We help institutions, businesses, and leaders build the skills,
-                systems, and strategies to adopt AI with confidence and impact.
+                For institutions that have to prove how the answer was reached.
+                Human-in-the-loop, audit-ready, and aligned with EU rules (DORA,
+                the AI Act, GDPR) by design.
               </p>
               <div className="hero-actions hero-reveal d3">
                 <a href="/executive-briefing" className="btn btn-primary">Book an AI Briefing</a>
-                <a href="#solutions" className="btn btn-secondary">Explore Solutions</a>
+                <a href="/agentic-ai" className="btn btn-secondary">How the agents work</a>
               </div>
-              <p className="hero-proof hero-reveal d4">AI Strategy · Skilling · Agents · Governance</p>
+              <p className="hero-proof hero-reveal d4">Built in Albania. Designed for Europe.</p>
             </div>
 
             <div className="hero-visual hero-reveal d3">
@@ -1047,21 +1063,25 @@
         <div className="positioning-inner">
           <div className="eyebrow">What Horizon4 does</div>
           <h2 className="h2" style={{ fontSize: 'var(--type-h2)', fontWeight: 700, letterSpacing: '-0.015em', lineHeight: 1.12, marginBottom: 24, textWrap: 'balance' }}>
-            We build institutional AI capability, not AI hype.
+            What Horizon4 does.
           </h2>
-          <p className="body-xl" style={{ maxWidth: '62ch', margin: '0 auto 8px', textAlign: 'center' }}>
-            Horizon4 trains public servants, teachers, and working teams at the
-            level where AI adoption actually succeeds, then equips leaders with
-            the strategy and governance to scale it.
+          <p className="body-xl" style={{ maxWidth: '64ch', margin: '0 auto 8px', textAlign: 'center' }}>
+            We build governed AI agents that help regulated institutions manage
+            operational and regulatory risk. Agents read, compare, flag, and
+            route. A trained human reviews and approves. Every step is logged
+            as audit-ready evidence. Around the product, two services build
+            capability and trust today: an AI Academy and governance advisory
+            for DORA, the AI Act, and ISO 42001.
           </p>
           <div className="trust-strip reveal">
             <p className="trust-line">Built for institutions, businesses, and leaders across Albania.</p>
             <div className="trust-frameworks">
-              <span className="trust-frameworks-label">Informed by global AI governance frameworks</span>
-              <ul className="framework-badges" aria-label="AI governance frameworks Horizon4 aligns its thinking with">
+              <span className="trust-frameworks-label">Aligned with the rules that govern regulated work</span>
+              <ul className="framework-badges" aria-label="Regulatory and AI governance frameworks Horizon4 aligns with">
                 <li>EU AI Act</li>
+                <li>DORA</li>
+                <li>GDPR</li>
                 <li>ISO 42001</li>
-                <li>OECD AI Principles</li>
                 <li>NIST AI RMF</li>
               </ul>
             </div>
@@ -1164,7 +1184,7 @@
         name: 'Mario Keputa',
         role: 'Co-founder · Institutional AI Strategy',
         cred: 'Cornell University · MPA, MBA (Impact Investing) · PhD candidate',
-        bio:  "Public administration and AI governance lead. Co-founder of ZANI Institute and former President of EDYN — European Democracy Youth Network, with institutional experience at the World Bank and OSCE. Author of 'The Next Europe' (Cornell, 2026) on European competitiveness reform.",
+        bio:  "Public administration and AI governance lead. Co-founder of ZANI Institute, with institutional experience at the World Bank and OSCE. Author of 'The Next Europe' (Cornell, 2026) on European competitiveness reform.",
       },
       {
         initials: 'YS',
@@ -1318,15 +1338,14 @@
       <section className="final-cta" data-screen-label="Final CTA">
         <div className="final-cta-inner reveal">
           <div className="eyebrow">Start here</div>
-          <h2 className="h2">Ready to Build AI-Ready Capability?</h2>
+          <h2 className="h2">Ready to put governed AI to work?</h2>
           <p className="body-xl">
-            Start with a focused executive briefing. We will identify where AI
-            can create value, where governance is needed, and what your
-            organization should do next.
+            Start with an AI briefing or a readiness assessment. We will show
+            you where governed agents fit, and what a first pilot looks like.
           </p>
           <div className="final-cta-row">
             <a href="/executive-briefing" className="btn btn-primary">Book an AI Briefing</a>
-            <a href="#solutions" className="btn btn-secondary">Explore the Four Horizons</a>
+            <a href="/agentic-ai" className="btn btn-secondary">See the product</a>
           </div>
           <div className="final-cta-loc">Tirana, Albania · Local expertise, global AI governance perspective</div>
         </div>
@@ -1342,7 +1361,7 @@
           <div className="foot-grid">
             <div className="foot-brand foot-col">
               <div className="wm">Horizon<span className="four">4</span>&nbsp;AI</div>
-              <p className="tag">Building AI-ready capability through training, toolkits, agents, and safe implementation.</p>
+              <p className="tag">Governed AI for regulated institutions. Built in Albania, designed for Europe.</p>
               <div className="meta">
                 <span>Tirana, Albania · Europe-ready</span>
                 <span><a href="mailto:info@horizon4.ai" style={{ color: 'inherit' }}>info@horizon4.ai</a></span>
@@ -1387,7 +1406,7 @@
           <div className="foot-bar">
             <span>© 2026 Horizon4 AI</span>
             <span className="center">Based in Tirana. Built for Albania's AI era.</span>
-            <span className="right">Privacy · Terms</span>
+            <span className="right"><a href="/privacy" style={{ color: 'inherit' }}>Privacy</a> · <a href="/terms" style={{ color: 'inherit' }}>Terms</a></span>
           </div>
         </div>
       </footer>
@@ -1438,49 +1457,74 @@
       </section>
     );
 
-    const HORIZONS4 = [
-      { n: '01', t: 'Academy & Training',
-        d: 'Professional AI courses that train public servants, teachers, lawyers, and business teams to use AI well.',
+    const OFFER_CARDS = [
+      { kind: 'product', t: 'Agentic AI for Risk and Compliance',
+        d: 'Governed AI agents for operational and regulatory risk. They read, flag, and route; a human approves; every step is logged. Compliant with DORA and the EU AI Act by design. Built for financial institutions first, then regulated sectors across Europe.',
+        cta: 'How the agents work', href: '/agentic-ai',
+        icon: 'M9 4h6v4H9z|M4 14h6v6H4z|M14 14h6v6h-6z|M12 8v3|M7 14v-3h10v3' },
+      { kind: 'service', t: 'AI Capability and Academy',
+        d: 'Role-specific, bilingual training that builds real AI skill across leaders, teams, and operations. Revenue and relationships from day one.',
         cta: 'Explore the Academy', href: '/academy',
         icon: 'M3 8l9-4 9 4-9 4-9-4z|M7 10.5V15c0 1.4 2.7 2.6 5 2.6s5-1.2 5-2.6v-4.5|M21 8v5' },
-      { n: '02', t: 'Templates & Toolkits',
-        d: 'Prompt libraries, playbooks, and workflow templates that equip teams to apply AI to real work.',
-        cta: 'Explore Toolkits', href: '/toolkits',
-        icon: 'M4 4h7v7H4z|M13 4h7v7h-7z|M4 13h7v7H4z|M13 13h7v7h-7z' },
-      { n: '03', t: 'Agents & Workflows',
-        d: 'Local, human-approved AI assistants that support real institutional workflows.',
-        cta: 'Discover AI Agents', href: '/agentic-ai',
-        icon: 'M9 4h6v4H9z|M4 14h6v6H4z|M14 14h6v6h-6z|M12 8v3|M7 14v-3h10v3' },
-      { n: '04', t: 'Governance & Safe Use',
-        d: 'Practical safeguards, acceptable-use guidance, and human review for responsible adoption.',
-        cta: 'Explore Safe Use', href: '/audit',
+      { kind: 'service', t: 'Governance Advisory and Audit-Prep',
+        d: 'Readiness and audit preparation against DORA, the EU AI Act, and ISO 42001. It sells today, and every engagement deepens our regulatory expertise.',
+        cta: 'Governance and audit', href: '/audit',
         icon: 'M12 3l8 3v5c0 5-3.4 8.2-8 10-4.6-1.8-8-5-8-10V6l8-3z|M9 11.5l2 2 4-4' },
     ];
 
-    const FourHorizons = () => (
-      <section id="solutions" className="four-horizons" data-screen-label="Four Horizons">
+    const OneProductTwoServices = () => (
+      <section id="solutions" className="four-horizons" data-screen-label="One product, two services">
         <div className="container">
           <div className="section-head center reveal">
-            <div className="eyebrow">The Horizon4 approach</div>
-            <h2 className="h2">Four Horizons, One Vision.</h2>
+            <div className="eyebrow">What Horizon4 sells</div>
+            <h2 className="h2">One product. Two services.</h2>
             <p className="body-xl">
-              A structured approach to building AI-ready organizations, from
-              training and toolkits to AI agents and responsible
-              governance.
+              The product is the bet. The services are the engine that funds it.
             </p>
           </div>
           <div className="fh-grid">
-            {HORIZONS4.map((h, i) => (
-              <a key={h.n} href={h.href} className={`h-card fh-card reveal reveal-d${i + 1}`}>
+            {OFFER_CARDS.map((c, i) => (
+              <a key={c.t} href={c.href}
+                 className={`h-card fh-card reveal reveal-d${i + 1}`}
+                 style={c.kind === 'product' ? { borderColor: 'var(--accent-primary)', boxShadow: '0 0 0 1px var(--accent-primary)' } : undefined}>
                 <div className="fh-top">
-                  <span className="fh-icon"><FHIcon d={h.icon}/></span>
-                  <span className="fh-num">{h.n}</span>
+                  <span className="fh-icon"><FHIcon d={c.icon}/></span>
+                  <span className="fh-num" style={c.kind === 'product' ? { color: 'var(--accent-primary)', fontWeight: 700 } : undefined}>
+                    {c.kind === 'product' ? 'Product' : 'Service'}
+                  </span>
                 </div>
-                <h3>{h.t}</h3>
-                <p>{h.d}</p>
-                <span className="card-cta">{h.cta} <span className="arrow">→</span></span>
+                <h3>{c.t}</h3>
+                <p>{c.d}</p>
+                <span className="card-cta">{c.cta} <span className="arrow">→</span></span>
               </a>
             ))}
+          </div>
+        </div>
+      </section>
+    );
+
+    /* ━━━ Mission & Vision (shared between home and /about) ━━━ */
+    const MissionVision = () => (
+      <section style={{ background: 'var(--bg-surface)' }} data-screen-label="Mission and vision">
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '48px', maxWidth: '980px', margin: '0 auto' }}>
+            <div>
+              <div className="eyebrow" style={{ marginBottom: '12px' }}>Mission</div>
+              <p className="body-xl" style={{ margin: 0, color: 'var(--ink-primary)' }}>
+                Horizon4 builds governed AI agents that help regulated
+                institutions adopt AI responsibly: compliant with European
+                rules, with human oversight and audit-ready evidence,
+                reducing operational risk and governance complexity.
+              </p>
+            </div>
+            <div>
+              <div className="eyebrow" style={{ marginBottom: '12px' }}>Vision</div>
+              <p className="body-xl" style={{ margin: 0, color: 'var(--ink-primary)' }}>
+                To become Europe's trusted platform for governed AI in
+                regulated institutions, proven first in Albania and the
+                Western Balkans.
+              </p>
+            </div>
           </div>
         </div>
       </section>
@@ -1697,13 +1741,14 @@
           <Nav/>
           <Hero/>
           <Positioning/>
+          <OneProductTwoServices/>
           <ProblemSection/>
-          <FourHorizons/>
           <DiagnosticPreview/>
           <AIAgents/>
           <Governance/>
           <AcademyHome/>
           <Process/>
+          <MissionVision/>
           <Insights/>
           <Leadership/>
           <Publications/>

@@ -399,7 +399,6 @@
         { l: 'GovAI',       h: '/govai' },
         { l: 'EduAI',       h: '/eduai' },
         { l: 'BusinessAI',  h: '/businessai' },
-        { l: 'Agentic AI',  h: '/agentic-ai' },
         { l: 'Templates & Toolkits', h: '/toolkits' },
       ],
       Research: [
@@ -447,6 +446,7 @@
             <div className="nav-inner">
               <Brand/>
               <div className="nav-center">
+                <a href="/agentic-ai" className="nav-product" style={{ fontSize: '14px', fontWeight: 600, color: 'var(--accent-primary)', padding: '8px 12px', letterSpacing: '-0.005em' }}>Agentic AI</a>
                 {Object.keys(MEGA).map(k => (
                   <div
                     key={k}
@@ -565,17 +565,15 @@
     const Hero = () => (
       <section className="gov-hero" data-screen-label="Hero">
         <div className="container">
-          <div className="eyebrow">Horizon · Agents & Workflows</div>
-          <h1 className="h1">Local AI assistants for real workflows.</h1>
+          <div className="eyebrow">The product</div>
+          <h1 className="h1">Agentic AI for risk and compliance.</h1>
           <p className="body-xl hero-lead">
-            Horizon4 helps teams move from prompts to workflows, and from
-            workflows to local, human-approved AI assistants that support
-            reporting, documentation, administration, research, customer
-            service, and operations.
+            Governed AI agents that make a risk team faster and auditable.
+            Read, compare, flag, route. A human approves. Every step logged.
           </p>
           <div className="hero-actions">
             <a href="/executive-briefing" className="btn btn-primary">Book an AI Briefing</a>
-            <a href="/executive-briefing" className="btn btn-secondary">Discuss Agent Opportunities</a>
+            <a href="#how-it-works" className="btn btn-secondary">How it works</a>
           </div>
         </div>
       </section>
@@ -584,19 +582,33 @@
     /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
        SECTION 1B — CLARIFICATION: NOT A VERTICAL
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-    const NotAVertical = () => (
-      <section className="band surface" data-screen-label="Not a separate vertical">
+    const HOW_STEPS = [
+      ['01', 'Reads and compares', 'Scans documents against the control rulebook.'],
+      ['02', 'Flags gaps', 'Identifies missing or mismatched controls.'],
+      ['03', 'Routes to owner', 'Opens a case and sends it to the right team.'],
+      ['04', 'Human decides', 'No action is taken without explicit human approval.'],
+    ];
+
+    const HowItWorks = () => (
+      <section id="how-it-works" className="band surface" data-screen-label="How it works">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">A layer, not a vertical</div>
-            <h2 className="h2">Agents and workflows are not a separate vertical. They run across your work.</h2>
+            <div className="eyebrow">How it works</div>
+            <h2 className="h2">Read. Flag. Route. Human approves.</h2>
             <p className="body-xl">
-              Agents and workflows can support public administration,
-              education, business operations, strategy, and donor programs. The
-              question is not whether assistants are exciting. The question is
-              which workflow to design first, where an assistant can help, who
-              approves each action, and what gets recorded.
+              Four supervised steps. The agent does the slow document work; a
+              trained human owns the decision. Every step is logged as
+              evidence.
             </p>
+          </div>
+          <div className="icon-grid cols-4">
+            {HOW_STEPS.map(([n, t, d]) => (
+              <article key={n} className="icon-card xs-card">
+                <div className="eyebrow">{n}</div>
+                <h3 className="card-h">{t}</h3>
+                <p className="body">{d}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
@@ -606,15 +618,20 @@
        SECTION 2 — WHY AGENTIC AI NOW
        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
     const WhyGov = () => (
-      <section className="band base" data-screen-label="Why agents and workflows now">
+      <section className="band base" data-screen-label="Human in the loop">
         <div className="container">
           <div className="section-head">
-            <div className="eyebrow">Why agents and workflows now</div>
-            <h2 className="h2">From answers to action, with people kept in control.</h2>
+            <div className="eyebrow">The control plane</div>
+            <h2 className="h2">Why we keep a human in the loop.</h2>
             <p className="body-xl">
-              Teams are moving from one-off prompts to repeatable workflows,
-              and from workflows to local AI assistants. Most are not ready to
-              do this well. We help them get ready.
+              In a regulated institution, autonomy is a liability and
+              supervised assistance is an auditable control. Our agents do not
+              decide. They assist, and a trained human approves. Every step is
+              logged, so a regulator can audit the full trail. Under DORA and
+              the AI Act you must prove how you reached the answer.
+              Human-in-the-loop plus an audit trail is that proof. We are not
+              selling AI that replaces your risk team. We are selling AI that
+              makes your risk team faster, and auditable.
             </p>
           </div>
           <div className="icon-grid cols-3">
@@ -623,31 +640,72 @@
               <div className="eyebrow">Human-Approved by Design</div>
               <h3 className="card-h">Assistants support work. Humans decide.</h3>
               <p className="body">
-                A local assistant can draft, retrieve, and prepare, but every
+                Agents draft, retrieve, compare, and prepare. Every
                 consequential action stays with a person. Approval points and
                 accountability are part of the design.
               </p>
             </article>
             <article className="icon-card">
               <IconWarning/>
-              <div className="eyebrow">Workflow Design First</div>
-              <h3 className="card-h">Design the workflow before automating it.</h3>
+              <div className="eyebrow">Audit-Ready Evidence</div>
+              <h3 className="card-h">Every step is logged for the regulator.</h3>
               <p className="body">
-                Most assistant projects fail because the underlying workflow
-                was never mapped. We start with how the work actually happens,
-                then decide what an assistant should support.
+                What the agent read, what it flagged, who approved, when, and
+                why: an evidence trail your auditors and supervisors can
+                actually inspect.
               </p>
             </article>
             <article className="icon-card">
               <IconShield2/>
-              <div className="eyebrow">Built for Real Institutions</div>
-              <h3 className="card-h">Suited to institutional risk tolerance.</h3>
+              <div className="eyebrow">EU-Aligned by Default</div>
+              <h3 className="card-h">DORA, the AI Act, and GDPR by design.</h3>
               <p className="body">
-                Assistants used in regulated environments need oversight,
-                human override, and a clear record of what was done. We design
-                for these from day one.
+                The control plane is built around the regulatory frameworks
+                European institutions are already accountable to. Not an
+                add-on. The default.
               </p>
             </article>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* Block C: we do not build the model. we build the moat. */
+    const TheMoat = () => (
+      <section className="band surface" data-screen-label="The moat">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">What we own</div>
+            <h2 className="h2">We do not build the model. We build the moat.</h2>
+            <p className="body-xl">
+              The foundation model and the agent platform are commodities,
+              available to everyone. The value is the control plane: the
+              operational-risk logic, the regulatory templates for DORA, the
+              AI Act, GDPR, and ISO 42001, and the evidence layer. That is
+              what an institution pays for, and it compounds with every
+              engagement.
+            </p>
+          </div>
+        </div>
+      </section>
+    );
+
+    /* Block D: why financial institutions first */
+    const WhyFinancial = () => (
+      <section className="band base" data-screen-label="Why financial institutions first">
+        <div className="container">
+          <div className="section-head">
+            <div className="eyebrow">Who we serve first</div>
+            <h2 className="h2">Why financial institutions first.</h2>
+            <p className="body-xl">
+              Small and mid-sized financial institutions carry the same
+              regulatory obligations as the largest banks, including DORA,
+              operational resilience, and cyber and AI governance, with far
+              less capacity to meet them. The incumbent platforms are too
+              heavy and too expensive for them. A credible governance partner
+              can win where global vendors feel oversized. The buyer is the
+              CRO, COO, CIO, CISO, or Head of Operational Risk.
+            </p>
           </div>
         </div>
       </section>
@@ -1042,7 +1100,7 @@
           <div className="foot-grid">
             <div className="foot-brand foot-col">
               <div className="wm">Horizon<span className="four">4</span>&nbsp;AI</div>
-              <p className="tag">Building AI-ready capability through training, toolkits, agents, and safe implementation.</p>
+              <p className="tag">Governed AI for regulated institutions. Built in Albania, designed for Europe.</p>
               <div className="meta">
                 <span>Tirana, Albania · Europe-ready</span>
                 <span><a href="mailto:info@horizon4.ai" style={{ color: 'inherit' }}>info@horizon4.ai</a></span>
@@ -1082,7 +1140,7 @@
           <div className="foot-bar">
             <span>© 2026 Horizon4 AI</span>
             <span className="center">Based in Tirana. Built for Albania's AI era.</span>
-            <span className="right">Privacy · Terms</span>
+            <span className="right"><a href="/privacy" style={{ color: 'inherit' }}>Privacy</a> · <a href="/terms" style={{ color: 'inherit' }}>Terms</a></span>
           </div>
         </div>
       </footer>
@@ -1095,10 +1153,12 @@
       <div data-screen-label="Agentic AI">
         <Nav/>
         <Hero/>
-        <NotAVertical/>
+        <HowItWorks/>
         <WhyGov/>
-        <CrossSector/>
+        <TheMoat/>
+        <WhyFinancial/>
         <Architecture/>
+        <CrossSector/>
         <Offerings/>
         <Approach/>
         <Frameworks/>

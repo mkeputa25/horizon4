@@ -27,7 +27,6 @@ const H4Chrome = (() => {
       { l: 'GovAI',      h: '/govai' },
       { l: 'EduAI',      h: '/eduai' },
       { l: 'BusinessAI', h: '/businessai' },
-      { l: 'Agentic AI', h: '/agentic-ai' },
       { l: 'Templates & Toolkits', h: '/toolkits' },
     ],
     Research: [
@@ -71,6 +70,7 @@ const H4Chrome = (() => {
           <div className="nav-inner">
             <a href={route('/')} className="nav-brand" aria-label="Horizon4 AI home">Horizon<span className="four">4</span>&nbsp;AI</a>
             <div className="nav-center">
+              <a href={route('/agentic-ai')} className="nav-product" style={{ fontSize: '14px', fontWeight: 600, color: 'var(--accent-primary)', padding: '8px 12px', letterSpacing: '-0.005em' }}>Agentic AI</a>
               {Object.keys(MEGA).map(k => (
                 <div key={k}
                      className={`nav-item ${open === k ? 'open' : ''}`}
@@ -144,7 +144,7 @@ const H4Chrome = (() => {
         <div className="foot-grid">
           <div className="foot-brand foot-col">
             <div className="wm">Horizon<span className="four">4</span>&nbsp;AI</div>
-            <p className="tag">Building AI-ready capability through training, toolkits, agents, and safe implementation.</p>
+            <p className="tag">Governed AI for regulated institutions. Built in Albania, designed for Europe.</p>
             <div className="meta">
               <span>Tirana, Albania · Europe-ready</span>
               <span><a href="mailto:info@horizon4.ai" style={{ color: 'inherit' }}>info@horizon4.ai</a></span>
@@ -184,7 +184,7 @@ const H4Chrome = (() => {
         <div className="foot-bar">
           <span>© 2026 Horizon4 AI</span>
           <span className="center">Based in Tirana. Built for Albania's AI era.</span>
-          <span className="right">Privacy · Terms</span>
+          <span className="right"><a href={route('/privacy')} style={{ color: 'inherit' }}>Privacy</a> · <a href={route('/terms')} style={{ color: 'inherit' }}>Terms</a></span>
         </div>
       </div>
     </footer>
