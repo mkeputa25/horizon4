@@ -380,12 +380,15 @@
 
     const KnowledgeGraphSection = () => (
       <section className="kg-section" data-screen-label="Control plane">
-        <KnowledgeGraph
-          defaultTreatment="A"
-          showToggle={true}
-          sublabel="The control plane"
-          caption="Every agent action traces back to a regulation, through a control, with evidence. That traceability is the product."
-        />
+        <div className="kg-section-head">
+          <div className="eyebrow">The control plane</div>
+          <h2>From regulation to a logged action.</h2>
+          <p className="kg-caption">
+            Every agent action traces back to a regulation, through a
+            control, with evidence. That traceability is the product.
+          </p>
+        </div>
+        <KnowledgeGraph/>
       </section>
     );
 
