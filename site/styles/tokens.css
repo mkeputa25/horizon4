@@ -10,14 +10,16 @@
   --font-sans: 'Inter', 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'IBM Plex Mono', ui-monospace, 'SF Mono', monospace;
 
-  /* ─── COLOR PALETTE (LOCKED) ────────────────────── */
-  --bg-base:          #F0F2F5;
+  /* ─── COLOR PALETTE ─────────────────────────────── */
+  --bg-base:          #F6F4F0;
   --bg-surface:       #FFFFFF;
   --bg-deep:          #0A1F44;
+  --bg-section:       #EFEBE4;
+  --bg-subtle:        #FBFAF7;
 
   --ink-primary:      #0A1F44;
   --ink-body:         #353E50;
-  --ink-muted:        #6B7280;
+  --ink-muted:        #5E6470;
   --ink-on-dark:      #FFFFFF;
   --ink-on-dark-2:    #B0BBC9;
 
@@ -25,8 +27,10 @@
   --accent-primary-h: #005A9C;
   --accent-secondary: #0D9B84;
 
-  --border-hairline:  #D6DDE8;
-  --border-strong:    #B0BBC9;
+  --link:             #005A9C;
+
+  --border-hairline:  #E4DFD6;
+  --border-strong:    #D2CCC0;
 
   /* Pathway accents (used exactly once each, in horizon cards) */
   --gov-accent:   var(--accent-primary);
@@ -77,11 +81,20 @@
   --section-y-mobile: 80px;
 
   /* ─── MOTION ────────────────────────────────────── */
-  --ease: cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --dur-fast: 150ms;
-  --dur:      250ms;
-  --dur-slow: 380ms;
+  /* Durations */
+  --dur-instant: 0ms;
+  --dur-fast:    120ms;   /* menus, dropdowns, hover-in */
+  --dur-base:    180ms;   /* most transitions */
+  --dur-exit:    140ms;   /* exits, slightly faster than enter */
+  --dur:         180ms;   /* legacy alias for --dur-base */
+  --dur-slow:    260ms;   /* larger panels */
+
+  /* Easing */
+  --ease:           cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:       cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-strong: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:    cubic-bezier(0.77, 0, 0.175, 1);
+  --ease-drawer:    cubic-bezier(0.32, 0.72, 0, 1);
 
   /* ─── PREMIUM POLISH — Batch 1A ─────────────────── */
   /* Soft institutional gold — decorative accent, used sparingly */
@@ -134,8 +147,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
 }
 
-a { color: var(--accent-primary); text-decoration: none; transition: color var(--dur) var(--ease); }
-a:hover { color: var(--accent-primary-h); }
+a { color: var(--link); text-decoration: none; transition: color var(--dur-fast) var(--ease-out); }
+a:hover { color: var(--link); }
 
 /* ─── Global focus states (keyboard-visible) ─────── */
 a:focus-visible,
@@ -152,10 +165,10 @@ summary:focus-visible,
 
 /* ─── Reduced-motion fallback (global) ───────────── */
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
